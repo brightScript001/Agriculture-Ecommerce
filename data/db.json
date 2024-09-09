@@ -1,0 +1,52 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "productName": "Apple",
+      "description": "Fresh and juicy apples, carefully picked from the finest orchards. These apples are not only delicious but also packed with essential vitamins and nutrients. Perfect for a healthy snack, baking, or adding to your favorite dishes. Each bite is a burst of crisp, refreshing flavor that will leave you wanting more.",
+      "costPerKg": 30,
+      "productClass": "Class 1",
+      "numberOfProducts": 100
+    },
+    {
+      "id": "2",
+      "productName": "Banana",
+      "description": "Ripe and sweet bananas that are perfect for smoothies, baking, or just enjoying on their own. These bananas are full of natural sugars and energy-boosting carbohydrates, making them an ideal choice for a quick and healthy snack. Their creamy texture and delightful taste make them a favorite for people of all ages.",
+      "costPerKg": 10,
+      "productClass": "Class 2",
+      "numberOfProducts": 200
+    },
+    {
+      "id": "3",
+      "productName": "Orange",
+      "description": "Citrusy and tangy oranges that are bursting with flavor and vitamin C. These oranges are handpicked to ensure they are of the highest quality. Whether you're juicing them for a refreshing drink or eating them as is, these oranges are sure to provide a delightful and zesty experience.",
+      "costPerKg": 20.5,
+      "productClass": "Class 1",
+      "numberOfProducts": 150
+    },
+    {
+      "id": "4",
+      "productName": "Grapes",
+      "description": "Sweet and seedless grapes that are perfect for snacking or adding to a fruit salad. These grapes are grown in optimal conditions to bring out their natural sweetness. With their juicy and tender texture, they are a delicious treat that you can enjoy any time of the day.",
+      "costPerKg": 40,
+      "productClass": "Class 3",
+      "numberOfProducts": 180
+    },
+    {
+      "id": "5",
+      "productName": "Strawberry",
+      "description": "Fresh and delicious strawberries that are packed with flavor. These strawberries are perfect for desserts, smoothies, or eating fresh. They are rich in antioxidants, vitamins, and minerals, making them not only tasty but also nutritious. Their vibrant red color and sweet taste are sure to brighten up any dish.",
+      "costPerKg": 50,
+      "productClass": "Class 2",
+      "numberOfProducts": 120
+    },
+    {
+      "id": "6",
+      "productName": "Watermelon",
+      "description": "Juicy and refreshing watermelon that is perfect for hot summer days. This watermelon is packed with hydration and natural sugars, making it a refreshing and healthy choice. Enjoy it on its own or add it to fruit salads for a burst of sweetness and juiciness.",
+      "costPerKg": 0.8,
+      "productClass": "Class 1",
+      "numberOfProducts": 50
+    }
+  ]
+}
