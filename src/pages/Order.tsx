@@ -31,16 +31,12 @@ const Order = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (status! in statusMapping) {
-        setActiveButton(status as RouteStatus);
-        setLoading(false);
-      } else {
-        navigate("/orders/pending-orders");
-      }
-    }, 300);
-
-    return () => clearTimeout(timer);
+    if (status && status in statusMapping) {
+      setActiveButton(status as RouteStatus);
+      setLoading(false);
+    } else {
+      navigate("/orders/pending-orders");
+    }
   }, [status, navigate]);
 
   const handleButtonClick = (buttonType: RouteStatus) => {

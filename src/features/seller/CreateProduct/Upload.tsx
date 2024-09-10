@@ -1,13 +1,10 @@
-import styled from "styled-components";
-import Button from "../../../ui/Button";
-import { Title } from "../../../ui/Title";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import styled from "styled-components";
 
-import { getProducts } from "../../../slices/productSlice";
-import { AppDispatch, AppState } from "../../../store";
-import { useDispatch, useSelector } from "react-redux";
-import SpinnerComponent from "../../../ui/Spinner";
-import { useEffect } from "react";
+import { Title } from "../../../ui/Title";
+import { fetchProducts } from "../../../hooks/useFetchProduct";
+import Button from "../../../ui/Button";
 
 const Wrapper = styled.div`
   background-color: var(--color-grey-0);
@@ -41,19 +38,12 @@ const StyledTitle = styled(Title)`
 `;
 
 function UploadProduct() {
-  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
-  const products = useSelector((state: AppState) => state.product.products);
-  const isLoading = useSelector((state: AppState) => state.product.isLoading);
-  const error = useSelector((state: AppState) => state.product.error);
-
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
-
-  if (isLoading) return <SpinnerComponent />;
-  if (error) return <p>{error}</p>;
+  const { data: products } = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+  });
 
   const handleAddProductClick = () => {
     navigate("/marketplace/create-product");
@@ -64,7 +54,7 @@ function UploadProduct() {
       <Text>
         <StyledTitle>Your Current Uploaded Products</StyledTitle>
         <SpanContainer>
-          <Span>{products.length} products</Span>
+          <Span>{products?.length} products</Span>
         </SpanContainer>
       </Text>
       <ButtonWrapper>

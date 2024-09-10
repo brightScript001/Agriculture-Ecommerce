@@ -1,5 +1,5 @@
-import { useSelector } from "react-redux";
-import { AppState } from "../../../store";
+import { useQuery } from "@tanstack/react-query";
+import { fetchOrders } from "../../../api/orders";
 
 interface Order {
   orderStatus: string;
@@ -14,16 +14,32 @@ interface Card {
   navigateTo: string;
 }
 
-export const GetCardList = (): Card[] => {
-  const orders: Order[] =
-    useSelector((state: AppState) => state.orders.orders) ?? [];
+export const useCardList = (): Card[] => {
+  const {
+    data: orders = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["orders"],
+    queryFn: fetchOrders,
+  });
+
+  if (isLoading) {
+    return [];
+  }
+
+  if (isError) {
+    console.error("Error fetching orders:", error);
+    return [];
+  }
 
   const pendingOrdersCount = orders.filter(
-    (order) => order.orderStatus === "pending"
+    (order: Order) => order.orderStatus === "pending"
   ).length;
 
   const settledOrdersCount = orders.filter(
-    (order) => order.orderStatus === "settled"
+    (order: Order) => order.orderStatus === "settled"
   ).length;
 
   const calculateTotalRevenue = (orders: Order[]): number => {

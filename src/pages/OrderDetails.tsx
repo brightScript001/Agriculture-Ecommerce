@@ -1,35 +1,43 @@
-import React, { useEffect } from "react";
-
+import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { fetchOrderById } from "../api/orders";
 import { OrderText } from "../features/seller/OrderDetails/Text";
 import { Buttons } from "../features/seller/OrderDetails/Buttons";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchOrders } from "../slices/orderSlice";
-import { AppDispatch, AppState } from "../store";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  margin-top: 6rem;
+  margin-top: 5rem;
 `;
 
-const OrderSummary: React.FC = () => {
+const OrderDetails: React.FC = () => {
   const { orderId } = useParams<{ orderId: string }>();
-  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
-  const orders = useSelector((state: AppState) => state.orders.orders);
-  const order = orders.find((order) => order.orderId === orderId);
+  const {
+    data: order,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["order", orderId],
+    queryFn: () => fetchOrderById(orderId!),
+    enabled: !!orderId,
+  });
 
-  useEffect(() => {
-    if (!orders.length) {
-      dispatch(fetchOrders());
-    }
-  }, [dispatch, orders.length]);
+  if (isLoading) return <p>Loading...</p>;
+  if (isError)
+    return (
+      <p>
+        Error: {error instanceof Error ? error.message : "An error occurred"}
+      </p>
+    );
 
   if (!order) {
-    return <p>Oops Order not found</p>;
+    return <p>Oops! Order not found</p>;
   }
 
+  // Handle dispute action
   const handleDispute = () => {
     navigate(`/order/${orderId}/dispute`);
   };
@@ -42,4 +50,4 @@ const OrderSummary: React.FC = () => {
   );
 };
 
-export default OrderSummary;
+export default OrderDetails;

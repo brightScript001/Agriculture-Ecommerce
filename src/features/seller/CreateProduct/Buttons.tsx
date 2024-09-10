@@ -3,15 +3,13 @@ import ButtonGroup from "../../../ui/ButtonGroup";
 import UiButton from "../../../ui/Button";
 import ModalComponent from "../../../ui/Modal";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppState, AppDispatch } from "../../../store";
-import { resetProductCreated } from "../../../slices/productSlice";
 import styled from "styled-components";
 import Heading from "../../../ui/Heading";
-
+import { useNavigate } from "react-router-dom";
 interface ActionButtonsProps {
   onClose: () => void;
   handleDelete: () => void;
+  newlyCreatedProductName?: string | null;
 }
 
 const Img = styled.img`
@@ -30,22 +28,17 @@ const ModalContent = styled.div`
 const ActionButtons: React.FC<ActionButtonsProps> = ({
   onClose,
   handleDelete,
+  newlyCreatedProductName,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState<JSX.Element | null>(null);
-
-  const dispatch = useDispatch<AppDispatch>();
-  const {
-    isProductCreated,
-    newProductName,
-    isLoading: isCreating,
-  } = useSelector((state: AppState) => state.product);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (isProductCreated) {
+    if (newlyCreatedProductName) {
       openModal("success");
     }
-  }, [isProductCreated]);
+  }, [newlyCreatedProductName]);
 
   const openModal = (choice: "success" | "delete") => {
     let content: JSX.Element | null = null;
@@ -59,9 +52,9 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
               alt="success illustration"
             />
             <p>
-              You have successfully added {newProductName} to the list of your
-              products on One-Farm. Our team will approve your upload within 1
-              hour.
+              You have successfully added {newlyCreatedProductName} to the list
+              of your products on One-Farm. Our team will approve your upload
+              within 1 hour.
             </p>
           </ModalContent>
         );
@@ -94,7 +87,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
 
   const closeModal = () => {
     setIsModalOpen(false);
-    dispatch(resetProductCreated());
+    navigate("/marketplace");
   };
 
   return (
@@ -106,9 +99,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
         <Button variation="danger" onClick={() => openModal("delete")}>
           Delete
         </Button>
-        <Button variation="primary" disabled={isCreating}>
-          Create Product
-        </Button>
+        <Button variation="primary">Create Product</Button>
       </ButtonGroup>
       <ModalComponent isOpen={isModalOpen} onClose={closeModal}>
         {modalContent}

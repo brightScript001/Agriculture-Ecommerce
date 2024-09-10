@@ -3,13 +3,11 @@ import styled from "styled-components";
 import Heading from "../ui/Heading";
 import TextArea from "../ui/TextArea";
 import Button from "../features/seller/dispute/Button";
-
 import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { disputeOrder } from "../slices/orderSlice";
-import { AppDispatch } from "../store";
 import Input from "../ui/Input";
 import toast from "react-hot-toast";
+import { useMutation } from "@tanstack/react-query";
+import { updateOrderStatus } from "../api/orders"; // Adjust the import path if needed
 
 const Wrapper = styled.div`
   margin-top: 5rem;
@@ -33,17 +31,28 @@ const Block = styled.div``;
 const Dispute: React.FC = () => {
   const { orderId } = useParams<{ orderId: string }>();
   const navigate = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
 
-  const handleSubmitDispute = async () => {
-    try {
+  const mutation = useMutation({
+    mutationFn: () => {
       if (orderId) {
-        dispatch(disputeOrder(orderId));
-        toast(`Order ${orderId} status changed to disputed`);
-        navigate("");
+        return updateOrderStatus(orderId, "disputed");
       }
-    } catch (error) {
-      console.log("Failed to change Order status: ", error);
+      throw new Error("Order ID is required");
+    },
+    onSuccess: () => {
+      toast.success(`Order ${orderId} status changed to disputed`);
+      navigate("/orders/:status");
+    },
+    onError: (error) => {
+      console.error("Failed to change Order status: ", error);
+      toast.error("Failed to change order status");
+    },
+  });
+
+  const handleSubmitDispute = () => {
+    console.log("Order ID:", orderId);
+    if (orderId) {
+      mutation.mutate();
     }
   };
 

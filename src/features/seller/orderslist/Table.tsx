@@ -3,7 +3,6 @@ import Table from "../../../ui/Table";
 import { DataGridRow, OrderTableProps, ColumnDef } from "./Types";
 import { useNavigate } from "react-router-dom";
 
-// Column definitions
 const columns: ColumnDef[] = [
   { field: "customerName", headerName: "Customer" },
   { field: "product", headerName: "Product" },
@@ -16,18 +15,13 @@ const columns: ColumnDef[] = [
 const OrderTable: React.FC<OrderTableProps> = ({ rows }) => {
   const navigate = useNavigate();
 
-  // Function to render each row
   const renderRow = (row: DataGridRow) => {
     const handleRowClick = () => {
-      // Only navigate for pending orders
       navigate(`/order/${row.orderId}`);
     };
 
     return (
-      <Table.Row
-        key={row.orderId}
-        onClick={handleRowClick} // Apply onClick for all rows since we already filtered for pending
-      >
+      <Table.Row key={row.orderId} onClick={handleRowClick}>
         {columns.map((col) => (
           <div key={col.field}>{row[col.field]}</div>
         ))}

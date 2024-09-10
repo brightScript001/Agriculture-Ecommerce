@@ -1,13 +1,12 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, Control, FormState } from "react-hook-form";
 import { Title } from "../../../ui/Title";
 import Form from "../../../ui/Form";
 import ActionButtons from "./Buttons";
 import ProductDetails from "./Details";
 import toast from "react-hot-toast";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../store";
-import { createProduct } from "../../../slices/productSlice";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
 
 interface FormData {
   productName: string;
@@ -18,7 +17,6 @@ interface FormData {
 }
 
 interface CreateProductProps {
-  title: string;
   onClose: () => void;
 }
 
@@ -29,24 +27,46 @@ const StyledTitle = styled(Title)`
 
 function CreateProduct({ onClose }: CreateProductProps) {
   const { handleSubmit, control, reset, formState } = useForm<FormData>();
-  const dispatch = useDispatch<AppDispatch>();
+  const [newProductName, setNewProductName] = useState<string | null>(null);
 
-  const handleDelete = () => {
+  const addProduct = async (newProduct: FormData): Promise<FormData> => {
+    const res = await fetch("http://localhost:3000/products", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newProduct),
+    });
+    if (!res.ok) {
+      throw new Error("Failed to add product");
+    }
+    return res.json();
+  };
+
+  const queryClient = useQueryClient();
+
+  const { mutateAsync } = useMutation({
+    mutationFn: addProduct,
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({
+        queryKey: ["products"],
+      });
+      setNewProductName(data.productName);
+    },
+    onError: () => {
+      toast.error("Failed to add product");
+    },
+  });
+
+  const handleDelete = (): void => {
     reset();
     toast.success("Product creation reset.");
   };
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
-      await dispatch(
-        createProduct({
-          id: Date.now(),
-          ...data,
-        })
-      ).unwrap();
-
+      await mutateAsync(data);
       toast.success("Product created successfully!");
-      reset();
     } catch (error) {
       toast.error("Failed to create product.");
     }
@@ -56,8 +76,15 @@ function CreateProduct({ onClose }: CreateProductProps) {
     <>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <StyledTitle>Your Product</StyledTitle>
-        <ProductDetails control={control} formState={formState} />
-        <ActionButtons onClose={onClose} handleDelete={handleDelete} />
+        <ProductDetails
+          control={control as Control<FormData>}
+          formState={formState as FormState<FormData>}
+        />
+        <ActionButtons
+          onClose={onClose}
+          handleDelete={handleDelete}
+          newlyCreatedProductName={newProductName}
+        />
       </Form>
     </>
   );

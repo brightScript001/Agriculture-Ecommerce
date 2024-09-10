@@ -1,58 +1,65 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchOrders } from "../../../slices/orderSlice";
+import React from "react";
 import OrderTable from "./Table";
 import {
   calculateTotalQuantity,
   calculateTotalPrice,
 } from "../../../utils/Formatting";
-import SpinnerMini from "../../../ui/SpinnerMini";
-import { AppDispatch, AppState } from "../../../store";
 import { Order, DataGridRow, OrderListProps } from "./Types";
+import { useQuery } from "@tanstack/react-query";
+import { fetchOrders } from "../../../api/orders";
+import toast from "react-hot-toast";
+import Spinner from "../../../ui/Spinner";
 
 const generateRows = (
   orders: Order[],
   status: "pending" | "settled"
 ): DataGridRow[] => {
-  return orders
-    .filter((order) => order.orderStatus === status)
-    .map((order) => {
-      const totalQuantity: number = calculateTotalQuantity(order);
-      const totalPrice: number = calculateTotalPrice(order);
+  console.log("Generating rows for status:", status);
+  console.log("Orders before filtering:", orders);
 
-      const productDetails: string = order.orderDetails
-        .map((detail) => `${detail.item} (${detail.quantityInKg}kg)`)
-        .join(", ");
+  // Filter orders based on status
+  const filteredOrders = orders.filter((order) => order.orderStatus === status);
+  console.log("Filtered orders:", filteredOrders);
 
-      return {
-        id: order.orderId,
-        customerName: order.customerName,
-        product: productDetails,
-        orderId: order.orderId,
-        quantity: totalQuantity,
-        price: totalPrice,
-        dateOfOrder: order.dateOfOrder,
-      };
-    });
+  return filteredOrders.map((order) => {
+    const totalQuantity = calculateTotalQuantity(order);
+    const totalPrice = calculateTotalPrice(order);
+
+    const productDetails = order.orderDetails
+      .map((detail) => `${detail.item} (${detail.quantityInKg}kg)`)
+      .join(", ");
+
+    return {
+      id: order.orderId,
+      customerName: order.customerName,
+      product: productDetails,
+      orderId: order.orderId,
+      quantity: totalQuantity,
+      price: totalPrice,
+      dateOfOrder: order.dateOfOrder,
+    };
+  });
 };
 
 export const OrderList: React.FC<OrderListProps> = ({ status }) => {
-  const dispatch = useDispatch<AppDispatch>();
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["orders"],
+    queryFn: fetchOrders,
+  });
 
-  const orders = useSelector((state: AppState) => state.orders.orders) ?? [];
-  const loading = useSelector((state: AppState) => state.orders.isLoading);
-  const error = useSelector((state: AppState) => state.orders.error);
+  console.log("API Data:", data);
 
-  useEffect(() => {
-    if (orders.length === 0) {
-      dispatch(fetchOrders());
-    }
-  }, [dispatch, orders.length]);
+  if (isLoading) return <Spinner />;
+  if (error) {
+    toast.error("Error loading orders");
+    return null;
+  }
 
-  if (loading) return <SpinnerMini />;
-  if (error) return <p>Error: {error}</p>;
+  const orders: Order[] = data || [];
+  console.log("Fetched orders:", orders);
 
   const rows: DataGridRow[] = generateRows(orders, status);
+  console.log("Generated rows:", rows);
 
   return (
     <div style={{ height: 400, width: "100%" }}>

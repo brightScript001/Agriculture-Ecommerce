@@ -1,11 +1,17 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, AppState } from "../../../store";
-import { getProducts } from "../../../slices/productSlice";
-import SpinnerComponent from "../../../ui/Spinner";
 import styled from "styled-components";
 import Heading from "../../../ui/Heading";
 import { formatNumber } from "../../../utils/formatNumber";
+import { useQuery } from "@tanstack/react-query";
+import Spinner from "../../../ui/Spinner";
+import toast from "react-hot-toast";
+import { fetchProducts } from "../../../hooks/useFetchProduct";
+
+interface Product {
+  id: number;
+  productName: string;
+  description: string;
+  costPerKg: number;
+}
 
 const ProductListWrapper = styled.div`
   margin-top: 20px;
@@ -52,29 +58,33 @@ const ProductPrice = styled.h3`
 `;
 
 const ProductList: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const products = useSelector((state: AppState) => state.product.products);
-  const isLoading = useSelector((state: AppState) => state.product.isLoading);
-  const error = useSelector((state: AppState) => state.product.error);
+  const {
+    data: products,
+    isLoading,
+    error,
+  } = useQuery<Product[]>({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+    staleTime: 60000,
+  });
 
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
-
-  if (isLoading) return <SpinnerComponent />;
-  if (error) return <p>{error}</p>;
+  if (isLoading) return <Spinner />;
+  if (error instanceof Error) return toast(error.message);
 
   return (
     <ProductListWrapper>
       <Heading as="h2">Your Products</Heading>
       <ProductListContainer>
-        {products.map((product) => (
-          <ProductCard key={product.id}>
-            <ProductName>{product.productName}</ProductName>
-            <ProductDescription>{product.description}</ProductDescription>
-            <ProductPrice>{formatNumber(product.costPerKg, true)}</ProductPrice>
-          </ProductCard>
-        ))}
+        {Array.isArray(products) &&
+          products.map((product) => (
+            <ProductCard key={product.id}>
+              <ProductName>{product.productName}</ProductName>
+              <ProductDescription>{product.description}</ProductDescription>
+              <ProductPrice>
+                {formatNumber(product.costPerKg, true)}
+              </ProductPrice>
+            </ProductCard>
+          ))}
       </ProductListContainer>
     </ProductListWrapper>
   );

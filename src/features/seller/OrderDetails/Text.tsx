@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Heading from "../../../ui/Heading";
-import { calculateTotalPrice } from "../../../utils/OrderTotalPrice";
 
 const Block = styled.div`
   display: flex;
@@ -9,7 +8,9 @@ const Block = styled.div`
   align-items: center;
   margin-bottom: 20px;
 `;
+
 const BlockItem = styled.div``;
+
 const Input = styled.input`
   width: 30rem;
   padding: 10px;
@@ -27,6 +28,7 @@ const OrderDetails = styled.div`
   align-items: center;
   margin-bottom: 10px;
 `;
+
 const Item = styled.span`
   font-size: var(--font-size-sm);
 `;
@@ -45,55 +47,90 @@ const Wrapper = styled.div`
   margin: 20px 0;
 `;
 
-export const OrderText: React.FC<{ order: any }> = ({ order }) => {
-  const totalPrice = calculateTotalPrice(order.orderId);
+// Interfaces
+interface OrderDetail {
+  item: string;
+  quantityInKg: number;
+  pricePerKg: number;
+  totalPrice: number;
+}
+
+interface Order {
+  customerName: string;
+  orderId: string;
+  orderDetails: OrderDetail[];
+  shippingAddress: string;
+  dateOfOrder: string;
+  orderStatus:
+    | "pending"
+    | "approved"
+    | "disputed"
+    | "shipped"
+    | "delivered"
+    | "settled";
+}
+
+interface OrderTextProps {
+  order: Order;
+}
+
+// Utility function to format currency
+const formatCurrency = (value: number) => `₦${value.toFixed(2)}`;
+
+export const OrderText: React.FC<OrderTextProps> = ({ order }) => {
+  // Calculate total price directly in the component
+  const totalPrice = (order.orderDetails || []).reduce(
+    (total, item) => total + item.totalPrice,
+    0
+  );
 
   return (
     <>
       <Block>
         <BlockItem>
           <Heading as="h3">Name of customer</Heading>
-          <Input type="text" value={order.customerName} readOnly />
+          <Input type="text" value={order.customerName || "N/A"} readOnly />
         </BlockItem>
         <BlockItem>
           <Heading as="h3">Order ID</Heading>
-          <Input type="text" value={order.orderId} readOnly />
+          <Input type="text" value={order.orderId || "N/A"} readOnly />
         </BlockItem>
       </Block>
+
       <BlockItem>
         <Heading as="h3">Customer's Order</Heading>
         <Wrapper>
-          {" "}
-          {order.orderDetails.map((item: any) => (
-            <OrderDetails key={item.item}>
+          {(order.orderDetails || []).map((item, index) => (
+            <OrderDetails key={`${item.item}-${index}`}>
               <Item>
                 {item.quantityInKg} {item.item}
               </Item>
-              <Price>₦{item.totalPrice}</Price>
+              <Price>{formatCurrency(item.totalPrice)}</Price>
             </OrderDetails>
-          ))}{" "}
+          ))}
           <OrderDetails>
             <Item>Tax</Item>
-            <Price>₦{order.tax}</Price>
+            <Price>{formatCurrency(0)}</Price>
           </OrderDetails>
           <OrderDetails>
             <Item>Shipping fee</Item>
-            <Price>₦{order.shippingFee}</Price>
+            <Price>{formatCurrency(0)}</Price>
           </OrderDetails>
           <OrderDetails>
             <Item>Total</Item>
-            <Price>₦{totalPrice.toFixed(2)}</Price>
+            <Price>{formatCurrency(totalPrice)}</Price>
           </OrderDetails>
         </Wrapper>
       </BlockItem>
+
       <Block>
         <BlockItem>
           <Heading as="h3">Shipping address</Heading>
-          <Input type="text" value={order.shippingAddress} readOnly />
+          <Input type="text" value={order.shippingAddress || "N/A"} readOnly />
         </BlockItem>
         <BlockItem>
           <Heading as="h3">Date of Order</Heading>
-          <Input type="text" value={order.dateOfOrder} readOnly />
+          <Input type="text" value={order.dateOfOrder || "N/A"} readOnly />
         </BlockItem>
       </Block>
     </>

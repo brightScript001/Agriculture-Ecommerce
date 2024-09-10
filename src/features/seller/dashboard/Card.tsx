@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Card from "../../../ui/TextCard";
-import { GetCardList } from "./CardList";
+import { useCardList } from "./CardList";
 import { useNavigate } from "react-router-dom";
 
 const CardsWrapper = styled.div`
@@ -35,7 +35,7 @@ const CardsGrid = styled.div`
 `;
 
 function CardsContainer() {
-  const cardList = GetCardList();
+  const cardList = useCardList();
   const navigate = useNavigate();
 
   const handleCardClick = (navigateTo: string) => {

@@ -30,13 +30,12 @@ const StyledNavLink = styled(NavLink)`
     transition: all 0.3s;
   }
 
-  /* This works because react-router places the active class on the active NavLink */
   &:hover,
   &:active,
   &.active:link,
   &.active:visited {
-    color: var(--color-grey-800);
-    background-color: var(--color-grey-50);
+    color: var(--color-green-800);
+    background-color: var(--color-green-100);
     border-radius: var(--border-radius-sm);
   }
 
@@ -51,7 +50,7 @@ const StyledNavLink = styled(NavLink)`
   &:active svg,
   &.active:link svg,
   &.active:visited svg {
-    color: var(--color-grey-600);
+    color: var(--color-green-700);
   }
 `;
 
