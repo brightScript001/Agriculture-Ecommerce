@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
 
 import { Title } from "../../../ui/Title";
-import { fetchProducts } from "../../../hooks/useFetchProduct";
+import { fetchProducts } from "../../../api/products";
 import Button from "../../../ui/Button";
 
 const Wrapper = styled.div`

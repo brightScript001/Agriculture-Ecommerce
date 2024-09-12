@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Heading from "../ui/Heading";
 import TextArea from "../ui/TextArea";
-import Button from "../features/seller/dispute/Button";
+import Button from "../features/seller/disputeOrder/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import Input from "../ui/Input";
 import toast from "react-hot-toast";

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchOrderById } from "../api/orders";
 import { OrderText } from "../features/seller/OrderDetails/Text";
 import { Buttons } from "../features/seller/OrderDetails/Buttons";
+import { Approve } from "../features/seller/ApproveOrder/ApproveModal";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -13,6 +14,7 @@ const Wrapper = styled.div`
 const OrderDetails: React.FC = () => {
   const { orderId } = useParams<{ orderId: string }>();
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const {
     data: order,
@@ -37,15 +39,19 @@ const OrderDetails: React.FC = () => {
     return <p>Oops! Order not found</p>;
   }
 
-  // Handle dispute action
   const handleDispute = () => {
     navigate(`/order/${orderId}/dispute`);
+  };
+
+  const handleApprove = () => {
+    setIsModalOpen(true);
   };
 
   return (
     <Wrapper>
       <OrderText order={order} />
-      <Buttons onDispute={handleDispute} />
+      <Buttons onDispute={handleDispute} onApprove={handleApprove} />
+      <Approve isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </Wrapper>
   );
 };

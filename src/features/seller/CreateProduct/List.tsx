@@ -4,7 +4,7 @@ import { formatNumber } from "../../../utils/formatNumber";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../../../ui/Spinner";
 import toast from "react-hot-toast";
-import { fetchProducts } from "../../../hooks/useFetchProduct";
+import { fetchProducts } from "../../../api/products";
 
 interface Product {
   id: number;

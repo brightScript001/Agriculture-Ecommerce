@@ -9,12 +9,13 @@ const ButtonContainer = styled.div`
 
 interface ButtonProp {
   onDispute: () => void;
+  onApprove: () => void;
 }
 
-export const Buttons: React.FC<ButtonProp> = ({ onDispute }) => {
+export const Buttons: React.FC<ButtonProp> = ({ onDispute, onApprove }) => {
   return (
     <ButtonContainer>
-      <Button size="large" variation="primary">
+      <Button size="large" variation="primary" onClick={onApprove}>
         Approve Order
       </Button>
       <Button size="large" variation="secondary">
