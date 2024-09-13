@@ -4,25 +4,25 @@ import { useSelector } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import GlobalStyles from "./styles/globalStyles";
-import PageNotFound from "./pages/PageNotFound";
+import PageNotFound from "./shared/components/PageNotFound";
 import { AppState } from "./store";
 // import DarkModeToggle from "./ui/DarkModeToggle";
-import RegisterSeller from "./pages/SignUp";
-import RegisterBuyer from "./pages/SignUp";
-import ForgotPassword from "./pages/ForgotPassword";
-import Login from "./pages/Login";
-import PasswordReset from "./pages/PasswordReset";
-import VerifyEmail from "./pages/VerifyEmail";
-import HomePage from "./pages/Home";
+import RegisterSeller from "./modules/auth/pages/SignUp";
+import RegisterBuyer from "./modules/auth/pages/SignUp";
+import ForgotPassword from "./modules/auth/pages/ForgotPassword";
+import Login from "./modules/auth/pages/Login";
+import PasswordReset from "./modules/auth/pages/PasswordReset";
+import VerifyEmail from "./modules/auth/pages/VerifyEmail";
+import HomePage from "./shared/components/Home";
 
 // import ProtectedRoute from "./ui/ProtectedRoute";
-import AppLayout from "./ui/AppLayout";
-import SellerDashboard from "./pages/SelllerDashboard";
-import Order from "./pages/Order";
-import MarketPlace from "./pages/MarketPlace";
-import CreateProduct from "./pages/CreateProduct";
-import Dispute from "./pages/Dispute";
-import OrderDetails from "./pages/OrderDetails";
+import AppLayout from "./modules/seller/ui/AppLayout";
+import SellerDashboard from "./modules/seller/pages/SelllerDashboard";
+import Order from "./modules/seller/pages/Order";
+import MarketPlace from "./modules/seller/pages/MarketPlace";
+import CreateProduct from "./modules/seller/pages/CreateProduct";
+import Dispute from "./modules/seller/pages/Dispute";
+import OrderDetails from "./modules/seller/pages/OrderDetails";
 
 function App() {
   const isDarkMode = useSelector(

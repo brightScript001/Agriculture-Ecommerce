@@ -47,6 +47,22 @@
       "costPerKg": 0.8,
       "productClass": "Class 1",
       "numberOfProducts": 50
+    },
+    {
+      "id": "ca06",
+      "productName": "Scarlet Durham",
+      "description": "Duis blanditiis illu",
+      "costPerKg": "62",
+      "productClass": "class 2",
+      "numberOfProducts": "160"
+    },
+    {
+      "id": "7539",
+      "productName": "Keefe Garcia",
+      "description": "Quia eos neque aliqu",
+      "costPerKg": "69",
+      "productClass": "class 3",
+      "numberOfProducts": "27"
     }
   ]
 }

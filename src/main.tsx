@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import App from "./App";
 import { ErrorBoundary } from "react-error-boundary";
-import ErrorFallback from "./ui/ErrorFallback";
+import ErrorFallback from "./shared/ui/ErrorFallback";
 import store from "./store";
 
 const queryClient = new QueryClient();
