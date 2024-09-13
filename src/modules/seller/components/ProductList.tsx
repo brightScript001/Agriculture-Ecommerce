@@ -18,31 +18,29 @@ const ProductListWrapper = styled.div`
 `;
 
 const ProductListContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
-  flex-wrap: wrap;
   margin-top: 20px;
 `;
 
 const ProductCard = styled.div`
-  flex: 1;
-  min-width: 300px;
-  max-width: 350px;
-  border: 1px solid var(--color-grey-200);
+  height: 15.875rem;
+  border: none;
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
   padding: 1rem;
   background-color: var(--color-grey-0);
 `;
 
-const ProductName = styled.h3`
+const ProductName = styled.h1`
   font-size: var(--font-size-md);
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.0625rem;
 `;
 
 const ProductDescription = styled.p`
   font-size: var(--font-size-sm);
-  margin-bottom: 1rem;
+  margin-bottom: 1.0625rem;
   color: var(--color-grey-700);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -51,10 +49,9 @@ const ProductDescription = styled.p`
   -webkit-line-clamp: 4;
 `;
 
-const ProductPrice = styled.h3`
+const ProductPrice = styled.p`
   font-size: var(--font-size-md);
-  font-weight: bold;
-  margin-bottom: 1rem;
+  margin-bottom: 1.0625rem;
 `;
 
 const ProductList: React.FC = () => {

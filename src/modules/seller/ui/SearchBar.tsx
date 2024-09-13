@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 const SearchInput = styled.input`
-  background-color: var(--color-grey-0);
+  background-color: var(--color-grey-50);
+  width: 29.9375rem;
   padding: 1rem;
   font-size: var(--font-size-sm);
-  border: 1px solid var(--color-grey-300);
+  border: none;
   border-radius: var(--border-radius-xl);
   outline: none;
 
@@ -15,7 +16,7 @@ const SearchInput = styled.input`
 `;
 
 function SearchBar() {
-  return <SearchInput type="text" placeholder="Search..." />;
+  return <SearchInput type="text" placeholder="Search" />;
 }
 
 export default SearchBar;

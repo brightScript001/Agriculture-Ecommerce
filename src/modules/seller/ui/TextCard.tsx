@@ -10,7 +10,7 @@ interface CardProps {
 }
 
 const CardContainer = styled.div`
-  border: 1px solid var(--color-grey-200);
+  border: none;
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
   background-color: var(--color-grey-0);

@@ -1,7 +1,7 @@
-import { TextField, Select, MenuItem } from "@mui/material";
 import { Controller, Control, FieldErrors } from "react-hook-form";
 import FormRow from "../../../shared/ui/FormRow";
-import TextArea from "../../../shared/ui/TextArea";
+import Input from "../../../shared/ui/Input";
+import styled from "styled-components";
 
 interface ProductDetailsFormData {
   productName: string;
@@ -9,6 +9,7 @@ interface ProductDetailsFormData {
   costPerKg: number;
   productClass: string;
   numberOfProducts: number;
+  productImage: FileList | null; // Can be null initially
 }
 
 interface ProductDetailsProps {
@@ -16,98 +17,150 @@ interface ProductDetailsProps {
   formState: { errors: FieldErrors<ProductDetailsFormData> };
 }
 
+const StyledInput = styled(Input)`
+  width: 45.0625rem;
+  margin-bottom: 1.5rem;
+`;
+
+const Label = styled.label`
+  font-size: var(--font-size-sm);
+`;
+
 function CreateProductForm({
   control,
   formState: { errors },
 }: ProductDetailsProps) {
   const errorMessage = "This field is required";
 
-  const renderTextField = (
-    name: keyof ProductDetailsFormData,
-    label: string,
-    type: string = "text"
-  ) => (
-    <Controller
-      name={name}
-      control={control}
-      rules={{ required: errorMessage }}
-      render={({ field }) => (
-        <TextField
-          {...field}
-          label={label}
-          type={type}
-          variant="outlined"
-          fullWidth
-          error={!!errors?.[name]}
-          helperText={errors?.[name]?.message}
-          sx={{ backgroundColor: "var(--color-white-100)" }}
-        />
-      )}
-    />
-  );
-
-  const renderSelectField = (
-    name: keyof ProductDetailsFormData,
-    label: string,
-    options: { value: string; label: string }[]
-  ) => (
-    <Controller
-      name={name}
-      control={control}
-      rules={{ required: errorMessage }}
-      render={({ field }) => (
-        <Select
-          {...field}
-          displayEmpty
-          fullWidth
-          variant="outlined"
-          error={!!errors?.[name]}
-          sx={{ backgroundColor: "var(--color-white-100)" }}
-          renderValue={(selected) => selected || label}
-        >
-          <MenuItem value="" disabled>
-            {label}
-          </MenuItem>
-          {options.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </Select>
-      )}
-    />
-  );
-
   return (
     <>
-      <FormRow>{renderTextField("productName", "Name of Product")}</FormRow>
+      <FormRow>
+        <Controller
+          name="productName"
+          control={control}
+          rules={{ required: errorMessage }}
+          render={({ field }) => (
+            <>
+              <Label htmlFor="productName">Name of Product</Label>
+              <StyledInput
+                id="productName"
+                type="text"
+                {...field}
+                value={field.value || ""} // Ensures controlled input
+              />
+              {errors.productName && <p>{errors.productName.message}</p>}
+            </>
+          )}
+        />
+      </FormRow>
+
+      <FormRow>
+        <Controller
+          name="costPerKg"
+          control={control}
+          rules={{ required: errorMessage }}
+          render={({ field }) => (
+            <>
+              <Label htmlFor="costPerKg">Cost of product per kg</Label>
+              <StyledInput
+                id="costPerKg"
+                type="number"
+                placeholder="Cost per kg"
+                {...field}
+                value={field.value || 0} // Set default to 0 for controlled number input
+                onChange={(e) => field.onChange(Number(e.target.value))}
+              />
+              {errors.costPerKg && <p>{errors.costPerKg.message}</p>}
+            </>
+          )}
+        />
+      </FormRow>
+
       <FormRow>
         <Controller
           name="description"
           control={control}
           rules={{ required: errorMessage }}
           render={({ field }) => (
-            <TextArea placeholder="Describe your Product here" {...field} />
+            <>
+              <Label htmlFor="description">Product Description</Label>
+              <StyledInput
+                id="description"
+                type="text"
+                placeholder="Describe your product here"
+                {...field}
+                value={field.value || ""} // Ensure controlled input
+              />
+              {errors.description && <p>{errors.description.message}</p>}
+            </>
           )}
         />
       </FormRow>
-      <FormRow>{renderTextField("costPerKg", "Cost per kg", "number")}</FormRow>
+
       <FormRow>
-        {renderSelectField("productClass", "Select Product Class", [
-          { value: "class 1", label: "Harvest Goods" },
-          { value: "class 2", label: "Crop Categories" },
-          { value: "class 3", label: "Farm Produce" },
-          { value: "class 4", label: "Agric Items" },
-          { value: "class 5", label: "Field Harvest" },
-          { value: "class 6", label: "Farm Inventory" },
-          { value: "class 7", label: "Produce Listing" },
-          { value: "class 8", label: "Agricultural Products" },
-          { value: "class 9", label: "Farm Stock" },
-          { value: "class 10", label: "Crop Collection" },
-        ])}
+        <Controller
+          name="productClass"
+          control={control}
+          rules={{ required: errorMessage }}
+          render={({ field }) => (
+            <>
+              <Label htmlFor="productClass">Product Class</Label>
+              <StyledInput
+                id="productClass"
+                type="text"
+                {...field}
+                value={field.value || ""} // Ensure controlled input
+              />
+              {errors.productClass && <p>{errors.productClass.message}</p>}
+            </>
+          )}
+        />
       </FormRow>
+
       <FormRow>
-        {renderTextField("numberOfProducts", "Number of Products", "number")}
+        <Controller
+          name="numberOfProducts"
+          control={control}
+          rules={{ required: errorMessage }}
+          render={({ field }) => (
+            <>
+              <Label htmlFor="numberOfProducts">
+                Number of Products available
+              </Label>
+              <StyledInput
+                id="numberOfProducts"
+                type="number"
+                {...field}
+                value={field.value || 0} // Set default to 0 for controlled number input
+                onChange={(e) => field.onChange(Number(e.target.value))}
+              />
+              {errors.numberOfProducts && (
+                <p>{errors.numberOfProducts.message}</p>
+              )}
+            </>
+          )}
+        />
+      </FormRow>
+
+      <FormRow>
+        <Controller
+          name="productImage"
+          control={control}
+          rules={{ required: errorMessage }}
+          render={({ field }) => (
+            <>
+              <Label htmlFor="productImage">Product Image</Label>
+              <StyledInput
+                id="productImage"
+                type="file"
+                accept="image/*"
+                // For file inputs, don't set value, handle files directly from event
+                onChange={(e) => field.onChange(e.target.files)}
+              />
+              {errors.productImage && <p>{errors.productImage.message}</p>}
+            </>
+          )}
+        />
       </FormRow>
     </>
   );

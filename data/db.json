@@ -49,20 +49,15 @@
       "numberOfProducts": 50
     },
     {
-      "id": "ca06",
-      "productName": "Scarlet Durham",
-      "description": "Duis blanditiis illu",
-      "costPerKg": "62",
-      "productClass": "class 2",
-      "numberOfProducts": "160"
-    },
-    {
-      "id": "7539",
-      "productName": "Keefe Garcia",
-      "description": "Quia eos neque aliqu",
-      "costPerKg": "69",
-      "productClass": "class 3",
-      "numberOfProducts": "27"
+      "id": "058a",
+      "productName": "Cody Higgins",
+      "description": "Eveniet cumque sint",
+      "costPerKg": 75,
+      "productClass": "Quas et duis quia fu",
+      "numberOfProducts": 853,
+      "productImage": {
+        "0": {}
+      }
     }
   ]
 }

@@ -16,8 +16,11 @@ export const addProduct = async (newProduct: FormData): Promise<FormData> => {
     },
     body: JSON.stringify(newProduct),
   });
+
   if (!res.ok) {
-    throw new Error("Failed to add product");
+    const errorData = await res.json();
+    throw new Error(errorData?.message || "Failed to add product");
   }
+
   return res.json();
 };

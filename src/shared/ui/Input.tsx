@@ -6,7 +6,7 @@ const Input = styled.input<InputProps>`
   background-color: var(--color-grey-0);
   padding: 1rem;
   font-size: var(--font-size-sm);
-  border: 1px solid var(--color-grey-300);
+  border: none;
   border-radius: var(--border-radius-sm);
   color: var(--color-grey-700);
   outline: none;

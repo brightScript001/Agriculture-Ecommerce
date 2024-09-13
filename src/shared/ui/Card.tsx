@@ -10,7 +10,7 @@ interface CardProps {
 
 const CardWrapper = styled.div`
   background-color: var(--color-grey-0);
-  border: 1px solid var(--color-grey-200);
+  border: none;
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
   overflow: hidden;

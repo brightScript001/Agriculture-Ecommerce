@@ -10,6 +10,7 @@ interface ActionButtonsProps {
   onClose: () => void;
   handleDelete: () => void;
   newlyCreatedProductName?: string | null;
+  onSubmit: () => void;
 }
 
 const Img = styled.img`
@@ -28,6 +29,7 @@ const ModalContent = styled.div`
 const ActionButtons: React.FC<ActionButtonsProps> = ({
   onClose,
   handleDelete,
+  onSubmit,
   newlyCreatedProductName,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -99,7 +101,9 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
         <Button variation="danger" onClick={() => openModal("delete")}>
           Delete
         </Button>
-        <Button variation="primary">Create Product</Button>
+        <Button variation="primary" onClick={onSubmit}>
+          Create Product
+        </Button>
       </ButtonGroup>
       <ModalComponent isOpen={isModalOpen} onClose={closeModal}>
         {modalContent}

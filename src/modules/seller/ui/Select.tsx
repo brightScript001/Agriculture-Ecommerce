@@ -7,7 +7,7 @@ interface OptionProps extends React.OptionHTMLAttributes<HTMLOptionElement> {}
 const SelectWrapper = styled.select`
   padding: 10px;
   background: var(--color-white-100);
-  border: 1px solid var(--color-grey-200);
+  border: none;
   border-radius: var(--border-radius-md);
   width: 100%;
   font-size: var(--font-size-sm);

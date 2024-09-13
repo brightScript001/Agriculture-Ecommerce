@@ -15,7 +15,7 @@ const Input = styled.input`
   width: 30rem;
   padding: 10px;
   font-size: var(--font-size-sm);
-  border: 1px solid var(--color-grey-200);
+  border: none;
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
   box-sizing: border-box;
@@ -40,7 +40,7 @@ const Price = styled.span`
 const Wrapper = styled.div`
   padding: 10px;
   background: var(--color-white-100);
-  border: 1px solid var(--color-grey-200);
+  border: none;
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
   box-sizing: border-box;

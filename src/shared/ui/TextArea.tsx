@@ -3,7 +3,7 @@ import styled from "styled-components";
 const TextAreaWrapper = styled.textarea`
   background: var(--color-grey-0);
   padding: 10px;
-  border: 1px solid var(--color-grey-200);
+  border: none;
   border-radius: var(--border-radius-md);
   width: 100%;
   height: 100px;

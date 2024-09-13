@@ -13,7 +13,7 @@ import {
 const NavList = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 1.0625rem;
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -54,6 +54,10 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
+const Span = styled.span`
+  font-size: var(--font-size-md);
+`;
+
 function MainNav() {
   return (
     <nav>
@@ -61,43 +65,43 @@ function MainNav() {
         <li>
           <StyledNavLink to="/dashboard">
             <img src={HomeIcon} alt="Home" />
-            <span>Home</span>
+            <Span>Home</Span>
           </StyledNavLink>
         </li>
         <li>
           <StyledNavLink to="/marketplace">
             <img src={MarketplaceIcon} alt="Home" />
-            <span>Marketplace</span>
+            <Span>Marketplace</Span>
           </StyledNavLink>
         </li>
         <li>
           <StyledNavLink to="/inventory">
             <img src={InventoryIcon} alt="Home" />
-            <span>Inventory</span>
+            <Span>Inventory</Span>
           </StyledNavLink>
         </li>
         <li>
           <StyledNavLink to="/payment">
             <img src={PaymentIcon} alt="Home" />
-            <span>Payment</span>
+            <Span>Payment</Span>
           </StyledNavLink>
         </li>
         <li>
           <StyledNavLink to="/support">
             <img src={SupportIcon} alt="Home" />
-            <span>Support</span>
+            <Span>Support</Span>
           </StyledNavLink>
         </li>
         <li>
           <StyledNavLink to="/profile">
             <img src={ProfileIcon} alt="Home" />
-            <span>Profile</span>
+            <Span>Profile</Span>
           </StyledNavLink>
         </li>
         <li>
           <StyledNavLink to="/sign-out">
             <img src={SignOutIcon} alt="Home" />
-            <span>Sign Out</span>
+            <Span>Sign Out</Span>
           </StyledNavLink>
         </li>
       </NavList>
