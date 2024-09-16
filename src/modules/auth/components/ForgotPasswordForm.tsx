@@ -3,10 +3,15 @@ import Form from "../../../shared/ui/Form";
 import Input from "../../../shared/ui/Input";
 import Button from "../../../shared/ui/Button";
 import FormRowVertical from "../../../shared/ui/FormRowVertical";
+import styled from "styled-components";
 
 interface ForgotPasswordFormProps {
   onSendEmail: (email: string) => void;
 }
+
+const StyledInput = styled(Input)`
+  background-color: var(--color-grey-50);
+`;
 
 const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
   onSendEmail,
@@ -23,8 +28,8 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
 
   return (
     <Form onSubmit={handleSubmit}>
-      <FormRowVertical>
-        <Input
+      <FormRowVertical label="Enter your registered email address">
+        <StyledInput
           type="email"
           placeholder="Enter your email address"
           value={email}

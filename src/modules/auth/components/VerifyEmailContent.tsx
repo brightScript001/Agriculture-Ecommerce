@@ -10,8 +10,14 @@ interface VerifyEmailContentProps {
 
 const Container = styled.div`
   max-width: 37.5rem;
-  margin: 0 auto;
-  padding: 1.25rem;
+  margin-left: 1.875rem;
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
+`;
+
+const Span = styled.span`
+  font-weight: 600;
 `;
 
 export function VerifyEmailContent({
@@ -21,19 +27,22 @@ export function VerifyEmailContent({
   return (
     <Container>
       <Title>Verify Your Email</Title>
-      <Subtitle>Hi {user},</Subtitle>
       <Subtitle>
-        We're thrilled to welcome you to the Onefarm Tech community! To access
-        all the amazing features waiting for you, simply verify your email
-        address. We just sent a verification link straight to your inbox -
+        <Span>Hi {user}, </Span>
+        <br /> We're thrilled to welcome you to the Onefarm Tech community! To
+        access all the amazing features waiting for you, simply verify your
+        email address. We just sent a verification link straight to your inbox -
         (Check your Spam folder just in case).
-        <br />
-        Having trouble finding the email?
-        <br />
-        No worries! Simply click the button below to request a new verification
-        link.
       </Subtitle>
-      <Button onClick={onRequestVerification}>Request Verification Link</Button>
+      <Subtitle>
+        <Span>Having trouble finding the email? </Span>
+        <br /> No worries! Simply click the button below to request a new
+        verification link.
+      </Subtitle>
+
+      <Button size="large" onClick={onRequestVerification}>
+        Request Verification Link
+      </Button>
     </Container>
   );
 }

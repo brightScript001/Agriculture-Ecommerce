@@ -9,12 +9,11 @@ const StyledFormRow = styled.div`
 `;
 
 const Label = styled.label`
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: var(--font-size-sm);
 `;
 
 const Error = styled.span`
-  font-size: 1rem;
+  font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--color-red-700);
 `;

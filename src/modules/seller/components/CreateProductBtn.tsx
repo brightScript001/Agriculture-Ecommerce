@@ -1,30 +1,14 @@
-import Button from "../../../shared/ui/Button";
+import React, { useState, useEffect } from "react";
 import ButtonGroup from "../../../shared/ui/ButtonGroup";
-import UiButton from "../../../shared/ui/Button";
-import ModalComponent from "../../../shared/ui/Modal";
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import Heading from "../../../shared/ui/Heading";
+import ReusableModal from "./ReusableModal";
 import { useNavigate } from "react-router-dom";
+import Button from "../../../shared/ui/Button";
 interface ActionButtonsProps {
   onClose: () => void;
   handleDelete: () => void;
   newlyCreatedProductName?: string | null;
   onSubmit: () => void;
 }
-
-const Img = styled.img`
-  display: block;
-  margin: 0 auto;
-`;
-
-const ModalContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-`;
 
 const ActionButtons: React.FC<ActionButtonsProps> = ({
   onClose,
@@ -33,57 +17,18 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
   newlyCreatedProductName,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState<JSX.Element | null>(null);
+  const [modalType, setModalType] = useState<"success" | "delete" | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (newlyCreatedProductName) {
-      openModal("success");
+      setModalType("success");
+      setIsModalOpen(true);
     }
   }, [newlyCreatedProductName]);
 
-  const openModal = (choice: "success" | "delete") => {
-    let content: JSX.Element | null = null;
-
-    switch (choice) {
-      case "success":
-        content = (
-          <ModalContent>
-            <Img
-              src="/src/assets/images/checkImage.png"
-              alt="success illustration"
-            />
-            <p>
-              You have successfully added {newlyCreatedProductName} to the list
-              of your products on One-Farm. Our team will approve your upload
-              within 1 hour.
-            </p>
-          </ModalContent>
-        );
-        break;
-      case "delete":
-        content = (
-          <ModalContent>
-            <Heading as="h3">Do you want to remove this Product?</Heading>
-            <p>
-              Confirming the removal of this Product is irreversible. Once
-              removed, it will not show on your marketplace.
-            </p>
-            <ButtonGroup>
-              <UiButton size="small" variation="danger" onClick={handleDelete}>
-                Yes, remove
-              </UiButton>
-              <UiButton size="small" variation="secondary" onClick={closeModal}>
-                No, cancel
-              </UiButton>
-            </ButtonGroup>
-          </ModalContent>
-        );
-        break;
-      default:
-        return;
-    }
-    setModalContent(content);
+  const handleOpenDeleteModal = () => {
+    setModalType("delete");
     setIsModalOpen(true);
   };
 
@@ -95,19 +40,36 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
   return (
     <>
       <ButtonGroup>
-        <Button variation="secondary" type="button" onClick={onClose}>
+        <Button type="button" variation="secondary" onClick={onClose}>
           Close
         </Button>
-        <Button variation="danger" onClick={() => openModal("delete")}>
+        <Button
+          type="button"
+          variation="danger"
+          onClick={handleOpenDeleteModal}
+        >
           Delete
         </Button>
-        <Button variation="primary" onClick={onSubmit}>
+        <Button type="button" onClick={onSubmit}>
           Create Product
         </Button>
       </ButtonGroup>
-      <ModalComponent isOpen={isModalOpen} onClose={closeModal}>
-        {modalContent}
-      </ModalComponent>
+
+      <ReusableModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        title={modalType === "success" ? "Success" : "Confirm Delete"}
+        message={
+          modalType === "success"
+            ? `You have successfully added ${newlyCreatedProductName} to the list of your products.`
+            : "Are you sure you want to delete this product? This action cannot be undone."
+        }
+        imageSrc={
+          modalType === "success" ? "/src/assets/images/checkImage.png" : ""
+        }
+        isDeleteModal={modalType === "delete"}
+        onDelete={handleDelete}
+      />
     </>
   );
 };

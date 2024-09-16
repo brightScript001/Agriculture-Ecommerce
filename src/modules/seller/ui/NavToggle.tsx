@@ -10,7 +10,7 @@ const MenuButton = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-  font-size: 2rem;
+  font-size: var(--font-size-md);
 `;
 
 const MenuContent = styled.div<MenuContentProps>`
@@ -19,6 +19,7 @@ const MenuContent = styled.div<MenuContentProps>`
   top: 4rem;
   right: 1rem;
   background-color: white;
+  border: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   border-radius: 8px;

@@ -44,7 +44,7 @@ function AccountOptions() {
   const navigate = useNavigate();
 
   const handleClick = (type) => {
-    navigate(`register/${type}`, { state: { accountType: type } });
+    navigate(`/register/${type}`, { state: { accountType: type } });
   };
 
   return (

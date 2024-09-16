@@ -35,17 +35,21 @@ const CardContainer = styled.div`
 
 const Title = styled.p`
   font-size: var(--font-size-md);
-  margin-bottom: 0.5rem;
+  margin-bottom: 2rem;
 `;
 
 const Count = styled.h1`
   font-size: var(--font-size-xl);
-  margin: 0.5rem 0;
+  margin-bottom: 2rem;
 `;
 
 const Description = styled.p`
   font-size: var(--font-size-md);
   margin-top: 0.5rem;
+
+  @media (max-width: 768px) {
+    font-size: var(--font-size-sm);
+  }
 `;
 
 const Card: React.FC<CardProps> = ({

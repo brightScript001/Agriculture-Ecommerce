@@ -47,17 +47,6 @@
       "costPerKg": 0.8,
       "productClass": "Class 1",
       "numberOfProducts": 50
-    },
-    {
-      "id": "058a",
-      "productName": "Cody Higgins",
-      "description": "Eveniet cumque sint",
-      "costPerKg": 75,
-      "productClass": "Quas et duis quia fu",
-      "numberOfProducts": 853,
-      "productImage": {
-        "0": {}
-      }
     }
   ]
 }

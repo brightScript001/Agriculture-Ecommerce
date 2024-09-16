@@ -18,6 +18,13 @@ const StyledLink = styled(Link)`
   }
 `;
 
+// const Wrapper = styled.div`
+//   margin-left: 1.875rem;
+//   @media (max-width: 769px) {
+//     margin-left: 0rem;
+//   }
+// `;
+
 interface LocationState {
   accountType: "buyer" | "seller";
 }

@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import HeaderMenu from "../../modules/seller/ui/HeaderMenu";
+import HeaderMenu from "../ui/HeaderMenu";
 import Logo from "../ui/Logo";
-import HeaderButtons from "../../modules/seller/ui/HeaderButtons";
+import HeaderButtons from "../ui/HeaderButtons";
 
 const StyledHeader = styled.header`
   background-color: var(--color-grey-0);

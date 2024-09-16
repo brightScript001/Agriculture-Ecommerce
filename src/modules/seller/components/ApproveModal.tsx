@@ -35,7 +35,10 @@ export const Approve: React.FC<ApproveProps> = ({
   return (
     <ModalComponent isOpen={isModalOpen} onClose={CloseModal}>
       <ModalContent>
-        <Img src="/Assets/images/checkImage.png" alt="success illustration" />
+        <Img
+          src="/src/assets/images/checkImage.png"
+          alt="success illustration"
+        />
         <p>
           You have successfully approved this order and the product will be
           shipped to the customer immediately.

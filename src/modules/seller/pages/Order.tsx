@@ -7,6 +7,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { OrderList } from "../components/OrdersList";
 import SpinnerComponent from "../../../shared/ui/Spinner";
 
+const Wrapper = styled.div`
+  margin-top: 5rem;
+`;
+
 const StyledButtonGroup = styled(ButtonGroup)`
   margin-top: 20px;
   justify-content: flex-start;
@@ -51,7 +55,7 @@ const Order = () => {
   }
 
   return (
-    <>
+    <Wrapper>
       <Heading as="h1">Orders</Heading>
       <StyledButtonGroup>
         {["pending-orders", "settled-orders"].map((type) => (
@@ -67,7 +71,7 @@ const Order = () => {
       <List>
         <OrderList status={statusMapping[activeButton]} />
       </List>
-    </>
+    </Wrapper>
   );
 };
 

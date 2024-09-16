@@ -6,7 +6,11 @@ import toast from "react-hot-toast";
 import styled from "styled-components";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { addProduct } from "../api/products"; // Adjust the path as needed
+import { addProduct } from "../api/products";
+import { useMediaQuery } from "react-responsive";
+import MobileProductForm from "./MobileProductForm";
+import ReusableModal from "./ReusableModal";
+import { useNavigate } from "react-router-dom";
 
 export interface FormData {
   productName: string;
@@ -27,11 +31,16 @@ const StyledTitle = styled(Title)`
 `;
 
 const Wrapper = styled.div`
-  width: 45.0625rem;
+  width: 100%;
+  margin-top: 2.625rem;
 `;
+
 function CreateProduct({ onClose }: CreateProductProps) {
   const { handleSubmit, control, reset, formState } = useForm<FormData>();
   const [newProductName, setNewProductName] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+  const navigate = useNavigate();
 
   const queryClient = useQueryClient();
 
@@ -42,6 +51,7 @@ function CreateProduct({ onClose }: CreateProductProps) {
         queryKey: ["products"],
       });
       setNewProductName(data.productName);
+      setIsModalOpen(true);
     },
     onError: () => {
       toast.error("Failed to add product");
@@ -62,18 +72,42 @@ function CreateProduct({ onClose }: CreateProductProps) {
     }
   };
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    navigate("/marketplace");
+  };
+
   return (
-    <Wrapper onSubmit={handleSubmit(onSubmit)}>
-      <StyledTitle>Upload Product</StyledTitle>
-      <ProductForm
-        control={control as Control<FormData>}
-        formState={formState as FormState<FormData>}
-      />
-      <ActionButtons
-        onClose={onClose}
-        handleDelete={handleDelete}
-        newlyCreatedProductName={newProductName}
-        onSubmit={handleSubmit(onSubmit)}
+    <Wrapper>
+      {!isMobile && (
+        <>
+          <StyledTitle>Upload Product</StyledTitle>
+          <ProductForm
+            control={control as Control<FormData>}
+            formState={formState as FormState<FormData>}
+          />
+          <ActionButtons
+            onClose={onClose}
+            handleDelete={handleDelete}
+            newlyCreatedProductName={newProductName}
+            onSubmit={handleSubmit(onSubmit)}
+          />
+        </>
+      )}
+      {isMobile && (
+        <MobileProductForm
+          control={control as Control<FormData>}
+          formState={formState as FormState<FormData>}
+          onSubmit={handleSubmit(onSubmit)}
+        />
+      )}
+
+      <ReusableModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        imageSrc={"/src/assets/images/check.png"}
+        title="Congratulations"
+        message={`You have successfully uploaded your product "${newProductName}" and you can view it in your product section`}
       />
     </Wrapper>
   );

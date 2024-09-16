@@ -5,7 +5,7 @@ const Form = styled.form`
   flex-direction: column;
   width: 31.25rem;
   margin: 0;
-  padding: 2rem;
+  /* padding: 2rem; */
 
   @media (max-width: 768px) {
     width: 100%;

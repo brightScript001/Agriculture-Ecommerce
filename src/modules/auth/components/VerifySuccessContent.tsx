@@ -10,8 +10,7 @@ interface VerificationSuccessContentProps {
 
 const Container = styled.div`
   max-width: 37.5rem;
-  margin: 0 auto;
-  padding: 1.25rem;
+  margin-left: 1.875rem;
 `;
 
 export function VerificationSuccessContent({
@@ -49,7 +48,9 @@ export function VerificationSuccessContent({
         You have not been redirected yet? No worries! Simply click the button
         below to log in to your account.
       </Subtitle>
-      <Button onClick={onLoginRedirect}>Login</Button>
+      <Button size="large" onClick={onLoginRedirect}>
+        Login
+      </Button>
     </Container>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Buttons from "../../../shared/ui/ButtonGroup";
-import Button from "../../../shared/ui/Button";
+import Buttons from "./ButtonGroup";
+import Button from "./Button";
 
 const HeaderButtons: React.FC = () => {
   const navigate = useNavigate();

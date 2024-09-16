@@ -39,7 +39,6 @@ const StyledTitle = styled(Title)`
 
 function UploadProduct() {
   const navigate = useNavigate();
-
   const { data: products } = useQuery({
     queryKey: ["products"],
     queryFn: fetchProducts,

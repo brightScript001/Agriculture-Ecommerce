@@ -5,7 +5,7 @@ import { VerifyEmailContent } from "../components/VerifyEmailContent";
 import { VerificationSuccessContent } from "../components/VerifySuccessContent";
 import Logo from "../../../shared/ui/Logo";
 import ImageContainer from "../../seller/ui/ImageContainer";
-// import Container from "../ui/Container";
+import Container from "../../../shared/ui/Container";
 
 const StyledImage = styled.img`
   object-fit: cover;
@@ -13,13 +13,14 @@ const StyledImage = styled.img`
   width: 100%;
 `;
 
-const FormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
+const Wrapper = styled.div`
+  margin-left: 1.875rem;
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
 `;
+
+const FormContainer = styled.div``;
 
 function VerifyEmail() {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ function VerifyEmail() {
   };
 
   return (
-    <>
+    <Container>
       <ImageContainer>
         <StyledImage
           src="/src/assets/images/verify-email.png"
@@ -44,7 +45,10 @@ function VerifyEmail() {
         />
       </ImageContainer>
       <FormContainer>
-        <Logo />
+        <Wrapper>
+          <Logo />
+        </Wrapper>
+
         {!isVerificationComplete ? (
           <VerifyEmailContent
             onRequestVerification={handleRequestVerification}
@@ -53,7 +57,7 @@ function VerifyEmail() {
           <VerificationSuccessContent onLoginRedirect={handleLoginRedirect} />
         )}
       </FormContainer>
-    </>
+    </Container>
   );
 }
 

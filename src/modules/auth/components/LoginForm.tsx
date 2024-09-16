@@ -5,12 +5,17 @@ import Form from "../../../shared/ui/Form";
 import Input from "../../../shared/ui/Input";
 import FormRow from "../../../shared/ui/FormRow";
 import StyledSelect from "../../seller/ui/StyledSelect";
+import styled from "styled-components";
 
 interface LoginFormData {
   role: string;
   email: string;
   password: string;
 }
+
+const StyledInput = styled(Input)`
+  background-color: var(--color-grey-50);
+`;
 
 function LoginForm() {
   const {
@@ -63,7 +68,7 @@ function LoginForm() {
             },
           }}
           render={({ field }) => (
-            <Input
+            <StyledInput
               type="email"
               id="email"
               autoComplete="username"
@@ -81,7 +86,7 @@ function LoginForm() {
           defaultValue=""
           rules={{ required: "Password is required" }}
           render={({ field }) => (
-            <Input
+            <StyledInput
               type="password"
               id="password"
               autoComplete="current-password"

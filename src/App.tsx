@@ -69,7 +69,7 @@ function App() {
           <Route path="/reset-password" element={<PasswordReset />} />
           <Route path="/verify-email" element={<VerifyEmail />} />
           <Route path="*" element={<PageNotFound />} />
-          <Route path="/" element={<HomePage />} />
+          <Route path="/homepage" element={<HomePage />} />
         </Routes>
       </BrowserRouter>
 

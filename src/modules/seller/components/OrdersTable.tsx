@@ -1,10 +1,6 @@
 import React from "react";
 import Table from "../../../shared/ui/Table";
-import {
-  DataGridRow,
-  OrderTableProps,
-  ColumnDef,
-} from "../../../features/seller/orderslist/OrdersListTypes";
+import { DataGridRow, OrderTableProps, ColumnDef } from "./OrdersListTypes";
 import { useNavigate } from "react-router-dom";
 
 const columns: ColumnDef[] = [

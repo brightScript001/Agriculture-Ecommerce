@@ -17,6 +17,10 @@ const StyledLink = styled(Link)`
   }
 `;
 
+// const Wrapper = styled.div`
+//   margin-left: 1.875rem;
+// `;
+
 const Login: React.FC = () => {
   return (
     <Container>
@@ -27,11 +31,13 @@ const Login: React.FC = () => {
         <Logo />
         <Title>Login to your account</Title>
         <Subtitle>
-          Don’t have an account? <StyledLink to="/">Sign up here</StyledLink>
+          Don’t have an account?{" "}
+          <StyledLink to="/homepage">Sign up here</StyledLink>
         </Subtitle>
         <LoginForm />
+
         <Subtitle>
-          Forgot password?{" "}
+          Forgot password?
           <StyledLink to="/forgot-password">Click here</StyledLink>
         </Subtitle>
       </FormContainer>

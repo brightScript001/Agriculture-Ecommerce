@@ -18,7 +18,7 @@ const ForgotPassword: React.FC = () => {
   return (
     <Container>
       <ImageContainer>
-        <StyledImage src="/src/assets/images/Onefarm-Logo.png" alt="Farmer" />
+        <StyledImage src="/src/assets/images/seller.png" alt="Farmer" />
       </ImageContainer>
       <FormContainer>
         <Logo />

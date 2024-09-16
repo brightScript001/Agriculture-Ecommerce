@@ -9,7 +9,7 @@ interface ProductDetailsFormData {
   costPerKg: number;
   productClass: string;
   numberOfProducts: number;
-  productImage: FileList | null; // Can be null initially
+  productImage: FileList | null;
 }
 
 interface ProductDetailsProps {
@@ -46,7 +46,7 @@ function CreateProductForm({
                 id="productName"
                 type="text"
                 {...field}
-                value={field.value || ""} // Ensures controlled input
+                value={field.value || ""}
               />
               {errors.productName && <p>{errors.productName.message}</p>}
             </>
@@ -67,7 +67,7 @@ function CreateProductForm({
                 type="number"
                 placeholder="Cost per kg"
                 {...field}
-                value={field.value || 0} // Set default to 0 for controlled number input
+                value={field.value || 0}
                 onChange={(e) => field.onChange(Number(e.target.value))}
               />
               {errors.costPerKg && <p>{errors.costPerKg.message}</p>}
@@ -89,7 +89,7 @@ function CreateProductForm({
                 type="text"
                 placeholder="Describe your product here"
                 {...field}
-                value={field.value || ""} // Ensure controlled input
+                value={field.value || ""}
               />
               {errors.description && <p>{errors.description.message}</p>}
             </>
@@ -109,7 +109,7 @@ function CreateProductForm({
                 id="productClass"
                 type="text"
                 {...field}
-                value={field.value || ""} // Ensure controlled input
+                value={field.value || ""}
               />
               {errors.productClass && <p>{errors.productClass.message}</p>}
             </>
@@ -131,7 +131,7 @@ function CreateProductForm({
                 id="numberOfProducts"
                 type="number"
                 {...field}
-                value={field.value || 0} // Set default to 0 for controlled number input
+                value={field.value || 0}
                 onChange={(e) => field.onChange(Number(e.target.value))}
               />
               {errors.numberOfProducts && (
@@ -154,7 +154,6 @@ function CreateProductForm({
                 id="productImage"
                 type="file"
                 accept="image/*"
-                // For file inputs, don't set value, handle files directly from event
                 onChange={(e) => field.onChange(e.target.files)}
               />
               {errors.productImage && <p>{errors.productImage.message}</p>}

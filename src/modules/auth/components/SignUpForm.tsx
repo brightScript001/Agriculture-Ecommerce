@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { AppDispatch } from "../../../store";
 import { createUser } from "../../core/states/userSlice";
 import { useDispatch } from "react-redux";
+import styled from "styled-components";
 
 interface FormValues {
   firstName: string;
@@ -15,6 +16,10 @@ interface FormValues {
   password: string;
   confirmPassword: string;
 }
+
+const StyledInput = styled(Input)`
+  background-color: var(--color-grey-50);
+`;
 
 function SignupForm() {
   const {
@@ -38,7 +43,7 @@ function SignupForm() {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow label="First Name" error={errors.firstName?.message}>
-        <Input
+        <StyledInput
           type="text"
           id="firstName"
           {...register("firstName", { required: "This field is required" })}
@@ -46,7 +51,7 @@ function SignupForm() {
       </FormRow>
 
       <FormRow label="Last Name" error={errors.lastName?.message}>
-        <Input
+        <StyledInput
           type="text"
           id="lastName"
           {...register("lastName", { required: "This field is required" })}
@@ -54,7 +59,7 @@ function SignupForm() {
       </FormRow>
 
       <FormRow label="Email Address" error={errors.email?.message}>
-        <Input
+        <StyledInput
           type="email"
           id="email"
           {...register("email", {
@@ -68,7 +73,7 @@ function SignupForm() {
       </FormRow>
 
       <FormRow label="Password" error={errors.password?.message}>
-        <Input
+        <StyledInput
           type="password"
           id="password"
           {...register("password", {
@@ -85,7 +90,7 @@ function SignupForm() {
         label="Re-enter password"
         error={errors.confirmPassword?.message}
       >
-        <Input
+        <StyledInput
           type="password"
           id="passwordConfirm"
           {...register("confirmPassword", {
