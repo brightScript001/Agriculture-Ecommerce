@@ -1,5 +1,5 @@
 import React from "react";
-import Table from "../../../shared/ui/Table";
+import Table from "../../../../shared/ui/Table";
 import { DataGridRow, OrderTableProps, ColumnDef } from "./OrdersListTypes";
 import { useNavigate } from "react-router-dom";
 

@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Button from "../../../shared/ui/Button";
-import ButtonGroup from "../../../shared/ui/ButtonGroup";
+import Button from "../../../../shared/ui/Button";
+import ButtonGroup from "../../../../shared/ui/ButtonGroup";
 import styled from "styled-components";
 
 const StyledButton = styled(Button)`
   @media (max-width: 768px) {
-    border-radius: 5px;
+    border-radius: var(--border-radius-sm);
   }
 `;
 const StyledButtonCancel = styled(StyledButton)`

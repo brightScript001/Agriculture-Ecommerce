@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import ModalComponent from "../../../shared/ui/Modal";
+import ModalComponent from "../../../../shared/ui/Modal";
 import { useNavigate } from "react-router-dom";
-import Button from "../../../shared/ui/Button";
+import Button from "../../../../shared/ui/Button";
 
 const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 20px;
+  padding: 1.25rem;
 `;
 
 const Img = styled.img`

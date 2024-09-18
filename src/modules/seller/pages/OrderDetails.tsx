@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchOrderById } from "../api/orders";
-import { OrderText } from "../components/OrderDetailsText";
-import { Buttons } from "../components/OrderDetailsBtn";
-import { Approve } from "../components/ApproveModal";
+import { OrderText } from "../components/marketplace/OrderDetailsText";
+import { Buttons } from "../components/marketplace/OrderDetailsBtn";
+import { Approve } from "../components/marketplace/ApproveModal";
 import styled from "styled-components";
 
 const Wrapper = styled.div`

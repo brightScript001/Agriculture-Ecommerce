@@ -1,16 +1,16 @@
 import styled from "styled-components";
-import Button from "../../../shared/ui/Button";
-import ButtonGroup from "../../../shared/ui/ButtonGroup";
-import Heading from "../../../shared/ui/Heading";
+import Button from "../../../../shared/ui/Button";
+import ButtonGroup from "../../../../shared/ui/ButtonGroup";
+import Heading from "../../../../shared/ui/Heading";
 import { OrderList } from "./OrdersList";
 
 const StyledButtonGroup = styled(ButtonGroup)`
-  margin-top: 20px;
+  margin-top: 1.25rem;
   justify-content: flex-start;
 `;
 
 const List = styled.div`
-  margin-top: 20px;
+  margin-top: 1.25rem;
 `;
 
 type RouteStatus = "pending-orders" | "settled-orders";

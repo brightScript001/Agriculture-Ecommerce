@@ -17,7 +17,7 @@ interface ImageCropperProps {
 const ImageCropperWrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 25rem;
 `;
 
 const StyledButton = styled(Button)`

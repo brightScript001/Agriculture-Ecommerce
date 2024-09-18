@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import SpinnerComponent from "../../../shared/ui/Spinner";
 import useMediaQuery from "../../../shared/hooks/useMediaQuery";
-import OrderLargeScreen from "../components/OrderLargeScreen";
-import OrderMobileScreen from "../components/OrderMobileScreen";
+import OrderLargeScreen from "../components/marketplace/OrderLargeScreen";
+import OrderMobileScreen from "../components/marketplace/OrderMobileScreen";
 
 const Wrapper = styled.div`
   margin-top: 5rem;

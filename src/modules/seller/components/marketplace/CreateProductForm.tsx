@@ -1,6 +1,6 @@
 import { Controller, Control, FieldErrors } from "react-hook-form";
-import FormRow from "../../../shared/ui/FormRow";
-import Input from "../../../shared/ui/Input";
+import FormRow from "../../../../shared/ui/FormRow";
+import Input from "../../../../shared/ui/Input";
 import styled from "styled-components";
 
 interface ProductDetailsFormData {
@@ -18,8 +18,11 @@ interface ProductDetailsProps {
 }
 
 const StyledInput = styled(Input)`
-  width: 45.0625rem;
+  width: 45rem;
   margin-bottom: 1.5rem;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Label = styled.label`

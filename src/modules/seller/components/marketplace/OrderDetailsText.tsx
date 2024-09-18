@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import Heading from "../../../shared/ui/Heading";
+import Heading from "../../../../shared/ui/Heading";
 
 const Block = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
   @media (max-width: 768px) {
     flex-direction: column;
   }
@@ -23,14 +23,14 @@ const BlockItem = styled.div`
 
 const Input = styled.input`
   width: 30rem;
-  padding: 10px;
+  padding: 0.625rem;
   min-height: 4rem;
   font-size: var(--font-size-sm);
   border: none;
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
   box-sizing: border-box;
-  margin: 5px 0;
+  margin: 0.314rem 0;
   @media (max-width: 768px) {
     width: 100%;
   }
@@ -40,7 +40,7 @@ const OrderDetails = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 0.63rem;
 `;
 
 const Item = styled.span`
@@ -52,7 +52,7 @@ const Price = styled.span`
 `;
 
 const Wrapper = styled.div`
-  padding: 10px;
+  padding: 0.63rem;
   background: var(--color-white-100);
   border: none;
   border-radius: var(--border-radius-md);

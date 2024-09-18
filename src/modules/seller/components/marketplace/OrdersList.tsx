@@ -3,12 +3,12 @@ import OrderTable from "./OrdersTable";
 import {
   calculateTotalQuantity,
   calculateTotalPrice,
-} from "../utils/Formatting";
+} from "../../utils/Formatting";
 import { Order, DataGridRow, OrderListProps } from "./OrdersListTypes";
 import { useQuery } from "@tanstack/react-query";
-import { fetchOrders } from "../api/orders";
+import { fetchOrders } from "../../api/orders";
 import toast from "react-hot-toast";
-import Spinner from "../../../shared/ui/Spinner";
+import Spinner from "../../../../shared/ui/Spinner";
 
 const generateRows = (
   orders: Order[],

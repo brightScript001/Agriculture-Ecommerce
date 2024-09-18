@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import CreateProduct from "../components/CreateProduct";
+import CreateProduct from "../components/marketplace/CreateProduct";
 
 const CreateProductWrapper: React.FC = () => {
   const navigation = useNavigate();

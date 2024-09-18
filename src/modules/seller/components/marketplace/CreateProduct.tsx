@@ -1,12 +1,12 @@
 import { useForm, SubmitHandler, Control, FormState } from "react-hook-form";
-import { Title } from "../../../shared/ui/Title";
+import { Title } from "../../../../shared/ui/Title";
 import ActionButtons from "./CreateProductBtn";
 import ProductForm from "./CreateProductForm";
 import toast from "react-hot-toast";
 import styled from "styled-components";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { addProduct } from "../api/products";
+import { addProduct } from "../../api/products";
 import { useMediaQuery } from "react-responsive";
 import MobileProductForm from "./MobileProductForm";
 import ReusableModal from "./ReusableModal";
@@ -31,8 +31,11 @@ const StyledTitle = styled(Title)`
 `;
 
 const Wrapper = styled.div`
-  width: 100%;
+  width: 45rem;
   margin-top: 2.625rem;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 function CreateProduct({ onClose }: CreateProductProps) {

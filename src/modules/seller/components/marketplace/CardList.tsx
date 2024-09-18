@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchOrders } from "../api/orders";
+import { fetchOrders } from "../../api/orders";
 
 interface Order {
   orderStatus: string;

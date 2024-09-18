@@ -1,11 +1,11 @@
-import UploadProduct from "../components/UploadProduct";
-import ProductList from "../components/ProductList";
-import CardsContainer from "../components/Card";
+import UploadProduct from "../components/marketplace/UploadProduct";
+import ProductList from "../components/marketplace/ProductList";
+import CardsContainer from "../components/marketplace/Card";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../../../shared/ui/Spinner";
 import { useMediaQuery } from "react-responsive";
 import SearchBar from "../ui/SearchBar";
-import { PendingOrderCard } from "../components/PendingOrderCard";
+import { PendingOrderCard } from "../components/marketplace/PendingOrderCard";
 
 const mobileSearchBarStyles = `
   background-color: var(--color-grey-200);

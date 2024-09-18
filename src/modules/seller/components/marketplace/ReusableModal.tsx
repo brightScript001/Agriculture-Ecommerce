@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import ModalComponent from "../../../shared/ui/Modal";
-import Button from "../../../shared/ui/Button";
-import { Title } from "../../../shared/ui/Title";
+import ModalComponent from "../../../../shared/ui/Modal";
+import Button from "../../../../shared/ui/Button";
+import { Title } from "../../../../shared/ui/Title";
 
 interface ReusableModalProps {
   isOpen: boolean;
@@ -19,12 +19,12 @@ const ModalContent = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 20px;
+  padding: 1.25rem;
 `;
 
 const Message = styled.p`
   font-size: var(--font-size-sm);
-  margin-top: 32px;
+  margin-top: 2rem;
 `;
 
 const ModalImage = styled.img`
@@ -35,7 +35,7 @@ const ModalImage = styled.img`
 const ButtonGroup = styled.div`
   margin-top: 2rem;
   display: flex;
-  gap: 10px;
+  gap: 0.6rem;
   justify-content: center;
 `;
 

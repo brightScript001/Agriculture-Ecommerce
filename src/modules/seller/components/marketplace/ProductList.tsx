@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import Heading from "../../../shared/ui/Heading";
-import { formatNumber } from "../utils/formatNumber";
+import Heading from "../../../../shared/ui/Heading";
+import { formatNumber } from "../../utils/formatNumber";
 import { useQuery } from "@tanstack/react-query";
-import Spinner from "../../../shared/ui/Spinner";
+import Spinner from "../../../../shared/ui/Spinner";
 import toast from "react-hot-toast";
-import { fetchProducts } from "../api/products";
+import { fetchProducts } from "../../api/products";
 
 interface Product {
   id: number;
@@ -14,14 +14,14 @@ interface Product {
 }
 
 const ProductListWrapper = styled.div`
-  margin-top: 20px;
+  margin-top: 1.25rem;
 `;
 
 const ProductListContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
-  margin-top: 20px;
+  margin-top: 1.25rem;
 `;
 
 const ProductCard = styled.div`

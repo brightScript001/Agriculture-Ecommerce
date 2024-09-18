@@ -1,6 +1,7 @@
-import CardsContainer from "../components/Card";
+import CardsContainer from "../components/marketplace/Card";
 import { useMediaQuery } from "react-responsive";
 import SearchBar from "../ui/SearchBar";
+import PendingOrderMainCard from "../components/marketplace/PendingOrderMainCard";
 
 const mobileSearchBarStyles = `
   background-color: var(--color-grey-200);
@@ -14,6 +15,7 @@ function SellerDashboard() {
     <>
       {isMobile && <SearchBar customStyles={mobileSearchBarStyles} />}
       <CardsContainer />
+      {!isMobile && <PendingOrderMainCard />}
     </>
   );
 }

@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
-import HamburgerMenu from "../components/HamburgerMenu";
+import HamburgerMenu from "./HamburgerMenu";
 import PageHeader from "./PageHeader";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";

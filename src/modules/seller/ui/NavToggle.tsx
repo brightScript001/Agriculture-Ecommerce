@@ -22,7 +22,7 @@ const MenuContent = styled.div<MenuContentProps>`
   border: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: var(--border-radius-md);
 `;
 
 const HamburgerMenu: React.FC = () => {

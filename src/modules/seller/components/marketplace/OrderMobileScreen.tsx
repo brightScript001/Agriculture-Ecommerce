@@ -1,23 +1,23 @@
 import styled from "styled-components";
-import ButtonGroup from "../../../shared/ui/ButtonGroup";
+import ButtonGroup from "../../../../shared/ui/ButtonGroup";
 import OrderCard from "./OrderCard";
-import { fetchOrders } from "../api/orders";
-import SpinnerComponent from "../../../shared/ui/Spinner";
+import { fetchOrders } from "../../api/orders";
+import SpinnerComponent from "../../../../shared/ui/Spinner";
 import { useQuery } from "@tanstack/react-query";
 
 const List = styled.div`
-  margin-top: 20px;
+  margin-top: 1.25rem;
 `;
 
 const HeaderWrapper = styled.div`
   width: 100%;
-  padding: 30px;
+  padding: 1.9rem;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--color-grey-0);
-  border-radius: 5px;
+  border-radius: var(--border-radius-sm);
 `;
 
 const StyledButtonGroup = styled(ButtonGroup)`
@@ -33,7 +33,7 @@ const StyledButtonText = styled.h2<{ isActive: boolean }>`
     props.isActive
       ? "2px solid var(--color-green-500)"
       : "2px solid transparent"};
-  width: ${(props) => (props.isActive ? "158px" : "auto")};
+  width: ${(props) => (props.isActive ? "9.9rem" : "auto")};
   transition: all 0.3s ease;
   text-align: center;
 `;

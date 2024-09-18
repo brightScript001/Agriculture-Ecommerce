@@ -61,7 +61,11 @@ const UploadImage = () => {
           <img
             src={croppedImage}
             alt="Cropped"
-            style={{ width: "100%", maxHeight: "300px", objectFit: "contain" }}
+            style={{
+              width: "100%",
+              maxHeight: "18.8rem",
+              objectFit: "contain",
+            }}
           />
         </Box>
       )}

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Button from "../../../shared/ui/Button";
+import Button from "../../../../shared/ui/Button";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -12,8 +12,8 @@ const ButtonContainer = styled.div`
 
 const StyledButton = styled(Button)`
   @media (max-width: 768px) {
-    margin-bottom: 20px;
-    border-radius: 5px;
+    margin-bottom: 1.25rem;
+    border-radius: var(--border-radius-sm);
   }
 `;
 

@@ -1,4 +1,4 @@
-import { FormData } from "../components/CreateProduct";
+import { FormData } from "../components/marketplace/CreateProduct";
 
 export const fetchProducts = async () => {
   const res = await fetch("http://localhost:3000/products");

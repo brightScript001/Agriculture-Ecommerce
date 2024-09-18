@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { calculateTotalPrice } from "../utils/Formatting";
+import { calculateTotalPrice } from "../../utils/Formatting";
 
 const Card = styled.div`
   padding: 1.5rem;
   background-color: var(--color-grey-0);
   border: none;
-  border-radius: 10px;
+  border-radius: var(--border-radius-md);
   margin: 1.5rem 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   display: flex;
@@ -71,8 +71,8 @@ const CustomerDetails = styled.div`
 `;
 
 const CustomerAvatar = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   object-fit: cover;
 `;

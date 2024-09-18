@@ -1,10 +1,10 @@
 import { Controller, Control, FieldErrors } from "react-hook-form";
 import styled from "styled-components";
 import { FormData } from "./CreateProduct"; // Import the shared FormData
-import Input from "../../../shared/ui/Input";
-import Button from "../../../shared/ui/Button";
-import FormRow from "../../../shared/ui/FormRow";
-import Form from "../../../shared/ui/Form";
+import Input from "../../../../shared/ui/Input";
+import Button from "../../../../shared/ui/Button";
+import FormRow from "../../../../shared/ui/FormRow";
+import Form from "../../../../shared/ui/Form";
 
 interface MobileProductFormProps {
   control: Control<FormData>;
@@ -27,7 +27,7 @@ const UploadButton = styled(Button)`
   padding: 1rem;
   background-color: var(--color-grey-500);
   border: none;
-  border-radius: 0.5rem;
+  border-radius: var(--border-radius-sm);
   cursor: pointer;
 `;
 

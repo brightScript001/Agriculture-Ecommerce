@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import ButtonGroup from "../../../shared/ui/ButtonGroup";
+import ButtonGroup from "../../../../shared/ui/ButtonGroup";
 import ReusableModal from "./ReusableModal";
 import { useNavigate } from "react-router-dom";
-import Button from "../../../shared/ui/Button";
+import Button from "../../../../shared/ui/Button";
 interface ActionButtonsProps {
   onClose: () => void;
   handleDelete: () => void;

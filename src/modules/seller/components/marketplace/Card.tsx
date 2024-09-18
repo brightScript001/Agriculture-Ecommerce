@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { useCardList } from "./CardList";
 import { useNavigate, useLocation } from "react-router-dom";
-import Card from "../ui/TextCard";
+import Card from "../../ui/TextCard";
 import { useQuery } from "@tanstack/react-query";
-import { fetchProducts } from "../api/products";
-import { UploadIcon } from "../../../shared/ui/Icons";
+import { fetchProducts } from "../../api/products";
+import { UploadIcon } from "../../../../shared/ui/Icons";
 
 const CardsWrapper = styled.div`
   width: 100%;
@@ -14,7 +14,7 @@ const CardsWrapper = styled.div`
   margin: 1rem 0;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  height: 200px;
+  height: 12.5rem;
   align-items: center;
   scrollbar-width: none;
 

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Heading from "../../../shared/ui/Heading";
 import TextArea from "../../../shared/ui/TextArea";
-import Button from "../components/DisputeActions";
+import Button from "../components/marketplace/DisputeActions";
 import { useNavigate, useParams } from "react-router-dom";
 import Input from "../../../shared/ui/Input";
 import toast from "react-hot-toast";
@@ -31,7 +31,7 @@ const StyledInput = styled(Input)`
 `;
 
 const Item = styled.div`
-  margin: 20px 0;
+  margin: 1.25rem 0;
 `;
 
 const StyledTextArea = styled(TextArea)`

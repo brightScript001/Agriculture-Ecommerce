@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import ViewMore from "../../../shared/ui/Viewmore";
-import PageHeader from "../ui/PageHeader";
-import { fetchOrders } from "../api/orders";
+import ViewMore from "../../../../shared/ui/Viewmore";
+import PageHeader from "../../ui/PageHeader";
+import { fetchOrders } from "../../api/orders";
 import { useQuery } from "@tanstack/react-query";
-import ButtonGroup from "../../../shared/ui/ButtonGroup";
-import Button from "../../../shared/ui/Button";
+import ButtonGroup from "../../../../shared/ui/ButtonGroup";
+import Button from "../../../../shared/ui/Button";
 
 interface OrderDetail {
   item: string;
@@ -35,7 +35,7 @@ const CardsWrapper = styled.div`
   margin: 1rem 0;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  height: 200px;
+  height: 12.5rem;
   align-items: center;
   scrollbar-width: none;
 
@@ -58,7 +58,7 @@ const CardWrapper = styled.div`
   background-color: var(--color-grey-0);
   padding: 1rem;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--border-radius-md);
   width: 100%;
   width: 20.8125rem;
 
@@ -85,7 +85,7 @@ const CardPrice = styled.div`
 
 const StyledButton = styled(Button)`
   border-radius: 0;
-  width: 297px;
+  width: 18.6rem;
 `;
 
 const StyledButtonGroup = styled(ButtonGroup)`

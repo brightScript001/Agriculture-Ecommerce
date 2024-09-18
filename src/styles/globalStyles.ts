@@ -68,10 +68,10 @@ const GlobalStyles = createGlobalStyle`
     --image-grayscale: 0;
     --image-opacity: 100%;
 
-    --font-size-sm: 0.875rem; /* 14px */
-    --font-size-md: 1rem; /* 16px (base size) */
-    --font-size-lg: 1.25rem; /* 20px */
-    --font-size-xl: 1.5rem; /* 24px */
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
   }
 
   *,

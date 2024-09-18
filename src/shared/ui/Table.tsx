@@ -1,12 +1,11 @@
 import React, { createContext, useContext, FC } from "react";
 import styled from "styled-components";
 
-// Styled Components
 const StyledTable = styled.div`
   border: none;
   font-size: var(--font-size-sm);
   background-color: var(--color-grey-0);
-  border-radius: 7px;
+   border-radius: var(--border-radius-md);
   overflow: hidden;
 `;
 
