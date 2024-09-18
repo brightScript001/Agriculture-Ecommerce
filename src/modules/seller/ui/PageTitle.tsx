@@ -1,9 +1,10 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, matchPath } from "react-router-dom";
 
 export const PageTitle = () => {
   const location = useLocation();
+  const { pathname } = location;
 
-  switch (location.pathname) {
+  switch (pathname) {
     case "/dashboard":
       return "Hello Prince";
     case "/marketplace":
@@ -15,6 +16,16 @@ export const PageTitle = () => {
     case "/orders/settled-orders":
       return "Orders";
     default:
-      return "Page";
+      break;
   }
+
+  if (matchPath("/order/:orderId", pathname)) {
+    return "Orders";
+  }
+
+  if (matchPath("/order/:orderId/dispute", pathname)) {
+    return "Dispute Order";
+  }
+
+  return "Page";
 };

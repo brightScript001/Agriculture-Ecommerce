@@ -12,8 +12,16 @@ import { updateOrderStatus } from "../api/orders"; // Adjust the import path if 
 const Wrapper = styled.div`
   margin-top: 5rem;
   max-width: 50%;
+  @media (max-width: 768px) {
+    max-width: 100%;
+    margin-top: 0;
+  }
 `;
-
+const StyledHeading = styled(Heading)`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
 const Title = styled.p`
   font-size: var(--font-size-md);
 `;
@@ -24,6 +32,10 @@ const StyledInput = styled(Input)`
 
 const Item = styled.div`
   margin: 20px 0;
+`;
+
+const StyledTextArea = styled(TextArea)`
+  height: 24.9rem;
 `;
 
 const Block = styled.div``;
@@ -58,7 +70,7 @@ const Dispute: React.FC = () => {
 
   return (
     <Wrapper>
-      <Heading as="h1">Dispute Order</Heading>
+      <StyledHeading as="h1">Dispute Order</StyledHeading>
       <Block>
         <Item>
           <Title>Dispute Title</Title>
@@ -66,9 +78,9 @@ const Dispute: React.FC = () => {
         </Item>
         <Item>
           <Title>Dispute Description</Title>
-          <TextArea
+          <StyledTextArea
             name="description"
-            placeholder="Enter your description here"
+            placeholder="Describe your dispute"
           />
         </Item>
 
