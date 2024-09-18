@@ -10,6 +10,10 @@ export const PageTitle = () => {
       return "Marketplace";
     case "/marketplace/create-product":
       return "Upload Product";
+    case "/orders/pending-orders":
+      return "Orders";
+    case "/orders/settled-orders":
+      return "Orders";
     default:
       return "Page";
   }

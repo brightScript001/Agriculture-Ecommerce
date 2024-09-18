@@ -7,19 +7,33 @@ const Block = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
-const BlockItem = styled.div``;
+const BlockItem = styled.div`
+  width: 100%;
+  margin: auto 0;
+  margin-top: 2rem;
+  @media (max-width: 768px) {
+    margin-top: 3rem;
+  }
+`;
 
 const Input = styled.input`
   width: 30rem;
   padding: 10px;
+  min-height: 4rem;
   font-size: var(--font-size-sm);
   border: none;
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
   box-sizing: border-box;
   margin: 5px 0;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const OrderDetails = styled.div`
@@ -44,10 +58,10 @@ const Wrapper = styled.div`
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
   box-sizing: border-box;
-  margin: 20px 0;
+  margin: 0 auto;
+  width: 100%;
 `;
 
-// Interfaces
 interface OrderDetail {
   item: string;
   quantityInKg: number;
@@ -74,11 +88,9 @@ interface OrderTextProps {
   order: Order;
 }
 
-// Utility function to format currency
 const formatCurrency = (value: number) => `₦${value.toFixed(2)}`;
 
 export const OrderText: React.FC<OrderTextProps> = ({ order }) => {
-  // Calculate total price directly in the component
   const totalPrice = (order.orderDetails || []).reduce(
     (total, item) => total + item.totalPrice,
     0

@@ -9,6 +9,9 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   margin-top: 5rem;
+  @media (max-width: 768px) {
+    margin-top: 0;
+  }
 `;
 
 const OrderDetails: React.FC = () => {

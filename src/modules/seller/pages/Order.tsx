@@ -1,23 +1,16 @@
 import styled from "styled-components";
-import Button from "../../../shared/ui/Button";
-import ButtonGroup from "../../../shared/ui/ButtonGroup";
-import Heading from "../../../shared/ui/Heading";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { OrderList } from "../components/OrdersList";
 import SpinnerComponent from "../../../shared/ui/Spinner";
+import useMediaQuery from "../../../shared/hooks/useMediaQuery";
+import OrderLargeScreen from "../components/OrderLargeScreen";
+import OrderMobileScreen from "../components/OrderMobileScreen";
 
 const Wrapper = styled.div`
   margin-top: 5rem;
-`;
-
-const StyledButtonGroup = styled(ButtonGroup)`
-  margin-top: 20px;
-  justify-content: flex-start;
-`;
-
-const List = styled.div`
-  margin-top: 20px;
+  @media (max-width: 768px) {
+    margin-top: 0%;
+  }
 `;
 
 type RouteStatus = "pending-orders" | "settled-orders";
@@ -33,6 +26,8 @@ const Order = () => {
     useState<RouteStatus>("pending-orders");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
     if (status && status in statusMapping) {
@@ -56,21 +51,21 @@ const Order = () => {
 
   return (
     <Wrapper>
-      <Heading as="h1">Orders</Heading>
-      <StyledButtonGroup>
-        {["pending-orders", "settled-orders"].map((type) => (
-          <Button
-            key={type}
-            variation={isActive(type as RouteStatus) ? "primary" : "secondary"}
-            onClick={() => handleButtonClick(type as RouteStatus)}
-          >
-            {type === "pending-orders" ? "Pending Orders" : "Settled Orders"}
-          </Button>
-        ))}
-      </StyledButtonGroup>
-      <List>
-        <OrderList status={statusMapping[activeButton]} />
-      </List>
+      {isMobile ? (
+        <OrderMobileScreen
+          activeButton={activeButton}
+          statusMapping={statusMapping}
+          handleButtonClick={handleButtonClick}
+          isActive={isActive}
+        />
+      ) : (
+        <OrderLargeScreen
+          activeButton={activeButton}
+          handleButtonClick={handleButtonClick}
+          isActive={isActive}
+          statusMapping={statusMapping}
+        />
+      )}
     </Wrapper>
   );
 };

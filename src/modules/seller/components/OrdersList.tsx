@@ -17,7 +17,6 @@ const generateRows = (
   console.log("Generating rows for status:", status);
   console.log("Orders before filtering:", orders);
 
-  // Filter orders based on status
   const filteredOrders = orders.filter((order) => order.orderStatus === status);
   console.log("Filtered orders:", filteredOrders);
 

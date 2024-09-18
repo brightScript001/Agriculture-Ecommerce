@@ -126,7 +126,6 @@ const Card: React.FC<CardProps> = ({ item, totalPrice }) => {
 };
 
 export const PendingOrderCard: React.FC = () => {
-  // Adjust useQuery with generics to ensure TypeScript knows the type of the data.
   const { isLoading, error, data } = useQuery<Order[]>({
     queryKey: ["orders"],
     queryFn: fetchOrders,
@@ -137,7 +136,6 @@ export const PendingOrderCard: React.FC = () => {
   if (error instanceof Error)
     return <p>An error has occurred: {error.message}</p>;
 
-  // Extract item details from pending orders
   const pendingOrders =
     data?.flatMap((order) =>
       order.orderDetails.map((detail) => ({
