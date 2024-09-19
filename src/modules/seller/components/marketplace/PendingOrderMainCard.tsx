@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query"; // Ensure react-query is installed
 import { fetchOrders } from "../../api/orders";
 import Button from "../../../../shared/ui/Button";
+import SpinnerComponent from "../../../../shared/ui/Spinner";
 
 const Card = styled.div`
   width: 27.8rem;
@@ -99,7 +100,7 @@ const PendingOrdersCard = () => {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <SpinnerComponent />;
   }
 
   if (isError) {

@@ -99,7 +99,6 @@ const DeleteButton = styled(Button)`
   border: 1px solid var(--color-red-300);
 `;
 
-// Components
 const PendingOrderHeader: React.FC = () => {
   return (
     <PageHeader

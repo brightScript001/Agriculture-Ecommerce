@@ -20,7 +20,19 @@ const StyledConfirmDelete = styled.div`
   }
 `;
 
-function ConfirmDelete({ resourceName, onConfirm, disabled, onCloseModal }) {
+interface ConfirmDeleteProps {
+  resourceName: string;
+  onConfirm: () => void;
+  onCloseModal: () => void;
+  disabled?: boolean;
+}
+
+function ConfirmDelete({
+  resourceName,
+  onConfirm,
+  disabled = false,
+  onCloseModal,
+}: ConfirmDeleteProps) {
   return (
     <StyledConfirmDelete>
       <Heading as="h3">Delete {resourceName}</Heading>

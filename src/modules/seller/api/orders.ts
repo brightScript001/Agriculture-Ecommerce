@@ -6,7 +6,6 @@ export const fetchOrders = async () => {
   return res.json();
 };
 
-
 export const fetchOrderById = async (orderId: string) => {
   try {
     const orders = await fetchOrders();
@@ -28,14 +27,12 @@ export const fetchOrderById = async (orderId: string) => {
 
 export const updateOrderStatus = async (orderId: string, status: string) => {
   try {
-    // Fetch the order by ID
     const order = await fetchOrderById(orderId);
 
     if (!order) {
       throw new Error(`Order not found: ${orderId}`);
     }
 
-    // Update the order status
     const updateResponse = await fetch(
       `http://localhost:8000/orders/${orderId}`,
       {

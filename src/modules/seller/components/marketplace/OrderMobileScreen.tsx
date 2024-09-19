@@ -4,6 +4,7 @@ import OrderCard from "./OrderCard";
 import { fetchOrders } from "../../api/orders";
 import SpinnerComponent from "../../../../shared/ui/Spinner";
 import { useQuery } from "@tanstack/react-query";
+import { Order } from "../../utils/Formatting";
 
 const List = styled.div`
   margin-top: 1.25rem;
@@ -65,9 +66,8 @@ const OrderMobileScreen = ({
   if (isLoading) return <SpinnerComponent />;
   if (error) return <div>Error fetching orders</div>;
 
-  // Filter the orders based on the current active button (pending or settled)
   const filteredOrders = orders?.filter(
-    (order) => order.orderStatus === statusMapping[activeButton]
+    (order: Order) => order.orderStatus === statusMapping[activeButton]
   );
 
   return (
@@ -86,7 +86,7 @@ const OrderMobileScreen = ({
         </StyledButtonGroup>
       </HeaderWrapper>
 
-      {filteredOrders?.map((order) => (
+      {filteredOrders?.map((order: Order) => (
         <OrderCard key={order.orderId} order={order} />
       ))}
     </List>

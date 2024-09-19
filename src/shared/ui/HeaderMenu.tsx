@@ -41,15 +41,9 @@ function HeaderMenu() {
   return (
     <HeaderWrapper>
       <Nav>
-        <StyledNavLink to="/" activeClassName="active">
-          Home
-        </StyledNavLink>
-        <StyledNavLink to="/company" activeClassName="active">
-          Company
-        </StyledNavLink>
-        <StyledNavLink to="/about" activeClassName="active">
-          About Us
-        </StyledNavLink>
+        <StyledNavLink to="/">Home</StyledNavLink>
+        <StyledNavLink to="/company">Company</StyledNavLink>
+        <StyledNavLink to="/about">About Us</StyledNavLink>
       </Nav>
     </HeaderWrapper>
   );

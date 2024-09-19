@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { calculateTotalPrice } from "../../utils/Formatting";
+import { calculateTotalPrice, Order } from "../../utils/Formatting";
 
 const Card = styled.div`
   padding: 1.5rem;
@@ -89,21 +89,6 @@ const CustomerAddress = styled.p`
   color: var(--color-grey-500);
   margin-top: 0.2rem;
 `;
-
-interface OrderDetail {
-  item: string;
-  quantityInKg: number;
-  totalPrice: number;
-}
-
-interface Order {
-  orderId: string;
-  customerName: string;
-  orderDetails: OrderDetail[];
-  orderStatus: string;
-  shippingAddress: string;
-  dateOfOrder: string;
-}
 
 interface Props {
   order: Order;

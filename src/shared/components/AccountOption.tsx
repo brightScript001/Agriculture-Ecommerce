@@ -40,10 +40,12 @@ const Option = styled.div`
   }
 `;
 
+type AccountType = "buyer" | "seller";
+
 function AccountOptions() {
   const navigate = useNavigate();
 
-  const handleClick = (type) => {
+  const handleClick = (type: AccountType) => {
     navigate(`/register/${type}`, { state: { accountType: type } });
   };
 

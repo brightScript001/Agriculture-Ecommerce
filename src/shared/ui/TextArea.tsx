@@ -11,7 +11,12 @@ const TextAreaWrapper = styled.textarea`
   font-size: var(--font-size-sm);
 `;
 
-function TextArea({ placeholder, ...props }) {
+interface TextAreaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  placeholder: string;
+}
+
+function TextArea({ placeholder, ...props }: TextAreaProps) {
   return <TextAreaWrapper placeholder={placeholder} {...props} />;
 }
 
