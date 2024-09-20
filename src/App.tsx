@@ -23,6 +23,7 @@ import MarketPlace from "./modules/seller/pages/MarketPlace";
 import CreateProduct from "./modules/seller/pages/CreateProduct";
 import Dispute from "./modules/seller/pages/Dispute";
 import OrderDetails from "./modules/seller/pages/OrderDetails";
+import FarmRecord from "./modules/seller/pages/FarmGeneralRecord";
 
 function App() {
   const isDarkMode = useSelector(
@@ -60,6 +61,7 @@ function App() {
             <Route path="/orders/:status" element={<Order />} />
             <Route path="/order/:orderId" element={<OrderDetails />} />
             <Route path="/order/:orderId/dispute" element={<Dispute />} />
+            <Route path="/farm-general-record" element={<FarmRecord />} />
           </Route>
 
           <Route path="/register/seller" element={<RegisterBuyer />} />
