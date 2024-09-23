@@ -1,0 +1,25 @@
+{
+  "records": [
+    {
+      "id": "1",
+      "name": "Yellow Pepper",
+      "quantity": 682,
+      "date": "17-03-2024",
+      "areaCovered": "20% of land"
+    },
+    {
+      "id": "2",
+      "name": "Tomato",
+      "quantity": 350,
+      "date": "18-03-2024",
+      "areaCovered": "15% of land"
+    },
+    {
+      "id": "3",
+      "name": "Corn",
+      "quantity": 1000,
+      "date": "19-03-2024",
+      "areaCovered": "30% of land"
+    }
+  ]
+}

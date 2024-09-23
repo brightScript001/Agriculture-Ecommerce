@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Heading from "../../../shared/ui/Heading";
-import FarmRecordList from "../components/inventory/FarmRecordList";
+import SuppliesRecordList from "../components/inventory/SuppliesRecordList";
 
 const Wrapper = styled.div`
   margin: auto 0;
@@ -23,14 +23,14 @@ const StyledHeading = styled(Heading)`
   }
 `;
 
-function FarmRecord() {
+function SuppliesRecord() {
   return (
     <Wrapper>
       <StyledHeading as="h2">
-        Farm General Records <Span>(Last Updated April 29, 2024)</Span>
+        Supplies Records <Span>(Last Updated April 29, 2024)</Span>
       </StyledHeading>
-      <FarmRecordList />
+      <SuppliesRecordList />
     </Wrapper>
   );
 }
-export default FarmRecord;
+export default SuppliesRecord;

@@ -15,6 +15,8 @@ export const PageTitle = () => {
       return "Orders";
     case "/orders/settled-orders":
       return "Orders";
+    case "/farm-general-record":
+      return "Farm Record";
     default:
       break;
   }

@@ -5,7 +5,7 @@ const StyledTable = styled.div`
   border: none;
   font-size: var(--font-size-sm);
   background-color: var(--color-grey-0);
-   border-radius: var(--border-radius-md);
+  border-radius: var(--border-radius-md);
   overflow: hidden;
 `;
 
@@ -72,13 +72,12 @@ interface TableContextProps {
 
 const TableContext = createContext<TableContextProps | undefined>(undefined);
 
-// Table Component Props
 interface TableProps {
   columns: string;
   children: React.ReactNode;
 }
 
-// Table Component and its subcomponents
+
 interface TableComponent extends FC<TableProps> {
   Header: FC<{ children: React.ReactNode }>;
   Body: FC<BodyProps<any>>;

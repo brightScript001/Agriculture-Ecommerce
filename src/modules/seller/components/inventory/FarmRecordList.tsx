@@ -1,4 +1,4 @@
-import RecordItem from "./FarmRecordItem";
+import RecordItem from "./RecordItem";
 
 function FarmRecordList() {
   return (
