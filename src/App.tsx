@@ -24,7 +24,7 @@ import CreateProduct from "./modules/seller/pages/CreateProduct";
 import Dispute from "./modules/seller/pages/Dispute";
 import OrderDetails from "./modules/seller/pages/OrderDetails";
 import FarmRecord from "./modules/seller/pages/FarmGeneralRecord";
-import AddUpdate from "./modules/seller/pages/AddUpdate";
+import AddUpdate from "./modules/seller/pages/FormPage";
 import SuppliesRecord from "./modules/seller/pages/SuppliesRecord";
 import RiskEmergencyRecord from "./modules/seller/pages/RiskEmergengyRecord";
 

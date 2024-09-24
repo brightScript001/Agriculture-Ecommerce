@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 import DataTable, { ColumnDef } from "../../ui/DataTable";
 import { fetchRecords, RecordRow } from "../../api/Record";
 import ButtonText from "../../../../shared/ui/ButtonText";
@@ -15,11 +16,24 @@ const columns: ColumnDef<RecordRow>[] = [
   { field: "action", headerName: "Action" },
 ];
 
-const RecordTable: React.FC = () => {
+interface RecordTableProps {
+  title: string;
+}
+
+const RecordTable: React.FC<RecordTableProps> = ({ title }) => {
   const { data: records = [], isLoading: isLoadingRecord } = useQuery({
     queryKey: ["records"],
     queryFn: fetchRecords,
   });
+
+  const navigate = useNavigate();
+
+  const handleViewClick = (row: RecordRow) => {
+    navigate("/add-update", {
+      state: { row, title, mode: "view" },
+    });
+    toast(`Viewing details for ${row.name}`);
+  };
 
   const renderRow = (row: RecordRow) => (
     <Table.Row key={row.id}>
@@ -39,10 +53,6 @@ const RecordTable: React.FC = () => {
       ))}
     </Table.Row>
   );
-
-  const handleViewClick = (row: RecordRow) => {
-    toast(`Viewing details for ${row.name}`);
-  };
 
   if (isLoadingRecord) return <SpinnerComponent />;
 

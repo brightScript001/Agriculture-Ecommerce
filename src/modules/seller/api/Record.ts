@@ -5,6 +5,10 @@ export interface RecordRow {
   date: string;
   areaCovered: string;
   action: string;
+  farmStatus: string;
+  location: string;
+  pricePerUnit: number;
+  farmerName: string;
 }
 
 export const fetchRecords = async (): Promise<RecordRow[]> => {

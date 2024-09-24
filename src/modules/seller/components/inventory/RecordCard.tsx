@@ -25,7 +25,7 @@ function RecordCard({ title }: RecordCardProps) {
   const navigate = useNavigate();
 
   const handleAddUpdateClick = () => {
-    navigate("/add-update", { state: { title } });
+    navigate("/add-update", { state: { title, mode: "add" } });
   };
 
   return (
@@ -38,7 +38,7 @@ function RecordCard({ title }: RecordCardProps) {
           <Button onClick={handleAddUpdateClick}>+ Add update</Button>
         </div>
       </Header>
-      <RecordTable />
+      <RecordTable title={title} />
     </Container>
   );
 }
