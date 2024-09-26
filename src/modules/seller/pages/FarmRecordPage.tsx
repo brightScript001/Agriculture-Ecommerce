@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Heading from "../../../shared/ui/Heading";
-import { FarmRecordListCard } from "../components/inventory/FarmRecordListCard";
+import { FarmRecordListCard } from "../components/inventory/farmRecord/FarmRecordListCard";
 import { FarmGeneralRecord } from "../components/inventory/RecordTypes";
 
 const Wrapper = styled.div`

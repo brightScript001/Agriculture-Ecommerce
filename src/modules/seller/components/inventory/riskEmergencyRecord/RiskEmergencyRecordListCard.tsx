@@ -1,26 +1,44 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { DataTable } from "./DataTable";
-import { FarmRecordListHeader } from "./FarmRecordListHeader";
-import { FarmGeneralRecord } from "./RecordTypes";
-import ButtonText from "../../../../shared/ui/ButtonText";
-import ButtonGroup from "../../../../shared/ui/ButtonGroup";
+import { DataTable } from "../DataTable";
+import { RiskEmergencyRecordListHeader } from "./RiskEmergencyRecordListHeader";
+import { RiskEmergencyRecord } from "../RecordTypes";
+import ButtonText from "../../../../../shared/ui/ButtonText";
+import ButtonGroup from "../../../../../shared/ui/ButtonGroup";
 
 interface ButtonListProps {
-  onViewRow: (row: FarmGeneralRecord) => void;
+  onViewRow: (row: RiskEmergencyRecord) => void;
   onDelete: (listName: string) => void;
   onDownload: (listName: string) => void;
 }
-export const FarmRecordListCard: React.FC<ButtonListProps> = ({
+
+export const RiskEmergencyRecordListCard: React.FC<ButtonListProps> = ({
   onDelete,
   onDownload,
 }) => {
   const navigate = useNavigate();
-  const lists = ["Seeds and Planting", "Crops and Harvesting", "Farm Health"];
+  const lists = [
+    "Farm Attack by Pest",
+    "Fruit Over-ripening",
+    "Fire in Farm House",
+    "Expired Herbicide",
+  ];
   const [activeList, setActiveList] = useState<string | null>(null);
-  const [farmGeneralData] = useState<FarmGeneralRecord[]>([
-    { name: "Seed A", quantity: 20, areaCovered: "2 acres", action: "View" },
-    { name: "Seed B", quantity: 30, areaCovered: "3 acres", action: "View" },
+  const [riskEmergencyData] = useState<RiskEmergencyRecord[]>([
+    {
+      name: "Pest Attack",
+      cropAttacked: "Corn",
+      dateOfAttack: "2023-09-16",
+      status: "Unresolved",
+      action: "View",
+    },
+    {
+      name: "Fire Outbreak",
+      cropAttacked: "Wheat",
+      dateOfAttack: "2023-09-12",
+      status: "Resolved",
+      action: "View",
+    },
   ]);
 
   const handleToggle = (listName: string) => {
@@ -31,8 +49,10 @@ export const FarmRecordListCard: React.FC<ButtonListProps> = ({
     }
   };
 
-  const handleViewRow = (row: FarmGeneralRecord, listName: string) => {
-    navigate(`/record-form`, { state: { record: row, listName } });
+  const handleViewRow = (row: RiskEmergencyRecord, listName: string) => {
+    navigate(`/risk-emergency-record-form`, {
+      state: { record: row, listName },
+    });
   };
 
   return (
@@ -81,21 +101,23 @@ export const FarmRecordListCard: React.FC<ButtonListProps> = ({
                 borderRadius: "var(--border-radius-md)",
               }}
             >
-              <FarmRecordListHeader listName={list} />
+              <RiskEmergencyRecordListHeader listName={list} />
 
-              <DataTable<FarmGeneralRecord>
-                rows={farmGeneralData}
+              <DataTable<RiskEmergencyRecord>
+                rows={riskEmergencyData}
                 columns={[
                   { field: "name", headerName: "Name" },
-                  { field: "quantity", headerName: "Quantity" },
-                  { field: "areaCovered", headerName: "Area Covered" },
+                  { field: "cropAttacked", headerName: "Crop Attacked" },
+                  { field: "dateOfAttack", headerName: "Date of Attack" },
+                  { field: "status", headerName: "Status" },
                   { field: "action", headerName: "Action" },
                 ]}
                 renderRow={(row) => (
                   <>
                     <span>{row.name}</span>
-                    <span>{row.quantity}</span>
-                    <span>{row.areaCovered}</span>
+                    <span>{row.cropAttacked}</span>
+                    <span>{row.dateOfAttack}</span>
+                    <span>{row.status}</span>
                     <ButtonText
                       style={{ color: "var(--color-green-600)" }}
                       onClick={() => handleViewRow(row, list)}

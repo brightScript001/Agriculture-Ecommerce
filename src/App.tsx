@@ -25,6 +25,10 @@ import Dispute from "./modules/seller/pages/Dispute";
 import OrderDetails from "./modules/seller/pages/OrderDetails";
 import FarmGeneralRecordPage from "./modules/seller/pages/FarmRecordPage";
 import RecordFormPage from "./modules/seller/pages/FarmRecordFormPage";
+import { SuppliesRecordListPage } from "./modules/seller/pages/SuppliesRecordPage";
+import SuppliesRecordFormPage from "./modules/seller/pages/SuppliesRecordFormPage";
+import RiskEmergencyRecordPage from "./modules/seller/pages/RiskEmergencyRecordPage";
+import RiskEmergencyRecordFormPage from "./modules/seller/pages/RiskEmergencyRecordFormPage";
 
 function App() {
   const isDarkMode = useSelector(
@@ -63,8 +67,24 @@ function App() {
             <Route path="/order/:orderId" element={<OrderDetails />} />
             <Route path="/order/:orderId" element={<OrderDetails />} />
             <Route path="/order/:orderId/dispute" element={<Dispute />} />
-            <Route path="/record" element={<FarmGeneralRecordPage />} />
-            <Route path="/record-form" element={<RecordFormPage />} />
+            <Route path="/farm-record" element={<FarmGeneralRecordPage />} />
+            <Route path="/farm-record-form" element={<RecordFormPage />} />
+            <Route
+              path="/supplies-record"
+              element={<SuppliesRecordListPage />}
+            />
+            <Route
+              path="/supplies-record-form"
+              element={<SuppliesRecordFormPage />}
+            />
+            <Route
+              path="/risk-emergency-records"
+              element={<RiskEmergencyRecordPage />}
+            />
+            <Route
+              path="/risk-emergency-record-form"
+              element={<RiskEmergencyRecordFormPage />}
+            />
           </Route>
 
           <Route path="/register/seller" element={<RegisterBuyer />} />

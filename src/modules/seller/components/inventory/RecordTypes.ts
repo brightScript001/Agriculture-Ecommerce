@@ -8,15 +8,15 @@ export interface FarmGeneralRecord extends RecordType {
   areaCovered?: string;
   status?: string;
 }
-
 export interface SuppliesRecord extends RecordType {
-  quantity: number;
-  areaCovered: string;
+  quantityGotten: number;
+  quantityRemaining: number;
+  dateLastApplied: string;
 }
 
 export interface RiskEmergencyRecord extends RecordType {
-  quantity: number;
-  dateLastDiscovered: string;
+  cropAttacked: string;
+  dateOfAttack: string;
   status: string;
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { FarmRecordForm } from "./FarmRecordForm";
-import { FarmGeneralRecord } from "./RecordTypes";
+import { FarmGeneralRecord } from "../RecordTypes";
 
 interface RecordFormProps {
   selectedRow: FarmGeneralRecord;

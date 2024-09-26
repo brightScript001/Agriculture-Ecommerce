@@ -1,11 +1,11 @@
 import React, { FC, useState } from "react";
-import { FarmGeneralRecord } from "./RecordTypes";
+import { FarmGeneralRecord } from "../RecordTypes";
 import { useNavigate } from "react-router-dom";
-import Input from "../../../../shared/ui/Input";
+import Input from "../../../../../shared/ui/Input";
 import styled from "styled-components";
-import FormRow from "../../../../shared/ui/FormRow";
-import ButtonGroup from "../../../../shared/ui/ButtonGroup";
-import Button from "../../../../shared/ui/Button";
+import FormRow from "../../../../../shared/ui/FormRow";
+import ButtonGroup from "../../../../../shared/ui/ButtonGroup";
+import Button from "../../../../../shared/ui/Button";
 
 interface FormProps {
   record: FarmGeneralRecord;
