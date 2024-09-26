@@ -23,10 +23,8 @@ import MarketPlace from "./modules/seller/pages/MarketPlace";
 import CreateProduct from "./modules/seller/pages/CreateProduct";
 import Dispute from "./modules/seller/pages/Dispute";
 import OrderDetails from "./modules/seller/pages/OrderDetails";
-import FarmRecord from "./modules/seller/pages/FarmGeneralRecord";
-import AddUpdate from "./modules/seller/pages/FormPage";
-import SuppliesRecord from "./modules/seller/pages/SuppliesRecord";
-import RiskEmergencyRecord from "./modules/seller/pages/RiskEmergengyRecord";
+import FarmGeneralRecordPage from "./modules/seller/pages/RecordPage";
+import RecordFormPage from "./modules/seller/pages/RecordFormPage";
 
 function App() {
   const isDarkMode = useSelector(
@@ -65,13 +63,8 @@ function App() {
             <Route path="/order/:orderId" element={<OrderDetails />} />
             <Route path="/order/:orderId" element={<OrderDetails />} />
             <Route path="/order/:orderId/dispute" element={<Dispute />} />
-            <Route path="/farm-general-record" element={<FarmRecord />} />
-            <Route path="/add-update" element={<AddUpdate />} />
-            <Route path="/supplies-record" element={<SuppliesRecord />} />
-            <Route
-              path="/risk-emergency-record"
-              element={<RiskEmergencyRecord />}
-            />
+            <Route path="/record" element={<FarmGeneralRecordPage />} />
+            <Route path="/record-form" element={<RecordFormPage />} />
           </Route>
 
           <Route path="/register/seller" element={<RegisterBuyer />} />

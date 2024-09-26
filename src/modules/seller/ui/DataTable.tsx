@@ -13,6 +13,9 @@ interface DataTableProps<T> {
 }
 
 const DataTable = <T,>({ rows, columns, renderRow }: DataTableProps<T>) => {
+  console.log("DataTable Rows:", rows);
+  console.log("DataTable Columns:", columns);
+
   return (
     <Table columns={`repeat(${columns.length}, 1fr)`}>
       <Table.Header>
