@@ -1,5 +1,5 @@
 import React from "react";
-import RecordForm from "./RecordForm";
+import { FarmRecordForm } from "./FarmRecordForm";
 import { FarmGeneralRecord } from "./RecordTypes";
 
 interface RecordFormProps {
@@ -7,12 +7,12 @@ interface RecordFormProps {
   onSubmit: (data: FarmGeneralRecord) => void;
 }
 
-const RecordFormComponent: React.FC<RecordFormProps> = ({
+const FarmRecordFormComponent: React.FC<RecordFormProps> = ({
   selectedRow,
   onSubmit,
 }) => {
   return (
-    <RecordForm
+    <FarmRecordForm
       record={selectedRow}
       onSubmit={onSubmit}
       isViewMode={Boolean(selectedRow.name)}
@@ -20,4 +20,4 @@ const RecordFormComponent: React.FC<RecordFormProps> = ({
   );
 };
 
-export default RecordFormComponent;
+export default FarmRecordFormComponent;

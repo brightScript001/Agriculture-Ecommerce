@@ -32,7 +32,7 @@ const Label = styled.label`
   font-size: var(--font-size-sm);
 `;
 
-const RecordForm: FC<FormProps> = ({
+export const FarmRecordForm: FC<FormProps> = ({
   record,
   onSubmit,
   isViewMode = false,
@@ -101,5 +101,3 @@ const RecordForm: FC<FormProps> = ({
     </FormComponent>
   );
 };
-
-export default RecordForm;

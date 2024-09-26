@@ -1,14 +1,12 @@
-// Base interface with common properties
 export interface RecordType {
-  name: string; // Common property for all record types
-  action: string; // Common action property for all record types
+  name: string;
+  action: string;
 }
 
-// Specific record types extending RecordType
 export interface FarmGeneralRecord extends RecordType {
   quantity: number;
-  areaCovered?: string; // Optional property
-  status?: string; // Only for farm health
+  areaCovered?: string;
+  status?: string;
 }
 
 export interface SuppliesRecord extends RecordType {
@@ -27,13 +25,11 @@ export interface EquipmentMaintenanceRecord {
   status: string;
 }
 
-// Column definition remains unchanged
 export interface ColumnDef<T> {
   field: keyof T;
   headerName: string;
 }
 
-// Using RecordType in a union type
 export type AllRecords =
   | FarmGeneralRecord
   | SuppliesRecord

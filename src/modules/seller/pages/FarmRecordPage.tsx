@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Heading from "../../../shared/ui/Heading";
-import RecordListCard from "../components/inventory/RecordListCard";
+import { FarmRecordListCard } from "../components/inventory/FarmRecordListCard";
 import { FarmGeneralRecord } from "../components/inventory/RecordTypes";
 
 const Wrapper = styled.div`
@@ -20,7 +20,7 @@ const Span = styled.span`
   font-size: var(--font-size-md);
 `;
 
-const RecordListPage: React.FC = () => {
+const FarmRecordListPage: React.FC = () => {
   const handleViewRow = (row: FarmGeneralRecord) => {
     console.log("Selected row:", row);
   };
@@ -42,7 +42,7 @@ const RecordListPage: React.FC = () => {
         <Span> (Last Updated April 29, 2024)</Span>
       </Header>
 
-      <RecordListCard
+      <FarmRecordListCard
         onViewRow={handleViewRow}
         onDelete={handleDelete}
         onDownload={handleDownload}
@@ -51,4 +51,4 @@ const RecordListPage: React.FC = () => {
   );
 };
 
-export default RecordListPage;
+export default FarmRecordListPage;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DataTable from "./DataTable";
-import RecordListHeader from "./RecordListHeader";
+import { DataTable } from "./DataTable";
+import { FarmRecordListHeader } from "./FarmRecordListHeader";
 import { FarmGeneralRecord } from "./RecordTypes";
 import ButtonText from "../../../../shared/ui/ButtonText";
 import ButtonGroup from "../../../../shared/ui/ButtonGroup";
@@ -11,7 +11,7 @@ interface ButtonListProps {
   onDelete: (listName: string) => void;
   onDownload: (listName: string) => void;
 }
-const RecordListCard: React.FC<ButtonListProps> = ({
+export const FarmRecordListCard: React.FC<ButtonListProps> = ({
   onDelete,
   onDownload,
 }) => {
@@ -81,7 +81,7 @@ const RecordListCard: React.FC<ButtonListProps> = ({
                 borderRadius: "var(--border-radius-md)",
               }}
             >
-              <RecordListHeader listName={list} />
+              <FarmRecordListHeader listName={list} />
 
               <DataTable<FarmGeneralRecord>
                 rows={farmGeneralData}
@@ -112,5 +112,3 @@ const RecordListCard: React.FC<ButtonListProps> = ({
     </div>
   );
 };
-
-export default RecordListCard;

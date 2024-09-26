@@ -13,7 +13,9 @@ const ListHeaderDiv = styled.div`
   justify-content: space-between;
 `;
 
-const RecordListHeader: React.FC<ListHeaderProps> = ({ listName }) => {
+export const FarmRecordListHeader: React.FC<ListHeaderProps> = ({
+  listName,
+}) => {
   const navigate = useNavigate();
 
   const handleAddUpdate = () => {
@@ -27,5 +29,3 @@ const RecordListHeader: React.FC<ListHeaderProps> = ({ listName }) => {
     </ListHeaderDiv>
   );
 };
-
-export default RecordListHeader;

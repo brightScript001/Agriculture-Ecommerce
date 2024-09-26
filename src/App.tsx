@@ -23,8 +23,8 @@ import MarketPlace from "./modules/seller/pages/MarketPlace";
 import CreateProduct from "./modules/seller/pages/CreateProduct";
 import Dispute from "./modules/seller/pages/Dispute";
 import OrderDetails from "./modules/seller/pages/OrderDetails";
-import FarmGeneralRecordPage from "./modules/seller/pages/RecordPage";
-import RecordFormPage from "./modules/seller/pages/RecordFormPage";
+import FarmGeneralRecordPage from "./modules/seller/pages/FarmRecordPage";
+import RecordFormPage from "./modules/seller/pages/FarmRecordFormPage";
 
 function App() {
   const isDarkMode = useSelector(

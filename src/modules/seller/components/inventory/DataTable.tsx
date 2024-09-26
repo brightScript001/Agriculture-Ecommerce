@@ -8,7 +8,7 @@ interface DataTableProps<T extends RecordType> {
   columns: readonly ColumnDef<T>[];
   renderRow: (row: T) => React.ReactNode;
 }
-const DataTable = <T extends RecordType>({
+export const DataTable = <T extends RecordType>({
   rows,
   columns,
   renderRow,
@@ -30,5 +30,3 @@ const DataTable = <T extends RecordType>({
     </Table>
   );
 };
-
-export default DataTable;

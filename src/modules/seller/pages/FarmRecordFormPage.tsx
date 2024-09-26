@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import RecordFormComponent from "../components/inventory/RecordFormComponent";
+import RecordFormComponent from "../components/inventory/FarmRecordFormComponent";
 import { FarmGeneralRecord } from "../components/inventory/RecordTypes";
 import styled from "styled-components";
 import Heading from "../../../shared/ui/Heading";
