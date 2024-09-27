@@ -20,7 +20,7 @@ export interface RiskEmergencyRecord extends RecordType {
   status: string;
 }
 
-export interface EquipmentMaintenanceRecord {
+export interface EquipmentMaintenanceRecord extends RecordType {
   lastMaintenance: string;
   status: string;
 }
@@ -28,6 +28,7 @@ export interface EquipmentMaintenanceRecord {
 export interface ColumnDef<T> {
   field: keyof T;
   headerName: string;
+  renderCell?: (row: T) => JSX.Element;
 }
 
 export type AllRecords =

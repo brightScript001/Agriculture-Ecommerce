@@ -8,20 +8,18 @@ interface ListHeaderProps {
 }
 
 const ListHeaderDiv = styled.div`
-  padding: 1.25rem;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
 `;
 
-export const RiskEmergencyRecordListHeader: React.FC<ListHeaderProps> = ({
+export const EquipmentRecordListHeader: React.FC<ListHeaderProps> = ({
   listName,
 }) => {
   const navigate = useNavigate();
 
   const handleAddUpdate = () => {
-    navigate("/risk-emergency-record-form", {
-      state: { record: null, listName },
-    });
+    navigate("/equipment-record-form", { state: { record: null, listName } });
   };
 
   return (

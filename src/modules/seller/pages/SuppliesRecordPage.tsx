@@ -45,7 +45,7 @@ export const SuppliesRecordListPage: React.FC = () => {
   return (
     <Wrapper>
       <Header>
-        <Heading as="h2">Farm General Records </Heading>
+        <Heading as="h2">Supplies Record </Heading>
         <Span> (Last Updated April 29, 2024)</Span>
       </Header>
       <SuppliesRecordListCard
