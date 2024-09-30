@@ -5,6 +5,7 @@ import { fetchOrders } from "../../api/orders";
 import { useQuery } from "@tanstack/react-query";
 import ButtonGroup from "../../../../shared/ui/ButtonGroup";
 import Button from "../../../../shared/ui/Button";
+import { useNavigate } from "react-router-dom";
 
 interface OrderDetail {
   item: string;
@@ -100,10 +101,11 @@ const DeleteButton = styled(Button)`
 `;
 
 const PendingOrderHeader: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <PageHeader
       title="Pending Orders"
-      RightComponent={<ViewMore />}
+      RightComponent={<ViewMore onClick={() => navigate("")} />}
       noUnderline
     />
   );

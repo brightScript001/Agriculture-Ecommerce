@@ -1,38 +1,23 @@
 import styled from "styled-components";
-import { formatNumber } from "../utils/formatNumber";
 
-interface CardProps {
+export interface CardProps {
   title: string;
-  count: number;
+  count: string;
   description: string;
-  isCurrency?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const CardContainer = styled.div`
   border: none;
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
-  background-color: var(--color-grey-0);
+  color: var(--color-grey-0);
+  background-color: var(--color-green-600);
   text-align: start;
   padding: 1rem;
-  flex: 1;
-  min-width: 20rem;
-  min-height: 10rem;
-  margin-right: 1rem;
-
-  &:last-child {
-    flex: 2;
-    background-color: var(--color-green-600);
-    color: var(--color-grey-0);
-
-    .dark-mode & {
-      background-color: var(--color-green-600);
-      color: var(--color-grey-0);
-    }
-  }
+  min-width: 24rem;
+  min-height: 10.7rem;
 `;
-
 const Title = styled.p`
   font-size: var(--font-size-md);
   margin-bottom: 2rem;
@@ -51,20 +36,17 @@ const Description = styled.p`
   }
 `;
 
-const Card: React.FC<CardProps> = ({
+export const Card: React.FC<CardProps> = ({
   title,
   count,
   description,
-  isCurrency,
   onClick,
 }) => {
   return (
     <CardContainer onClick={onClick}>
       <Title>{title}</Title>
-      <Count>{formatNumber(count, isCurrency)}</Count>
+      <Count>{count}</Count>
       <Description>{description}</Description>
     </CardContainer>
   );
 };
-
-export default Card;

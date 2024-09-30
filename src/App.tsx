@@ -32,6 +32,10 @@ import RiskEmergencyRecordFormPage from "./modules/seller/pages/RiskEmergencyRec
 import EquipmentRecordFormPage from "./modules/seller/pages/EquipmentRecordFormPage";
 import EquipmentRecordPage from "./modules/seller/pages/EquipmentRecordPage";
 import InventoryDashboard from "./modules/seller/pages/Inventory";
+import PaymentDashboard from "./modules/seller/pages/Payment";
+import Support from "./modules/seller/pages/Support";
+import { LiveChat } from "./modules/seller/pages/LiveChat";
+import { FAQ } from "./modules/seller/pages/FAQ";
 
 function App() {
   const isDarkMode = useSelector(
@@ -100,6 +104,14 @@ function App() {
               element={<EquipmentRecordFormPage />}
             />
             {/*end inventory record routes*/}
+
+            {/* Payment */}
+            <Route path="/payment" element={<PaymentDashboard />} />
+
+            {/* support */}
+            <Route path="/support" element={<Support />} />
+            <Route path="/live-chat" element={<LiveChat />} />
+            <Route path="/faq" element={<FAQ />} />
           </Route>
 
           <Route path="/register/seller" element={<RegisterBuyer />} />
