@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { PersonalInformation } from "./PersonalInformation";
-import { IDBankVerification } from "./IDBankVerification";
+import { BankVerification } from "./BankVerification";
 import { FarmInfoVerification } from "./FarmInfoVerification";
 
 // Styled Components for tabs
@@ -47,7 +47,7 @@ export const ProfileTabs = () => {
       case "personalInfo":
         return <PersonalInformation />;
       case "idVerification":
-        return <IDBankVerification />;
+        return <BankVerification />;
       case "farmInfo":
         return <FarmInfoVerification />;
       default:

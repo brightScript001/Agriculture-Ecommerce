@@ -3,17 +3,17 @@ import styled from "styled-components";
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 const Input = styled.input<InputProps>`
-  background-color: var(--color-grey-0);
-  padding: 1rem;
+  padding: 0.75rem;
   font-size: var(--font-size-sm);
   border: none;
   border-radius: var(--border-radius-sm);
-  color: var(--color-grey-700);
-  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 
   &:focus {
     border-color: var(--color-green-600);
-    box-shadow: 0 0 0 3px var(--color-green-200);
+    box-shadow: 0 0 5px rgba(0, 128, 0, 0.3);
+    outline: none;
+    transform: scale(1.02);
   }
 `;
 
