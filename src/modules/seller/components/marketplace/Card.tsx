@@ -24,7 +24,6 @@ const CardsWrapper = styled.div`
 
   @media (min-width: 769px) {
     overflow-x: visible;
-    margin-top: 4rem;
   }
 `;
 

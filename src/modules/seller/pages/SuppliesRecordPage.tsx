@@ -5,13 +5,6 @@ import { SuppliesRecord } from "../components/inventory/RecordTypes";
 import styled from "styled-components";
 import Heading from "../../../shared/ui/Heading";
 
-const Wrapper = styled.div`
-  margin-top: 5rem;
-  @media (max-width: 768px) {
-    margin-top: 0;
-  }
-`;
-
 const Header = styled.div`
   display: flex;
   gap: 10px;
@@ -43,7 +36,7 @@ export const SuppliesRecordListPage: React.FC = () => {
   };
 
   return (
-    <Wrapper>
+    <main>
       <Header>
         <Heading as="h2">Supplies Record </Heading>
         <Span> (Last Updated April 29, 2024)</Span>
@@ -53,6 +46,6 @@ export const SuppliesRecordListPage: React.FC = () => {
         onDownload={handleDownload}
         onViewRow={handleViewRow}
       />
-    </Wrapper>
+    </main>
   );
 };

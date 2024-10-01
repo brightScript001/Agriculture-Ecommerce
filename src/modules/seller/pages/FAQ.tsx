@@ -4,11 +4,7 @@ import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 // Styled components for the FAQ section
 const FAQContainer = styled.section`
-  margin-top: 5rem;
   max-width: 100%;
-  @media (max-width: 768px) {
-    margin-top: 0;
-  }
 `;
 
 const FAQItem = styled.div`

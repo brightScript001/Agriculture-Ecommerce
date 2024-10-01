@@ -34,8 +34,12 @@ const Container = styled.div`
   max-width: 120rem;
   margin: 0 auto;
   display: flex;
+  margin-top: 5rem;
   flex-direction: column;
   gap: 1rem;
+  @media (max-width: 768px) {
+    margin-top: 0;
+  }
 `;
 
 const BellButton = styled.button`

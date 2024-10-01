@@ -3,13 +3,6 @@ import Heading from "../../../shared/ui/Heading";
 import { FarmRecordListCard } from "../components/inventory/farmRecord/FarmRecordListCard";
 import { FarmGeneralRecord } from "../components/inventory/RecordTypes";
 
-const Wrapper = styled.div`
-  margin-top: 5rem;
-  @media (max-width: 768px) {
-    margin-top: 0;
-  }
-`;
-
 const Header = styled.div`
   display: flex;
   gap: 10px;
@@ -36,7 +29,7 @@ const FarmRecordListPage: React.FC = () => {
   };
 
   return (
-    <Wrapper>
+    <main>
       <Header>
         <Heading as="h2">Farm General Records </Heading>
         <Span> (Last Updated April 29, 2024)</Span>
@@ -47,7 +40,7 @@ const FarmRecordListPage: React.FC = () => {
         onDelete={handleDelete}
         onDownload={handleDownload}
       />
-    </Wrapper>
+    </main>
   );
 };
 

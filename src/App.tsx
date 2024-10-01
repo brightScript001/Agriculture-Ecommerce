@@ -17,7 +17,7 @@ import HomePage from "./shared/components/Home";
 
 // import ProtectedRoute from "./ui/ProtectedRoute";
 import AppLayout from "./modules/seller/ui/AppLayout";
-import SellerDashboard from "./modules/seller/pages/SelllerDashboard";
+import SellerDashboard from "./modules/seller/pages/SellerDashboard";
 import Order from "./modules/seller/pages/Order";
 import MarketPlace from "./modules/seller/pages/MarketPlace";
 import CreateProduct from "./modules/seller/pages/CreateProduct";
@@ -36,6 +36,7 @@ import PaymentDashboard from "./modules/seller/pages/Payment";
 import Support from "./modules/seller/pages/Support";
 import { LiveChat } from "./modules/seller/pages/LiveChat";
 import { FAQ } from "./modules/seller/pages/FAQ";
+import Profile from "./modules/seller/pages/Profile";
 
 function App() {
   const isDarkMode = useSelector(
@@ -112,6 +113,9 @@ function App() {
             <Route path="/support" element={<Support />} />
             <Route path="/live-chat" element={<LiveChat />} />
             <Route path="/faq" element={<FAQ />} />
+
+            {/* profile */}
+            <Route path="/profile" element={<Profile />} />
           </Route>
 
           <Route path="/register/seller" element={<RegisterBuyer />} />

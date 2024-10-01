@@ -10,11 +10,9 @@ import { useMutation } from "@tanstack/react-query";
 import { updateOrderStatus } from "../api/orders"; // Adjust the import path if needed
 
 const Wrapper = styled.div`
-  margin-top: 5rem;
   max-width: 50%;
   @media (max-width: 768px) {
     max-width: 100%;
-    margin-top: 0;
   }
 `;
 const StyledHeading = styled(Heading)`

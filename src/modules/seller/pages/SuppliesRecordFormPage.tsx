@@ -9,10 +9,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2.7rem;
-  margin-top: 5rem;
-  @media (max-width: 768px) {
-    margin-top: 0;
-  }
 `;
 
 const SuppliesRecordFormPage: React.FC = () => {

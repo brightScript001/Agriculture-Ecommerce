@@ -5,14 +5,10 @@ import { RiskEmergencyRecord } from "../components/inventory/RecordTypes";
 import styled from "styled-components";
 import Heading from "../../../shared/ui/Heading";
 
-const Wrapper = styled.div`
+const Wrapper = styled.main`
   display: flex;
   flex-direction: column;
   gap: 2.7rem;
-  margin-top: 5rem;
-  @media (max-width: 768px) {
-    margin-top: 0;
-  }
 `;
 
 const RiskEmergencyRecordFormPage: React.FC = () => {

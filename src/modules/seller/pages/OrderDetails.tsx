@@ -5,14 +5,6 @@ import { fetchOrderById } from "../api/orders";
 import { OrderText } from "../components/marketplace/OrderDetailsText";
 import { Buttons } from "../components/marketplace/OrderDetailsBtn";
 import { Approve } from "../components/marketplace/ApproveModal";
-import styled from "styled-components";
-
-const Wrapper = styled.div`
-  margin-top: 5rem;
-  @media (max-width: 768px) {
-    margin-top: 0;
-  }
-`;
 
 const OrderDetails: React.FC = () => {
   const { orderId } = useParams<{ orderId: string }>();
@@ -51,11 +43,11 @@ const OrderDetails: React.FC = () => {
   };
 
   return (
-    <Wrapper>
+    <main>
       <OrderText order={order} />
       <Buttons onDispute={handleDispute} onApprove={handleApprove} />
       <Approve isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
-    </Wrapper>
+    </main>
   );
 };
 

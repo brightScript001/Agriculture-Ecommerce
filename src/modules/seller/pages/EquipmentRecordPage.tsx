@@ -8,7 +8,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2.7rem;
-  margin-top: 5rem;
 `;
 
 const EquipmentRecordPage: React.FC = () => {

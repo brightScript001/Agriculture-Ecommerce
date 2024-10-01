@@ -1,15 +1,7 @@
 import { useMediaQuery } from "react-responsive";
 import SearchBar from "../ui/SearchBar";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import Heading from "../../../shared/ui/Heading";
-
-const Wrapper = styled.div`
-  margin-top: 5rem;
-  @media (max-width: 768px) {
-    margin-top: 0;
-  }
-`;
 
 const mobileSearchBarStyles = `
   background-color: var(--color-grey-200);
@@ -23,7 +15,7 @@ function InventoryDashboard() {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
-    <Wrapper>
+    <main>
       {isMobile && <SearchBar customStyles={mobileSearchBarStyles} />}
       <div>
         <Heading as="h2" onClick={() => navigate("/farm-records")}>
@@ -39,7 +31,7 @@ function InventoryDashboard() {
           Equipment and Maintenance (Last Updated April 17, 2024)
         </Heading>
       </div>
-    </Wrapper>
+    </main>
   );
 }
 

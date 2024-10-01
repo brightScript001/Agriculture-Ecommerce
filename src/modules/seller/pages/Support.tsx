@@ -15,12 +15,10 @@ const CardsWrapper = styled.div`
   display: flex;
   flex-direction: row;
   gap: 3rem;
-  margin-top: 5rem;
 
   @media (max-width: 768px) {
     margin: auto 0;
     flex-direction: column;
-    margin-top: 0;
   }
 `;
 
