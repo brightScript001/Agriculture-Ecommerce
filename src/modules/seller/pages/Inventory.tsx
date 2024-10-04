@@ -9,7 +9,7 @@ const mobileSearchBarStyles = `
   width: 100%;
 `;
 
-function InventoryDashboard() {
+export function InventoryDashboard() {
   const navigate = useNavigate();
 
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
@@ -37,5 +37,3 @@ function InventoryDashboard() {
     </main>
   );
 }
-
-export default InventoryDashboard;

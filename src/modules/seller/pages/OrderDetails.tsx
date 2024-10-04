@@ -6,7 +6,7 @@ import { OrderText } from "../components/marketplace/OrderDetailsText";
 import { Buttons } from "../components/marketplace/OrderDetailsBtn";
 import { Approve } from "../components/marketplace/ApproveModal";
 
-const OrderDetails: React.FC = () => {
+export const OrderDetails: React.FC = () => {
   const { orderId } = useParams<{ orderId: string }>();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,5 +50,3 @@ const OrderDetails: React.FC = () => {
     </main>
   );
 };
-
-export default OrderDetails;

@@ -24,7 +24,7 @@ const CardsWrapper = styled.div`
   }
 `;
 
-function PaymentDashboard() {
+export function PaymentDashboard() {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
@@ -40,5 +40,3 @@ function PaymentDashboard() {
     </>
   );
 }
-
-export default PaymentDashboard;

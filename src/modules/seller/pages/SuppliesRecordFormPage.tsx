@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   gap: 2.7rem;
 `;
 
-const SuppliesRecordFormPage: React.FC = () => {
+export const SuppliesRecordFormPage: React.FC = () => {
   const location = useLocation();
   const record = location.state?.record || {
     name: "",
@@ -40,5 +40,3 @@ const SuppliesRecordFormPage: React.FC = () => {
     </Wrapper>
   );
 };
-
-export default SuppliesRecordFormPage;

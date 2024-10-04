@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   gap: 2.7rem;
 `;
 
-const EquipmentRecordPage: React.FC = () => {
+export const EquipmentRecordPage: React.FC = () => {
   const handleViewRow = (row: EquipmentMaintenanceRecord) => {
     console.log("Selected row:", row);
   };
@@ -34,5 +34,3 @@ const EquipmentRecordPage: React.FC = () => {
     </Wrapper>
   );
 };
-
-export default EquipmentRecordPage;

@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   gap: 2.7rem;
 `;
 
-const RecordFormPage: React.FC = () => {
+export const RecordFormPage: React.FC = () => {
   const location = useLocation();
   const record = location.state?.record || {
     name: "",
@@ -38,5 +38,3 @@ const RecordFormPage: React.FC = () => {
     </Wrapper>
   );
 };
-
-export default RecordFormPage;

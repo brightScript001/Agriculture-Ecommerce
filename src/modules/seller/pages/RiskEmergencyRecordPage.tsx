@@ -14,7 +14,7 @@ const Span = styled.span`
   text-decoration: underline;
   font-size: var(--font-size-md);
 `;
-const RiskEmergencyRecordPage: React.FC = () => {
+export const RiskEmergencyRecordPage: React.FC = () => {
   const navigate = useNavigate();
 
   const handleDelete = (listName: string) => {
@@ -43,5 +43,3 @@ const RiskEmergencyRecordPage: React.FC = () => {
     </main>
   );
 };
-
-export default RiskEmergencyRecordPage;

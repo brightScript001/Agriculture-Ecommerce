@@ -17,7 +17,7 @@ interface ProtectedRouteProps {
   children: ReactNode;
 }
 
-function ProtectedRoute({ children }: ProtectedRouteProps) {
+export function ProtectedRoute({ children }: ProtectedRouteProps) {
   const navigate = useNavigate();
   const { isLoading, isAuthenticated } = useSelector((state: AppState) => ({
     isAuthenticated: state.auth.isAuthenticated,
@@ -44,5 +44,3 @@ function ProtectedRoute({ children }: ProtectedRouteProps) {
 
   return null;
 }
-
-export default ProtectedRoute;

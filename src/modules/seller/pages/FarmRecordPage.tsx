@@ -13,7 +13,7 @@ const Span = styled.span`
   font-size: var(--font-size-md);
 `;
 
-const FarmRecordListPage: React.FC = () => {
+export const FarmRecordListPage: React.FC = () => {
   const handleViewRow = (row: FarmGeneralRecord) => {
     console.log("Selected row:", row);
   };
@@ -43,5 +43,3 @@ const FarmRecordListPage: React.FC = () => {
     </main>
   );
 };
-
-export default FarmRecordListPage;

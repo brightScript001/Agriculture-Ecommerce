@@ -63,7 +63,7 @@ const PageHeaderWrapper = styled.div`
   margin-top: 6.25rem;
 `;
 
-function AppLayout() {
+export function AppLayout() {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
@@ -90,5 +90,3 @@ function AppLayout() {
     </StyledAppLayout>
   );
 }
-
-export default AppLayout;

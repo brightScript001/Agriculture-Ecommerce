@@ -12,7 +12,7 @@ const statusMapping: { [key in RouteStatus]: "pending" | "settled" } = {
   "settled-orders": "settled",
 };
 
-const Order = () => {
+export const Order = () => {
   const { status } = useParams<{ status: RouteStatus }>();
   const [activeButton, setActiveButton] =
     useState<RouteStatus>("pending-orders");
@@ -61,5 +61,3 @@ const Order = () => {
     </main>
   );
 };
-
-export default Order;

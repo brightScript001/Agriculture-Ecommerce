@@ -13,7 +13,7 @@ const mobileSearchBarStyles = `
     width: 100%;
 `;
 
-function MarketPlace() {
+export function MarketPlace() {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const { isLoading } = useQuery({
     queryKey: ["products"],
@@ -29,5 +29,3 @@ function MarketPlace() {
     </>
   );
 }
-
-export default MarketPlace;

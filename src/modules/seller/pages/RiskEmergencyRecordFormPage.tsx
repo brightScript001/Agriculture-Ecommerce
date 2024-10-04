@@ -11,7 +11,7 @@ const Wrapper = styled.main`
   gap: 2.7rem;
 `;
 
-const RiskEmergencyRecordFormPage: React.FC = () => {
+export const RiskEmergencyRecordFormPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -39,5 +39,3 @@ const RiskEmergencyRecordFormPage: React.FC = () => {
     </Wrapper>
   );
 };
-
-export default RiskEmergencyRecordFormPage;

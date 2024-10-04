@@ -38,7 +38,7 @@ const StyledTextArea = styled(TextArea)`
 
 const Block = styled.div``;
 
-const Dispute: React.FC = () => {
+export const Dispute: React.FC = () => {
   const { orderId } = useParams<{ orderId: string }>();
   const navigate = useNavigate();
 
@@ -87,5 +87,3 @@ const Dispute: React.FC = () => {
     </Wrapper>
   );
 };
-
-export default Dispute;

@@ -22,7 +22,7 @@ const CardsWrapper = styled.div`
   }
 `;
 
-function Support() {
+export function Support() {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
@@ -36,5 +36,3 @@ function Support() {
     </>
   );
 }
-
-export default Support;

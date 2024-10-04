@@ -1,6 +1,6 @@
 import { CompletionStats } from "../components/profile/CompletionStats";
 import { ProfileTabs } from "../components/profile/ProfileTabs";
-function Profile() {
+export function Profile() {
   const userProfileCompletion = 35;
   return (
     <main>
@@ -11,5 +11,3 @@ function Profile() {
     </main>
   );
 }
-
-export default Profile;
