@@ -1,7 +1,7 @@
 import { CompletionStats } from "../components/profile/CompletionStats";
 import { ProfileTabs } from "../components/profile/ProfileTabs";
 function Profile() {
-  const userProfileCompletion = 100;
+  const userProfileCompletion = 35;
   return (
     <main>
       {userProfileCompletion < 100 && (
