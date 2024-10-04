@@ -24,7 +24,7 @@ const RiskEmergencyRecordFormPage: React.FC = () => {
     console.log("Submitting form data:", data);
 
     //TODO After successful submission, navigate back to the list page
-    navigate("/risk-emergency-records");
+    navigate("/seller/risk-emergency-records");
   };
 
   return (

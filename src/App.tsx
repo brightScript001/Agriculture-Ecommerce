@@ -1,7 +1,13 @@
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+} from "react-router-dom";
 
 import GlobalStyles from "./styles/globalStyles";
 import PageNotFound from "./shared/components/PageNotFound";
@@ -15,8 +21,7 @@ import PasswordReset from "./modules/auth/pages/PasswordReset";
 import VerifyEmail from "./modules/auth/pages/VerifyEmail";
 import HomePage from "./shared/components/Home";
 
-// import ProtectedRoute from "./ui/ProtectedRoute";
-import AppLayout from "./modules/seller/ui/AppLayout";
+import AppLayout from "./shared/ui/AppLayout";
 import SellerDashboard from "./modules/seller/pages/SellerDashboard";
 import Order from "./modules/seller/pages/Order";
 import MarketPlace from "./modules/seller/pages/MarketPlace";
@@ -37,6 +42,7 @@ import Support from "./modules/seller/pages/Support";
 import { LiveChat } from "./modules/seller/pages/LiveChat";
 import { FAQ } from "./modules/seller/pages/FAQ";
 import Profile from "./modules/seller/pages/Profile";
+import ProtectedRoute from "./modules/core/components/ProtectedRoute";
 
 function App() {
   const isDarkMode = useSelector(
@@ -59,63 +65,66 @@ function App() {
         <Routes>
           <Route
             element={
-              // <ProtectedRoute>
-              <AppLayout />
-              // </ProtectedRoute>
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
             }
           >
-            <Route index element={<Navigate replace to="dashboard" />} />
-            <Route path="dashboard" element={<SellerDashboard />} />
-            <Route path="marketplace" element={<MarketPlace />} />
-            <Route
-              path="marketplace/create-product"
-              element={<CreateProduct />}
-            />
-            <Route path="/orders/:status" element={<Order />} />
-            <Route path="/order/:orderId" element={<OrderDetails />} />
-            <Route path="/order/:orderId" element={<OrderDetails />} />
-            <Route path="/order/:orderId/dispute" element={<Dispute />} />
+            {/* Seller-specific routes */}
+            <Route path="seller" element={<Outlet />}>
+              <Route index element={<Navigate replace to="dashboard" />} />
+              <Route path="dashboard" element={<SellerDashboard />} />
+              <Route path="marketplace" element={<MarketPlace />} />
+              <Route
+                path="marketplace/create-product"
+                element={<CreateProduct />}
+              />
+              <Route path="orders/:status" element={<Order />} />
+              <Route path="order/:orderId" element={<OrderDetails />} />
+              <Route path="order/:orderId/dispute" element={<Dispute />} />
 
-            {/* inventory record routes*/}
-            <Route path="/inventory" element={<InventoryDashboard />} />
-            <Route path="/farm-records" element={<FarmGeneralRecordPage />} />
-            <Route path="/farm-record-form" element={<RecordFormPage />} />
-            <Route
-              path="/supplies-records"
-              element={<SuppliesRecordListPage />}
-            />
-            <Route
-              path="/supplies-record-form"
-              element={<SuppliesRecordFormPage />}
-            />
-            <Route
-              path="/risk-emergency-records"
-              element={<RiskEmergencyRecordPage />}
-            />
-            <Route
-              path="/risk-emergency-record-form"
-              element={<RiskEmergencyRecordFormPage />}
-            />
-            <Route
-              path="/equipment-records"
-              element={<EquipmentRecordPage />}
-            />
-            <Route
-              path="/equipment-record-form"
-              element={<EquipmentRecordFormPage />}
-            />
-            {/*end inventory record routes*/}
+              {/* Inventory record routes */}
+              <Route path="inventory" element={<InventoryDashboard />} />
+              <Route path="farm-records" element={<FarmGeneralRecordPage />} />
+              <Route path="farm-record-form" element={<RecordFormPage />} />
+              <Route
+                path="supplies-records"
+                element={<SuppliesRecordListPage />}
+              />
+              <Route
+                path="supplies-record-form"
+                element={<SuppliesRecordFormPage />}
+              />
+              <Route
+                path="risk-emergency-records"
+                element={<RiskEmergencyRecordPage />}
+              />
+              <Route
+                path="risk-emergency-record-form"
+                element={<RiskEmergencyRecordFormPage />}
+              />
+              <Route
+                path="equipment-records"
+                element={<EquipmentRecordPage />}
+              />
+              <Route
+                path="equipment-record-form"
+                element={<EquipmentRecordFormPage />}
+              />
 
-            {/* Payment */}
-            <Route path="/payment" element={<PaymentDashboard />} />
+              {/* Payment */}
+              <Route path="payment" element={<PaymentDashboard />} />
 
-            {/* support */}
-            <Route path="/support" element={<Support />} />
-            <Route path="/live-chat" element={<LiveChat />} />
-            <Route path="/faq" element={<FAQ />} />
+              {/* Support */}
+              <Route path="support" element={<Support />} />
+              <Route path="live-chat" element={<LiveChat />} />
+              <Route path="faq" element={<FAQ />} />
 
-            {/* profile */}
-            <Route path="/profile" element={<Profile />} />
+              {/* Profile */}
+              <Route path="profile" element={<Profile />} />
+            </Route>
+
+            {/* Similar structure for buyer and admin can go below */}
           </Route>
 
           <Route path="/register/seller" element={<RegisterBuyer />} />
@@ -125,6 +134,7 @@ function App() {
           <Route path="/reset-password" element={<PasswordReset />} />
           <Route path="/verify-email" element={<VerifyEmail />} />
           <Route path="*" element={<PageNotFound />} />
+          <Route path="/" element={<Login />} />
           <Route path="/homepage" element={<HomePage />} />
         </Routes>
       </BrowserRouter>

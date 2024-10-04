@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
-import Sidebar from "./Sidebar";
-import Header from "./Header";
-import HamburgerMenu from "./HamburgerMenu";
-import PageHeader from "./PageHeader";
+import Sidebar from "../components/Navigation/Sidebar";
+import Header from "../../modules/seller/ui/Header";
+import HamburgerMenu from "../components/Navigation/HamburgerMenu";
+import PageHeader from "../../modules/seller/ui/PageHeader";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
-import { PageTitle } from "./PageTitle";
-import { BellIcon } from "../../../shared/ui/Icons";
+import { PageTitle } from "../../modules/seller/ui/PageTitle";
+import { BellIcon } from "./Icons";
 
 const StyledAppLayout = styled.div`
   display: grid;

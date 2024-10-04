@@ -82,7 +82,9 @@ function CardsContainer() {
     <CardsWrapper>
       <CardsGrid>
         {isMobile && isMarketplace && (
-          <ProductCard onClick={() => navigate("/marketplace/create-product")}>
+          <ProductCard
+            onClick={() => navigate("/seller/marketplace/create-product")}
+          >
             <div className="upload-icon">
               <img src={UploadIcon} alt="" />
             </div>

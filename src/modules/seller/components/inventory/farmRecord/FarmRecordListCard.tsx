@@ -32,7 +32,7 @@ export const FarmRecordListCard: React.FC<ButtonListProps> = ({
   };
 
   const handleViewRow = (row: FarmGeneralRecord, listName: string) => {
-    navigate(`/farm-record-form`, { state: { record: row, listName } });
+    navigate(`/seller/farm-record-form`, { state: { record: row, listName } });
   };
 
   return (

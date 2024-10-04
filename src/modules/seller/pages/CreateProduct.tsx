@@ -5,7 +5,7 @@ const CreateProductWrapper: React.FC = () => {
   const navigation = useNavigate();
 
   const handleClose = () => {
-    navigation("/marketplace");
+    navigation("/seller/marketplace");
   };
   return <CreateProduct onClose={handleClose} />;
 };

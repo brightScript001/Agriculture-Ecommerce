@@ -41,7 +41,9 @@ export const SuppliesRecordListCard: React.FC<ButtonListProps> = ({
   };
 
   const handleViewRow = (row: SuppliesRecord, listName: string) => {
-    navigate(`/supplies-record-form`, { state: { record: row, listName } });
+    navigate(`/seller/supplies-record-form`, {
+      state: { record: row, listName },
+    });
   };
 
   return (

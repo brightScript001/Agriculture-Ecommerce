@@ -19,7 +19,9 @@ export const EquipmentRecordListHeader: React.FC<ListHeaderProps> = ({
   const navigate = useNavigate();
 
   const handleAddUpdate = () => {
-    navigate("/equipment-record-form", { state: { record: null, listName } });
+    navigate("/seller/equipment-record-form", {
+      state: { record: null, listName },
+    });
   };
 
   return (

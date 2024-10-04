@@ -35,7 +35,7 @@ const OrderDetails: React.FC = () => {
   }
 
   const handleDispute = () => {
-    navigate(`/order/${orderId}/dispute`);
+    navigate(`/seller/order/${orderId}/dispute`);
   };
 
   const handleApprove = () => {

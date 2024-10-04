@@ -19,7 +19,9 @@ export const SuppliesRecordListHeader: React.FC<ListHeaderProps> = ({
   const navigate = useNavigate();
 
   const handleAddUpdate = () => {
-    navigate("/supplies-record-form", { state: { record: null, listName } });
+    navigate("/seller/supplies-record-form", {
+      state: { record: null, listName },
+    });
   };
 
   return (

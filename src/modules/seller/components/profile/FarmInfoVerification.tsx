@@ -49,11 +49,11 @@ export const FarmInfoVerification: React.FC = () => {
 
   const handleLogout = () => {
     //TODO Handle logout action
-    navigate("/logout");
+    navigate("/seller/logout");
   };
 
   const handleGoToHomepage = () => {
-    navigate("/home");
+    navigate("/seller/dashboard");
   };
 
   return (

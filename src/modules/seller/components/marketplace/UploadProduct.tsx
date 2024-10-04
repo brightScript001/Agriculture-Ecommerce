@@ -42,7 +42,7 @@ function UploadProduct() {
   });
 
   const handleAddProductClick = () => {
-    navigate("/marketplace/create-product");
+    navigate("/seller/marketplace/create-product");
   };
 
   return (

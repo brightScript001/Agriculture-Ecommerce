@@ -28,7 +28,7 @@ const DisputeActions: React.FC<{ onSubmitDispute: () => void }> = ({
   const { orderId } = useParams<{ orderId: string }>();
 
   const handleCancel = () => {
-    navigate(`/order/${orderId}`);
+    navigate(`/seller/order/${orderId}`);
   };
 
   return (

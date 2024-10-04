@@ -29,7 +29,7 @@ export const Approve: React.FC<ApproveProps> = ({
 
   const CloseModal = () => {
     setIsModalOpen(false);
-    navigate("/marketplace");
+    navigate("/seller/marketplace");
   };
 
   return (

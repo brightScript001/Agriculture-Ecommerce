@@ -51,7 +51,7 @@ const Dispute: React.FC = () => {
     },
     onSuccess: () => {
       toast.success(`Order ${orderId} status changed to disputed`);
-      navigate("/orders/:status");
+      navigate("/seller/orders/:status");
     },
     onError: (error) => {
       console.error("Failed to change Order status: ", error);

@@ -17,21 +17,16 @@ const Span = styled.span`
 const RiskEmergencyRecordPage: React.FC = () => {
   const navigate = useNavigate();
 
-  // Handles the delete action for a risk emergency record
   const handleDelete = (listName: string) => {
-    // Call the API to delete the record
     console.log(`Deleting ${listName}`);
   };
 
-  // Handles the download action for a risk emergency record
   const handleDownload = (listName: string) => {
-    // Implement the logic to download the record
     console.log(`Downloading ${listName}`);
   };
 
-  // Handles the view action for a specific record
   const handleViewRow = (row: RiskEmergencyRecord) => {
-    navigate("/risk-emergency-record-form", { state: { record: row } });
+    navigate("/seller/risk-emergency-record-form", { state: { record: row } });
   };
 
   return (

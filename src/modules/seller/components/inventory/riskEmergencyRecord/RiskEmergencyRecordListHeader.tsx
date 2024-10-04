@@ -19,7 +19,7 @@ export const RiskEmergencyRecordListHeader: React.FC<ListHeaderProps> = ({
   const navigate = useNavigate();
 
   const handleAddUpdate = () => {
-    navigate("/risk-emergency-record-form", {
+    navigate("/seller/risk-emergency-record-form", {
       state: { record: null, listName },
     });
   };

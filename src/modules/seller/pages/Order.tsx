@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import SpinnerComponent from "../../../shared/ui/Spinner";
@@ -27,13 +26,13 @@ const Order = () => {
       setActiveButton(status as RouteStatus);
       setLoading(false);
     } else {
-      navigate("/orders/pending-orders");
+      navigate("/seller/orders/pending-orders");
     }
   }, [status, navigate]);
 
   const handleButtonClick = (buttonType: RouteStatus) => {
     setActiveButton(buttonType);
-    navigate(`/orders/${buttonType}`);
+    navigate(`/seller/orders/${buttonType}`);
   };
 
   const isActive = (buttonType: RouteStatus) => activeButton === buttonType;

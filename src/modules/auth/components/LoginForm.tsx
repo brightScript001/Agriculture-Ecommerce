@@ -6,6 +6,10 @@ import Input from "../../../shared/ui/Input";
 import FormRow from "../../../shared/ui/FormRow";
 import StyledSelect from "../../seller/ui/StyledSelect";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
+import { setRole } from "../../core/states/authSlice";
+import { useNavigate } from "react-router-dom";
 
 interface LoginFormData {
   role: string;
@@ -18,23 +22,40 @@ const StyledInput = styled(Input)`
 `;
 
 function LoginForm() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     handleSubmit,
     control,
     formState: { errors },
   } = useForm<LoginFormData>();
+
   const [isLoading, setIsLoading] = useState(false);
   const [buttonText, setButtonText] = useState("Log in");
 
   const onSubmit: SubmitHandler<LoginFormData> = (data: LoginFormData) => {
-    if (!data.email || !data.password || !data.role) return;
+    if (!data.email || !data.password) {
+      console.log("Form missing email or password");
+      return;
+    }
+
+    if (!data.role) {
+      toast.error("Please select a role to continue");
+      return;
+    }
+
+    dispatch(setRole(data.role));
     setIsLoading(true);
     setButtonText("Loading...");
 
     console.log("Form Submitted:", data);
 
-    setIsLoading(false);
-    setButtonText("Log in");
+    setTimeout(() => {
+      setIsLoading(false);
+      setButtonText("Log in");
+
+      navigate(`/${data.role}/dashboard`);
+    }, 1000);
   };
 
   return (

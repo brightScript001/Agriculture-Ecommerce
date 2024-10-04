@@ -18,21 +18,16 @@ const Span = styled.span`
 export const SuppliesRecordListPage: React.FC = () => {
   const navigate = useNavigate();
 
-  // This handles the delete action for a supply list
   const handleDelete = (listName: string) => {
-    // Here you would call the API to delete the list
     console.log(`Deleting ${listName}`);
   };
 
-  // This handles the download action for a supply list
   const handleDownload = (listName: string) => {
-    // Here you would implement the logic to download the list
     console.log(`Downloading ${listName}`);
   };
 
-  // This handles the view action for a specific record
   const handleViewRow = (row: SuppliesRecord) => {
-    navigate("/supplies-record-form", { state: { record: row } });
+    navigate("/seller/supplies-record-form", { state: { record: row } });
   };
 
   return (

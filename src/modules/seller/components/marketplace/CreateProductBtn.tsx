@@ -34,7 +34,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
 
   const closeModal = () => {
     setIsModalOpen(false);
-    navigate("/marketplace");
+    navigate("/seller/marketplace");
   };
 
   return (

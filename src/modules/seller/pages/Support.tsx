@@ -29,8 +29,8 @@ function Support() {
     <>
       {isMobile && <SearchBar customStyles={mobileSearchBarStyles} />}
       <CardsWrapper>
-        <LiveChat route="/live-chat" />
-        <FAQ route="/faq" />
+        <LiveChat route="/seller/live-chat" />
+        <FAQ route="/seller/faq" />
         <ContactUs route="" />
       </CardsWrapper>
     </>

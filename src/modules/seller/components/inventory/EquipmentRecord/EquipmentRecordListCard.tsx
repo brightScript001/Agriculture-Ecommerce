@@ -50,7 +50,9 @@ export const EquipmentRecordListCard: React.FC<ButtonListProps> = ({
   };
 
   const handleViewRow = (row: EquipmentMaintenanceRecord, listName: string) => {
-    navigate(`/equipment-record-form`, { state: { record: row, listName } });
+    navigate(`/seller/equipment-record-form`, {
+      state: { record: row, listName },
+    });
   };
 
   return (

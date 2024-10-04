@@ -18,16 +18,19 @@ function InventoryDashboard() {
     <main>
       {isMobile && <SearchBar customStyles={mobileSearchBarStyles} />}
       <div>
-        <Heading as="h2" onClick={() => navigate("/farm-records")}>
+        <Heading as="h2" onClick={() => navigate("/seller/farm-records")}>
           Farm General Records (Last Updated April 29, 2024)
         </Heading>
-        <Heading as="h2" onClick={() => navigate("/supplies-records")}>
+        <Heading as="h2" onClick={() => navigate("/seller/supplies-records")}>
           Supplies Record (Last Updated April 17, 2024)
         </Heading>
-        <Heading as="h2" onClick={() => navigate("/risk-emergency-records")}>
+        <Heading
+          as="h2"
+          onClick={() => navigate("/seller/risk-emergency-records")}
+        >
           Risk and Emergency Record (Last Updated April 17, 2024)
         </Heading>
-        <Heading as="h2" onClick={() => navigate("/equipment-records")}>
+        <Heading as="h2" onClick={() => navigate("/seller/equipment-records")}>
           Equipment and Maintenance (Last Updated April 17, 2024)
         </Heading>
       </div>

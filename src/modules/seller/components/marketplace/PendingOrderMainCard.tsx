@@ -108,11 +108,11 @@ const PendingOrdersCard = () => {
   }
 
   const handleHeaderClick = () => {
-    navigate("/orders/pending-orders");
+    navigate("/seller/orders/pending-orders");
   };
 
   const handleViewClick = (orderId: string) => {
-    navigate(`/order/${orderId}`);
+    navigate(`/seller/order/${orderId}`);
   };
 
   const formatOrderDetails = (orderDetails: OrderDetail[]) => {

@@ -50,7 +50,7 @@ export const RiskEmergencyRecordListCard: React.FC<ButtonListProps> = ({
   };
 
   const handleViewRow = (row: RiskEmergencyRecord, listName: string) => {
-    navigate(`/risk-emergency-record-form`, {
+    navigate(`/seller/risk-emergency-record-form`, {
       state: { record: row, listName },
     });
   };
