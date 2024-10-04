@@ -8,12 +8,12 @@ import {
   SupportIcon,
   ProfileIcon,
   SignOutIcon,
-} from "../../../shared/ui/Icons";
+} from "../../ui/Icons";
 
 const NavList = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 1.0625rem;
+  gap: 0.5rem;
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -40,8 +40,8 @@ const StyledNavLink = styled(NavLink)`
   }
 
   & svg {
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 1.8rem;
+    height: 1.8rem;
     color: var(--color-grey-400);
     transition: all 0.3s;
   }
@@ -58,53 +58,67 @@ const Span = styled.span`
   font-size: var(--font-size-md);
 `;
 
+const BottomNavList = styled(NavList)`
+  margin-top: auto;
+`;
+
 function MainNav() {
   return (
-    <nav>
+    <nav
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+      }}
+    >
       <NavList>
         <li>
-          <StyledNavLink to="/dashboard">
+          <StyledNavLink to="/seller/dashboard">
             <img src={HomeIcon} alt="Home" />
             <Span>Home</Span>
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/marketplace">
-            <img src={MarketplaceIcon} alt="Home" />
+          <StyledNavLink to="/seller/marketplace">
+            <img src={MarketplaceIcon} alt="Marketplace" />
             <Span>Marketplace</Span>
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/inventory">
-            <img src={InventoryIcon} alt="Home" />
+          <StyledNavLink to="/seller/inventory">
+            <img src={InventoryIcon} alt="Inventory" />
             <Span>Inventory</Span>
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/payment">
-            <img src={PaymentIcon} alt="Home" />
+          <StyledNavLink to="/seller/payment">
+            <img src={PaymentIcon} alt="Payment" />
             <Span>Payment</Span>
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/support">
-            <img src={SupportIcon} alt="Home" />
+          <StyledNavLink to="/seller/support">
+            <img src={SupportIcon} alt="Support" />
             <Span>Support</Span>
           </StyledNavLink>
         </li>
+      </NavList>
+
+      {/* This list will be pushed to the bottom */}
+      <BottomNavList>
         <li>
-          <StyledNavLink to="/profile">
-            <img src={ProfileIcon} alt="Home" />
+          <StyledNavLink to="/seller/profile">
+            <img src={ProfileIcon} alt="Profile" />
             <Span>Profile</Span>
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/sign-out">
-            <img src={SignOutIcon} alt="Home" />
+          <StyledNavLink to="/seller/sign-out">
+            <img src={SignOutIcon} alt="Sign Out" />
             <Span>Sign Out</Span>
           </StyledNavLink>
         </li>
-      </NavList>
+      </BottomNavList>
     </nav>
   );
 }

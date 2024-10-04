@@ -1,17 +1,9 @@
-import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import SpinnerComponent from "../../../shared/ui/Spinner";
 import useMediaQuery from "../../../shared/hooks/useMediaQuery";
 import OrderLargeScreen from "../components/marketplace/OrderLargeScreen";
 import OrderMobileScreen from "../components/marketplace/OrderMobileScreen";
-
-const Wrapper = styled.div`
-  margin-top: 5rem;
-  @media (max-width: 768px) {
-    margin-top: 0%;
-  }
-`;
 
 type RouteStatus = "pending-orders" | "settled-orders";
 
@@ -34,13 +26,13 @@ const Order = () => {
       setActiveButton(status as RouteStatus);
       setLoading(false);
     } else {
-      navigate("/orders/pending-orders");
+      navigate("/seller/orders/pending-orders");
     }
   }, [status, navigate]);
 
   const handleButtonClick = (buttonType: RouteStatus) => {
     setActiveButton(buttonType);
-    navigate(`/orders/${buttonType}`);
+    navigate(`/seller/orders/${buttonType}`);
   };
 
   const isActive = (buttonType: RouteStatus) => activeButton === buttonType;
@@ -50,7 +42,7 @@ const Order = () => {
   }
 
   return (
-    <Wrapper>
+    <main>
       {isMobile ? (
         <OrderMobileScreen
           activeButton={activeButton}
@@ -66,7 +58,7 @@ const Order = () => {
           statusMapping={statusMapping}
         />
       )}
-    </Wrapper>
+    </main>
   );
 };
 

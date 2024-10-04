@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import HeaderWrapper from "./HeaderWrapper";
-import Logo from "../../../shared/ui/Logo";
+import HeaderWrapper from "../../../modules/seller/ui/HeaderWrapper";
+import Logo from "../../ui/Logo";
 import MenuButton from "./MenuButton";
-import MenuContent from "./MenuContent";
+import { MenuContentComponent } from "./MenuContent";
 
 const HamburgerMenu: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -33,7 +33,7 @@ const HamburgerMenu: React.FC = () => {
         <Logo />
         <MenuButton isOpen={isOpen} toggleMenu={toggleMenu} />
       </HeaderWrapper>
-      <MenuContent isOpen={isOpen} />
+      <MenuContentComponent isOpen={isOpen} toggleMenu={toggleMenu} />
     </>
   );
 };

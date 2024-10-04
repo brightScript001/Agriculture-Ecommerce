@@ -54,7 +54,7 @@ function CreateProduct({ onClose }: CreateProductProps) {
         queryKey: ["products"],
       });
       setNewProductName(data.productName);
-      setIsModalOpen(true);
+      // setIsModalOpen(true);
     },
     onError: () => {
       toast.error("Failed to add product");

@@ -98,7 +98,7 @@ const OrderCard = ({ order }: Props) => {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
-    navigate(`/order/${order.orderId}`);
+    navigate(`/seller/order/${order.orderId}`);
   };
 
   const totalOrderPrice = calculateTotalPrice(order);

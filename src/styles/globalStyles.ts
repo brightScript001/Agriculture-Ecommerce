@@ -15,11 +15,11 @@ const GlobalStyles = createGlobalStyle`
     --color-grey-900: #111827;
 
     --color-green-100: #E7F2E8;
-    --color-green-200: #CFE4D2;
+    --color-green-200: rgba(209, 255, 212, 1);
     --color-green-300: #B8D7BB;
     --color-green-400: #A0C9A5;
     --color-green-500: #89BC8F;
-    --color-green-600: #72AF78;
+     --color-green-600: rgba(91, 170, 96, 1);
     --color-green-700: #5BAA60;
     --color-green-800: #448B4A;
     --color-green-900: #2D6C34;

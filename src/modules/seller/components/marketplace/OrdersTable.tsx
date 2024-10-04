@@ -17,7 +17,7 @@ const OrderTable: React.FC<OrderTableProps> = ({ rows }) => {
 
   const renderRow = (row: DataGridRow) => {
     const handleRowClick = () => {
-      navigate(`/order/${row.orderId}`);
+      navigate(`/seller/order/${row.orderId}`);
     };
 
     return (

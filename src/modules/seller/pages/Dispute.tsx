@@ -10,11 +10,9 @@ import { useMutation } from "@tanstack/react-query";
 import { updateOrderStatus } from "../api/orders"; // Adjust the import path if needed
 
 const Wrapper = styled.div`
-  margin-top: 5rem;
   max-width: 50%;
   @media (max-width: 768px) {
     max-width: 100%;
-    margin-top: 0;
   }
 `;
 const StyledHeading = styled(Heading)`
@@ -53,7 +51,7 @@ const Dispute: React.FC = () => {
     },
     onSuccess: () => {
       toast.success(`Order ${orderId} status changed to disputed`);
-      navigate("/orders/:status");
+      navigate("/seller/orders/:status");
     },
     onError: (error) => {
       console.error("Failed to change Order status: ", error);

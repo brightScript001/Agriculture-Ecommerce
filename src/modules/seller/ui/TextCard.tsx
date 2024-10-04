@@ -45,7 +45,6 @@ const Count = styled.h1`
 
 const Description = styled.p`
   font-size: var(--font-size-md);
-  margin-top: 0.5rem;
 
   @media (max-width: 768px) {
     font-size: var(--font-size-sm);

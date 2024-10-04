@@ -65,20 +65,20 @@ export const useCardList = (): Card[] => {
       title: "Pending Orders",
       count: pendingOrdersCount,
       description: "28% increase from last month",
-      navigateTo: "/orders/pending-orders",
+      navigateTo: "/seller/orders/pending-orders",
     },
     {
       title: "Settled Orders",
       count: settledOrdersCount,
       description: "82% customer satisfaction",
-      navigateTo: "/orders/settled-orders",
+      navigateTo: "/seller/orders/settled-orders",
     },
     {
       title: "Your Revenue",
       count: totalRevenue,
       isCurrency: true,
       description: "17% increase",
-      navigateTo: "/revenue",
+      navigateTo: "/seller/revenue",
     },
   ];
 

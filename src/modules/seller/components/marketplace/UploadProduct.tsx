@@ -22,13 +22,10 @@ const Text = styled.div`
   display: flex;
 `;
 
-const SpanContainer = styled.div`
-  background: var(--color-green-200);
-  padding: 1rem;
-  border-radius: var(--border-radius-md);
-`;
-
 const Span = styled.div`
+  background: var(--color-green-200);
+  border-radius: var(--border-radius-md);
+  padding: 0.5rem;
   color: var(--color-green-800);
   font-size: var(--font-size-sm);
 `;
@@ -45,16 +42,14 @@ function UploadProduct() {
   });
 
   const handleAddProductClick = () => {
-    navigate("/marketplace/create-product");
+    navigate("/seller/marketplace/create-product");
   };
 
   return (
     <Wrapper>
       <Text>
         <StyledTitle>Your Current Uploaded Products</StyledTitle>
-        <SpanContainer>
-          <Span>{products?.length} products</Span>
-        </SpanContainer>
+        <Span>{products?.length} products</Span>
       </Text>
       <ButtonWrapper>
         <Button onClick={handleAddProductClick}>+ Add Products</Button>
