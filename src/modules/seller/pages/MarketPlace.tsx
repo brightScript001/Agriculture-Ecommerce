@@ -4,7 +4,7 @@ import CardsContainer from "../components/marketplace/Card";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../../../shared/ui/Spinner";
 import { useMediaQuery } from "react-responsive";
-import SearchBar from "../ui/SearchBar";
+import SearchBar from "../../../shared/ui/SearchBar";
 import { PendingOrderCard } from "../components/marketplace/PendingOrderCard";
 
 const mobileSearchBarStyles = `

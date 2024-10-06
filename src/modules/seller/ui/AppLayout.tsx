@@ -1,14 +1,14 @@
 import { Outlet } from "react-router-dom";
-import Sidebar from "../components/Navigation/Sidebar";
-import Header from "../../modules/seller/ui/Header";
-import HamburgerMenu from "../components/Navigation/HamburgerMenu";
-import PageHeader from "../../modules/seller/ui/PageHeader";
+import Sidebar from "./Sidebar";
+import HamburgerMenu from "../../../shared/components/Navigation/HamburgerMenu";
+import PageHeader from "./PageHeader";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
-import { PageTitle } from "../../modules/seller/ui/PageTitle";
-import { BellIcon } from "./Icons";
+import { PageTitle } from "./PageTitle";
+import { BellIcon } from "../../../shared/ui/Icons";
+import { Navbar } from "./Header";
 
-const StyledAppLayout = styled.div`
+export const StyledAppLayout = styled.div`
   display: grid;
   grid-template-columns: 13rem 1fr;
   grid-template-rows: auto 1fr;
@@ -19,7 +19,7 @@ const StyledAppLayout = styled.div`
   }
 `;
 
-const Main = styled.main`
+export const Main = styled.main`
   background-color: var(--color-grey-50);
   padding: 4rem;
   overflow: scroll;
@@ -30,7 +30,7 @@ const Main = styled.main`
   }
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   max-width: 120rem;
   margin: 0 auto;
   display: flex;
@@ -42,7 +42,7 @@ const Container = styled.div`
   }
 `;
 
-const BellButton = styled.button`
+export const BellButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
@@ -59,16 +59,16 @@ const BellButton = styled.button`
   }
 `;
 
-const PageHeaderWrapper = styled.div`
+export const PageHeaderWrapper = styled.div`
   margin-top: 6.25rem;
 `;
 
-function AppLayout() {
+export function SellerAppLayout() {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
     <StyledAppLayout>
-      {isMobile ? <HamburgerMenu /> : <Header />}
+      {isMobile ? <HamburgerMenu /> : <Navbar />}
       {!isMobile && <Sidebar />}
       {isMobile && (
         <PageHeaderWrapper>
@@ -90,5 +90,3 @@ function AppLayout() {
     </StyledAppLayout>
   );
 }
-
-export default AppLayout;

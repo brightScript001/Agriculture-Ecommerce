@@ -8,15 +8,15 @@ import {
   SupportIcon,
   ProfileIcon,
   SignOutIcon,
-} from "../../ui/Icons";
+} from "../../../shared/ui/Icons";
 
-const NavList = styled.ul`
+export const NavList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 `;
 
-const StyledNavLink = styled(NavLink)`
+export const StyledNavLink = styled(NavLink)`
   &:link,
   &:visited {
     display: flex;
@@ -54,11 +54,11 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-const Span = styled.span`
+export const Span = styled.span`
   font-size: var(--font-size-md);
 `;
 
-const BottomNavList = styled(NavList)`
+export const BottomNavList = styled(NavList)`
   margin-top: auto;
 `;
 

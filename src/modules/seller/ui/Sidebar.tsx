@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Logo from "../../ui/Logo";
+import Logo from "../../../shared/ui/Logo";
 import MainNav from "./MainNav";
 
-const StyledSidebar = styled.aside`
+export const StyledSidebar = styled.aside`
   background-color: var(--color-grey-0);
   padding: 0.5rem 1rem;
   border-right: 1px solid var(--color-grey-100);

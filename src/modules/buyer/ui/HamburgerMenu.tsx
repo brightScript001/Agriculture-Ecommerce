@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import HeaderWrapper from "../../../modules/seller/ui/HeaderWrapper";
-import Logo from "../../ui/Logo";
-import MenuButton from "./MenuButton";
-import { MenuContentComponent } from "../../../modules/seller/ui/MenuContent";
+import Logo from "../../../shared/ui/Logo";
+import MenuButton from "../../../shared/components/Navigation/MenuButton";
+import { MenuContentComponent } from "./MenuContent";
 
 const HamburgerMenu: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);

@@ -1,6 +1,6 @@
 import CardsContainer from "../components/marketplace/Card";
 import { useMediaQuery } from "react-responsive";
-import SearchBar from "../ui/SearchBar";
+import SearchBar from "../../../shared/ui/SearchBar";
 import PendingOrderMainCard from "../components/marketplace/PendingOrderMainCard";
 
 const mobileSearchBarStyles = `

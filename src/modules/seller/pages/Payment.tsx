@@ -1,6 +1,6 @@
 import { useMediaQuery } from "react-responsive";
 import { CardContainer } from "../components/payment/CardContainer";
-import SearchBar from "../ui/SearchBar";
+import SearchBar from "../../../shared/ui/SearchBar";
 import TransactionHistory from "../components/payment/TransactionHistory";
 import { PaymentStatus } from "../components/payment/PaymentStatus";
 import { PaymentMode } from "../components/payment/PaymentMode";

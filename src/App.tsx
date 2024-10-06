@@ -21,7 +21,7 @@ import PasswordReset from "./modules/auth/pages/PasswordReset";
 import VerifyEmail from "./modules/auth/pages/VerifyEmail";
 import HomePage from "./shared/components/Home";
 
-import AppLayout from "./shared/ui/AppLayout";
+import { SellerAppLayout } from "./modules/seller/ui/AppLayout";
 import SellerDashboard from "./modules/seller/pages/SellerDashboard";
 import Order from "./modules/seller/pages/Order";
 import MarketPlace from "./modules/seller/pages/MarketPlace";
@@ -43,6 +43,8 @@ import { LiveChat } from "./modules/seller/pages/LiveChat";
 import { FAQ } from "./modules/seller/pages/FAQ";
 import Profile from "./modules/seller/pages/Profile";
 import ProtectedRoute from "./modules/core/components/ProtectedRoute";
+import { BuyerAppLayout } from "./modules/buyer/ui/AppLayout";
+import BuyerDashboard from "./modules/buyer/pages/BuyerDashboard";
 
 function App() {
   const isDarkMode = useSelector(
@@ -66,7 +68,7 @@ function App() {
           <Route
             element={
               <ProtectedRoute>
-                <AppLayout />
+                <SellerAppLayout />
               </ProtectedRoute>
             }
           >
@@ -123,8 +125,20 @@ function App() {
               {/* Profile */}
               <Route path="profile" element={<Profile />} />
             </Route>
+          </Route>
 
-            {/* Similar structure for buyer and admin can go below */}
+          {/* Buyer-specific routes */}
+          <Route
+            element={
+              <ProtectedRoute>
+                <BuyerAppLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="buyer" element={<Outlet />}>
+              <Route index element={<Navigate replace to="dashboard" />} />
+              <Route path="dashboard" element={<BuyerDashboard />} />
+            </Route>
           </Route>
 
           <Route path="/register/seller" element={<RegisterBuyer />} />

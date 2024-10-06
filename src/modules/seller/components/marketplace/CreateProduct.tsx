@@ -32,7 +32,6 @@ const StyledTitle = styled(Title)`
 
 const Wrapper = styled.div`
   width: 45rem;
-  margin-top: 2.625rem;
   @media (max-width: 768px) {
     width: 100%;
   }

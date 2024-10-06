@@ -8,7 +8,7 @@ interface MenuContentProps {
   toggleMenu: () => void;
 }
 
-const StyledMenuContent = styled.div<{ isOpen: boolean }>`
+export const StyledMenuContent = styled.div<{ isOpen: boolean }>`
   position: fixed;
   width: 100%;
   height: 100vh;

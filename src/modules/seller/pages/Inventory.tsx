@@ -1,5 +1,5 @@
 import { useMediaQuery } from "react-responsive";
-import SearchBar from "../ui/SearchBar";
+import SearchBar from "../../../shared/ui/SearchBar";
 import { useNavigate } from "react-router-dom";
 import Heading from "../../../shared/ui/Heading";
 
