@@ -583,14 +583,6 @@
       "costPerKg": 0.8,
       "productClass": "Class 1",
       "numberOfProducts": 50
-    },
-    {
-      "id": "2e24",
-      "productName": "Mia Herring",
-      "costPerKg": 60,
-      "description": "Possimus at sed acc",
-      "productClass": "Eum et rem ea aperia",
-      "numberOfProducts": 970
     }
   ]
 }
