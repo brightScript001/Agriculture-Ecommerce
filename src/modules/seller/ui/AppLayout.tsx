@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 import { PageTitle } from "./PageTitle";
 import { BellIcon } from "../../../shared/ui/Icons";
-import { Navbar } from "./Header";
+import { Navbar } from "../../../shared/components/Navigation/Header";
 
 export const StyledAppLayout = styled.div`
   display: grid;

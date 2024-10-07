@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { formatNumber } from "../utils/formatNumber";
 
-interface CardProps {
+export interface CardProps {
   title: string;
-  count: number;
-  description: string;
+  count?: number;
+  description?: string;
   isCurrency?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
+  list?: { item: string; discount: string }[];
 }
 
 const CardContainer = styled.div`
@@ -17,8 +18,8 @@ const CardContainer = styled.div`
   text-align: start;
   padding: 1rem;
   flex: 1;
-  min-width: 20rem;
-  min-height: 10rem;
+  min-width: 20.8rem;
+  min-height: 10.75rem;
   margin-right: 1rem;
 
   &:last-child {
@@ -51,20 +52,43 @@ const Description = styled.p`
   }
 `;
 
-const Card: React.FC<CardProps> = ({
+const ListContainer = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  font-size: var(--font-size-md);
+`;
+
+const ListItem = styled.li`
+  margin-bottom: 0.5rem;
+`;
+
+const DiscountText = styled.span`
+  opacity: 0.6;
+`;
+
+export const Card: React.FC<CardProps> = ({
   title,
   count,
   description,
   isCurrency,
   onClick,
+  list,
 }) => {
   return (
     <CardContainer onClick={onClick}>
       <Title>{title}</Title>
-      <Count>{formatNumber(count, isCurrency)}</Count>
-      <Description>{description}</Description>
+      {count !== undefined && <Count>{formatNumber(count, isCurrency)}</Count>}
+      {description && <Description>{description}</Description>}
+      {list && (
+        <ListContainer>
+          {list.map((listItem, index) => (
+            <ListItem key={index}>
+              {listItem.item} -{" "}
+              <DiscountText>({listItem.discount} off)</DiscountText>
+            </ListItem>
+          ))}
+        </ListContainer>
+      )}
     </CardContainer>
   );
 };
-
-export default Card;

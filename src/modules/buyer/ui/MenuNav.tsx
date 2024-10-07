@@ -15,8 +15,21 @@ const MenuNav: React.FC<MainNavProps> = ({ toggleMenu }) => {
 
   return (
     <NavList>
-      <NavItem onClick={() => handleItemClick("/seller/dashboard")}>
+      <NavItem onClick={() => handleItemClick("/buyer/dashboard")}>
         Home
+      </NavItem>
+      <NavItem onClick={() => handleItemClick("/buyer/cart")}>Cart</NavItem>
+      <NavItem onClick={() => handleItemClick("/buyer/order-history")}>
+        Order History
+      </NavItem>
+      <NavItem onClick={() => handleItemClick("/buyer/support")}>
+        Support
+      </NavItem>
+      <NavItem onClick={() => handleItemClick("/buyer/profile")}>
+        Profile
+      </NavItem>
+      <NavItem onClick={() => handleItemClick("/buyer/sign-out")}>
+        Sign Out
       </NavItem>
     </NavList>
   );

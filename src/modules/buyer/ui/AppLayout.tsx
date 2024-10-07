@@ -12,7 +12,7 @@ import { BellIcon } from "../../../shared/ui/Icons";
 import { Outlet } from "react-router-dom";
 import { Sidebar } from "./Sidebar";
 import HamburgerMenu from "./HamburgerMenu";
-import { Navbar } from "../../seller/ui/Header";
+import { Navbar } from "../../../shared/components/Navigation/Header";
 
 export function BuyerAppLayout() {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });

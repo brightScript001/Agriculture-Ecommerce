@@ -8,6 +8,7 @@ import { fetchProducts } from "../../api/products";
 
 interface Product {
   id: number;
+  imageSrc: string;
   productName: string;
   description: string;
   costPerKg: number;
@@ -25,7 +26,6 @@ const ProductListContainer = styled.div`
 `;
 
 const ProductCard = styled.div`
-  height: 15.875rem;
   border: none;
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
@@ -75,6 +75,7 @@ const ProductList: React.FC = () => {
         {Array.isArray(products) &&
           products.map((product) => (
             <ProductCard key={product.id}>
+              <img src={product.imageSrc} alt={product.productName} />
               <ProductName>{product.productName}</ProductName>
               <ProductDescription>{product.description}</ProductDescription>
               <ProductPrice>

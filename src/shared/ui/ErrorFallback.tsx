@@ -1,13 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Heading from "./Heading";
-import GlobalStyles from "../../styles/globalStyles";
 import Button from "./Button";
-
-interface ErrorFallbackProps {
-  error: Error;
-  resetErrorBoundary: () => void;
-}
 
 const StyledErrorFallback = styled.main`
   height: 100vh;
@@ -37,19 +31,15 @@ const Box = styled.div`
   }
 `;
 
-const ErrorFallback: React.FC<ErrorFallbackProps> = ({
-  error,
-  resetErrorBoundary,
-}) => {
+const ErrorFallback: React.FC = () => {
   return (
     <>
-      <GlobalStyles />
       <StyledErrorFallback>
         <Box>
           <Heading as="h1">Something went wrong</Heading>
-          <p>{error.message}</p>
-          <Button size="large" onClick={resetErrorBoundary}>
-            Try again
+          <p>Please try again later.</p>
+          <Button size="large" onClick={() => window.location.reload()}>
+            Reload Page
           </Button>
         </Box>
       </StyledErrorFallback>
