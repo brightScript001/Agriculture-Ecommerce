@@ -2,19 +2,11 @@ import { Controller, Control, FieldErrors } from "react-hook-form";
 import FormRow from "../../../../shared/ui/FormRow";
 import Input from "../../../../shared/ui/Input";
 import styled from "styled-components";
-
-interface ProductDetailsFormData {
-  productName: string;
-  description: string;
-  costPerKg: number;
-  productClass: string;
-  numberOfProducts: number;
-  productImage: FileList | null;
-}
+import { FormData } from "./CreateProduct";
 
 interface ProductDetailsProps {
-  control: Control<ProductDetailsFormData>;
-  formState: { errors: FieldErrors<ProductDetailsFormData> };
+  control: Control<FormData>;
+  formState: { errors: FieldErrors<FormData> };
 }
 
 const StyledInput = styled(Input)`
@@ -147,7 +139,7 @@ function CreateProductForm({
 
       <FormRow>
         <Controller
-          name="productImage"
+          name="imageSrc"
           control={control}
           rules={{ required: errorMessage }}
           render={({ field }) => (
@@ -159,7 +151,7 @@ function CreateProductForm({
                 accept="image/*"
                 onChange={(e) => field.onChange(e.target.files)}
               />
-              {errors.productImage && <p>{errors.productImage.message}</p>}
+              {errors.imageSrc && <p>{errors.imageSrc.message}</p>}
             </>
           )}
         />

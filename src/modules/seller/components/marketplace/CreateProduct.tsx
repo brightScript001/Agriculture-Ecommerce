@@ -18,7 +18,7 @@ export interface FormData {
   costPerKg: number;
   productClass: string;
   numberOfProducts: number;
-  productImage: FileList | null;
+  imageSrc: FileList | null;
 }
 
 interface CreateProductProps {
