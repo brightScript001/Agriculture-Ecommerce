@@ -491,7 +491,8 @@
       "originalPrice": "#8,500",
       "quantityLeft": 67,
       "description": "A fresh and juicy mango from Peter's farm.",
-      "rating": 4.5
+      "rating": 4.5,
+      "location": "Pankshin, Jos"
     },
     {
       "id": "PRODUCT-002",
@@ -502,7 +503,8 @@
       "originalPrice": "#3,800",
       "quantityLeft": 45,
       "description": "Crispy and sweet red apples for your delight.",
-      "rating": 4.2
+      "rating": 4.2,
+      "location": "Pankshin, Jos"
     }
   ],
   "vegetables": [
@@ -515,7 +517,8 @@
       "originalPrice": "#1,500",
       "quantityLeft": 80,
       "description": "Fresh green cabbage perfect for salads and cooking.",
-      "rating": 4.7
+      "rating": 4.7,
+      "location": "Pankshin, Jos"
     },
     {
       "id": "PRODUCT-008",
@@ -526,7 +529,8 @@
       "originalPrice": "#12,000",
       "quantityLeft": 100,
       "description": "Fresh tomatoes with a rich, juicy flavor.",
-      "rating": 4.3
+      "rating": 4.3,
+      "location": "Pankshin, Jos"
     }
   ],
   "products": [

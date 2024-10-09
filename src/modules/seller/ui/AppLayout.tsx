@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import HamburgerMenu from "../../../shared/components/Navigation/HamburgerMenu";
-import PageHeader from "./PageHeader";
+import { PageHeader } from "../../../shared/ui/PageHeader";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
-import { PageTitle } from "./PageTitle";
+import { PageTitle } from "../../../shared/ui/PageTitle";
 import { BellIcon } from "../../../shared/ui/Icons";
 import { Navbar } from "../../../shared/components/Navigation/Header";
 

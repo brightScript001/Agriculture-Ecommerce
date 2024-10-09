@@ -22,7 +22,7 @@ const PageTitle = styled.h1<{ noUnderline?: boolean }>`
   text-decoration: ${(props) => (props.noUnderline ? "none" : "underline")};
 `;
 
-const PageHeader: React.FC<PageHeaderProps> = ({
+export const PageHeader: React.FC<PageHeaderProps> = ({
   title,
   RightComponent,
   noUnderline,
@@ -34,5 +34,3 @@ const PageHeader: React.FC<PageHeaderProps> = ({
     </HeaderContainer>
   );
 };
-
-export default PageHeader;

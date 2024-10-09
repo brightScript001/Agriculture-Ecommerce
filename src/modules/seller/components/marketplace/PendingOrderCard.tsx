@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ViewMore from "../../../../shared/ui/Viewmore";
-import PageHeader from "../../ui/PageHeader";
+import {PageHeader} from "../../../../shared/ui/PageHeader";
 import { fetchOrders } from "../../api/orders";
 import { useQuery } from "@tanstack/react-query";
 import ButtonGroup from "../../../../shared/ui/ButtonGroup";

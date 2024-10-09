@@ -8,4 +8,5 @@ export interface Product {
   quantityLeft: number;
   description?: string;
   rating?: number;
+  location?: string;
 }

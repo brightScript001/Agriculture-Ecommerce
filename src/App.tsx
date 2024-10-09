@@ -46,6 +46,7 @@ import ProtectedRoute from "./modules/core/components/ProtectedRoute";
 import { BuyerAppLayout } from "./modules/buyer/ui/AppLayout";
 import BuyerDashboard from "./modules/buyer/pages/BuyerDashboard";
 import { ProductDetail } from "./modules/buyer/pages/ProductDetail";
+import { Cart } from "./modules/buyer/pages/Cart";
 
 function App() {
   const isDarkMode = useSelector(
@@ -140,6 +141,7 @@ function App() {
               <Route index element={<Navigate replace to="dashboard" />} />
               <Route path="dashboard" element={<BuyerDashboard />} />
               <Route path="product/:id" element={<ProductDetail />} />
+              <Route path="cart" element={<Cart />} />
             </Route>
           </Route>
 

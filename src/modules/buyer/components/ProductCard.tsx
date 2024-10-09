@@ -24,11 +24,11 @@ const ImageWrapper = styled.div`
   }
 `;
 
-const DiscountBadge = styled.div`
+export const DiscountBadge = styled.div`
   position: absolute;
-  top: 8px;
+  /* top: 8px; */
   right: 8px;
-  background-color: #3b5998;
+  background-color: rgba(55, 78, 97, 1);
   color: var(--color-white-100);
   font-size: var(--font-size-md);
   padding: 4px 8px;
@@ -49,8 +49,9 @@ const Price = styled.p`
   font-weight: bold;
 `;
 
-const OriginalPrice = styled.p`
+export const OriginalPrice = styled.p`
   font-size: var(--font-size-sm);
+  font-family: italic;
   text-decoration: line-through;
   color: var(--color-grey-400);
 `;
@@ -81,7 +82,9 @@ export const ProductCard: React.FC<ProductProps> = ({ product }) => {
       <Card>
         <ImageWrapper>
           <img src={product.imageSrc} alt={product.title} />
-          <DiscountBadge>-{product.discount}%</DiscountBadge>
+          <DiscountBadge style={{ top: "8px" }}>
+            -{product.discount}%
+          </DiscountBadge>
         </ImageWrapper>
         <ProductDetails>
           <Title>{product.title}</Title>

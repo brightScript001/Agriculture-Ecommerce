@@ -2,6 +2,7 @@ import { useMediaQuery } from "react-responsive";
 import SearchBar from "../../../shared/ui/SearchBar";
 import { CardContainer } from "../components/Card";
 import { ProductTabs } from "../components/ProductTabs";
+import { PageHeader } from "../../../shared/ui/PageHeader";
 
 const mobileSearchBarStyles = `
   background-color: var(--color-grey-200);
@@ -15,6 +16,7 @@ function BuyerDashboard() {
     <>
       {isMobile && <SearchBar customStyles={mobileSearchBarStyles} />}
       <CardContainer />
+      {isMobile && <PageHeader title="Product Catalog" noUnderline />}
       <ProductTabs />
     </>
   );

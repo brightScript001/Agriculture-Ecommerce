@@ -6,8 +6,8 @@ import {
   PageHeaderWrapper,
   StyledAppLayout,
 } from "../../seller/ui/AppLayout";
-import PageHeader from "../../seller/ui/PageHeader";
-import { PageTitle } from "../../seller/ui/PageTitle";
+import { PageHeader } from "../../../shared/ui/PageHeader";
+import { PageTitle } from "../../../shared/ui/PageTitle";
 import { BellIcon } from "../../../shared/ui/Icons";
 import { Outlet } from "react-router-dom";
 import { Sidebar } from "./Sidebar";
