@@ -6,13 +6,13 @@ interface MainNavProps {
   toggleMenu: () => void;
 }
 
-const NavList = styled.ul`
+export const NavList = styled.ul`
   list-style: none;
   margin-top: 6.25rem;
   margin-left: 1.25rem;
 `;
 
-const NavItem = styled.li`
+export const NavItem = styled.li`
   padding: 0.5rem 0;
   cursor: pointer;
 `;

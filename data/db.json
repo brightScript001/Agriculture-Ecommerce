@@ -1,7 +1,542 @@
 {
+  "orders": [
+    {
+      "customerName": "Adebola Ojo",
+      "orderId": "ORD-001",
+      "orderDetails": [
+        {
+          "item": "Rice",
+          "quantityInKg": 10,
+          "pricePerKg": 4.5,
+          "totalPrice": 45
+        },
+        {
+          "item": "Wheat",
+          "quantityInKg": 7,
+          "pricePerKg": 3.8,
+          "totalPrice": 26.6
+        },
+        {
+          "item": "Corn",
+          "quantityInKg": 12,
+          "pricePerKg": 2.9,
+          "totalPrice": 34.8
+        },
+        {
+          "item": "Soybeans",
+          "quantityInKg": 9,
+          "pricePerKg": 5.2,
+          "totalPrice": 46.8
+        },
+        {
+          "item": "Barley",
+          "quantityInKg": 8,
+          "pricePerKg": 3.7,
+          "totalPrice": 29.6
+        },
+        {
+          "item": "Oats",
+          "quantityInKg": 15,
+          "pricePerKg": 3.5,
+          "totalPrice": 52.5
+        },
+        {
+          "item": "Sorghum",
+          "quantityInKg": 5,
+          "pricePerKg": 4,
+          "totalPrice": 20
+        }
+      ],
+      "shippingAddress": "123 Main St, Lagos, Nigeria",
+      "dateOfOrder": "2024-08-28",
+      "orderStatus": "settled"
+    },
+    {
+      "customerName": "Chinwe Okafor",
+      "orderId": "ORD-002",
+      "orderDetails": [
+        {
+          "item": "Cassava",
+          "quantityInKg": 20,
+          "pricePerKg": 2.5,
+          "totalPrice": 50
+        },
+        {
+          "item": "Yam",
+          "quantityInKg": 10,
+          "pricePerKg": 3,
+          "totalPrice": 30
+        },
+        {
+          "item": "Millet",
+          "quantityInKg": 8,
+          "pricePerKg": 2.7,
+          "totalPrice": 21.6
+        },
+        {
+          "item": "Groundnuts",
+          "quantityInKg": 12,
+          "pricePerKg": 4.2,
+          "totalPrice": 50.4
+        },
+        {
+          "item": "Sugarcane",
+          "quantityInKg": 7,
+          "pricePerKg": 3.3,
+          "totalPrice": 23.1
+        },
+        {
+          "item": "Palm Oil",
+          "quantityInKg": 5,
+          "pricePerKg": 5,
+          "totalPrice": 25
+        },
+        {
+          "item": "Maize",
+          "quantityInKg": 15,
+          "pricePerKg": 3.6,
+          "totalPrice": 54
+        }
+      ],
+      "shippingAddress": "456 Victoria Island, Lagos, Nigeria",
+      "dateOfOrder": "2024-08-27",
+      "orderStatus": "pending"
+    },
+    {
+      "customerName": "Bola Adeyemi",
+      "orderId": "ORD-003",
+      "orderDetails": [
+        {
+          "item": "Plantains",
+          "quantityInKg": 9,
+          "pricePerKg": 3.5,
+          "totalPrice": 31.5
+        },
+        {
+          "item": "Cocoa",
+          "quantityInKg": 12,
+          "pricePerKg": 6.5,
+          "totalPrice": 78
+        },
+        {
+          "item": "Groundnuts",
+          "quantityInKg": 10,
+          "pricePerKg": 4,
+          "totalPrice": 40
+        },
+        {
+          "item": "Cassava",
+          "quantityInKg": 7,
+          "pricePerKg": 2.8,
+          "totalPrice": 19.6
+        },
+        {
+          "item": "Yam",
+          "quantityInKg": 8,
+          "pricePerKg": 3.2,
+          "totalPrice": 25.6
+        },
+        {
+          "item": "Palm Oil",
+          "quantityInKg": 5,
+          "pricePerKg": 5,
+          "totalPrice": 25
+        }
+      ],
+      "shippingAddress": "789 Allen Avenue, Ikeja, Nigeria",
+      "dateOfOrder": "2024-08-26",
+      "orderStatus": "pending"
+    },
+    {
+      "customerName": "Ngozi Eze",
+      "orderId": "ORD-004",
+      "orderDetails": [
+        {
+          "item": "Millet",
+          "quantityInKg": 8,
+          "pricePerKg": 2.7,
+          "totalPrice": 21.6
+        },
+        {
+          "item": "Sorghum",
+          "quantityInKg": 15,
+          "pricePerKg": 3.4,
+          "totalPrice": 51
+        },
+        {
+          "item": "Maize",
+          "quantityInKg": 7,
+          "pricePerKg": 3.6,
+          "totalPrice": 25.2
+        },
+        {
+          "item": "Rice",
+          "quantityInKg": 10,
+          "pricePerKg": 4.5,
+          "totalPrice": 45
+        },
+        {
+          "item": "Wheat",
+          "quantityInKg": 12,
+          "pricePerKg": 3.8,
+          "totalPrice": 45.6
+        },
+        {
+          "item": "Yam",
+          "quantityInKg": 5,
+          "pricePerKg": 3,
+          "totalPrice": 15
+        },
+        {
+          "item": "Cassava",
+          "quantityInKg": 9,
+          "pricePerKg": 2.8,
+          "totalPrice": 25.2
+        }
+      ],
+      "shippingAddress": "15 Aba Road, Port Harcourt, Nigeria",
+      "dateOfOrder": "2024-08-25",
+      "orderStatus": "pending"
+    },
+    {
+      "customerName": "Tunde Bakare",
+      "orderId": "ORD-005",
+      "orderDetails": [
+        {
+          "item": "Plantains",
+          "quantityInKg": 11,
+          "pricePerKg": 3.5,
+          "totalPrice": 38.5
+        },
+        {
+          "item": "Cocoa",
+          "quantityInKg": 14,
+          "pricePerKg": 6.5,
+          "totalPrice": 91
+        },
+        {
+          "item": "Groundnuts",
+          "quantityInKg": 10,
+          "pricePerKg": 4,
+          "totalPrice": 40
+        },
+        {
+          "item": "Cassava",
+          "quantityInKg": 12,
+          "pricePerKg": 2.8,
+          "totalPrice": 33.6
+        },
+        {
+          "item": "Yam",
+          "quantityInKg": 9,
+          "pricePerKg": 3.2,
+          "totalPrice": 28.8
+        },
+        {
+          "item": "Palm Oil",
+          "quantityInKg": 7,
+          "pricePerKg": 5,
+          "totalPrice": 35
+        },
+        {
+          "item": "Rice",
+          "quantityInKg": 8,
+          "pricePerKg": 4.5,
+          "totalPrice": 36
+        }
+      ],
+      "shippingAddress": "22 Ikorodu Road, Lagos, Nigeria",
+      "dateOfOrder": "2024-08-24",
+      "orderStatus": "pending"
+    },
+    {
+      "customerName": "Funmi Adebayo",
+      "orderId": "ORD-006",
+      "orderDetails": [
+        {
+          "item": "Rice",
+          "quantityInKg": 10,
+          "pricePerKg": 4.5,
+          "totalPrice": 45
+        },
+        {
+          "item": "Wheat",
+          "quantityInKg": 7,
+          "pricePerKg": 3.8,
+          "totalPrice": 26.6
+        },
+        {
+          "item": "Corn",
+          "quantityInKg": 12,
+          "pricePerKg": 2.9,
+          "totalPrice": 34.8
+        },
+        {
+          "item": "Soybeans",
+          "quantityInKg": 9,
+          "pricePerKg": 5.2,
+          "totalPrice": 46.8
+        },
+        {
+          "item": "Barley",
+          "quantityInKg": 8,
+          "pricePerKg": 3.7,
+          "totalPrice": 29.6
+        },
+        {
+          "item": "Oats",
+          "quantityInKg": 15,
+          "pricePerKg": 3.5,
+          "totalPrice": 52.5
+        },
+        {
+          "item": "Sorghum",
+          "quantityInKg": 5,
+          "pricePerKg": 4,
+          "totalPrice": 20
+        }
+      ],
+      "shippingAddress": "123 Main St, Lagos, Nigeria",
+      "dateOfOrder": "2024-08-28",
+      "orderStatus": "pending"
+    },
+    {
+      "customerName": "Adamu Musa",
+      "orderId": "ORD-007",
+      "orderDetails": [
+        {
+          "item": "Yam",
+          "quantityInKg": 20,
+          "pricePerKg": 2.5,
+          "totalPrice": 50
+        },
+        {
+          "item": "Cassava",
+          "quantityInKg": 15,
+          "pricePerKg": 3.2,
+          "totalPrice": 48
+        },
+        {
+          "item": "Maize",
+          "quantityInKg": 25,
+          "pricePerKg": 1.8,
+          "totalPrice": 45
+        },
+        {
+          "item": "Millet",
+          "quantityInKg": 12,
+          "pricePerKg": 4.1,
+          "totalPrice": 49.2
+        }
+      ],
+      "shippingAddress": "45 Gidan Musa St, Kano, Nigeria",
+      "dateOfOrder": "2024-08-29",
+      "orderStatus": "pending"
+    },
+    {
+      "customerName": "Chidinma Nwosu",
+      "orderId": "ORD-008",
+      "orderDetails": [
+        {
+          "item": "Palm Oil",
+          "quantityInKg": 10,
+          "pricePerKg": 5.5,
+          "totalPrice": 55
+        },
+        {
+          "item": "Groundnut",
+          "quantityInKg": 8,
+          "pricePerKg": 4.7,
+          "totalPrice": 37.6
+        },
+        {
+          "item": "Beans",
+          "quantityInKg": 20,
+          "pricePerKg": 3.5,
+          "totalPrice": 70
+        },
+        {
+          "item": "Plantain",
+          "quantityInKg": 30,
+          "pricePerKg": 2,
+          "totalPrice": 60
+        }
+      ],
+      "shippingAddress": "12 Aba Road, Port Harcourt, Nigeria",
+      "dateOfOrder": "2024-08-30",
+      "orderStatus": "pending"
+    },
+    {
+      "customerName": "Gbenga Adeyemi",
+      "orderId": "ORD-009",
+      "orderDetails": [
+        {
+          "item": "Tomatoes",
+          "quantityInKg": 25,
+          "pricePerKg": 3,
+          "totalPrice": 75
+        },
+        {
+          "item": "Pepper",
+          "quantityInKg": 15,
+          "pricePerKg": 2.5,
+          "totalPrice": 37.5
+        },
+        {
+          "item": "Onions",
+          "quantityInKg": 20,
+          "pricePerKg": 3.8,
+          "totalPrice": 76
+        },
+        {
+          "item": "Garlic",
+          "quantityInKg": 10,
+          "pricePerKg": 4,
+          "totalPrice": 40
+        }
+      ],
+      "shippingAddress": "234 Ikorodu Rd, Lagos, Nigeria",
+      "dateOfOrder": "2024-08-31",
+      "orderStatus": "settled"
+    },
+    {
+      "customerName": "Hauwa Bello",
+      "orderId": "ORD-010",
+      "orderDetails": [
+        {
+          "item": "Cocoa",
+          "quantityInKg": 15,
+          "pricePerKg": 6.5,
+          "totalPrice": 97.5
+        },
+        {
+          "item": "Rubber",
+          "quantityInKg": 10,
+          "pricePerKg": 5.2,
+          "totalPrice": 52
+        },
+        {
+          "item": "Sugarcane",
+          "quantityInKg": 30,
+          "pricePerKg": 1.5,
+          "totalPrice": 45
+        }
+      ],
+      "shippingAddress": "77 Kaduna St, Abuja, Nigeria",
+      "dateOfOrder": "2024-09-01",
+      "orderStatus": "settled"
+    },
+    {
+      "customerName": "Obinna Okeke",
+      "orderId": "ORD-011",
+      "orderDetails": [
+        {
+          "item": "Palm Kernel",
+          "quantityInKg": 25,
+          "pricePerKg": 4.2,
+          "totalPrice": 105
+        },
+        {
+          "item": "Ginger",
+          "quantityInKg": 20,
+          "pricePerKg": 5,
+          "totalPrice": 100
+        },
+        {
+          "item": "Turmeric",
+          "quantityInKg": 18,
+          "pricePerKg": 4.8,
+          "totalPrice": 86.4
+        }
+      ],
+      "shippingAddress": "4 Enugu St, Onitsha, Nigeria",
+      "dateOfOrder": "2024-09-02",
+      "orderStatus": "pending"
+    },
+    {
+      "customerName": "Fatima Sani",
+      "orderId": "ORD-012",
+      "orderDetails": [
+        {
+          "item": "Cashew Nuts",
+          "quantityInKg": 20,
+          "pricePerKg": 5.5,
+          "totalPrice": 110
+        },
+        {
+          "item": "Sesame Seeds",
+          "quantityInKg": 15,
+          "pricePerKg": 6.2,
+          "totalPrice": 93
+        },
+        {
+          "item": "Shea Butter",
+          "quantityInKg": 10,
+          "pricePerKg": 7,
+          "totalPrice": 70
+        }
+      ],
+      "shippingAddress": "89 Zaria Rd, Kaduna, Nigeria",
+      "dateOfOrder": "2024-09-03",
+      "orderStatus": "settled"
+    }
+  ],
+  "fruits": [
+    {
+      "id": "PRODUCT-001",
+      "imageSrc": "/src/assets/images/mango.png",
+      "discount": 12,
+      "title": "Peter Mango",
+      "price": 7500,
+      "originalPrice": "8,500",
+      "quantityLeft": 67,
+      "description": "A fresh and juicy mango from Peter's farm.",
+      "rating": 4.5,
+      "location": "Pankshin, Jos"
+    },
+    {
+      "id": "PRODUCT-002",
+      "imageSrc": "/src/assets/images/mango.png",
+      "discount": 15,
+      "title": "Red Apple",
+      "price": 3200,
+      "originalPrice": "3,800",
+      "quantityLeft": 45,
+      "description": "Crispy and sweet red apples for your delight.",
+      "rating": 4.2,
+      "location": "Pankshin, Jos"
+    }
+  ],
+  "vegetables": [
+    {
+      "id": "PRODUCT-007",
+      "imageSrc": "/src/assets/images/mango.png",
+      "discount": 10,
+      "title": "Green Cabbage",
+      "price": 1200,
+      "originalPrice": "1,500",
+      "quantityLeft": 80,
+      "description": "Fresh green cabbage perfect for salads and cooking.",
+      "rating": 4.7,
+      "location": "Pankshin, Jos"
+    },
+    {
+      "id": "PRODUCT-008",
+      "imageSrc": "/src/assets/images/mango.png",
+      "discount": 8,
+      "title": "Tomato",
+      "price": 9000,
+      "originalPrice": "12,000",
+      "quantityLeft": 100,
+      "description": "Fresh tomatoes with a rich, juicy flavor.",
+      "rating": 4.3,
+      "location": "Pankshin, Jos"
+    }
+  ],
   "products": [
     {
       "id": "1",
+      "imageSrc": "/src/assets/images/mango.png",
       "productName": "Apple",
       "description": "Fresh and juicy apples, carefully picked from the finest orchards. These apples are not only delicious but also packed with essential vitamins and nutrients. Perfect for a healthy snack, baking, or adding to your favorite dishes. Each bite is a burst of crisp, refreshing flavor that will leave you wanting more.",
       "costPerKg": 30,
@@ -10,6 +545,7 @@
     },
     {
       "id": "2",
+      "imageSrc": "/src/assets/images/mango.png",
       "productName": "Banana",
       "description": "Ripe and sweet bananas that are perfect for smoothies, baking, or just enjoying on their own. These bananas are full of natural sugars and energy-boosting carbohydrates, making them an ideal choice for a quick and healthy snack. Their creamy texture and delightful taste make them a favorite for people of all ages.",
       "costPerKg": 10,
@@ -18,6 +554,7 @@
     },
     {
       "id": "3",
+      "imageSrc": "/src/assets/images/mango.png",
       "productName": "Orange",
       "description": "Citrusy and tangy oranges that are bursting with flavor and vitamin C. These oranges are handpicked to ensure they are of the highest quality. Whether you're juicing them for a refreshing drink or eating them as is, these oranges are sure to provide a delightful and zesty experience.",
       "costPerKg": 20.5,
@@ -26,6 +563,7 @@
     },
     {
       "id": "4",
+      "imageSrc": "/src/assets/images/mango.png",
       "productName": "Grapes",
       "description": "Sweet and seedless grapes that are perfect for snacking or adding to a fruit salad. These grapes are grown in optimal conditions to bring out their natural sweetness. With their juicy and tender texture, they are a delicious treat that you can enjoy any time of the day.",
       "costPerKg": 40,
@@ -34,6 +572,7 @@
     },
     {
       "id": "5",
+      "imageSrc": "/src/assets/images/mango.png",
       "productName": "Strawberry",
       "description": "Fresh and delicious strawberries that are packed with flavor. These strawberries are perfect for desserts, smoothies, or eating fresh. They are rich in antioxidants, vitamins, and minerals, making them not only tasty but also nutritious. Their vibrant red color and sweet taste are sure to brighten up any dish.",
       "costPerKg": 50,
@@ -42,6 +581,7 @@
     },
     {
       "id": "6",
+      "imageSrc": "/src/assets/images/mango.png",
       "productName": "Watermelon",
       "description": "Juicy and refreshing watermelon that is perfect for hot summer days. This watermelon is packed with hydration and natural sugars, making it a refreshing and healthy choice. Enjoy it on its own or add it to fruit salads for a burst of sweetness and juiciness.",
       "costPerKg": 0.8,

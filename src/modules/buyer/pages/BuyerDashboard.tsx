@@ -1,7 +1,8 @@
-import CardsContainer from "../components/marketplace/Card";
 import { useMediaQuery } from "react-responsive";
 import SearchBar from "../../../shared/ui/SearchBar";
-import PendingOrderMainCard from "../components/marketplace/PendingOrderMainCard";
+import { CardContainer } from "../components/Card";
+import { ProductTabs } from "../components/ProductTabs";
+import { PageHeader } from "../../../shared/ui/PageHeader";
 
 const mobileSearchBarStyles = `
   background-color: var(--color-grey-200);
@@ -9,13 +10,16 @@ const mobileSearchBarStyles = `
     width: 100%;
 `;
 
-export function SellerDashboard() {
+function BuyerDashboard() {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   return (
     <>
       {isMobile && <SearchBar customStyles={mobileSearchBarStyles} />}
-      <CardsContainer />
-      {!isMobile && <PendingOrderMainCard />}
+      <CardContainer />
+      {isMobile && <PageHeader title="Product Catalog" noUnderline />}
+      <ProductTabs />
     </>
   );
 }
+
+export default BuyerDashboard;

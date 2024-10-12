@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { BellIcon } from "../../../shared/ui/Icons";
-import BackButton from "./BackButton";
-import ButtonText from "../../../shared/ui/ButtonText";
-import SearchBar from "./SearchBar";
+import { BellIcon } from "../../ui/Icons";
+import BackButton from "../../../modules/seller/ui/BackButton";
+import ButtonText from "../../ui/ButtonText";
+import SearchBar from "../../ui/SearchBar";
 // import UserAvatar from "./UserAvatar";
 // import DarkModeToggle from "./DarkModeToggle";
 
@@ -33,7 +33,7 @@ const NavbarSection = styled.div`
   }
 `;
 
-function Navbar() {
+export function Navbar() {
   return (
     <NavbarContainer>
       <NavbarSection>
@@ -53,5 +53,3 @@ function Navbar() {
     </NavbarContainer>
   );
 }
-
-export default Navbar;

@@ -21,6 +21,7 @@ import PasswordReset from "./modules/auth/pages/PasswordReset";
 import VerifyEmail from "./modules/auth/pages/VerifyEmail";
 import HomePage from "./shared/components/Home";
 
+<<<<<<< HEAD
 import { AppLayout } from "./shared/ui/AppLayout";
 import { SellerDashboard } from "./modules/seller/pages/SellerDashboard";
 import { Order } from "./modules/seller/pages/Order";
@@ -30,6 +31,17 @@ import { Dispute } from "./modules/seller/pages/Dispute";
 import { OrderDetails } from "./modules/seller/pages/OrderDetails";
 import { FarmRecordListPage } from "./modules/seller/pages/FarmRecordPage";
 import { RecordFormPage } from "./modules/seller/pages/FarmRecordFormPage";
+=======
+import { SellerAppLayout } from "./modules/seller/ui/AppLayout";
+import SellerDashboard from "./modules/seller/pages/SellerDashboard";
+import Order from "./modules/seller/pages/Order";
+import MarketPlace from "./modules/seller/pages/MarketPlace";
+import CreateProduct from "./modules/seller/pages/CreateProduct";
+import Dispute from "./modules/seller/pages/Dispute";
+import OrderDetails from "./modules/seller/pages/OrderDetails";
+import FarmGeneralRecordPage from "./modules/seller/pages/FarmRecordPage";
+import RecordFormPage from "./modules/seller/pages/FarmRecordFormPage";
+>>>>>>> oneFarm/feature/inventory/001
 import { SuppliesRecordListPage } from "./modules/seller/pages/SuppliesRecordPage";
 import { SuppliesRecordFormPage } from "./modules/seller/pages/SuppliesRecordFormPage";
 import { RiskEmergencyRecordPage } from "./modules/seller/pages/RiskEmergencyRecordPage";
@@ -41,8 +53,17 @@ import { PaymentDashboard } from "./modules/seller/pages/Payment";
 import { Support } from "./modules/seller/pages/Support";
 import { LiveChat } from "./modules/seller/pages/LiveChat";
 import { FAQ } from "./modules/seller/pages/FAQ";
+<<<<<<< HEAD
 import { Profile } from "./modules/seller/pages/Profile";
 import { ProtectedRoute } from "./modules/core/components/ProtectedRoute";
+=======
+import Profile from "./modules/seller/pages/Profile";
+import ProtectedRoute from "./modules/core/components/ProtectedRoute";
+import { BuyerAppLayout } from "./modules/buyer/ui/AppLayout";
+import BuyerDashboard from "./modules/buyer/pages/BuyerDashboard";
+import { ProductDetail } from "./modules/buyer/pages/ProductDetail";
+import { Cart } from "./modules/buyer/pages/Cart";
+>>>>>>> oneFarm/feature/inventory/001
 
 function App() {
   const isDarkMode = useSelector(
@@ -66,7 +87,7 @@ function App() {
           <Route
             element={
               <ProtectedRoute>
-                <AppLayout />
+                <SellerAppLayout />
               </ProtectedRoute>
             }
           >
@@ -123,8 +144,22 @@ function App() {
               {/* Profile */}
               <Route path="profile" element={<Profile />} />
             </Route>
+          </Route>
 
-            {/* Similar structure for buyer and admin can go below */}
+          {/* Buyer-specific routes */}
+          <Route
+            element={
+              <ProtectedRoute>
+                <BuyerAppLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="buyer" element={<Outlet />}>
+              <Route index element={<Navigate replace to="dashboard" />} />
+              <Route path="dashboard" element={<BuyerDashboard />} />
+              <Route path="product/:id" element={<ProductDetail />} />
+              <Route path="cart" element={<Cart />} />
+            </Route>
           </Route>
 
           <Route path="/register/seller" element={<RegisterBuyer />} />

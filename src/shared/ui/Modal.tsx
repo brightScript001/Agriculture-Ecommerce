@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Box, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { useOutsideClick } from "../hooks/useOutsideClick"; // Adjust the path as necessary
+import { useOutsideClick } from "../hooks/useOutsideClick";
 
 interface ModalComponentProps {
   isOpen: boolean;

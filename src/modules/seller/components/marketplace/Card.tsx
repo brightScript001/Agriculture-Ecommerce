@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { useCardList } from "./CardList";
 import { useNavigate, useLocation } from "react-router-dom";
-import Card from "../../ui/TextCard";
+import { Card } from "../../ui/TextCard";
 import { useQuery } from "@tanstack/react-query";
 import { fetchProducts } from "../../api/products";
 import { UploadIcon } from "../../../../shared/ui/Icons";
 
-const CardsWrapper = styled.div`
+export const CardsWrapper = styled.div`
   width: 100%;
   display: flex;
   gap: 1rem;

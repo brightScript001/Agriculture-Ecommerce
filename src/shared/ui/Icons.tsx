@@ -9,6 +9,8 @@ const SignOutIcon = "/src/assets/icons/SignOutIcon.svg";
 const BackButtonIcon = "/src/assets/icons/BackButtonIcon.svg";
 const UploadIcon = "/src/assets/icons/upload.svg";
 const Support = "/src/assets/icons/support.svg";
+const History = "/src/assets/icons/history.svg";
+const Cart = "/src/assets/icons/cart.svg";
 
 export {
   BellIcon,
@@ -22,4 +24,6 @@ export {
   BackButtonIcon,
   UploadIcon,
   Support,
+  History,
+  Cart,
 };

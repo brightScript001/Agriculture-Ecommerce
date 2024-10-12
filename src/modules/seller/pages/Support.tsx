@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { LiveChat } from "../components/support/liveChat/LiveChat";
-import SearchBar from "../ui/SearchBar";
+import SearchBar from "../../../shared/ui/SearchBar";
 import { useMediaQuery } from "react-responsive";
 import { FAQ } from "../components/support/FAQ/FAQ";
 import { ContactUs } from "../components/support/contactUs/ContactUs";

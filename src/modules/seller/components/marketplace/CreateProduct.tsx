@@ -18,7 +18,7 @@ export interface FormData {
   costPerKg: number;
   productClass: string;
   numberOfProducts: number;
-  productImage: FileList | null;
+  imageSrc: FileList | null;
 }
 
 interface CreateProductProps {
@@ -32,7 +32,6 @@ const StyledTitle = styled(Title)`
 
 const Wrapper = styled.div`
   width: 45rem;
-  margin-top: 2.625rem;
   @media (max-width: 768px) {
     width: 100%;
   }
