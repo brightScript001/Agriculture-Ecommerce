@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Button from "./Button";
 
 const QuantityContainer = styled.div`
   display: flex;
@@ -8,18 +7,32 @@ const QuantityContainer = styled.div`
   gap: 1rem;
 `;
 
-const StyledButton = styled(Button)`
+export const StyledButton = styled.button`
+  background-color: var(--color-green-600);
   border: none;
-  top: 5px;
-  bottom: 5px;
-  font-size: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: var(--font-size-lg);
+  color: var(--color-white-100);
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: var(--border-radius-md);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2rem;
   transition: background-color 0.3s ease;
 
   &:disabled {
     background-color: var(--color-grey-400);
     cursor: not-allowed;
+  }
+
+  &:hover {
+    background-color: var(--color-green-500);
+  }
+
+  &:active {
+    background-color: var(--color-green-700);
   }
 `;
 

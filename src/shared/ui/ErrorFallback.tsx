@@ -1,7 +1,7 @@
-import React from "react";
 import styled from "styled-components";
 import Heading from "./Heading";
 import Button from "./Button";
+import GlobalStyles from "../../styles/globalStyles";
 
 const StyledErrorFallback = styled.main`
   height: 100vh;
@@ -14,7 +14,7 @@ const StyledErrorFallback = styled.main`
 
 const Box = styled.div`
   background-color: var(--color-grey-0);
-  border: none;
+  border: 1px solid var(--color-grey-100);
   border-radius: var(--border-radius-md);
   padding: 4.8rem;
   flex: 0 1 96rem;
@@ -31,15 +31,24 @@ const Box = styled.div`
   }
 `;
 
-const ErrorFallback: React.FC = () => {
+interface ErrorFallbackProps {
+  error: Error;
+  resetErrorBoundary: () => void;
+}
+
+const ErrorFallback: React.FC<ErrorFallbackProps> = ({
+  error,
+  resetErrorBoundary,
+}) => {
   return (
     <>
+      <GlobalStyles />
       <StyledErrorFallback>
         <Box>
-          <Heading as="h1">Something went wrong</Heading>
-          <p>Please try again later.</p>
-          <Button size="large" onClick={() => window.location.reload()}>
-            Reload Page
+          <Heading as="h1">Something went wrong 🧐</Heading>
+          <p>{error.message}</p>
+          <Button size="large" onClick={resetErrorBoundary}>
+            Try again
           </Button>
         </Box>
       </StyledErrorFallback>

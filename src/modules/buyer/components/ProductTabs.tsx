@@ -3,7 +3,6 @@ import { ProductGrid } from "./ProductGrid";
 import { Tabs } from "../../../shared/ui/Tabs";
 import { useProducts } from "../hooks/useProduct";
 import SpinnerComponent from "../../../shared/ui/Spinner";
-import ErrorFallback from "../../../shared/ui/ErrorFallback";
 
 export const ProductTabs: React.FC = () => {
   const { data: products, isLoading, error } = useProducts();
@@ -13,7 +12,7 @@ export const ProductTabs: React.FC = () => {
   }
 
   if (error) {
-    return <ErrorFallback />;
+    return <div>Error: {error.message}</div>;
   }
 
   const fruits = products?.fruits || [];

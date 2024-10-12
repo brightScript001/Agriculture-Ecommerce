@@ -3,10 +3,11 @@ export interface Product {
   imageSrc: string;
   discount: number;
   title: string;
-  price: string;
-  originalPrice: string;
+  price: number;
+  originalPrice: number;
   quantityLeft: number;
   description?: string;
   rating?: number;
   location?: string;
+  quantity?: number;
 }

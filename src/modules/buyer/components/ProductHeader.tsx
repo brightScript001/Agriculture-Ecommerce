@@ -6,6 +6,7 @@ import { DiscountBadge } from "./ProductCard";
 import { QuantityControl } from "../../../shared/ui/QuantityControl";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../states/cartSlice";
+import toast from "react-hot-toast";
 
 const ProductHeaderContainer = styled.div`
   display: flex;
@@ -31,7 +32,7 @@ const ProductInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 1rem;
   width: 35.8rem;
   @media (max-width: 769px) {
     width: 100%;
@@ -88,18 +89,19 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({ product }) => {
         quantity,
       })
     );
+    toast("✅Item added to cart");
   };
 
   return (
     <ProductHeaderContainer>
       <ProductImage src={product.imageSrc} alt={product.title} />
       <ProductInfo>
-        <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <ProductTitle>{product.title}</ProductTitle>
           <QuantityKg>{product.quantityLeft}kg per basket</QuantityKg>
           <Price>
-            <ProductPrice>{product.price}</ProductPrice>
-            <OriginalPrice>{product.originalPrice}</OriginalPrice>{" "}
+            <ProductPrice>N{product.price}/kg</ProductPrice>
+            <OriginalPrice>N{product.originalPrice}</OriginalPrice>
             <DiscountBadge>-{product.discount}%</DiscountBadge>
           </Price>
           <Location>Shipping from {product.location}</Location>
