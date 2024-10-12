@@ -87,7 +87,6 @@ function App() {
               <Route path="order/:orderId" element={<OrderDetails />} />
               <Route path="order/:orderId/dispute" element={<Dispute />} />
 
-              {/* Inventory record routes */}
               <Route path="inventory" element={<InventoryDashboard />} />
               <Route path="farm-records" element={<FarmRecordListPage />} />
               <Route path="farm-record-form" element={<RecordFormPage />} />
