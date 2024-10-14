@@ -1,6 +1,5 @@
 import { useMediaQuery } from "react-responsive";
 import {
-  BellButton,
   Container,
   Main,
   PageHeaderWrapper,
@@ -8,11 +7,11 @@ import {
 } from "../../seller/ui/AppLayout";
 import { PageHeader } from "../../../shared/ui/PageHeader";
 import { PageTitle } from "../../../shared/ui/PageTitle";
-import { BellIcon } from "../../../shared/ui/Icons";
 import { Outlet } from "react-router-dom";
 import { Sidebar } from "./Sidebar";
 import HamburgerMenu from "./HamburgerMenu";
 import { Navbar } from "../../../shared/components/Navigation/Header";
+import BellButtonWithNotifications from "../../../shared/ui/BellButtonNotifications ";
 
 export function BuyerAppLayout() {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
@@ -24,11 +23,7 @@ export function BuyerAppLayout() {
         <PageHeaderWrapper>
           <PageHeader
             title={PageTitle()}
-            RightComponent={
-              <BellButton>
-                <img src={BellIcon} alt="Notifications" />
-              </BellButton>
-            }
+            RightComponent={<BellButtonWithNotifications />}
           />
         </PageHeaderWrapper>
       )}

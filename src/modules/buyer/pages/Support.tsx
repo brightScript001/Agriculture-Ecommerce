@@ -22,15 +22,15 @@ const CardsWrapper = styled.div`
   }
 `;
 
-export function Support() {
+export function BuyerSupport() {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
     <>
       {isMobile && <SearchBar customStyles={mobileSearchBarStyles} />}
       <CardsWrapper>
-        <LiveChat route="/seller/live-chat" />
-        <FAQ route="/seller/faq" />
+        <LiveChat route="/buyer/live-chat" />
+        <FAQ route="/buyer/faq" />
         <ContactUs route="" />
       </CardsWrapper>
     </>

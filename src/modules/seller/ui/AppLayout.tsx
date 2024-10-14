@@ -5,8 +5,8 @@ import { PageHeader } from "../../../shared/ui/PageHeader";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 import { PageTitle } from "../../../shared/ui/PageTitle";
-import { BellIcon } from "../../../shared/ui/Icons";
 import { Navbar } from "../../../shared/components/Navigation/Header";
+import BellButtonWithNotifications from "../../../shared/ui/BellButtonNotifications ";
 
 export const StyledAppLayout = styled.div`
   display: grid;
@@ -42,23 +42,6 @@ export const Container = styled.div`
   }
 `;
 
-export const BellButton = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.5rem;
-
-  & svg {
-    width: 2.4rem;
-    height: 2.4rem;
-    color: var(--color-grey-700);
-  }
-
-  &:hover svg {
-    color: var(--color-green-700);
-  }
-`;
-
 export const PageHeaderWrapper = styled.div`
   margin-top: 6.25rem;
 `;
@@ -74,11 +57,7 @@ export function SellerAppLayout() {
         <PageHeaderWrapper>
           <PageHeader
             title={PageTitle()}
-            RightComponent={
-              <BellButton>
-                <img src={BellIcon} alt="Notifications" />
-              </BellButton>
-            }
+            RightComponent={<BellButtonWithNotifications />}
           />
         </PageHeaderWrapper>
       )}

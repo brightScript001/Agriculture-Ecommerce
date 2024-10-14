@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { ProfilePicture } from "./personalInformation/ProfilePicture";
 import { BasicInformation } from "./personalInformation/BasicInformation";
 import { ContactInformation } from "./personalInformation/ContactInformation";
-import Form from "../../../../shared/ui/Form";
-import { ActionButtons } from "./ActionButtons";
-import { VerificationHeader } from "./VerificationHeader";
+import Form from "../ui/Form";
+import { ActionButtons } from "../../modules/seller/components/profile/ActionButtons";
+import { VerificationHeader } from "../../modules/seller/components/profile/VerificationHeader";
 
 const Section = styled.section`
   margin-bottom: 2rem;

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { InputField } from "../personalInformation/BasicInformation";
+import { InputField } from "../../../../../shared/components/personalInformation/BasicInformation";
 
 const InputContainer = styled.div`
   display: flex;

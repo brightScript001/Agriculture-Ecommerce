@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Support } from "../../../../../shared/ui/Icons";
-import Heading from "../../../../../shared/ui/Heading";
+import { Support } from "../../../ui/Icons";
+import Heading from "../../../ui/Heading";
 import { useNavigate } from "react-router-dom";
 
 export const Wrapper = styled.div`

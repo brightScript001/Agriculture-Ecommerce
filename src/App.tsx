@@ -49,6 +49,10 @@ import { ProductDetail } from "./modules/buyer/pages/ProductDetail";
 import { Cart } from "./modules/buyer/pages/Cart";
 import { OrderHistory } from "./modules/buyer/pages/OrderHistory";
 import { OrderHistoryDetails } from "./modules/buyer/pages/OrderHistoryDetail";
+import { BuyerSupport } from "./modules/buyer/pages/Support";
+import { BuyerLiveChat } from "./modules/buyer/pages/LiveChat";
+import { BuyerFAQ } from "./modules/buyer/pages/FAQ";
+import { BuyerProfile } from "./modules/buyer/pages/Profile";
 
 function App() {
   const isDarkMode = useSelector(
@@ -148,6 +152,10 @@ function App() {
                 path="order-history/:orderId"
                 element={<OrderHistoryDetails />}
               />
+              <Route path="support" element={<BuyerSupport />} />
+              <Route path="live-chat" element={<BuyerLiveChat />} />
+              <Route path="faq" element={<BuyerFAQ />} />
+              <Route path="profile" element={<BuyerProfile />} />
             </Route>
           </Route>
 

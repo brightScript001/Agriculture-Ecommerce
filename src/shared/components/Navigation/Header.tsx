@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { BellIcon } from "../../ui/Icons";
 import BackButton from "../../../modules/seller/ui/BackButton";
 import ButtonText from "../../ui/ButtonText";
 import SearchBar from "../../ui/SearchBar";
+import BellButtonWithNotifications from "../../ui/BellButtonNotifications ";
 // import UserAvatar from "./UserAvatar";
 // import DarkModeToggle from "./DarkModeToggle";
 
@@ -44,7 +44,7 @@ export function Navbar() {
         <SearchBar />
       </NavbarSection>
       <NavbarSection>
-        <img src={BellIcon} alt="BellIcon" />
+        <BellButtonWithNotifications />
       </NavbarSection>
       <NavbarSection>{/* <UserAvatar /> */}</NavbarSection>
       {/* <NavbarSection>

@@ -14,11 +14,15 @@ const modalStyle = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
+  width: {
+    xs: "90%",
+    sm: "80%",
+    md: "50%",
+  },
   maxWidth: "90%",
   bgcolor: "var(--color-grey-50)",
   border: "1px solid var(--color-grey-200)",
   borderRadius: "var(--border-radius-md)",
-  p: 4,
 };
 
 const ModalComponent: React.FC<ModalComponentProps> = ({

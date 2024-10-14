@@ -1,5 +1,5 @@
 import React from "react";
-import { PersonalInformation } from "./PersonalInformation";
+import { PersonalInformation } from "../../../../shared/components/PersonalInformation";
 import { BankVerification } from "./BankVerification";
 import { FarmInfoVerification } from "./FarmInfoVerification";
 import { Tabs } from "../../../../shared/ui/Tabs";
