@@ -1,13 +1,14 @@
 import React from "react";
+import Button from "../../../../../shared/ui/Button";
 
 export const GPSButton: React.FC = () => {
   const handleGPSClick = () => {
-    // Logic to trigger GPS and pinpoint the location
+    // TODO Logic to trigger GPS and pinpoint the location
   };
 
   return (
-    <button onClick={handleGPSClick}>
+    <Button variation="secondary" onClick={handleGPSClick}>
       📍 Click here to use your device's GPS to pinpoint precise location
-    </button>
+    </Button>
   );
 };

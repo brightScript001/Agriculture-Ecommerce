@@ -8,16 +8,11 @@ import { PlaceOrderButton } from "./PlaceOrder";
 import { SuccessModal } from "./SuccessModal";
 import { CollapsibleSection } from "../../../shared/ui/CollapsibleSection";
 import { Footer } from "./Footer";
+import { generateOrderID } from "../utils/generateOrderID";
 
 interface PaymentComponentProps {
   subtotal: number;
 }
-
-const generateOrderID = () => {
-  const orderID = Math.random().toString(36).substring(2, 10).toUpperCase();
-  console.log("Generated Order ID", orderID);
-  return orderID;
-};
 
 export const PaymentComponent: React.FC<PaymentComponentProps> = ({
   subtotal,
@@ -49,7 +44,6 @@ export const PaymentComponent: React.FC<PaymentComponentProps> = ({
         <PromoCode />
       </CollapsibleSection>
 
-      {/* Non-collapsible sections */}
       <AmountDetails
         subtotal={subtotal}
         deliveryFee={deliveryOption === "pickup" ? 1000 : 1500}
@@ -58,7 +52,6 @@ export const PaymentComponent: React.FC<PaymentComponentProps> = ({
       <PlaceOrderButton onPlaceOrder={handlePlaceOrder} />
       <Footer />
 
-      {/* Modal */}
       <SuccessModal
         isOpen={isModalOpen}
         onClose={() => setModalOpen(false)}

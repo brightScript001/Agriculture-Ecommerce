@@ -80,7 +80,7 @@ const MobileProductForm = ({
       <FormRow>
         <Label htmlFor="productImage">Product Image</Label>
         <Controller
-          name="productImage"
+          name="imageSrc"
           control={control}
           rules={{ required: errorMessage }}
           render={({ field }) => (
@@ -92,7 +92,7 @@ const MobileProductForm = ({
             />
           )}
         />
-        {errors.productImage && <p>{errors.productImage.message}</p>}
+        {errors.imageSrc && <p>{errors.imageSrc.message}</p>}
       </FormRow>
 
       <FormRow>

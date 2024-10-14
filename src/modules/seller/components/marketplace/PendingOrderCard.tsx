@@ -1,27 +1,12 @@
 import styled from "styled-components";
 import ViewMore from "../../../../shared/ui/Viewmore";
-import {PageHeader} from "../../../../shared/ui/PageHeader";
+import { PageHeader } from "../../../../shared/ui/PageHeader";
 import { fetchOrders } from "../../api/orders";
 import { useQuery } from "@tanstack/react-query";
 import ButtonGroup from "../../../../shared/ui/ButtonGroup";
 import Button from "../../../../shared/ui/Button";
 import { useNavigate } from "react-router-dom";
-
-interface OrderDetail {
-  item: string;
-  quantityInKg: number;
-  pricePerKg: number;
-  totalPrice: number;
-}
-
-interface Order {
-  customerName: string;
-  orderId: string;
-  orderDetails: OrderDetail[];
-  shippingAddress: string;
-  dateOfOrder: string;
-  orderStatus: string;
-}
+import { Order } from "./OrdersListTypes";
 
 interface CardProps {
   item: string;

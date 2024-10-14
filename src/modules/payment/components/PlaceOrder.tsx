@@ -1,7 +1,11 @@
 import React from "react";
 import Button from "../../../shared/ui/Button";
 
-export const PlaceOrderButton: React.FC<{ onPlaceOrder: () => void }> = ({
+interface PlaceOrderButtonProps {
+  onPlaceOrder: () => void;
+}
+
+export const PlaceOrderButton: React.FC<PlaceOrderButtonProps> = ({
   onPlaceOrder,
 }) => {
   return (

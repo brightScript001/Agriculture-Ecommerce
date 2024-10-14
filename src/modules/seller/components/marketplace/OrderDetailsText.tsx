@@ -1,14 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import Heading from "../../../../shared/ui/Heading";
+import { Order } from "./OrdersListTypes";
 
 const Block = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.25rem;
-  @media (max-width: 768px) {
-    flex-direction: column;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    gap: 2rem;
+    flex-direction: row;
   }
 `;
 
@@ -16,13 +18,10 @@ const BlockItem = styled.div`
   width: 100%;
   margin: auto 0;
   margin-top: 2rem;
-  @media (max-width: 768px) {
-    margin-top: 3rem;
-  }
 `;
 
 const Input = styled.input`
-  width: 30rem;
+  width: 100%;
   padding: 0.625rem;
   min-height: 4rem;
   font-size: var(--font-size-sm);
@@ -31,20 +30,25 @@ const Input = styled.input`
   box-shadow: var(--shadow-sm);
   box-sizing: border-box;
   margin: 0.314rem 0;
+
   @media (max-width: 768px) {
-    width: 100%;
+    margin-right: 0;
   }
 `;
 
-const OrderDetails = styled.div`
+const OrderDetails = styled.div<{ isShippingFee?: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.63rem;
+  border-bottom: ${(props) =>
+    props.isShippingFee ? "1px solid var(--color-grey-300)" : "none"};
+  padding-bottom: ${(props) => (props.isShippingFee ? "1rem" : "0")};
 `;
 
-const Item = styled.span`
+const Item = styled.span<{ color?: boolean }>`
   font-size: var(--font-size-sm);
+  color: ${(props) => (props.color ? "var(--color-green-600)" : "inherit")};
 `;
 
 const Price = styled.span`
@@ -61,28 +65,6 @@ const Wrapper = styled.div`
   margin: 0 auto;
   width: 100%;
 `;
-
-interface OrderDetail {
-  item: string;
-  quantityInKg: number;
-  pricePerKg: number;
-  totalPrice: number;
-}
-
-interface Order {
-  customerName: string;
-  orderId: string;
-  orderDetails: OrderDetail[];
-  shippingAddress: string;
-  dateOfOrder: string;
-  orderStatus:
-    | "pending"
-    | "approved"
-    | "disputed"
-    | "shipped"
-    | "delivered"
-    | "settled";
-}
 
 interface OrderTextProps {
   order: Order;
@@ -121,15 +103,15 @@ export const OrderText: React.FC<OrderTextProps> = ({ order }) => {
             </OrderDetails>
           ))}
           <OrderDetails>
-            <Item>Tax</Item>
+            <Item color>Tax</Item>
+            <Price>{formatCurrency(0)}</Price>
+          </OrderDetails>
+          <OrderDetails isShippingFee>
+            <Item color>Shipping fee</Item>
             <Price>{formatCurrency(0)}</Price>
           </OrderDetails>
           <OrderDetails>
-            <Item>Shipping fee</Item>
-            <Price>{formatCurrency(0)}</Price>
-          </OrderDetails>
-          <OrderDetails>
-            <Item>Total</Item>
+            <Item color>Total</Item>
             <Price>{formatCurrency(totalPrice)}</Price>
           </OrderDetails>
         </Wrapper>

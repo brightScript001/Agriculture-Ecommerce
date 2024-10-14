@@ -588,5 +588,108 @@
       "productClass": "Class 1",
       "numberOfProducts": 50
     }
+  ],
+
+  "OrderHistory": [
+    {
+      "orderId": 2001,
+      "orderDetails": [
+        {
+          "item": "Rice",
+          "quantityInKg": 10,
+          "pricePerKg": 4.5,
+          "totalPrice": 45
+        },
+        {
+          "item": "Wheat",
+          "quantityInKg": 7,
+          "pricePerKg": 3.8,
+          "totalPrice": 26.6
+        },
+        {
+          "item": "Corn",
+          "quantityInKg": 12,
+          "pricePerKg": 2.9,
+          "totalPrice": 34.8
+        },
+        {
+          "item": "Soybeans",
+          "quantityInKg": 9,
+          "pricePerKg": 5.2,
+          "totalPrice": 46.8
+        },
+        {
+          "item": "Barley",
+          "quantityInKg": 8,
+          "pricePerKg": 3.7,
+          "totalPrice": 29.6
+        },
+        {
+          "item": "Oats",
+          "quantityInKg": 15,
+          "pricePerKg": 3.5,
+          "totalPrice": 52.5
+        },
+        {
+          "item": "Sorghum",
+          "quantityInKg": 5,
+          "pricePerKg": 4,
+          "totalPrice": 20
+        }
+      ],
+      "price": 12000,
+      "date": "2024-10-02",
+      "status": "Pending"
+    },
+    {
+      "orderId": 2002,
+      "orderDetails": [
+        {
+          "item": "Rice",
+          "quantityInKg": 10,
+          "pricePerKg": 4.5,
+          "totalPrice": 45
+        },
+        {
+          "item": "Wheat",
+          "quantityInKg": 7,
+          "pricePerKg": 3.8,
+          "totalPrice": 26.6
+        },
+        {
+          "item": "Corn",
+          "quantityInKg": 12,
+          "pricePerKg": 2.9,
+          "totalPrice": 34.8
+        },
+        {
+          "item": "Soybeans",
+          "quantityInKg": 9,
+          "pricePerKg": 5.2,
+          "totalPrice": 46.8
+        },
+        {
+          "item": "Barley",
+          "quantityInKg": 8,
+          "pricePerKg": 3.7,
+          "totalPrice": 29.6
+        },
+        {
+          "item": "Oats",
+          "quantityInKg": 15,
+          "pricePerKg": 3.5,
+          "totalPrice": 52.5
+        },
+        {
+          "item": "Sorghum",
+          "quantityInKg": 5,
+          "pricePerKg": 4,
+          "totalPrice": 20
+        }
+      ],
+      "price": 12000,
+      "date": "2024-10-02",
+      "status": "Approved"
+    }
   ]
 }

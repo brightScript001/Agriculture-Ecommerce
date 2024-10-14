@@ -5,6 +5,7 @@ import Button from "../../../../shared/ui/Button";
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-top: 2rem;
   @media (max-width: 768px) {
     flex-direction: column;
   }

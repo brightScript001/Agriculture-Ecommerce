@@ -89,7 +89,7 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({ product }) => {
         quantity,
       })
     );
-    toast("✅Item added to cart");
+    toast("Item added to cart");
   };
 
   return (

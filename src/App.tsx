@@ -47,6 +47,8 @@ import { BuyerAppLayout } from "./modules/buyer/ui/AppLayout";
 import BuyerDashboard from "./modules/buyer/pages/BuyerDashboard";
 import { ProductDetail } from "./modules/buyer/pages/ProductDetail";
 import { Cart } from "./modules/buyer/pages/Cart";
+import { OrderHistory } from "./modules/buyer/pages/OrderHistory";
+import { OrderHistoryDetails } from "./modules/buyer/pages/OrderHistoryDetail";
 
 function App() {
   const isDarkMode = useSelector(
@@ -141,6 +143,11 @@ function App() {
               <Route path="dashboard" element={<BuyerDashboard />} />
               <Route path="product/:id" element={<ProductDetail />} />
               <Route path="cart" element={<Cart />} />
+              <Route path="order-history" element={<OrderHistory />} />
+              <Route
+                path="order-history/:orderId"
+                element={<OrderHistoryDetails />}
+              />
             </Route>
           </Route>
 

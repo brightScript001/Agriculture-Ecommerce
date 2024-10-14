@@ -8,7 +8,7 @@ const Card = styled.div`
   border: none;
   border-radius: var(--border-radius-md);
   margin: 1.5rem 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
   cursor: pointer;
