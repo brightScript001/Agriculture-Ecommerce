@@ -16,13 +16,14 @@ const modalStyle = {
   transform: "translate(-50%, -50%)",
   width: {
     xs: "90%",
-    sm: "80%",
-    md: "50%",
   },
   maxWidth: "90%",
   bgcolor: "var(--color-grey-50)",
   border: "1px solid var(--color-grey-200)",
   borderRadius: "var(--border-radius-md)",
+  padding: "2rem",
+  maxHeight: "80vh",
+  overflowY: "auto",
 };
 
 const ModalComponent: React.FC<ModalComponentProps> = ({
@@ -39,15 +40,17 @@ const ModalComponent: React.FC<ModalComponentProps> = ({
       aria-labelledby="modal-title"
       aria-describedby="modal-description"
     >
-      <Box sx={modalStyle} ref={ref}>
-        <IconButton
-          sx={{ position: "absolute", top: 8, right: 8 }}
-          onClick={onClose}
-        >
-          <CloseIcon />
-        </IconButton>
-        {children}
-      </Box>
+      <div ref={ref}>
+        <Box sx={modalStyle}>
+          <IconButton
+            sx={{ position: "absolute", top: 8, right: 8 }}
+            onClick={onClose}
+          >
+            <CloseIcon />
+          </IconButton>
+          {children}
+        </Box>
+      </div>
     </Modal>
   );
 };

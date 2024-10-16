@@ -27,13 +27,10 @@ const NotificationHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--color-grey-200);
+  border-bottom: 2px solid var(--color-grey-200);
 `;
 
-const NotificationList = styled.div`
-  max-height: 400px;
-  overflow-y: auto;
-`;
+const NotificationList = styled.div``;
 
 const NotificationItem = styled.div<{ isUnread: boolean }>`
   display: flex;
@@ -41,8 +38,7 @@ const NotificationItem = styled.div<{ isUnread: boolean }>`
   padding: 1rem;
   margin-bottom: 0.5rem;
   background: var(--color-white);
-  border-radius: var(--border-radius-sm);
-  box-shadow: var(--shadow-sm);
+  border-bottom: 1px solid var(--color-grey-200);
   position: relative;
 
   &::before {

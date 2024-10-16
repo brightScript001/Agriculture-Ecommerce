@@ -38,9 +38,6 @@ import { EquipmentRecordFormPage } from "./modules/seller/pages/EquipmentRecordF
 import { EquipmentRecordPage } from "./modules/seller/pages/EquipmentRecordPage";
 import { InventoryDashboard } from "./modules/seller/pages/Inventory";
 import { PaymentDashboard } from "./modules/seller/pages/Payment";
-import { Support } from "./modules/seller/pages/Support";
-import { LiveChat } from "./modules/seller/pages/LiveChat";
-import { FAQ } from "./modules/seller/pages/FAQ";
 import { Profile } from "./modules/seller/pages/Profile";
 import { ProtectedRoute } from "./modules/core/components/ProtectedRoute";
 import { BuyerAppLayout } from "./modules/buyer/ui/AppLayout";
@@ -49,10 +46,10 @@ import { ProductDetail } from "./modules/buyer/pages/ProductDetail";
 import { Cart } from "./modules/buyer/pages/Cart";
 import { OrderHistory } from "./modules/buyer/pages/OrderHistory";
 import { OrderHistoryDetails } from "./modules/buyer/pages/OrderHistoryDetail";
-import { BuyerSupport } from "./modules/buyer/pages/Support";
-import { BuyerLiveChat } from "./modules/buyer/pages/LiveChat";
-import { BuyerFAQ } from "./modules/buyer/pages/FAQ";
 import { BuyerProfile } from "./modules/buyer/pages/Profile";
+import { Support } from "./shared/pages/Support";
+import { LiveChat } from "./shared/pages/LiveChat";
+import { FAQ } from "./shared/pages/FAQ";
 
 function App() {
   const isDarkMode = useSelector(
@@ -152,9 +149,9 @@ function App() {
                 path="order-history/:orderId"
                 element={<OrderHistoryDetails />}
               />
-              <Route path="support" element={<BuyerSupport />} />
-              <Route path="live-chat" element={<BuyerLiveChat />} />
-              <Route path="faq" element={<BuyerFAQ />} />
+              <Route path="support" element={<Support />} />
+              <Route path="live-chat" element={<LiveChat />} />
+              <Route path="faq" element={<FAQ />} />
               <Route path="profile" element={<BuyerProfile />} />
             </Route>
           </Route>
