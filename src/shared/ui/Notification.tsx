@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NotificationSection from "./NotificationSection";
+import { NotificationSection } from "./NotificationSection";
 
 const notificationsData = [
   {

@@ -16,6 +16,38 @@ interface NotificationSectionProps {
   markAllAsRead: () => void;
 }
 
+export const NotificationSection: React.FC<NotificationSectionProps> = ({
+  notifications,
+  markAllAsRead,
+}) => {
+  return (
+    <NotificationModal>
+      <NotificationHeader>
+        <Heading as="h2">Notifications</Heading>
+      </NotificationHeader>
+      <NotificationList>
+        {notifications.map((notification) => (
+          <NotificationItem
+            key={notification.id}
+            isUnread={notification.isUnread}
+          >
+            <NotificationText>
+              <NotificationMessage>{notification.message}</NotificationMessage>
+              <NotificationDate>
+                {format(notification.date, "eeee hh:mm a")} <br />
+                {format(notification.date, "dd-MMM-yyyy")}
+              </NotificationDate>
+            </NotificationText>
+          </NotificationItem>
+        ))}
+      </NotificationList>
+      <MarkAsReadButton onClick={markAllAsRead}>
+        Mark all as read
+      </MarkAsReadButton>
+    </NotificationModal>
+  );
+};
+
 const NotificationModal = styled.div`
   padding: 1rem;
   margin: 0 auto;
@@ -72,37 +104,3 @@ const NotificationDate = styled.span`
 const MarkAsReadButton = styled(Button)`
   width: 100%;
 `;
-
-const NotificationSection: React.FC<NotificationSectionProps> = ({
-  notifications,
-  markAllAsRead,
-}) => {
-  return (
-    <NotificationModal>
-      <NotificationHeader>
-        <Heading as="h2">Notifications</Heading>
-      </NotificationHeader>
-      <NotificationList>
-        {notifications.map((notification) => (
-          <NotificationItem
-            key={notification.id}
-            isUnread={notification.isUnread}
-          >
-            <NotificationText>
-              <NotificationMessage>{notification.message}</NotificationMessage>
-              <NotificationDate>
-                {format(notification.date, "eeee hh:mm a")} <br />
-                {format(notification.date, "dd-MMM-yyyy")}
-              </NotificationDate>
-            </NotificationText>
-          </NotificationItem>
-        ))}
-      </NotificationList>
-      <MarkAsReadButton onClick={markAllAsRead}>
-        Mark all as read
-      </MarkAsReadButton>
-    </NotificationModal>
-  );
-};
-
-export default NotificationSection;
