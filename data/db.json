@@ -49,7 +49,8 @@
       ],
       "shippingAddress": "123 Main St, Lagos, Nigeria",
       "dateOfOrder": "2024-08-28",
-      "orderStatus": "settled"
+      "orderStatus": "settled",
+      "id": "dbc0"
     },
     {
       "customerName": "Chinwe Okafor",
@@ -100,7 +101,8 @@
       ],
       "shippingAddress": "456 Victoria Island, Lagos, Nigeria",
       "dateOfOrder": "2024-08-27",
-      "orderStatus": "pending"
+      "orderStatus": "pending",
+      "id": "2c9c"
     },
     {
       "customerName": "Bola Adeyemi",
@@ -145,7 +147,8 @@
       ],
       "shippingAddress": "789 Allen Avenue, Ikeja, Nigeria",
       "dateOfOrder": "2024-08-26",
-      "orderStatus": "pending"
+      "orderStatus": "pending",
+      "id": "3303"
     },
     {
       "customerName": "Ngozi Eze",
@@ -196,7 +199,8 @@
       ],
       "shippingAddress": "15 Aba Road, Port Harcourt, Nigeria",
       "dateOfOrder": "2024-08-25",
-      "orderStatus": "pending"
+      "orderStatus": "pending",
+      "id": "f20f"
     },
     {
       "customerName": "Tunde Bakare",
@@ -247,7 +251,8 @@
       ],
       "shippingAddress": "22 Ikorodu Road, Lagos, Nigeria",
       "dateOfOrder": "2024-08-24",
-      "orderStatus": "pending"
+      "orderStatus": "pending",
+      "id": "b561"
     },
     {
       "customerName": "Funmi Adebayo",
@@ -298,7 +303,8 @@
       ],
       "shippingAddress": "123 Main St, Lagos, Nigeria",
       "dateOfOrder": "2024-08-28",
-      "orderStatus": "pending"
+      "orderStatus": "pending",
+      "id": "ba36"
     },
     {
       "customerName": "Adamu Musa",
@@ -331,7 +337,8 @@
       ],
       "shippingAddress": "45 Gidan Musa St, Kano, Nigeria",
       "dateOfOrder": "2024-08-29",
-      "orderStatus": "pending"
+      "orderStatus": "pending",
+      "id": "a121"
     },
     {
       "customerName": "Chidinma Nwosu",
@@ -364,7 +371,8 @@
       ],
       "shippingAddress": "12 Aba Road, Port Harcourt, Nigeria",
       "dateOfOrder": "2024-08-30",
-      "orderStatus": "pending"
+      "orderStatus": "pending",
+      "id": "e850"
     },
     {
       "customerName": "Gbenga Adeyemi",
@@ -397,7 +405,8 @@
       ],
       "shippingAddress": "234 Ikorodu Rd, Lagos, Nigeria",
       "dateOfOrder": "2024-08-31",
-      "orderStatus": "settled"
+      "orderStatus": "settled",
+      "id": "195d"
     },
     {
       "customerName": "Hauwa Bello",
@@ -424,7 +433,8 @@
       ],
       "shippingAddress": "77 Kaduna St, Abuja, Nigeria",
       "dateOfOrder": "2024-09-01",
-      "orderStatus": "settled"
+      "orderStatus": "settled",
+      "id": "4054"
     },
     {
       "customerName": "Obinna Okeke",
@@ -451,7 +461,8 @@
       ],
       "shippingAddress": "4 Enugu St, Onitsha, Nigeria",
       "dateOfOrder": "2024-09-02",
-      "orderStatus": "pending"
+      "orderStatus": "pending",
+      "id": "7648"
     },
     {
       "customerName": "Fatima Sani",
@@ -478,7 +489,8 @@
       ],
       "shippingAddress": "89 Zaria Rd, Kaduna, Nigeria",
       "dateOfOrder": "2024-09-03",
-      "orderStatus": "settled"
+      "orderStatus": "settled",
+      "id": "1b7e"
     }
   ],
   "fruits": [
@@ -589,7 +601,6 @@
       "numberOfProducts": 50
     }
   ],
-
   "OrderHistory": [
     {
       "orderId": 2001,
@@ -639,7 +650,8 @@
       ],
       "price": 12000,
       "date": "2024-10-02",
-      "status": "Pending"
+      "status": "Pending",
+      "id": "d99d"
     },
     {
       "orderId": 2002,
@@ -689,7 +701,8 @@
       ],
       "price": 12000,
       "date": "2024-10-02",
-      "status": "Approved"
+      "status": "Approved",
+      "id": "3a9c"
     }
   ]
 }

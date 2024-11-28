@@ -5,14 +5,6 @@ import { useEffect, ReactNode } from "react";
 import { useSelector } from "react-redux";
 import { AppState } from "../../../store";
 
-const FullPage = styled.div`
-  height: 100vh;
-  background-color: var(--color-grey-50);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 interface ProtectedRouteProps {
   children: ReactNode;
 }
@@ -44,3 +36,11 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
 
   return null;
 }
+
+const FullPage = styled.div`
+  height: 100vh;
+  background-color: var(--color-grey-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
