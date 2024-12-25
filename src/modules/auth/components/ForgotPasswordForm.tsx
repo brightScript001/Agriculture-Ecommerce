@@ -1,9 +1,9 @@
 import { useState, ChangeEvent, FormEvent } from "react";
+import styled from "styled-components";
 import Form from "../../../shared/ui/Form";
 import Input from "../../../shared/ui/Input";
 import Button from "../../../shared/ui/Button";
 import FormRowVertical from "../../../shared/ui/FormRowVertical";
-import styled from "styled-components";
 
 interface ForgotPasswordFormProps {
   onSendEmail: (email: string) => void;

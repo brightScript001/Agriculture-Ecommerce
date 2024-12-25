@@ -18,7 +18,20 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    "baseUrl": "src",
+    "paths": {
+      "@assets/*": ["shared/assets/*"],
+      "@modules/*": ["shared/modules/*"],
+      "@core/*": ["shared/modules/core/*"],
+      "@auth/*": ["shared/modules/auth/*"],
+      "@buyer/*": ["shared/modules/buyer/*"],
+      "@seller/*": ["shared/modules/seller/*"],
+      "@payment/*": ["shared/modules/payment/*"],
+      "@style/*": ["shared/style/*"],
+      "@shared/*": ["shared/*"]
+    }
   },
   "include": ["src"]
 }

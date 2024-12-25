@@ -2,6 +2,31 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 
+type AccountType = "buyer" | "seller";
+
+function AccountOptions() {
+  const navigate = useNavigate();
+
+  const handleClick = (type: AccountType) => {
+    navigate(`/register/${type}`, { state: { accountType: type } });
+  };
+
+  return (
+    <Container>
+      <Option onClick={() => handleClick("seller")}>
+        Create account as a farmer
+        <FiArrowRight />
+      </Option>
+      <Option onClick={() => handleClick("buyer")}>
+        Create account as a Buyer
+        <FiArrowRight />
+      </Option>
+    </Container>
+  );
+}
+
+export default AccountOptions;
+
 const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -39,28 +64,3 @@ const Option = styled.div`
     margin-bottom: 0;
   }
 `;
-
-type AccountType = "buyer" | "seller";
-
-function AccountOptions() {
-  const navigate = useNavigate();
-
-  const handleClick = (type: AccountType) => {
-    navigate(`/register/${type}`, { state: { accountType: type } });
-  };
-
-  return (
-    <Container>
-      <Option onClick={() => handleClick("seller")}>
-        Create account as a farmer
-        <FiArrowRight />
-      </Option>
-      <Option onClick={() => handleClick("buyer")}>
-        Create account as a Buyer
-        <FiArrowRight />
-      </Option>
-    </Container>
-  );
-}
-
-export default AccountOptions;

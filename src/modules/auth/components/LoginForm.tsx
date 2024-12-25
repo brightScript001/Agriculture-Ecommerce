@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { setRole } from "../../core/states/authSlice";
 import { useNavigate } from "react-router-dom";
+import { useMutation, UseMutationOptions } from "@tanstack/react-query";
 
 interface LoginFormData {
   role: string;
@@ -17,9 +18,26 @@ interface LoginFormData {
   password: string;
 }
 
-const StyledInput = styled(Input)`
-  background-color: var(--color-grey-50);
-`;
+interface LoginResponse {
+  role: string;
+  token: string;
+}
+
+const loginUser = async (data: LoginFormData): Promise<LoginResponse> => {
+  const response = await fetch("http://localhost:5000/api/auth/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    throw new Error("Invalid credentials or server error");
+  }
+
+  return response.json();
+};
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -30,8 +48,29 @@ function LoginForm() {
     formState: { errors },
   } = useForm<LoginFormData>();
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [buttonText, setButtonText] = useState("Log in");
+  const [buttonText, setButtonText] = useState<string>("Log in");
+
+  const mutationOptions: UseMutationOptions<
+    LoginResponse,
+    Error,
+    LoginFormData
+  > = {
+    mutationFn: loginUser,
+    onMutate: () => {
+      setButtonText("Loading...");
+    },
+    onSuccess: (data: LoginResponse) => {
+      console.log("Login successful:", data);
+      dispatch(setRole(data.role));
+      navigate(`/${data.role}/dashboard`);
+    },
+    onError: (error: Error) => {
+      setButtonText("Log in");
+      toast.error(error.message || "Login failed. Please try again.");
+    },
+  };
+
+  const mutation = useMutation(mutationOptions);
 
   const onSubmit: SubmitHandler<LoginFormData> = (data: LoginFormData) => {
     if (!data.email || !data.password) {
@@ -44,18 +83,7 @@ function LoginForm() {
       return;
     }
 
-    dispatch(setRole(data.role));
-    setIsLoading(true);
-    setButtonText("Loading...");
-
-    console.log("Form Submitted:", data);
-
-    setTimeout(() => {
-      setIsLoading(false);
-      setButtonText("Log in");
-
-      navigate(`/${data.role}/dashboard`);
-    }, 1000);
+    mutation.mutate(data);
   };
 
   return (
@@ -67,7 +95,7 @@ function LoginForm() {
           defaultValue=""
           rules={{ required: "Role is required" }}
           render={({ field }) => (
-            <StyledSelect {...field} id="role" disabled={isLoading}>
+            <StyledSelect {...field} id="role" disabled={mutation.isPending}>
               <option value="">Select role</option>
               <option value="buyer">Buyer</option>
               <option value="seller">Seller</option>
@@ -93,7 +121,7 @@ function LoginForm() {
               type="email"
               id="email"
               autoComplete="username"
-              disabled={isLoading}
+              disabled={mutation.isPending}
               {...field}
             />
           )}
@@ -111,7 +139,7 @@ function LoginForm() {
               type="password"
               id="password"
               autoComplete="current-password"
-              disabled={isLoading}
+              disabled={mutation.isPending}
               {...field}
             />
           )}
@@ -119,10 +147,14 @@ function LoginForm() {
       </FormRow>
 
       <FormRow>
-        <Button disabled={isLoading}>{buttonText}</Button>
+        <Button disabled={mutation.isPending}>{buttonText}</Button>
       </FormRow>
     </Form>
   );
 }
 
 export default LoginForm;
+
+const StyledInput = styled(Input)`
+  background-color: var(--color-grey-50);
+`;

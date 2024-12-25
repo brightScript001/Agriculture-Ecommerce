@@ -1,13 +1,12 @@
-import { useForm } from "react-hook-form";
+import React from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import { useNavigate, useLocation } from "react-router-dom";
+import styled from "styled-components";
 import Button from "../../../shared/ui/Button";
 import Form from "../../../shared/ui/Form";
 import FormRow from "../../../shared/ui/FormRow";
 import Input from "../../../shared/ui/Input";
-import { useNavigate } from "react-router-dom";
-import { AppDispatch } from "../../../store";
-import { createUser } from "../../core/states/userSlice";
-import { useDispatch } from "react-redux";
-import styled from "styled-components";
 
 interface FormValues {
   firstName: string;
@@ -17,28 +16,57 @@ interface FormValues {
   confirmPassword: string;
 }
 
-const StyledInput = styled(Input)`
-  background-color: var(--color-grey-50);
-`;
+const createUser = async (data: FormValues & { accountType: string }) => {
+  const response = await fetch("http://localhost:5000/api/auth/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to create account");
+  }
+
+  return response.json();
+};
 
 function SignupForm() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const accountType = location.state?.accountType as "buyer" | "seller";
+  console.log("Received accountType:", accountType);
+
+  // Redirect if `accountType` is missing
+  React.useEffect(() => {
+    if (!accountType) {
+      console.log("Account type is missing, redirecting to homepage...");
+      navigate("/homepage");
+    }
+  }, [accountType, navigate]);
+
   const {
     register,
-    formState: { errors },
-    watch,
     handleSubmit,
+    formState: { errors },
     getValues,
   } = useForm<FormValues>();
-  const navigate = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
 
-  const { firstName, lastName, email, password } = watch();
+  const mutation = useMutation({
+    mutationFn: createUser,
+    onSuccess: () => {
+      navigate("/verify-email");
+    },
+    onError: (error: Error) => {
+      console.error("Error:", error.message);
+    },
+  });
 
-  function onSubmit() {
-    if (!firstName || !lastName || !email || !password) return;
-    dispatch(createUser(firstName, lastName, email, password));
-    navigate("/verify-email");
-  }
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    mutation.mutate({ ...data, accountType });
+  };
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -80,14 +108,14 @@ function SignupForm() {
             required: "This field is required",
             minLength: {
               value: 8,
-              message: "Password needs a minimum of 8 characters",
+              message: "Password must be at least 8 characters long",
             },
           })}
         />
       </FormRow>
 
       <FormRow
-        label="Re-enter password"
+        label="Re-enter Password"
         error={errors.confirmPassword?.message}
       >
         <StyledInput
@@ -96,14 +124,22 @@ function SignupForm() {
           {...register("confirmPassword", {
             required: "This field is required",
             validate: (value) =>
-              value === getValues("password") || "Passwords need to match",
+              value === getValues("password") || "Passwords do not match",
           })}
         />
       </FormRow>
 
-      <Button type="submit">Create Account</Button>
+      <Button type="submit" disabled={mutation.status === "pending"}>
+        {mutation.status === "pending"
+          ? "Creating Account..."
+          : "Create Account"}
+      </Button>
     </Form>
   );
 }
 
 export default SignupForm;
+
+const StyledInput = styled(Input)`
+  background-color: var(--color-grey-50);
+`;

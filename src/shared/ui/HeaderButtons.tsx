@@ -19,7 +19,11 @@ const HeaderButtons: React.FC = () => {
       >
         Login
       </Button>
-      <Button size="medium" variation="primary" onClick={handleClick("/")}>
+      <Button
+        size="medium"
+        variation="primary"
+        onClick={handleClick("/homepage")}
+      >
         Get Started
       </Button>
     </Buttons>
