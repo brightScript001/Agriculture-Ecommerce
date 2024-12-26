@@ -1,12 +1,12 @@
-import React from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../../../shared/ui/Button";
 import Form from "../../../shared/ui/Form";
 import FormRow from "../../../shared/ui/FormRow";
 import Input from "../../../shared/ui/Input";
+import StyledSelect from "../../seller/ui/StyledSelect";
 
 interface FormValues {
   firstName: string;
@@ -14,9 +14,10 @@ interface FormValues {
   email: string;
   password: string;
   confirmPassword: string;
+  role: string;
 }
 
-const createUser = async (data: FormValues & { accountType: string }) => {
+const createUser = async (data: FormValues) => {
   const response = await fetch("http://localhost:5000/api/auth/signup", {
     method: "POST",
     headers: {
@@ -34,22 +35,11 @@ const createUser = async (data: FormValues & { accountType: string }) => {
 
 function SignupForm() {
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const accountType = location.state?.accountType as "buyer" | "seller";
-  console.log("Received accountType:", accountType);
-
-  // Redirect if `accountType` is missing
-  React.useEffect(() => {
-    if (!accountType) {
-      console.log("Account type is missing, redirecting to homepage...");
-      navigate("/homepage");
-    }
-  }, [accountType, navigate]);
 
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
     getValues,
   } = useForm<FormValues>();
@@ -65,11 +55,27 @@ function SignupForm() {
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    mutation.mutate({ ...data, accountType });
+    console.log("Role Selected:", data.role); // Debugging role
+    mutation.mutate(data);
   };
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      <FormRow label="Role" error={errors.role?.message}>
+        <Controller
+          name="role"
+          control={control}
+          defaultValue=""
+          rules={{ required: "Role is required" }}
+          render={({ field }) => (
+            <StyledSelect {...field} id="role" disabled={mutation.isPending}>
+              <option value="">Select role</option>
+              <option value="buyer">Buyer</option>
+              <option value="seller">Seller</option>
+            </StyledSelect>
+          )}
+        />
+      </FormRow>
       <FormRow label="First Name" error={errors.firstName?.message}>
         <StyledInput
           type="text"
@@ -129,10 +135,8 @@ function SignupForm() {
         />
       </FormRow>
 
-      <Button type="submit" disabled={mutation.status === "pending"}>
-        {mutation.status === "pending"
-          ? "Creating Account..."
-          : "Create Account"}
+      <Button type="submit" disabled={mutation.isPending}>
+        {mutation.isPending ? "Creating Account..." : "Create Account"}
       </Button>
     </Form>
   );
