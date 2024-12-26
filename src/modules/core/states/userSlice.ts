@@ -5,7 +5,6 @@ interface UserState {
   lastName: string;
   email: string;
   password: string;
-  confirmPassword: string;
   createdAt: string;
 }
 
@@ -14,7 +13,6 @@ const initialState: UserState = {
   lastName: "",
   email: "",
   password: "",
-  confirmPassword: "",
   createdAt: "",
 };
 
@@ -22,41 +20,26 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    createUser: {
-      prepare: (
-        firstName: string,
-        lastName: string,
-        email: string,
-        password: string
-      ) => {
-        return {
-          payload: {
-            firstName,
-            lastName,
-            email,
-            password,
-            createdAt: new Date().toISOString(),
-          },
-        };
-      },
-      reducer(
-        state: UserState,
-        action: PayloadAction<{
-          firstName: string;
-          lastName: string;
-          email: string;
-          password: string;
-          createdAt: string;
-        }>
-      ) {
-        state.firstName = action.payload.firstName;
-        state.lastName = action.payload.lastName;
-        state.email = action.payload.email;
-        state.password = action.payload.password;
-        state.createdAt = action.payload.createdAt;
-      },
+    createUser: (
+      state,
+      action: PayloadAction<{
+        firstName: string;
+        lastName: string;
+        email: string;
+        password: string;
+      }>
+    ) => {
+      const { firstName, lastName, email, password } = action.payload;
+
+      // Update state fields
+      state.firstName = firstName;
+      state.lastName = lastName;
+      state.email = email;
+      state.password = password;
+      state.createdAt = new Date().toISOString();
     },
   },
 });
+
 export const { createUser } = userSlice.actions;
 export default userSlice.reducer;

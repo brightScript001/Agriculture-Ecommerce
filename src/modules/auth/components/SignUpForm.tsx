@@ -7,6 +7,9 @@ import Form from "../../../shared/ui/Form";
 import FormRow from "../../../shared/ui/FormRow";
 import Input from "../../../shared/ui/Input";
 import StyledSelect from "../../seller/ui/StyledSelect";
+import { useDispatch } from "react-redux";
+import { createUser } from "../../core/states/userSlice";
+import SpinnerMini from "../../../shared/ui/SpinnerMini";
 
 interface FormValues {
   firstName: string;
@@ -17,7 +20,7 @@ interface FormValues {
   role: string;
 }
 
-const createUser = async (data: FormValues) => {
+const createUserRequest = async (data: FormValues) => {
   const response = await fetch("http://localhost:5000/api/auth/signup", {
     method: "POST",
     headers: {
@@ -35,6 +38,7 @@ const createUser = async (data: FormValues) => {
 
 function SignupForm() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -45,7 +49,7 @@ function SignupForm() {
   } = useForm<FormValues>();
 
   const mutation = useMutation({
-    mutationFn: createUser,
+    mutationFn: createUserRequest,
     onSuccess: () => {
       navigate("/verify-email");
     },
@@ -55,7 +59,11 @@ function SignupForm() {
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log("Role Selected:", data.role); // Debugging role
+    // Dispatch to Redux store
+    const { firstName, lastName, email, password } = data;
+    dispatch(createUser({ firstName, lastName, email, password }));
+
+    // Make API call
     mutation.mutate(data);
   };
 
@@ -76,6 +84,7 @@ function SignupForm() {
           )}
         />
       </FormRow>
+
       <FormRow label="First Name" error={errors.firstName?.message}>
         <StyledInput
           type="text"
@@ -137,6 +146,7 @@ function SignupForm() {
 
       <Button type="submit" disabled={mutation.isPending}>
         {mutation.isPending ? "Creating Account..." : "Create Account"}
+        {mutation.isPending && <SpinnerMini />}
       </Button>
     </Form>
   );

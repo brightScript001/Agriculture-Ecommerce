@@ -24,6 +24,7 @@ export function VerifyEmailContent({
   onRequestVerification,
 }: VerifyEmailContentProps) {
   const user = useSelector((store: AppState) => store.user.firstName);
+
   return (
     <Container>
       <Title>Verify Your Email</Title>
