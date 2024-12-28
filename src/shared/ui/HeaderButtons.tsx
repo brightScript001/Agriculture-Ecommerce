@@ -22,7 +22,7 @@ const HeaderButtons: React.FC = () => {
       <Button
         size="medium"
         variation="primary"
-        onClick={handleClick("/homepage")}
+        onClick={handleClick("/register")}
       >
         Get Started
       </Button>

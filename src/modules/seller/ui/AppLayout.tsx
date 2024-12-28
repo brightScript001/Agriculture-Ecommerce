@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
-import HamburgerMenu from "../../../shared/components/Navigation/HamburgerMenu";
+import { HamburgerMenu } from "../../../shared/components/Navigation/HamburgerMenu";
 import { PageHeader } from "../../../shared/ui/PageHeader";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";

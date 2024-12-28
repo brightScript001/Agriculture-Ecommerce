@@ -4,17 +4,23 @@ import Form from "../../../shared/ui/Form";
 import Input from "../../../shared/ui/Input";
 import FormRow from "../../../shared/ui/FormRow";
 import { Title, Subtitle } from "../../../shared/ui/Title";
+import { toast } from "react-hot-toast";
+import axios, { AxiosError } from "axios";
+import { useNavigate, useParams } from "react-router-dom";
 
 interface ResetFormData {
   password: string;
   confirmPassword: string;
 }
 
-interface ResetFormProps {
-  onSuccess: () => void;
+interface ApiResponse {
+  message: string;
 }
 
-function ResetForm({ onSuccess }: ResetFormProps) {
+const ResetForm = () => {
+  const { token } = useParams<{ token: string }>(); // Get reset token from URL
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -23,14 +29,20 @@ function ResetForm({ onSuccess }: ResetFormProps) {
   } = useForm<ResetFormData>();
   const password = watch("password");
 
-  // Define the onSubmit handler with type
   const onSubmit: SubmitHandler<ResetFormData> = async (data) => {
     try {
-      // Call API to reset password
-      console.log("Password reset successfully", data);
-      onSuccess();
-    } catch (error) {
-      console.error("Error resetting password:", error);
+      const response = await axios.post(
+        `http://localhost:5000/api/auth/reset-password/${token}`,
+        { password: data.password }
+      );
+      toast.success(response.data.message || "Password reset successful!");
+      navigate("/password-reset-successful");
+    } catch (error: unknown) {
+      const axiosError = error as AxiosError<ApiResponse>;
+      toast.error(
+        axiosError.response?.data?.message ||
+          "Failed to reset password. Try again."
+      );
     }
   };
 
@@ -38,7 +50,7 @@ function ResetForm({ onSuccess }: ResetFormProps) {
     <div>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FormRow>
-          <Title>Reset password</Title>
+          <Title>Reset Password</Title>
           <Subtitle>
             Create a strong password to keep your account secure.
           </Subtitle>
@@ -52,10 +64,6 @@ function ResetForm({ onSuccess }: ResetFormProps) {
               minLength: {
                 value: 8,
                 message: "Password must be at least 8 characters",
-              },
-              maxLength: {
-                value: 20,
-                message: "Password cannot exceed 20 characters",
               },
               pattern: {
                 value: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/,
@@ -87,6 +95,6 @@ function ResetForm({ onSuccess }: ResetFormProps) {
       </Form>
     </div>
   );
-}
+};
 
 export default ResetForm;

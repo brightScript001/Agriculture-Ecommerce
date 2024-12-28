@@ -1,69 +1,54 @@
-import styled from "styled-components";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { AppState } from "../../../store";
+import axios, { AxiosError } from "axios";
 import Button from "../../../shared/ui/Button";
-import { useState } from "react";
-import SpinnerMini from "../../../shared/ui/SpinnerMini";
-import { Subtitle, Title } from "../../../shared/ui/Title";
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  max-width: 37.5rem;
-  margin: 0 auto;
-
-  @media (max-width: 768px) {
-    margin: 1rem;
-  }
-`;
-
-const StyledTitle = styled(Title)`
-  @media (max-width: 768px) {
-    margin: 0 auto;
-  }
-`;
-
-const StyledButton = styled(Button)`
-  align-self: flex-start;
-`;
+interface ApiResponse {
+  message: string;
+}
 
 const EmailSent: React.FC = () => {
-  const [isSending, setIsSending] = useState<boolean>(false);
+  const [isSending, setIsSending] = useState(false);
+  const [message, setMessage] = useState<string>("");
+  const email = useSelector((state: AppState) => state.user.email);
 
-  const handleResendLinkClick = (): void => {
+  const handleResendLinkClick = async (): Promise<void> => {
+    if (!email) {
+      setMessage("No email found. Please log in again.");
+      return;
+    }
+
     setIsSending(true);
-    console.log("Resend password reset link");
-    // Call API logic here
-    setIsSending(false);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/users/resend-link",
+        { email }
+      );
+
+      // Display success message from backend response
+      setMessage(response.data.message);
+    } catch (error: unknown) {
+      // Handle error responses (e.g., email not found, server error)
+      const axiosError = error as AxiosError<ApiResponse>;
+      setMessage(
+        axiosError.response?.data?.message ||
+          "Failed to resend the password reset link."
+      );
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
-    <Container>
-      <StyledTitle>We sent you an email</StyledTitle>
-      <Subtitle>
-        We've sent a secure link to your email address. Just click the link in
-        the email to create a new, strong password.
-      </Subtitle>
-      <Subtitle>
-        Didn't see the email?
-        <br />
-        No worries, it happens! Check your Spam or refresh your email account.
-        If that doesn’t work, click the button below to request a new
-        verification link, and we will send it again.
-      </Subtitle>
+    <div className="email-sent-container">
+      {message && <p>{message}</p>}
 
-      {isSending ? (
-        <SpinnerMini />
-      ) : (
-        <StyledButton
-          size="large"
-          onClick={handleResendLinkClick}
-          aria-label="Resend password reset link"
-          disabled={isSending}
-        >
-          Resend link
-        </StyledButton>
-      )}
-    </Container>
+      <Button onClick={handleResendLinkClick} disabled={isSending}>
+        {isSending ? "Sending..." : "Resend Password Reset Link"}
+      </Button>
+    </div>
   );
 };
 

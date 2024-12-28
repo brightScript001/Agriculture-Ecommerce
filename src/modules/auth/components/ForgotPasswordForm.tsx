@@ -4,26 +4,39 @@ import Form from "../../../shared/ui/Form";
 import Input from "../../../shared/ui/Input";
 import Button from "../../../shared/ui/Button";
 import FormRowVertical from "../../../shared/ui/FormRowVertical";
+import { toast } from "react-hot-toast";
+import axios, { AxiosError } from "axios";
+import { useNavigate } from "react-router-dom";
 
-interface ForgotPasswordFormProps {
-  onSendEmail: (email: string) => void;
+interface ApiResponse {
+  message: string;
 }
 
-const StyledInput = styled(Input)`
-  background-color: var(--color-grey-50);
-`;
-
-const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
-  onSendEmail,
-}) => {
+const ForgotPasswordForm = () => {
   const [email, setEmail] = useState<string>("");
+  const navigate = useNavigate();
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) =>
     setEmail(e.target.value);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSendEmail(email);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/forgot-password",
+        { email }
+      );
+      toast.success(response.data.message || "Password reset link sent!");
+      setEmail(""); // Clear input after success
+      navigate("/reset-link-sent");
+    } catch (error: unknown) {
+      const axiosError = error as AxiosError<ApiResponse>;
+      toast.error(
+        axiosError.response?.data?.message ||
+          "Failed to send reset link. Try again."
+      );
+    }
   };
 
   return (
@@ -45,3 +58,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
 };
 
 export default ForgotPasswordForm;
+
+const StyledInput = styled(Input)`
+  background-color: var(--color-grey-50);
+`;

@@ -145,8 +145,7 @@ function SignupForm() {
       </FormRow>
 
       <Button type="submit" disabled={mutation.isPending}>
-        {mutation.isPending ? "Creating Account..." : "Create Account"}
-        {mutation.isPending && <SpinnerMini />}
+        {mutation.isPending ? <SpinnerMini /> : "Create Account"}
       </Button>
     </Form>
   );

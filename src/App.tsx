@@ -50,6 +50,8 @@ import { BuyerProfile } from "./modules/buyer/pages/Profile";
 import { Support } from "./shared/pages/Support";
 import { LiveChat } from "./shared/pages/LiveChat";
 import { FAQ } from "./shared/pages/FAQ";
+import ResetSuccess from "./modules/auth/components/ResetPasswordSuccess";
+import EmailSent from "./modules/auth/components/EmailSent";
 
 function App() {
   const isDarkMode = useSelector(
@@ -157,10 +159,13 @@ function App() {
           </Route>
 
           <Route path="/register/seller" element={<RegisterBuyer />} />
+          <Route path="/register" element={<RegisterBuyer />} />
           <Route path="/register/buyer" element={<RegisterSeller />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-link-sent" element={<EmailSent />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/reset-password" element={<PasswordReset />} />
+          <Route path="/reset-password/:token" element={<PasswordReset />} />
+          <Route path="/password-reset-successful" element={<ResetSuccess />} />
           <Route path="/verify-email" element={<VerifyEmail />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/" element={<Login />} />

@@ -8,19 +8,6 @@ import StyledImage from "../../seller/ui/StyledImage";
 import FormContainer from "../../../shared/ui/FormContainer";
 import { Title, Subtitle } from "../../../shared/ui/Title";
 
-const StyledLink = styled(Link)`
-  color: var(--color-green-800);
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-// const Wrapper = styled.div`
-//   margin-left: 1.875rem;
-// `;
-
 const Login: React.FC = () => {
   return (
     <Container>
@@ -46,3 +33,16 @@ const Login: React.FC = () => {
 };
 
 export default Login;
+
+const StyledLink = styled(Link)`
+  color: var(--color-green-800);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+// const Wrapper = styled.div`
+//   margin-left: 1.875rem;
+// `;
