@@ -1,6 +1,6 @@
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // Already imported
 import styled from "styled-components";
 import Button from "../../../shared/ui/Button";
 import Form from "../../../shared/ui/Form";
@@ -37,7 +37,7 @@ const createUserRequest = async (data: FormValues) => {
 };
 
 function SignupForm() {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Using useNavigate
   const dispatch = useDispatch();
 
   const {
@@ -51,7 +51,7 @@ function SignupForm() {
   const mutation = useMutation({
     mutationFn: createUserRequest,
     onSuccess: () => {
-      navigate("/verify-email");
+      navigate("/verify-email"); // Replaced history.push with navigate
     },
     onError: (error: Error) => {
       console.error("Error:", error.message);

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
-import { AppState } from "../../../store";
 import axios, { AxiosError } from "axios";
-import Button from "../../../shared/ui/Button";
+import Button from "@shared/ui/Button";
+import { AppState } from "store";
 
 interface ApiResponse {
   message: string;
