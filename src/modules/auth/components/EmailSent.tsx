@@ -27,7 +27,6 @@ const EmailSent: React.FC = () => {
         { email }
       );
 
-      // Display success message from backend response
       setMessage(response.data.message);
     } catch (error: unknown) {
       // Handle error responses (e.g., email not found, server error)

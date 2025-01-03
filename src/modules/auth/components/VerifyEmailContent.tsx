@@ -1,24 +1,12 @@
 import styled from "styled-components";
-import Button from "../../../shared/ui/Button";
-import { Subtitle, Title } from "../../../shared/ui/Title";
 import { useSelector } from "react-redux";
-import { AppState } from "../../../store";
+import Button from "@shared/ui/Button";
+import { Subtitle, Title } from "@shared/ui/Title";
+import { AppState } from "store";
 
 interface VerifyEmailContentProps {
   onRequestVerification: () => void;
 }
-
-const Container = styled.div`
-  max-width: 37.5rem;
-  margin-left: 1.875rem;
-  @media (max-width: 768px) {
-    margin-left: 0;
-  }
-`;
-
-const Span = styled.span`
-  font-weight: 600;
-`;
 
 export function VerifyEmailContent({
   onRequestVerification,
@@ -47,3 +35,15 @@ export function VerifyEmailContent({
     </Container>
   );
 }
+
+const Container = styled.div`
+  max-width: 37.5rem;
+  margin-left: 1.875rem;
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
+`;
+
+const Span = styled.span`
+  font-weight: 600;
+`;

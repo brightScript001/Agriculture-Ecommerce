@@ -37,7 +37,7 @@ const createUserRequest = async (data: FormValues) => {
 };
 
 function SignupForm() {
-  const navigate = useNavigate(); // Using useNavigate
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const {
@@ -51,7 +51,7 @@ function SignupForm() {
   const mutation = useMutation({
     mutationFn: createUserRequest,
     onSuccess: () => {
-      navigate("/verify-email"); // Replaced history.push with navigate
+      navigate("/verify-email");
     },
     onError: (error: Error) => {
       console.error("Error:", error.message);
@@ -59,7 +59,6 @@ function SignupForm() {
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    // Dispatch to Redux store
     const { firstName, lastName, email, password } = data;
     dispatch(createUser({ firstName, lastName, email, password }));
 

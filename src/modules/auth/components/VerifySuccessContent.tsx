@@ -1,17 +1,12 @@
 import { useEffect, useState } from "react";
-import Button from "../../../shared/ui/Button";
-import { Subtitle, Title } from "../../../shared/ui/Title";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { AppState } from "../../../store";
+import { Subtitle, Title } from "@shared/ui/Title";
+import Button from "@shared/ui/Button";
+import { AppState } from "store";
 interface VerificationSuccessContentProps {
   onLoginRedirect: () => void;
 }
-
-const Container = styled.div`
-  max-width: 37.5rem;
-  margin-left: 1.875rem;
-`;
 
 export function VerificationSuccessContent({
   onLoginRedirect,
@@ -54,3 +49,8 @@ export function VerificationSuccessContent({
     </Container>
   );
 }
+
+const Container = styled.div`
+  max-width: 37.5rem;
+  margin-left: 1.875rem;
+`;
