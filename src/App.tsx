@@ -12,7 +12,7 @@ import {
 import GlobalStyles from "./styles/globalStyles";
 import PageNotFound from "./shared/components/PageNotFound";
 import { AppState } from "./store";
-// import DarkModeToggle from "./ui/DarkModeToggle";
+// import DarkModeToggle from "./ui/DarkModeToggl";
 import RegisterSeller from "./modules/auth/pages/SignUp";
 import RegisterBuyer from "./modules/auth/pages/SignUp";
 import ForgotPassword from "./modules/auth/pages/ForgotPassword";
