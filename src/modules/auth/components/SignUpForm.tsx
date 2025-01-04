@@ -1,15 +1,15 @@
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom"; // Already imported
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Button from "../../../shared/ui/Button";
-import Form from "../../../shared/ui/Form";
-import FormRow from "../../../shared/ui/FormRow";
-import Input from "../../../shared/ui/Input";
+import Button from "@shared/ui/Button";
+import Form from "@shared/ui/Form";
+import FormRow from "@shared/ui/FormRow";
+import Input from "@shared/ui/Input";
 import StyledSelect from "../../seller/ui/StyledSelect";
 import { useDispatch } from "react-redux";
-import { createUser } from "../../core/states/userSlice";
-import SpinnerMini from "../../../shared/ui/SpinnerMini";
+import { createUser } from "@core/states/userSlice";
+import SpinnerMini from "@shared/ui/SpinnerMini";
 
 interface FormValues {
   firstName: string;

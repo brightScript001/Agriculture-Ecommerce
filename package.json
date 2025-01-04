@@ -35,7 +35,9 @@
     "react-redux": "^9.1.2",
     "react-responsive": "^10.0.0",
     "react-router-dom": "^6.26.0",
-    "styled-components": "^6.1.12"
+    "styled-components": "^6.1.12",
+    "@react-buddy/ide-toolbox": "^2.4.0",
+    "@react-buddy/palette-mui": "^5.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

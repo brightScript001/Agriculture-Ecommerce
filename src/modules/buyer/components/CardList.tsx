@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { CardProps } from "../../seller/ui/TextCard";
+import { CardProps } from "@seller/ui/TextCard";
 
 export const useCardList = () => {
   const navigate = useNavigate();

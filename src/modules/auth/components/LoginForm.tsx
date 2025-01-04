@@ -8,7 +8,7 @@ import StyledSelect from "../../seller/ui/StyledSelect";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
-import { setRole } from "../../core/states/authSlice";
+import { setRole } from "@core/states/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useMutation, UseMutationOptions } from "@tanstack/react-query";
 
@@ -24,7 +24,7 @@ interface LoginResponse {
 }
 
 const loginUser = async (data: LoginFormData): Promise<LoginResponse> => {
-  const response = await fetch("http://localhost:5000/api/auth/login", {
+  const response  = await fetch("http://localhost:5000/api/auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
