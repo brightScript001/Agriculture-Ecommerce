@@ -3,6 +3,7 @@ import darkModeReducer from "./modules/core/states/ThemeSlice";
 import userSlice from "./modules/core/states/userSlice";
 import authSlice from "./modules/core/states/authSlice";
 import cartSlice from "./modules/buyer/states/cartSlice";
+import emailVerificationSlice from "@core/states/emailVerificationSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     user: userSlice,
     auth: authSlice,
     cart: cartSlice,
+    emailVerification: emailVerificationSlice,
   },
 });
 

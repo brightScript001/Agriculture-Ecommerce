@@ -12,13 +12,12 @@ import {
 import GlobalStyles from "./styles/globalStyles";
 import PageNotFound from "./shared/components/PageNotFound";
 import { AppState } from "./store";
-// import DarkModeToggle from "./ui/DarkModeToggl";
+// import DarkModeToggle from "./ui/DarkModeToggle";
 import RegisterSeller from "./modules/auth/pages/SignUp";
 import RegisterBuyer from "./modules/auth/pages/SignUp";
 import ForgotPassword from "./modules/auth/pages/ForgotPassword";
 import Login from "./modules/auth/pages/Login";
 import PasswordReset from "./modules/auth/pages/PasswordReset";
-import VerifyEmail from "./modules/auth/pages/VerifyEmail";
 import HomePage from "./shared/components/Home";
 
 import { SellerAppLayout } from "@seller/ui/AppLayout";
@@ -52,6 +51,8 @@ import { LiveChat } from "@shared/pages/LiveChat";
 import { FAQ } from "@shared/pages/FAQ";
 import ResetSuccess from "./modules/auth/components/ResetPasswordSuccess";
 import EmailSent from "./modules/auth/components/EmailSent";
+import VerifyEmailContent from "@auth/components/VerifyEmailContent";
+import VerifySuccessContent from "@auth/components/VerifySuccessContent";
 
 function App() {
   const isDarkMode = useSelector(
@@ -166,7 +167,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/reset-password/:token" element={<PasswordReset />} />
           <Route path="/password-reset-successful" element={<ResetSuccess />} />
-          <Route path="/verify-email" element={<VerifyEmail />} />
+          <Route path ="/confirm-email" element={<VerifyEmailContent/>} />
+          <Route path="/confirm-email/:token" element={<VerifySuccessContent/>} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/" element={<Login />} />
           <Route path="/homepage" element={<HomePage />} />
