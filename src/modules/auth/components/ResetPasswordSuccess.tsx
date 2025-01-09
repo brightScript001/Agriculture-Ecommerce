@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Row from "../../../shared/ui/Row";
 import Button from "../../../shared/ui/Button";
-import { Title, Subtitle } from "../../../shared/ui/Title";
+import { Title, Subtitle } from "@shared/ui/Title";
 
 function ResetSuccess() {
   const [counter, setCounter] = useState<number>(30);

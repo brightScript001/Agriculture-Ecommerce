@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { AppDispatch } from "../../../store";
+import toast from "react-hot-toast";
 
 interface EmailVerificationState {
     error: string | null;
@@ -46,12 +47,11 @@ export const {
     resetVerificationState,
 } = emailVerificationSlice.actions;
 
-// Request verification email
 export const requestVerification = () => async (dispatch: AppDispatch) => {
     try {
         await axios.post("/api/auth/resend-verification-email");
         dispatch(setVerificationRequested());
-        alert("A new verification email has been sent to your inbox.");
+       toast("A new verification email has been sent to your inbox.");
     } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
             dispatch(setError(error.response?.data?.message || "Failed to resend verification email."));

@@ -10,6 +10,7 @@ import StyledSelect from "../../seller/ui/StyledSelect";
 import { useDispatch } from "react-redux";
 import { createUser } from "@core/states/userSlice";
 import SpinnerMini from "@shared/ui/SpinnerMini";
+import toast from "react-hot-toast";
 
 interface FormValues {
   firstName: string;
@@ -51,7 +52,8 @@ function SignupForm() {
   const mutation = useMutation({
     mutationFn: createUserRequest,
     onSuccess: () => {
-      navigate("/verify-email");
+        toast("confirmation email sent")
+      navigate("/confirm-email");
     },
     onError: (error: Error) => {
       console.error("Error:", error.message);

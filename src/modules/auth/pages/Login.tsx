@@ -6,7 +6,7 @@ import Container from "../../../shared/ui/Container";
 import ImageContainer from "../../seller/ui/ImageContainer";
 import StyledImage from "../../seller/ui/StyledImage";
 import FormContainer from "../../../shared/ui/FormContainer";
-import { Title, Subtitle } from "../../../shared/ui/Title";
+import { Title, Subtitle } from "@shared/ui/Title";
 
 const Login: React.FC = () => {
   return (

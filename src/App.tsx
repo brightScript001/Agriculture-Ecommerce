@@ -51,8 +51,8 @@ import { LiveChat } from "@shared/pages/LiveChat";
 import { FAQ } from "@shared/pages/FAQ";
 import ResetSuccess from "./modules/auth/components/ResetPasswordSuccess";
 import EmailSent from "./modules/auth/components/EmailSent";
-import VerifyEmailContent from "@auth/components/VerifyEmailContent";
-import VerifySuccessContent from "@auth/components/VerifySuccessContent";
+import VerifyEmailContent from "@auth/pages/VerifyEmailContent";
+import VerifySuccessContent from "@auth/pages/VerifySuccessContent";
 
 function App() {
   const isDarkMode = useSelector(
