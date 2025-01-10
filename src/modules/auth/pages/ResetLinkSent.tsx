@@ -8,7 +8,7 @@ interface ApiResponse {
   message: string;
 }
 
-const EmailSent: React.FC = () => {
+export const ResetLinkSent: React.FC = () => {
   const [isSending, setIsSending] = useState(false);
   const [message, setMessage] = useState<string>("");
   const email = useSelector((state: AppState) => state.user.email);
@@ -50,5 +50,3 @@ const EmailSent: React.FC = () => {
     </div>
   );
 };
-
-export default EmailSent;

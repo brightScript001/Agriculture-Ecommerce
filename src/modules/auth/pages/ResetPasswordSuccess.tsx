@@ -4,7 +4,7 @@ import Row from "../../../shared/ui/Row";
 import Button from "../../../shared/ui/Button";
 import { Title, Subtitle } from "@shared/ui/Title";
 
-function ResetSuccess() {
+export function ResetPasswordSuccess() {
   const [counter, setCounter] = useState<number>(30);
   const navigate = useNavigate();
 
@@ -41,5 +41,3 @@ function ResetSuccess() {
     </Row>
   );
 }
-
-export default ResetSuccess;

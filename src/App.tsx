@@ -17,7 +17,6 @@ import RegisterSeller from "./modules/auth/pages/SignUp";
 import RegisterBuyer from "./modules/auth/pages/SignUp";
 import ForgotPassword from "./modules/auth/pages/ForgotPassword";
 import Login from "./modules/auth/pages/Login";
-import PasswordReset from "./modules/auth/pages/PasswordReset";
 import HomePage from "./shared/components/Home";
 
 import { SellerAppLayout } from "@seller/ui/AppLayout";
@@ -49,10 +48,11 @@ import { BuyerProfile } from "@buyer/pages/Profile";
 import { Support } from "@shared/pages/Support";
 import { LiveChat } from "@shared/pages/LiveChat";
 import { FAQ } from "@shared/pages/FAQ";
-import ResetSuccess from "./modules/auth/components/ResetPasswordSuccess";
-import EmailSent from "./modules/auth/components/EmailSent";
 import VerifyEmailContent from "@auth/pages/VerifyEmailContent";
 import VerifySuccessContent from "@auth/pages/VerifySuccessContent";
+import { ResetLinkSent } from "@modules/auth/pages/ResetLinkSent";
+import { ResetPasswordForm } from "@modules/auth/pages/ResetPasswordForm";
+import { ResetPasswordSuccess } from "@modules/auth/pages/ResetPasswordSuccess";
 
 function App() {
   const isDarkMode = useSelector(
@@ -163,12 +163,21 @@ function App() {
           <Route path="/register" element={<RegisterBuyer />} />
           <Route path="/register/buyer" element={<RegisterSeller />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-link-sent" element={<EmailSent />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/reset-password/:token" element={<PasswordReset />} />
-          <Route path="/password-reset-successful" element={<ResetSuccess />} />
-          <Route path ="/confirm-email" element={<VerifyEmailContent/>} />
-          <Route path="/confirm-email/:token" element={<VerifySuccessContent/>} />
+          <Route
+            path="/reset-password/:token"
+            element={<ResetPasswordForm />}
+          />
+          <Route
+            path="/password-reset-successful"
+            element={<ResetPasswordSuccess />}
+          />
+          <Route path="/confirm-email" element={<VerifyEmailContent />} />
+          <Route
+            path="/confirm-email/:token"
+            element={<VerifySuccessContent />}
+          />
+          <Route path="/reset-link-sent" element={<ResetLinkSent />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/" element={<Login />} />
           <Route path="/homepage" element={<HomePage />} />
