@@ -1,52 +1,51 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import Button from "@shared/ui/Button";
 import { AppState } from "store";
-
-interface ApiResponse {
-  message: string;
-}
+import { AuthLayout } from "../components/AuthLayout";
+import { Subtitle, Title } from "@shared/ui/Title";
+import FormContainer from "@shared/ui/FormContainer";
 
 export const ResetLinkSent: React.FC = () => {
   const [isSending, setIsSending] = useState(false);
-  const [message, setMessage] = useState<string>("");
   const email = useSelector((state: AppState) => state.user.email);
 
   const handleResendLinkClick = async (): Promise<void> => {
-    if (!email) {
-      setMessage("No email found. Please log in again.");
-      return;
-    }
+    if (!email) return;
 
     setIsSending(true);
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/users/resend-link",
-        { email }
-      );
-
-      setMessage(response.data.message);
-    } catch (error: unknown) {
-      // Handle error responses (e.g., email not found, server error)
-      const axiosError = error as AxiosError<ApiResponse>;
-      setMessage(
-        axiosError.response?.data?.message ||
-          "Failed to resend the password reset link."
-      );
+      await axios.post("http://localhost:5000/api/users/resend-link", {
+        email,
+      });
+    } catch (error) {
+      console.error("Failed to resend the password reset link:", error);
     } finally {
       setIsSending(false);
     }
   };
 
   return (
-    <div className="email-sent-container">
-      {message && <p>{message}</p>}
-
-      <Button onClick={handleResendLinkClick} disabled={isSending}>
-        {isSending ? "Sending..." : "Resend Password Reset Link"}
-      </Button>
-    </div>
+    <AuthLayout
+      imageSrc="/src/assets/images/buyer.png"
+      imageAlt="buyer illustration"
+    >
+      <FormContainer>
+        <Title>Password Reset Email Sent</Title>
+        <Subtitle>
+          We've sent a password reset email to{" "}
+          <strong>{email || "your email"}</strong>. Please check your inbox and
+          follow the instructions to reset your password.
+        </Subtitle>
+        <Subtitle>
+          If you haven't received the email, you can resend the link.
+        </Subtitle>
+        <Button onClick={handleResendLinkClick} disabled={isSending}>
+          {isSending ? "Sending..." : "Resend Password Reset Link"}
+        </Button>
+      </FormContainer>
+    </AuthLayout>
   );
 };

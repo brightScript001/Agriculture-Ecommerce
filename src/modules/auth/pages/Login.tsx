@@ -2,18 +2,16 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import LoginForm from "../components/LoginForm";
 import Logo from "../../../shared/ui/Logo";
-import Container from "../../../shared/ui/Container";
-import ImageContainer from "../../seller/ui/ImageContainer";
-import StyledImage from "../../seller/ui/StyledImage";
 import FormContainer from "../../../shared/ui/FormContainer";
 import { Title, Subtitle } from "@shared/ui/Title";
+import { AuthLayout } from "../components/AuthLayout";
 
 const Login: React.FC = () => {
   return (
-    <Container>
-      <ImageContainer>
-        <StyledImage src="/src/assets/images/buyer.png" alt="Buyer" />
-      </ImageContainer>
+    <AuthLayout
+      imageSrc="/src/assets/images/buyer.png"
+      imageAlt="buyer image illustration"
+    >
       <FormContainer>
         <Logo />
         <Title>Login to your account</Title>
@@ -28,7 +26,7 @@ const Login: React.FC = () => {
           <StyledLink to="/forgot-password">Click here</StyledLink>
         </Subtitle>
       </FormContainer>
-    </Container>
+    </AuthLayout>
   );
 };
 
@@ -42,7 +40,3 @@ const StyledLink = styled(Link)`
     text-decoration: underline;
   }
 `;
-
-// const Wrapper = styled.div`
-//   margin-left: 1.875rem;
-// `;

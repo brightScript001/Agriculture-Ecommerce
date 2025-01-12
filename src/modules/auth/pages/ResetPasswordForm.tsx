@@ -7,6 +7,8 @@ import { Title, Subtitle } from "@shared/ui/Title";
 import { toast } from "react-hot-toast";
 import axios, { AxiosError } from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { AuthLayout } from "../components/AuthLayout";
+import FormContainer from "@shared/ui/FormContainer";
 
 interface ResetFormData {
   password: string;
@@ -47,52 +49,57 @@ export const ResetPasswordForm = () => {
   };
 
   return (
-    <div>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <FormRow>
-          <Title>Reset Password</Title>
-          <Subtitle>
-            Create a strong password to keep your account secure.
-          </Subtitle>
-        </FormRow>
-        <FormRow label="New Password" error={errors.password?.message}>
-          <Input
-            type="password"
-            id="password"
-            {...register("password", {
-              required: "Password is required",
-              minLength: {
-                value: 8,
-                message: "Password must be at least 8 characters",
-              },
-              pattern: {
-                value: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/,
-                message:
-                  "Password must include upper and lower case letters, a number, and a special character",
-              },
-            })}
-          />
-        </FormRow>
+    <AuthLayout
+      imageSrc="/src/assets/images/buyer.png"
+      imageAlt="buyer illustration"
+    >
+      <FormContainer>
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <FormRow>
+            <Title>Reset Password</Title>
+            <Subtitle>
+              Create a strong password to keep your account secure.
+            </Subtitle>
+          </FormRow>
+          <FormRow label="New Password" error={errors.password?.message}>
+            <Input
+              type="password"
+              id="password"
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 8,
+                  message: "Password must be at least 8 characters",
+                },
+                pattern: {
+                  value: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/,
+                  message:
+                    "Password must include upper and lower case letters, a number, and a special character",
+                },
+              })}
+            />
+          </FormRow>
 
-        <FormRow
-          label="Confirm Password"
-          error={errors.confirmPassword?.message}
-        >
-          <Input
-            type="password"
-            id="confirmPassword"
-            {...register("confirmPassword", {
-              required: "Confirm Password is required",
-              validate: (value) =>
-                value === password || "Passwords do not match",
-            })}
-          />
-        </FormRow>
+          <FormRow
+            label="Confirm Password"
+            error={errors.confirmPassword?.message}
+          >
+            <Input
+              type="password"
+              id="confirmPassword"
+              {...register("confirmPassword", {
+                required: "Confirm Password is required",
+                validate: (value) =>
+                  value === password || "Passwords do not match",
+              })}
+            />
+          </FormRow>
 
-        <FormRow>
-          <Button type="submit">Reset Password</Button>
-        </FormRow>
-      </Form>
-    </div>
+          <FormRow>
+            <Button type="submit">Reset Password</Button>
+          </FormRow>
+        </Form>
+      </FormContainer>
+    </AuthLayout>
   );
 };

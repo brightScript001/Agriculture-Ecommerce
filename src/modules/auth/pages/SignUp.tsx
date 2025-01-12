@@ -1,54 +1,17 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import SignupForm from "../components/SignUpForm";
-import Container from "../../../shared/ui/Container";
 import Logo from "../../../shared/ui/Logo";
-import StyledImage from "../../seller/ui/StyledImage";
-import ImageContainer from "../../seller/ui/ImageContainer";
 import FormContainer from "../../../shared/ui/FormContainer";
 import { Title, Subtitle } from "../../../shared/ui/Title";
-import { useMemo } from "react";
-
-const StyledLink = styled(Link)`
-  color: var(--color-green-800);
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-// const Wrapper = styled.div`
-//   margin-left: 1.875rem;
-//   @media (max-width: 769px) {
-//     margin-left: 0rem;
-//   }
-// `;
-
-interface LocationState {
-  accountType: "buyer" | "seller";
-}
+import { AuthLayout } from "../components/AuthLayout";
 
 const Signup: React.FC = () => {
-  const location = useLocation();
-  const state = location.state as LocationState | undefined;
-  const accountType = state?.accountType;
-
-  const { imageSrc, altText } = useMemo(() => {
-    const isBuyer = accountType === "buyer";
-    return {
-      imageSrc: isBuyer
-        ? "/src/assets/images/buyer.png"
-        : "/src/assets/images/seller.png",
-      altText: isBuyer ? "Buyer" : "Farmer",
-    };
-  }, [accountType]);
-
   return (
-    <Container>
-      <ImageContainer>
-        <StyledImage src={imageSrc} alt={altText} />
-      </ImageContainer>
+    <AuthLayout
+      imageSrc="/src/assets/images/buyer.png"
+      imageAlt="buyer illustration"
+    >
       <FormContainer>
         <Logo />
         <Title>Create an account</Title>
@@ -58,8 +21,17 @@ const Signup: React.FC = () => {
         </Subtitle>
         <SignupForm />
       </FormContainer>
-    </Container>
+    </AuthLayout>
   );
 };
 
 export default Signup;
+
+const StyledLink = styled(Link)`
+  color: var(--color-green-800);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;

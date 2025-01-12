@@ -1,19 +1,17 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Container from "@shared/ui/Container";
-import ImageContainer from "@modules/seller/ui/ImageContainer";
-import StyledImage from "@modules/seller/ui/StyledImage";
 import FormContainer from "@shared/ui/FormContainer";
 import Logo from "@shared/ui/Logo";
 import { Subtitle, Title } from "@shared/ui/Title";
 import ForgotPasswordForm from "../components/ForgotPasswordForm";
+import { AuthLayout } from "../components/AuthLayout";
 
 const ForgotPassword: React.FC = () => {
   return (
-    <Container>
-      <ImageContainer>
-        <StyledImage src="/src/assets/images/seller.png" alt="Farmer" />
-      </ImageContainer>
+    <AuthLayout
+      imageSrc="/src/assets/images/seller.png"
+      imageAlt="seller illustration"
+    >
       <FormContainer>
         <Logo />
         <Title>Forgot Password</Title>
@@ -27,7 +25,7 @@ const ForgotPassword: React.FC = () => {
           page?
         </Subtitle>
       </FormContainer>
-    </Container>
+    </AuthLayout>
   );
 };
 
