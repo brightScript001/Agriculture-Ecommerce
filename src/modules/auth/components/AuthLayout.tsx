@@ -24,12 +24,12 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({
 const Layout = styled.div`
   background-color: var(--color-grey-100);
   display: grid;
+  grid-template-columns: 1fr 1fr;
   min-height: 100vh;
-  grid-template-columns: 1fr;
-  padding: 2rem;
 
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding: 2rem;
   }
 `;
 
