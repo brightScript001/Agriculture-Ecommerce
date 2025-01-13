@@ -13,7 +13,6 @@ import GlobalStyles from "./styles/globalStyles";
 import PageNotFound from "./shared/components/PageNotFound";
 import { AppState } from "./store";
 // import DarkModeToggle from "./ui/DarkModeToggle";
-import RegisterSeller from "./modules/auth/pages/SignUp";
 import RegisterBuyer from "./modules/auth/pages/SignUp";
 import ForgotPassword from "./modules/auth/pages/ForgotPassword";
 import Login from "./modules/auth/pages/Login";
@@ -159,9 +158,7 @@ function App() {
             </Route>
           </Route>
 
-          <Route path="/register/seller" element={<RegisterBuyer />} />
           <Route path="/register" element={<RegisterBuyer />} />
-          <Route path="/register/buyer" element={<RegisterSeller />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/login" element={<Login />} />
           <Route

@@ -17,7 +17,7 @@ const Login: React.FC = () => {
         <Title>Login to your account</Title>
         <Subtitle>
           Don’t have an account?{" "}
-          <StyledLink to="/homepage">Sign up here</StyledLink>
+          <StyledLink to="/register">Sign up here</StyledLink>
         </Subtitle>
         <LoginForm />
 

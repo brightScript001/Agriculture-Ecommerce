@@ -6,6 +6,7 @@ import { AppState } from "store";
 import { AuthLayout } from "../components/AuthLayout";
 import { Subtitle, Title } from "@shared/ui/Title";
 import FormContainer from "@shared/ui/FormContainer";
+import SpinnerMini from "@shared/ui/SpinnerMini";
 
 export const ResetLinkSent: React.FC = () => {
   const [isSending, setIsSending] = useState(false);
@@ -43,7 +44,7 @@ export const ResetLinkSent: React.FC = () => {
           If you haven't received the email, you can resend the link.
         </Subtitle>
         <Button onClick={handleResendLinkClick} disabled={isSending}>
-          {isSending ? "Sending..." : "Resend Password Reset Link"}
+          {isSending ? <SpinnerMini/> : "Resend Password Reset Link"}
         </Button>
       </FormContainer>
     </AuthLayout>

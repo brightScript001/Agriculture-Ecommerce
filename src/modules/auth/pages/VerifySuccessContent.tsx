@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../../store";
-import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { resetVerificationState } from "@core/states/emailVerificationSlice";
 import { Title, Subtitle } from "@shared/ui/Title";
 import FormContainer from "@shared/ui/FormContainer";
 import { AuthLayout } from "../components/AuthLayout";
+import Button from "@shared/ui/Button";
 
 const VerifySuccessContent: React.FC = () => {
   const [counter, setCounter] = useState(30);

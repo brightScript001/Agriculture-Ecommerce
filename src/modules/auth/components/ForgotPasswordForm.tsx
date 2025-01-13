@@ -7,6 +7,7 @@ import FormRowVertical from "../../../shared/ui/FormRowVertical";
 import { toast } from "react-hot-toast";
 import axios, { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
+import SpinnerMini from "@shared/ui/SpinnerMini";
 
 interface ApiResponse {
   message: string;
@@ -14,6 +15,7 @@ interface ApiResponse {
 
 const ForgotPasswordForm = () => {
   const [email, setEmail] = useState<string>("");
+  const [loading, seLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) =>
@@ -21,7 +23,7 @@ const ForgotPasswordForm = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    seLoading(true);
     try {
       const response = await axios.post(
         "http://localhost:5000/api/auth/forgot-password",
@@ -36,6 +38,8 @@ const ForgotPasswordForm = () => {
         axiosError.response?.data?.message ||
           "Failed to send reset link. Try again."
       );
+    }finally {
+      seLoading(false);
     }
   };
 
@@ -51,7 +55,9 @@ const ForgotPasswordForm = () => {
         />
       </FormRowVertical>
       <FormRowVertical>
-        <Button type="submit">Send Password Reset Link</Button>
+        <Button type="submit" disabled={loading}>
+          {loading ? <SpinnerMini/> : 'Send Password Reset Link'}
+        </Button>
       </FormRowVertical>
     </Form>
   );

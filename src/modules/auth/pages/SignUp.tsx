@@ -9,8 +9,8 @@ import { AuthLayout } from "../components/AuthLayout";
 const Signup: React.FC = () => {
   return (
     <AuthLayout
-      imageSrc="/src/assets/images/buyer.png"
-      imageAlt="buyer illustration"
+      imageSrc="/src/assets/images/seller.png"
+      imageAlt="seller illustration"
     >
       <FormContainer>
         <Logo />
