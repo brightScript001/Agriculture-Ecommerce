@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import LoginForm from "../components/LoginForm";
-import Logo from "../../../shared/ui/Logo";
-import FormContainer from "../../../shared/ui/FormContainer";
+import Logo from "@shared/ui/Logo";
+import FormContainer from "@shared/ui/FormContainer";
 import { Title, Subtitle } from "@shared/ui/Title";
 import { AuthLayout } from "../components/AuthLayout";
 
