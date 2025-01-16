@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface UserState {
+export interface UserState {
   firstName: string;
   lastName: string;
   email: string;
-  password: string;
+  password?: string;
   createdAt: string;
+  avatar?: string;
 }
 
 const initialState: UserState = {
@@ -14,6 +15,7 @@ const initialState: UserState = {
   email: "",
   password: "",
   createdAt: "",
+  avatar: "",
 };
 
 const userSlice = createSlice({
@@ -27,9 +29,10 @@ const userSlice = createSlice({
         lastName: string;
         email: string;
         password: string;
+        avatar?: string;
       }>
     ) => {
-      const { firstName, lastName, email, password } = action.payload;
+      const { firstName, lastName, email, password, avatar } = action.payload;
 
       // Update state fields
       state.firstName = firstName;
@@ -37,6 +40,7 @@ const userSlice = createSlice({
       state.email = email;
       state.password = password;
       state.createdAt = new Date().toISOString();
+      state.avatar = avatar;
     },
   },
 });

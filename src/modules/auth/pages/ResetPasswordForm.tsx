@@ -43,7 +43,7 @@ export const ResetPasswordForm = () => {
       const axiosError = error as AxiosError<ApiResponse>;
       toast.error(
         axiosError.response?.data?.message ||
-          "Failed to reset password. Please try again."
+          "Failed to reset password. Please try again"
       );
     }
   };

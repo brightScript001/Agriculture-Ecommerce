@@ -1,39 +1,41 @@
-// import styled from "styled-components";
-// import { useUser } from "./useUser";
+import { useSelector } from "react-redux";
+import { AppState } from "store";
+import styled from "styled-components";
 
-// const StyledUserAvatar = styled.div`
-//   display: flex;
-//   gap: 1.2rem;
-//   align-items: center;
-//   font-weight: 500;
-//   font-size: 1.4rem;
-//   color: var(--color-grey-600);
-// `;
+function UserAvatar() {
+  const user = useSelector((state: AppState) => state.auth);
+  const fullName = `${user.user?.firstName} ${user.user?.lastName}`;
+  const avatar = user.user?.avatar;
 
-// const Avatar = styled.img`
-//   display: block;
-//   width: 4rem;
-//   width: 3.6rem;
-//   aspect-ratio: 1;
-//   object-fit: cover;
-//   object-position: center;
-//   border-radius: 50%;
-//   outline: 2px solid var(--color-grey-100);
-// `;
+  return (
+    <StyledUserAvatar>
+      <Avatar
+        src={avatar || "/src/assets/images/default-avatar.png"}
+        alt={`Avatar of ${fullName}` || "user avatar"}
+      />
+      <span>{fullName}</span>
+    </StyledUserAvatar>
+  );
+}
 
-// function UserAvatar() {
-//   const { user } = useUser();
-//   const { fullName, avatar } = user.user_metadata;
+export default UserAvatar;
 
-//   return (
-//     <StyledUserAvatar>
-//       <Avatar
-//         src={avatar || "Assets/images/avatar.png"}
-//         alt={`Avatar of ${fullName} || Idoma Prince `}
-//       />
-//       <span>{fullName}</span>
-//     </StyledUserAvatar>
-//   );
-// }
+const StyledUserAvatar = styled.div`
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  font-weight: 500;
+  font-size: var(--font-size-md);
+  color: var(--color-grey-600);
+`;
 
-// export default UserAvatar;
+const Avatar = styled.img`
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  outline: 2px solid var(--color-grey-100);
+`;

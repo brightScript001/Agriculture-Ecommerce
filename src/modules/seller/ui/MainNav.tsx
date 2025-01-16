@@ -8,59 +8,7 @@ import {
   SupportIcon,
   ProfileIcon,
   SignOutIcon,
-} from "../../../shared/ui/Icons";
-
-export const NavList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-`;
-
-export const StyledNavLink = styled(NavLink)`
-  &:link,
-  &:visited {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-
-    color: var(--color-grey-600);
-    font-size: var(--font-size-md);
-    font-weight: 500;
-    padding: 0.8rem 0;
-    transition: all 0.3s;
-  }
-
-  &:hover,
-  &:active,
-  &.active:link,
-  &.active:visited {
-    color: var(--color-green-800);
-    background-color: var(--color-green-100);
-    border-radius: var(--border-radius-sm);
-  }
-
-  & svg {
-    width: 1.8rem;
-    height: 1.8rem;
-    color: var(--color-grey-400);
-    transition: all 0.3s;
-  }
-
-  &:hover svg,
-  &:active svg,
-  &.active:link svg,
-  &.active:visited svg {
-    color: var(--color-green-700);
-  }
-`;
-
-export const Span = styled.span`
-  font-size: var(--font-size-md);
-`;
-
-export const BottomNavList = styled(NavList)`
-  margin-top: auto;
-`;
+} from "@shared/ui/Icons";
 
 function MainNav() {
   return (
@@ -124,3 +72,55 @@ function MainNav() {
 }
 
 export default MainNav;
+
+export const NavList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+export const StyledNavLink = styled(NavLink)`
+  &:link,
+  &:visited {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+
+    color: var(--color-grey-600);
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    padding: 0.8rem 0;
+    transition: all 0.3s;
+  }
+
+  &:hover,
+  &:active,
+  &.active:link,
+  &.active:visited {
+    color: var(--color-green-800);
+    background-color: var(--color-green-100);
+    border-radius: var(--border-radius-sm);
+  }
+
+  & svg {
+    width: 1.8rem;
+    height: 1.8rem;
+    color: var(--color-grey-400);
+    transition: all 0.3s;
+  }
+
+  &:hover svg,
+  &:active svg,
+  &.active:link svg,
+  &.active:visited svg {
+    color: var(--color-green-700);
+  }
+`;
+
+export const Span = styled.span`
+  font-size: var(--font-size-md);
+`;
+
+export const BottomNavList = styled(NavList)`
+  margin-top: auto;
+`;

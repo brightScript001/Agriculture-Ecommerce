@@ -3,7 +3,7 @@ import BackButton from "../../../modules/seller/ui/BackButton";
 import ButtonText from "../../ui/ButtonText";
 import SearchBar from "../../ui/SearchBar";
 import BellButtonWithNotifications from "../../ui/BellButtonNotifications ";
-// import UserAvatar from "./UserAvatar";
+import UserAvatar from "@shared/ui/UserAvatar";
 // import DarkModeToggle from "./DarkModeToggle";
 
 const NavbarContainer = styled.header`
@@ -46,7 +46,10 @@ export function Navbar() {
       <NavbarSection>
         <BellButtonWithNotifications />
       </NavbarSection>
-      <NavbarSection>{/* <UserAvatar /> */}</NavbarSection>
+      <NavbarSection>
+        {" "}
+        <UserAvatar />
+      </NavbarSection>
       {/* <NavbarSection>
         <DarkModeToggle />
       </NavbarSection> */}

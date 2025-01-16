@@ -19,12 +19,18 @@ interface LoginFormData {
 }
 
 interface LoginResponse {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
   role: string;
+  createdAt: string;
+  avatar: string;
   token: string;
 }
 
 const loginUser = async (data: LoginFormData): Promise<LoginResponse> => {
-  const response  = await fetch("http://localhost:5000/api/auth/login", {
+  const response = await fetch("http://localhost:5000/api/auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -47,7 +53,6 @@ function LoginForm() {
     control,
     formState: { errors },
   } = useForm<LoginFormData>();
-
   const [buttonText, setButtonText] = useState<string>("Log in");
 
   const mutationOptions: UseMutationOptions<
@@ -60,8 +65,13 @@ function LoginForm() {
       setButtonText("Loading...");
     },
     onSuccess: (data: LoginResponse) => {
-      console.log("Login successful:", data);
-      dispatch(setRole(data.role));
+      // Store the token and role
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("role", data.role);
+
+      // Dispatch user role to store for further usage
+      dispatch(setRole({ role: data.role, user: data, token: data.token }));
+
       navigate(`/${data.role}/dashboard`);
     },
     onError: (error: Error) => {
@@ -73,17 +83,12 @@ function LoginForm() {
   const mutation = useMutation(mutationOptions);
 
   const onSubmit: SubmitHandler<LoginFormData> = (data: LoginFormData) => {
-    if (!data.email || !data.password) {
-      console.log("Form missing email or password");
-      return;
-    }
-
     if (!data.role) {
       toast.error("Please select a role to continue");
       return;
     }
 
-    mutation.mutate(data);
+    mutation.mutate(data); // Trigger the login mutation
   };
 
   return (
