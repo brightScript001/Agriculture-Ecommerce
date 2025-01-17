@@ -1,5 +1,5 @@
 export const fetchOrders = async () => {
-  const res = await fetch("http://localhost:8000/orders");
+  const res = await fetch("http://localhost:5000/orders");
   if (!res.ok) {
     throw new Error("Failed to fetch orders");
   }
@@ -34,7 +34,7 @@ export const updateOrderStatus = async (orderId: string, status: string) => {
     }
 
     const updateResponse = await fetch(
-      `http://localhost:8000/orders/${orderId}`,
+      `http://localhost:5000/orders/${orderId}`,
       {
         method: "PATCH",
         headers: {
