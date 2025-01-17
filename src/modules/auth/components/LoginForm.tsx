@@ -65,11 +65,9 @@ function LoginForm() {
       setButtonText("Loading...");
     },
     onSuccess: (data: LoginResponse) => {
-      // Store the token and role
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", data.role);
 
-      // Dispatch user role to store for further usage
       dispatch(setRole({ role: data.role, user: data, token: data.token }));
 
       navigate(`/${data.role}/dashboard`);
@@ -88,7 +86,7 @@ function LoginForm() {
       return;
     }
 
-    mutation.mutate(data); // Trigger the login mutation
+    mutation.mutate(data);
   };
 
   return (
