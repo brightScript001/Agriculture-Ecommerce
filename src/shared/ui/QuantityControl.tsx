@@ -1,6 +1,38 @@
 import React from "react";
 import styled from "styled-components";
 
+interface QuantityControlProps {
+  quantity: number;
+  setQuantity: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export const QuantityControl: React.FC<QuantityControlProps> = ({
+  quantity,
+  setQuantity,
+}) => {
+  const increment = () => {
+    setQuantity((prevQty) => prevQty + 1);
+  };
+
+  const decrement = () => {
+    if (quantity > 1) {
+      setQuantity((prevQty) => prevQty - 1);
+    }
+  };
+
+  return (
+    <QuantityContainer>
+      <StyledButton onClick={decrement} disabled={quantity <= 1}>
+        -
+      </StyledButton>
+      <QuantityText>
+        <QuantityLabel>Qty:</QuantityLabel> {quantity}
+      </QuantityText>
+      <StyledButton onClick={increment}>+</StyledButton>
+    </QuantityContainer>
+  );
+};
+
 const QuantityContainer = styled.div`
   display: flex;
   align-items: center;
@@ -44,35 +76,3 @@ const QuantityLabel = styled.span`
   font-size: var(--font-size-md);
   margin-right: 0.5rem;
 `;
-
-interface QuantityControlProps {
-  quantity: number;
-  setQuantity: React.Dispatch<React.SetStateAction<number>>;
-}
-
-export const QuantityControl: React.FC<QuantityControlProps> = ({
-  quantity,
-  setQuantity,
-}) => {
-  const increment = () => {
-    setQuantity((prevQty) => prevQty + 1);
-  };
-
-  const decrement = () => {
-    if (quantity > 1) {
-      setQuantity((prevQty) => prevQty - 1);
-    }
-  };
-
-  return (
-    <QuantityContainer>
-      <StyledButton onClick={decrement} disabled={quantity <= 1}>
-        -
-      </StyledButton>
-      <QuantityText>
-        <QuantityLabel>Qty:</QuantityLabel> {quantity}
-      </QuantityText>
-      <StyledButton onClick={increment}>+</StyledButton>
-    </QuantityContainer>
-  );
-};

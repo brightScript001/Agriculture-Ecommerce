@@ -1,5 +1,16 @@
 import styled from "styled-components";
 
+interface SearchBarProps {
+  customStyles?: string;
+}
+
+function SearchBar({ customStyles }: SearchBarProps) {
+  return (
+    <SearchInput type="text" placeholder="Search" customStyles={customStyles} />
+  );
+}
+
+export default SearchBar;
 const SearchInput = styled.input<{ customStyles?: string }>`
   background-color: var(--color-grey-50);
   width: 25.0625rem;
@@ -16,15 +27,3 @@ const SearchInput = styled.input<{ customStyles?: string }>`
 
   ${(props) => props.customStyles && props.customStyles}
 `;
-
-interface SearchBarProps {
-  customStyles?: string;
-}
-
-function SearchBar({ customStyles }: SearchBarProps) {
-  return (
-    <SearchInput type="text" placeholder="Search" customStyles={customStyles} />
-  );
-}
-
-export default SearchBar;
