@@ -25,18 +25,6 @@ interface CreateProductProps {
   onClose: () => void;
 }
 
-const StyledTitle = styled(Title)`
-  text-align: start;
-  margin: 4rem 0 2rem 0;
-`;
-
-const Wrapper = styled.div`
-  width: 45rem;
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-`;
-
 function CreateProduct({ onClose }: CreateProductProps) {
   const { handleSubmit, control, reset, formState } = useForm<FormData>();
   const [newProductName, setNewProductName] = useState<string | null>(null);
@@ -116,3 +104,15 @@ function CreateProduct({ onClose }: CreateProductProps) {
 }
 
 export default CreateProduct;
+
+const StyledTitle = styled(Title)`
+  text-align: start;
+  margin: 4rem 0 2rem 0;
+`;
+
+const Wrapper = styled.div`
+  width: 45rem;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;

@@ -39,7 +39,10 @@ const loginUser = async (data: LoginFormData): Promise<LoginResponse> => {
   });
 
   if (!response.ok) {
-    throw new Error("Invalid credentials or server error");
+    const errorData = await response.json();
+    throw new Error(
+      errorData?.message || "Invalid credentials or server error"
+    );
   }
 
   return response.json();

@@ -9,8 +9,12 @@ import {
   ProfileIcon,
   SignOutIcon,
 } from "@shared/ui/Icons";
+import { LogOut } from "@modules/auth/components/Logout";
 
 function MainNav() {
+  const handleSignOut = () => {
+    LogOut();
+  };
   return (
     <nav
       style={{
@@ -61,7 +65,7 @@ function MainNav() {
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/seller/sign-out">
+          <StyledNavLink to="/" onClick={handleSignOut}>
             <img src={SignOutIcon} alt="Sign Out" />
             <Span>Sign Out</Span>
           </StyledNavLink>
