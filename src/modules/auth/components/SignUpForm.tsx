@@ -52,7 +52,7 @@ function SignupForm() {
   const mutation = useMutation({
     mutationFn: createUserRequest,
     onSuccess: () => {
-        toast("confirmation email sent")
+      toast("confirmation email sent");
       navigate("/confirm-email");
     },
     onError: (error: Error) => {
@@ -64,7 +64,6 @@ function SignupForm() {
     const { firstName, lastName, email, password } = data;
     dispatch(createUser({ firstName, lastName, email, password }));
 
-    // Make API call
     mutation.mutate(data);
   };
 
