@@ -55,6 +55,7 @@ function CreateProduct({ onClose }: CreateProductProps) {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
+      console.log("data", JSON.stringify(data))
       await mutateAsync(data);
       toast.success("Product created successfully!");
     } catch (error) {

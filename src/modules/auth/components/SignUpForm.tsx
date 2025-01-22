@@ -64,6 +64,7 @@ function SignupForm() {
     const { firstName, lastName, email, password } = data;
     dispatch(createUser({ firstName, lastName, email, password }));
 
+    // Make API call
     mutation.mutate(data);
   };
 

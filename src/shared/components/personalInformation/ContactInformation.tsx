@@ -1,4 +1,3 @@
-// ContactInformation.tsx
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import { InputContainer, InputField, InputLabel } from "./BasicInformation";
@@ -68,6 +67,7 @@ export const ContactInformation: React.FC<ContactInformationProps> = ({
             id="email"
             type="email"
             value={contactInfo.email}
+            readOnly
             onChange={(e) => onContactInfoChange("email", e.target.value)}
           />
         </InputContainer>

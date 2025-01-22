@@ -5,6 +5,7 @@ export const fetchProducts = async () => {
   if (!res.ok) {
     throw new Error("failed to fetch products");
   }
+  console.log(res)
   return res.json();
 };
 
