@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useMutation } from "@tanstack/react-query";
 import { ProfilePicture } from "./personalInformation/ProfilePicture";
 import { BasicInformation } from "./personalInformation/BasicInformation";
 import { ContactInformation } from "./personalInformation/ContactInformation";
@@ -11,6 +12,8 @@ import { VerificationHeader } from "../../modules/seller/components/profile/Veri
 import { AppState } from "../../store";
 import { updateUserDetails } from "../../modules/core/states/userSlice";
 import { setRole } from "../../modules/core/states/authSlice";
+import SpinnerComponent from "@shared/ui/Spinner";
+import { updateUserInfo } from "@modules/core/api/updateUser";
 
 const Section = styled.section`
   margin-bottom: 2rem;
@@ -79,6 +82,17 @@ export const PersonalInformation: React.FC = () => {
     navigate(-1);
   };
 
+  const { mutate, isPending, isError } = useMutation({
+    mutationFn: updateUserInfo,
+    onSuccess: () => {
+      console.log("User information updated successfully!");
+      navigate("/success-page"); // Example redirect
+    },
+    onError: (error: unknown) => {
+      console.error("Failed to update user information:", error);
+    },
+  });
+
   const handleSave = () => {
     const updatedUser = {
       ...user,
@@ -101,22 +115,7 @@ export const PersonalInformation: React.FC = () => {
       })
     );
 
-    // Save to API
-    fetch("http://localhost:8000/api/users/me", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      body: JSON.stringify(updatedUser),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Profile info saved:", data);
-      })
-      .catch((error) => {
-        console.error("Error saving profile info:", error);
-      });
+    mutate(updatedUser);
   };
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -148,6 +147,8 @@ export const PersonalInformation: React.FC = () => {
       </Section>
 
       <ActionButtons onCancel={handleCancel} onSave={handleSave} />
+      {isPending && <SpinnerComponent />}
+      {isError && <p>Error saving profile information. Please try again.</p>}
     </Form>
   );
 };
