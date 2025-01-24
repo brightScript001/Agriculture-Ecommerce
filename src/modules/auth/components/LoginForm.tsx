@@ -11,42 +11,14 @@ import toast from "react-hot-toast";
 import { setRole } from "@core/states/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useMutation, UseMutationOptions } from "@tanstack/react-query";
+import { UserState } from "@modules/core/states/userSlice";
+import { loginUser } from "../states/loginUser";
 
-interface LoginFormData {
+export interface LoginFormData {
   role: string;
   email: string;
   password: string;
 }
-
-interface LoginResponse {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  role: string;
-  createdAt: string;
-  avatar: string;
-  token: string;
-}
-
-const loginUser = async (data: LoginFormData): Promise<LoginResponse> => {
-  const response = await fetch("http://localhost:5000/api/auth/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(
-      errorData?.message || "Invalid credentials or server error"
-    );
-  }
-
-  return response.json();
-};
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -58,22 +30,19 @@ function LoginForm() {
   } = useForm<LoginFormData>();
   const [buttonText, setButtonText] = useState<string>("Log in");
 
-  const mutationOptions: UseMutationOptions<
-    LoginResponse,
-    Error,
-    LoginFormData
-  > = {
+  const mutationOptions: UseMutationOptions<UserState, Error, LoginFormData> = {
     mutationFn: loginUser,
     onMutate: () => {
       setButtonText("Loading...");
     },
-    onSuccess: (data: LoginResponse) => {
+    onSuccess: (data: UserState) => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", data.role);
 
       dispatch(setRole({ role: data.role, user: data, token: data.token }));
 
       navigate(`/${data.role}/dashboard`);
+      console.log(data);
     },
     onError: (error: Error) => {
       setButtonText("Log in");

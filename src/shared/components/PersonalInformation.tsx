@@ -14,6 +14,7 @@ import { updateUserDetails } from "../../modules/core/states/userSlice";
 import { setRole } from "../../modules/core/states/authSlice";
 import SpinnerComponent from "@shared/ui/Spinner";
 import { updateUserInfo } from "@modules/core/api/updateUser";
+import ErrorFallback from "@shared/ui/ErrorFallback";
 
 const Section = styled.section`
   margin-bottom: 2rem;
@@ -26,20 +27,20 @@ export const PersonalInformation: React.FC = () => {
   const user = useSelector((state: AppState) => state.auth.user);
 
   const [profileImage, setProfileImage] = useState<string | null>(
-    user?.avatar || null
+    user?.avatar ?? null
   );
   const [basicInfo, setBasicInfo] = useState({
-    firstName: user?.firstName || "",
-    lastName: user?.lastName || "",
-    dateOfBirth: user?.dateOfBirth || "",
+    firstName: user?.firstName ?? "",
+    lastName: user?.lastName ?? "",
+    dateOfBirth: user?.dateOfBirth ?? "",
   });
 
   const [contactInfo, setContactInfo] = useState({
-    email: user?.email || "",
-    phone: user?.phoneNumber || "",
-    state: user?.state || "",
-    city: user?.city || "",
-    address: user?.address || "",
+    email: user?.email ?? "",
+    phone: user?.phoneNumber ?? "",
+    state: user?.state ?? "",
+    city: user?.city ?? "",
+    address: user?.address ?? "",
   });
 
   useEffect(() => {
@@ -51,7 +52,7 @@ export const PersonalInformation: React.FC = () => {
         dateOfBirth: user.dateOfBirth || "",
       });
       setContactInfo({
-        email: user.email,
+        email: user.email || "",
         phone: user.phoneNumber || "",
         state: user.state || "",
         city: user.city || "",
@@ -67,14 +68,14 @@ export const PersonalInformation: React.FC = () => {
   const handleBasicInfoChange = (field: string, value: string) => {
     setBasicInfo((prev) => ({
       ...prev,
-      [field]: value,
+      [field]: value || "",
     }));
   };
 
   const handleContactInfoChange = (field: string, value: string) => {
     setContactInfo((prev) => ({
       ...prev,
-      [field]: value,
+      [field]: value || "",
     }));
   };
 
@@ -82,11 +83,10 @@ export const PersonalInformation: React.FC = () => {
     navigate(-1);
   };
 
-  const { mutate, isPending, isError } = useMutation({
+  const { mutate, isPending, isError, reset } = useMutation({
     mutationFn: updateUserInfo,
     onSuccess: () => {
       console.log("User information updated successfully!");
-      navigate("/success-page"); // Example redirect
     },
     onError: (error: unknown) => {
       console.error("Failed to update user information:", error);
@@ -106,21 +106,28 @@ export const PersonalInformation: React.FC = () => {
       address: contactInfo.address,
     };
 
-    dispatch(updateUserDetails(updatedUser));
-    dispatch(
-      setRole({
-        role: user?.role || "",
-        user: updatedUser,
-        token: user?.token || "",
-      })
-    );
-
-    mutate(updatedUser);
+    mutate(updatedUser, {
+      onSuccess: () => {
+        dispatch(updateUserDetails(updatedUser));
+        dispatch(
+          setRole({
+            role: user?.role || "",
+            user: updatedUser,
+            token: user?.token || "",
+          })
+        );
+      },
+    });
   };
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     handleSave();
+  };
+
+  const resetErrorBoundary = () => {
+    reset();
+    console.log("Error boundary reset");
   };
 
   return (
@@ -146,9 +153,20 @@ export const PersonalInformation: React.FC = () => {
         />
       </Section>
 
-      <ActionButtons onCancel={handleCancel} onSave={handleSave} />
+      <ActionButtons
+        onCancel={handleCancel}
+        onSave={handleSave}
+        isLoading={isPending}
+      />
       {isPending && <SpinnerComponent />}
-      {isError && <p>Error saving profile information. Please try again.</p>}
+      {isError && (
+        <ErrorFallback
+          error={
+            new Error("Error saving profile information. Please try again")
+          }
+          resetErrorBoundary={resetErrorBoundary}
+        />
+      )}
     </Form>
   );
 };

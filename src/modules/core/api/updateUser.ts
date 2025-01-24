@@ -14,8 +14,8 @@ export const updateUserInfo = async (updateUer: {
   role?: string;
   token?: string;
 }) => {
-  const response = await fetch("http://localhost:8000/api/user", {
-    method: "POST",
+  const response = await fetch("http://localhost:5000/api/user", {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("token")}`,

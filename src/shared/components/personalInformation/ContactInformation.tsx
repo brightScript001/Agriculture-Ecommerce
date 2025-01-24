@@ -93,7 +93,6 @@ export const ContactInformation: React.FC<ContactInformationProps> = ({
         </InputContainer>
       </ThreeColumnRow>
 
-      {/* Two-column row for city and address */}
       <TwoColumnRow>
         <InputContainer>
           <InputLabel htmlFor="city">City</InputLabel>
