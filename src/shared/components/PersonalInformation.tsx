@@ -116,6 +116,7 @@ export const PersonalInformation: React.FC = () => {
             token: user?.token || "",
           })
         );
+        navigate("/seller/dashboard");
       },
     });
   };
