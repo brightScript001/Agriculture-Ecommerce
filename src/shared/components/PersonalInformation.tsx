@@ -108,6 +108,7 @@ export const PersonalInformation: React.FC = () => {
 
     mutate(updatedUser, {
       onSuccess: () => {
+        //TODO
         dispatch(updateUserDetails(updatedUser));
         dispatch(
           setRole({
