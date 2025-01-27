@@ -24,7 +24,7 @@ const initialState: UserState = {
   email: "",
   password: "",
   createdAt: "",
-  avatar: "",
+  avatar: null,
   dateOfBirth: "",
   phoneNumber: "",
   state: "",
@@ -46,15 +46,45 @@ const userSlice = createSlice({
         lastName: string;
         email: string;
         password: string;
-        avatar?: string;
+        avatar?: string | null;
         role?: string;
         token?: string;
       }>
     ) => {
       Object.assign(state, action.payload);
     },
-    updateUserDetails: (state, action: PayloadAction<UserState>) => {
-      Object.assign(state, action.payload);
+    updateUserDetails: (
+      state,
+      action: PayloadAction<{
+        avatar: string | null;
+        firstName: string;
+        lastName: string;
+        dateOfBirth: string;
+        phoneNumber: string;
+        state: string;
+        city: string;
+        address: string;
+      }>
+    ) => {
+      const {
+        avatar,
+        firstName,
+        lastName,
+        dateOfBirth,
+        phoneNumber,
+        state: userGeographicalState,
+        city,
+        address,
+      } = action.payload;
+
+      state.avatar = avatar;
+      state.firstName = firstName;
+      state.lastName = lastName;
+      state.dateOfBirth = dateOfBirth;
+      state.phoneNumber = phoneNumber;
+      state.state = userGeographicalState;
+      state.city = city;
+      state.address = address;
     },
   },
 });

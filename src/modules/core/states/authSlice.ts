@@ -32,16 +32,31 @@ const authSlice = createSlice({
       state.role = action.payload.role;
       state.user = action.payload.user;
       state.token = action.payload.token;
-      state.isAuthenticated = true;
+      state.isAuthenticated = !!action.payload.token;
     },
-    updateAuthUser: (state, action: PayloadAction<UserState>) => {
+
+    updateAuthUser: (
+      state,
+      action: PayloadAction<{
+        avatar?: string | null;
+        firstName?: string;
+        lastName?: string;
+        dateOfBirth?: string;
+        phoneNumber?: string;
+        state?: string;
+        city?: string;
+        address?: string;
+      }>
+    ) => {
       if (state.user) {
         state.user = { ...state.user, ...action.payload };
       }
     },
+
     authenticate: (state) => {
       state.isAuthenticated = true;
     },
+
     logout: (state) => {
       state.role = null;
       state.isAuthenticated = false;
@@ -49,6 +64,7 @@ const authSlice = createSlice({
       state.user = null;
       state.token = null;
     },
+
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },

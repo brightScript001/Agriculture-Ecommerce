@@ -11,82 +11,81 @@ import { ActionButtons } from "../../modules/seller/components/profile/ActionBut
 import { VerificationHeader } from "../../modules/seller/components/profile/VerificationHeader";
 import { AppState } from "../../store";
 import { updateUserDetails } from "../../modules/core/states/userSlice";
-import { setRole } from "../../modules/core/states/authSlice";
 import SpinnerComponent from "@shared/ui/Spinner";
 import { updateUserInfo } from "@modules/core/api/updateUser";
 import ErrorFallback from "@shared/ui/ErrorFallback";
+import { updateAuthUser } from "@modules/core/states/authSlice";
 
-const Section = styled.section`
-  margin-bottom: 2rem;
-  transition: all 0.3s ease;
-`;
+interface UserProfile {
+  avatar: string | null;
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
+  phoneNumber: string;
+  state: string;
+  city: string;
+  address: string;
+  email: string;
+}
 
 export const PersonalInformation: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector((state: AppState) => state.auth.user);
+  const user = useSelector((state: AppState) => state.auth.user); // Get user from Redux store
 
-  const [profileImage, setProfileImage] = useState<string | null>(
-    user?.avatar ?? null
-  );
-  const [basicInfo, setBasicInfo] = useState({
+  const [userProfile, setUserProfile] = useState<UserProfile>({
+    avatar: user?.avatar ?? null,
     firstName: user?.firstName ?? "",
     lastName: user?.lastName ?? "",
     dateOfBirth: user?.dateOfBirth ?? "",
-  });
-
-  const [contactInfo, setContactInfo] = useState({
-    email: user?.email ?? "",
-    phone: user?.phoneNumber ?? "",
+    phoneNumber: user?.phoneNumber ?? "",
     state: user?.state ?? "",
     city: user?.city ?? "",
     address: user?.address ?? "",
+    email: user?.email ?? "",
   });
 
   useEffect(() => {
     if (user) {
-      setProfileImage(user.avatar || null);
-      setBasicInfo({
-        firstName: user.firstName,
-        lastName: user.lastName,
-        dateOfBirth: user.dateOfBirth || "",
-      });
-      setContactInfo({
-        email: user.email || "",
-        phone: user.phoneNumber || "",
-        state: user.state || "",
-        city: user.city || "",
-        address: user.address || "",
+      setUserProfile({
+        avatar: user.avatar ?? null,
+        firstName: user.firstName ?? "",
+        lastName: user.lastName ?? "",
+        dateOfBirth: user.dateOfBirth ?? "",
+        phoneNumber: user.phoneNumber ?? "",
+        state: user.state ?? "",
+        city: user.city ?? "",
+        address: user.address ?? "",
+        email: user?.email ?? "",
       });
     }
   }, [user]);
 
-  const handleImageChange = (imageUrl: string | null) => {
-    setProfileImage(imageUrl);
-  };
-
-  const handleBasicInfoChange = (field: string, value: string) => {
-    setBasicInfo((prev) => ({
-      ...prev,
-      [field]: value || "",
-    }));
-  };
-
-  const handleContactInfoChange = (field: string, value: string) => {
-    setContactInfo((prev) => ({
-      ...prev,
-      [field]: value || "",
-    }));
-  };
-
-  const handleCancel = () => {
-    navigate(-1);
+  const handleProfileChange = (
+    field: keyof UserProfile,
+    value: string | null
+  ) => {
+    setUserProfile((prev) => ({ ...prev, [field]: value ?? "" }));
   };
 
   const { mutate, isPending, isError, reset } = useMutation({
     mutationFn: updateUserInfo,
-    onSuccess: () => {
-      console.log("User information updated successfully!");
+    onSuccess: (updatedUser: UserProfile) => {
+      // Update both user details slice and auth slice with new data
+      dispatch(updateUserDetails(updatedUser));
+      dispatch(
+        updateAuthUser({
+          avatar: updatedUser.avatar,
+          firstName: updatedUser.firstName,
+          lastName: updatedUser.lastName,
+          dateOfBirth: updatedUser.dateOfBirth,
+          phoneNumber: updatedUser.phoneNumber,
+          state: updatedUser.state,
+          city: updatedUser.city,
+          address: updatedUser.address,
+        })
+      );
+      navigate("/seller/dashboard");
     },
     onError: (error: unknown) => {
       console.error("Failed to update user information:", error);
@@ -94,37 +93,8 @@ export const PersonalInformation: React.FC = () => {
   });
 
   const handleSave = () => {
-    const updatedUser = {
-      ...user,
-      avatar: profileImage,
-      firstName: basicInfo.firstName,
-      lastName: basicInfo.lastName,
-      dateOfBirth: basicInfo.dateOfBirth,
-      phoneNumber: contactInfo.phone,
-      state: contactInfo.state,
-      city: contactInfo.city,
-      address: contactInfo.address,
-    };
-
-    mutate(updatedUser, {
-      onSuccess: () => {
-        //TODO
-        dispatch(updateUserDetails(updatedUser));
-        dispatch(
-          setRole({
-            role: user?.role || "",
-            user: updatedUser,
-            token: user?.token || "",
-          })
-        );
-        navigate("/seller/dashboard");
-      },
-    });
-  };
-
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    handleSave();
+    const { email, ...updateData } = userProfile;
+    mutate(updateData); // Trigger API update
   };
 
   const resetErrorBoundary = () => {
@@ -133,30 +103,36 @@ export const PersonalInformation: React.FC = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={(e) => e.preventDefault()}>
       <Section>
         <VerificationHeader title="Profile Picture" complete={false} />
-        <ProfilePicture onImageChange={handleImageChange} />
+        <ProfilePicture
+          onImageChange={(imageUrl) => handleProfileChange("avatar", imageUrl)}
+        />
       </Section>
 
       <Section>
         <VerificationHeader title="Basic Information" complete={true} />
         <BasicInformation
-          basicInfo={basicInfo}
-          onBasicInfoChange={handleBasicInfoChange}
+          basicInfo={userProfile}
+          onBasicInfoChange={(field, value) =>
+            handleProfileChange(field as keyof UserProfile, value)
+          }
         />
       </Section>
 
       <Section>
         <VerificationHeader title="Contact Information" complete={true} />
         <ContactInformation
-          contactInfo={contactInfo}
-          onContactInfoChange={handleContactInfoChange}
+          contactInfo={{ ...userProfile, email: user?.email ?? "" }}
+          onContactInfoChange={(field, value) =>
+            handleProfileChange(field as keyof UserProfile, value)
+          }
         />
       </Section>
 
       <ActionButtons
-        onCancel={handleCancel}
+        onCancel={() => navigate(-1)}
         onSave={handleSave}
         isLoading={isPending}
       />
@@ -172,3 +148,8 @@ export const PersonalInformation: React.FC = () => {
     </Form>
   );
 };
+
+const Section = styled.section`
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+`;
