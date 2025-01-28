@@ -3,7 +3,6 @@ import styled from "styled-components";
 import ModalComponent from "../../../../shared/ui/Modal";
 import Button from "../../../../shared/ui/Button";
 import { Title } from "../../../../shared/ui/Title";
-
 interface ReusableModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -13,31 +12,6 @@ interface ReusableModalProps {
   isDeleteModal?: boolean;
   onDelete?: () => void;
 }
-
-const ModalContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 1.25rem;
-`;
-
-const Message = styled.p`
-  font-size: var(--font-size-sm);
-  margin-top: 2rem;
-`;
-
-const ModalImage = styled.img`
-  display: block;
-  margin: 0 auto;
-`;
-
-const ButtonGroup = styled.div`
-  margin-top: 2rem;
-  display: flex;
-  gap: 0.6rem;
-  justify-content: center;
-`;
 
 const ReusableModal: React.FC<ReusableModalProps> = ({
   isOpen,
@@ -71,3 +45,28 @@ const ReusableModal: React.FC<ReusableModalProps> = ({
 };
 
 export default ReusableModal;
+
+const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.25rem;
+`;
+
+const Message = styled.p`
+  font-size: var(--font-size-sm);
+  margin-top: 2rem;
+`;
+
+const ModalImage = styled.img`
+  display: block;
+  margin: 0 auto;
+`;
+
+const ButtonGroup = styled.div`
+  margin-top: 2rem;
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+`;

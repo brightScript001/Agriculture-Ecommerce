@@ -2,6 +2,59 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { calculateTotalPrice, Order } from "../../utils/Formatting";
 
+interface Props {
+  order: Order;
+}
+
+const OrderCard = ({ order }: Props) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/seller/order/${order.orderId}`);
+  };
+
+  const totalOrderPrice = calculateTotalPrice(order);
+  const displayOrderDetails = order.orderDetails.slice(0, 3);
+
+  return (
+    <Card onClick={handleCardClick}>
+      <TopRow>
+        <OrderId>#{order.orderId}</OrderId>
+        <TotalPrice>₦{totalOrderPrice.toFixed(2)}</TotalPrice>
+      </TopRow>
+      <DateOfOrder>{order.dateOfOrder}</DateOfOrder>
+      <Divider />
+      <OrderDetails>
+        {displayOrderDetails.map((detail) => (
+          <p key={detail.item}>
+            {detail.quantityInKg}X {detail.item}
+          </p>
+        ))}
+        {order.orderDetails.length > 3 && (
+          <More>
+            +{order.orderDetails.length - displayOrderDetails.length} more
+            orders
+          </More>
+        )}
+      </OrderDetails>
+      <Divider />
+      <CustomerDetails>
+        <CustomerAvatar
+          src="/src/assets/images/customerAvatar.png"
+          alt={order.customerName}
+        />
+        <CustomerName>
+          {order.customerName}
+          <CustomerAddress>Retailer in Abuja</CustomerAddress>
+        </CustomerName>
+      </CustomerDetails>
+    </Card>
+  );
+};
+
+export default OrderCard;
+
+// Styling
 const Card = styled.div`
   padding: 1.5rem;
   background-color: var(--color-grey-0);
@@ -89,55 +142,3 @@ const CustomerAddress = styled.p`
   color: var(--color-grey-500);
   margin-top: 0.2rem;
 `;
-
-interface Props {
-  order: Order;
-}
-
-const OrderCard = ({ order }: Props) => {
-  const navigate = useNavigate();
-
-  const handleCardClick = () => {
-    navigate(`/seller/order/${order.orderId}`);
-  };
-
-  const totalOrderPrice = calculateTotalPrice(order);
-  const displayOrderDetails = order.orderDetails.slice(0, 3);
-
-  return (
-    <Card onClick={handleCardClick}>
-      <TopRow>
-        <OrderId>#{order.orderId}</OrderId>
-        <TotalPrice>₦{totalOrderPrice.toFixed(2)}</TotalPrice>
-      </TopRow>
-      <DateOfOrder>{order.dateOfOrder}</DateOfOrder>
-      <Divider />
-      <OrderDetails>
-        {displayOrderDetails.map((detail) => (
-          <p key={detail.item}>
-            {detail.quantityInKg}X {detail.item}
-          </p>
-        ))}
-        {order.orderDetails.length > 3 && (
-          <More>
-            +{order.orderDetails.length - displayOrderDetails.length} more
-            orders
-          </More>
-        )}
-      </OrderDetails>
-      <Divider />
-      <CustomerDetails>
-        <CustomerAvatar
-          src="/src/assets/images/customerAvatar.png"
-          alt={order.customerName}
-        />
-        <CustomerName>
-          {order.customerName}
-          <CustomerAddress>Retailer in Abuja</CustomerAddress>
-        </CustomerName>
-      </CustomerDetails>
-    </Card>
-  );
-};
-
-export default OrderCard;

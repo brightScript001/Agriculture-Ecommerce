@@ -1,6 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "../../../../shared/ui/Button";
+interface ButtonProp {
+  onDispute: () => void;
+  onApprove: () => void;
+}
+
+export const Buttons: React.FC<ButtonProp> = ({ onDispute, onApprove }) => {
+  return (
+    <ButtonContainer>
+      <StyledButton size="large" variation="primary" onClick={onApprove}>
+        Approve Order
+      </StyledButton>
+      <StyledButton size="large" variation="secondary">
+        Message Customer
+      </StyledButton>
+      <StyledButtonDispute
+        size="large"
+        variation="secondary"
+        onClick={onDispute}
+      >
+        Dispute Order
+      </StyledButtonDispute>
+    </ButtonContainer>
+  );
+};
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -27,28 +51,3 @@ const StyledButtonDispute = styled(StyledButton)`
     color: var(--color-grey-50);
   }
 `;
-
-interface ButtonProp {
-  onDispute: () => void;
-  onApprove: () => void;
-}
-
-export const Buttons: React.FC<ButtonProp> = ({ onDispute, onApprove }) => {
-  return (
-    <ButtonContainer>
-      <StyledButton size="large" variation="primary" onClick={onApprove}>
-        Approve Order
-      </StyledButton>
-      <StyledButton size="large" variation="secondary">
-        Message Customer
-      </StyledButton>
-      <StyledButtonDispute
-        size="large"
-        variation="secondary"
-        onClick={onDispute}
-      >
-        Dispute Order
-      </StyledButtonDispute>
-    </ButtonContainer>
-  );
-};

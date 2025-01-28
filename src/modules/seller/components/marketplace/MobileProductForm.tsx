@@ -12,25 +12,6 @@ interface MobileProductFormProps {
   onSubmit: () => void;
 }
 
-const Label = styled.label`
-  font-size: var(--font-size-md);
-`;
-
-const StyledInput = styled(Input)`
-  width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 1.5rem;
-`;
-
-const UploadButton = styled(Button)`
-  width: 100%;
-  padding: 1rem;
-  background-color: var(--color-grey-500);
-  border: none;
-  border-radius: var(--border-radius-sm);
-  cursor: pointer;
-`;
-
 const MobileProductForm = ({
   control,
   formState: { errors },
@@ -119,3 +100,22 @@ const MobileProductForm = ({
 };
 
 export default MobileProductForm;
+
+const Label = styled.label`
+  font-size: var(--font-size-md);
+`;
+
+const StyledInput = styled(Input)`
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+`;
+
+const UploadButton = styled(Button)`
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--color-grey-500);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+`;

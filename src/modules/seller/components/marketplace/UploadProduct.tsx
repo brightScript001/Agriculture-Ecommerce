@@ -1,10 +1,35 @@
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
-
 import { Title } from "../../../../shared/ui/Title";
 import { fetchProducts } from "../../api/products";
 import Button from "../../../../shared/ui/Button";
+
+function UploadProduct() {
+  const navigate = useNavigate();
+  const { data: products } = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+  });
+
+  const handleAddProductClick = () => {
+    navigate("/seller/marketplace/create-product");
+  };
+
+  return (
+    <Wrapper>
+      <Text>
+        <StyledTitle>Your Current Uploaded Products</StyledTitle>
+        <Span>{products?.length} products</Span>
+      </Text>
+      <ButtonWrapper>
+        <Button onClick={handleAddProductClick}>+ Add Products</Button>
+      </ButtonWrapper>
+    </Wrapper>
+  );
+}
+
+export default UploadProduct;
 
 const Wrapper = styled.div`
   background-color: var(--color-grey-0);
@@ -33,29 +58,3 @@ const Span = styled.div`
 const StyledTitle = styled(Title)`
   font-size: var(--font-size-lg);
 `;
-
-function UploadProduct() {
-  const navigate = useNavigate();
-  const { data: products } = useQuery({
-    queryKey: ["products"],
-    queryFn: fetchProducts,
-  });
-
-  const handleAddProductClick = () => {
-    navigate("/seller/marketplace/create-product");
-  };
-
-  return (
-    <Wrapper>
-      <Text>
-        <StyledTitle>Your Current Uploaded Products</StyledTitle>
-        <Span>{products?.length} products</Span>
-      </Text>
-      <ButtonWrapper>
-        <Button onClick={handleAddProductClick}>+ Add Products</Button>
-      </ButtonWrapper>
-    </Wrapper>
-  );
-}
-
-export default UploadProduct;

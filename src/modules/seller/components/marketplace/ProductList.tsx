@@ -14,6 +14,42 @@ interface Product {
   costPerKg: number;
 }
 
+const ProductList: React.FC = () => {
+  const {
+    data: products,
+    isLoading,
+    error,
+  } = useQuery<Product[]>({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+    staleTime: 60000,
+  });
+
+  if (isLoading) return <Spinner />;
+  if (error instanceof Error) return toast(error.message);
+
+  return (
+    <ProductListWrapper>
+      <Heading as="h2">Your Products</Heading>
+      <ProductListContainer>
+        {Array.isArray(products) &&
+          products.map((product) => (
+            <ProductCard key={product.id}>
+              <img src={product.imageSrc} alt={product.productName} />
+              <ProductName>{product.productName}</ProductName>
+              <ProductDescription>{product.description}</ProductDescription>
+              <ProductPrice>
+                {formatNumber(product.costPerKg, true)}
+              </ProductPrice>
+            </ProductCard>
+          ))}
+      </ProductListContainer>
+    </ProductListWrapper>
+  );
+};
+
+export default ProductList;
+
 const ProductListWrapper = styled.div`
   margin-top: 1.25rem;
 `;
@@ -53,39 +89,3 @@ const ProductPrice = styled.p`
   font-size: var(--font-size-md);
   margin-bottom: 1.0625rem;
 `;
-
-const ProductList: React.FC = () => {
-  const {
-    data: products,
-    isLoading,
-    error,
-  } = useQuery<Product[]>({
-    queryKey: ["products"],
-    queryFn: fetchProducts,
-    staleTime: 60000,
-  });
-
-  if (isLoading) return <Spinner />;
-  if (error instanceof Error) return toast(error.message);
-
-  return (
-    <ProductListWrapper>
-      <Heading as="h2">Your Products</Heading>
-      <ProductListContainer>
-        {Array.isArray(products) &&
-          products.map((product) => (
-            <ProductCard key={product.id}>
-              <img src={product.imageSrc} alt={product.productName} />
-              <ProductName>{product.productName}</ProductName>
-              <ProductDescription>{product.description}</ProductDescription>
-              <ProductPrice>
-                {formatNumber(product.costPerKg, true)}
-              </ProductPrice>
-            </ProductCard>
-          ))}
-      </ProductListContainer>
-    </ProductListWrapper>
-  );
-};
-
-export default ProductList;

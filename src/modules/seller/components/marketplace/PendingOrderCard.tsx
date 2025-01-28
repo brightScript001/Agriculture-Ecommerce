@@ -13,6 +13,63 @@ interface CardProps {
   totalPrice: number;
 }
 
+const PendingOrderHeader: React.FC = () => {
+  const navigate = useNavigate();
+  return (
+    <PageHeader
+      title="Pending Orders"
+      RightComponent={<ViewMore onClick={() => navigate("")} />}
+      noUnderline
+    />
+  );
+};
+
+const Card: React.FC<CardProps> = ({ item, totalPrice }) => {
+  return (
+    <CardWrapper>
+      <CardContent>
+        <CardItem>{item}</CardItem>
+        <CardPrice>₦{totalPrice.toFixed(2)}</CardPrice>
+      </CardContent>
+      <StyledButtonGroup>
+        <StyledButton>Edit Product</StyledButton>
+        <DeleteButton variation="secondary">Delete Product</DeleteButton>
+      </StyledButtonGroup>
+    </CardWrapper>
+  );
+};
+
+export const PendingOrderCard: React.FC = () => {
+  const { isLoading, error, data } = useQuery<Order[]>({
+    queryKey: ["orders"],
+    queryFn: fetchOrders,
+    select: (data) => data.filter((order) => order.orderStatus === "pending"),
+  });
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error instanceof Error)
+    return <p>An error has occurred: {error.message}</p>;
+
+  const pendingOrders =
+    data?.flatMap((order) =>
+      order.orderDetails.map((detail) => ({
+        item: detail.item,
+        totalPrice: detail.totalPrice,
+      }))
+    ) ?? [];
+
+  return (
+    <>
+      <PendingOrderHeader />
+      <CardsWrapper>
+        {pendingOrders.map((order, index) => (
+          <Card key={index} item={order.item} totalPrice={order.totalPrice} />
+        ))}
+      </CardsWrapper>
+    </>
+  );
+};
+
 const CardsWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -84,60 +141,3 @@ const DeleteButton = styled(Button)`
   border-radius: 0;
   border: 1px solid var(--color-red-300);
 `;
-
-const PendingOrderHeader: React.FC = () => {
-  const navigate = useNavigate();
-  return (
-    <PageHeader
-      title="Pending Orders"
-      RightComponent={<ViewMore onClick={() => navigate("")} />}
-      noUnderline
-    />
-  );
-};
-
-const Card: React.FC<CardProps> = ({ item, totalPrice }) => {
-  return (
-    <CardWrapper>
-      <CardContent>
-        <CardItem>{item}</CardItem>
-        <CardPrice>₦{totalPrice.toFixed(2)}</CardPrice>
-      </CardContent>
-      <StyledButtonGroup>
-        <StyledButton>Edit Product</StyledButton>
-        <DeleteButton variation="secondary">Delete Product</DeleteButton>
-      </StyledButtonGroup>
-    </CardWrapper>
-  );
-};
-
-export const PendingOrderCard: React.FC = () => {
-  const { isLoading, error, data } = useQuery<Order[]>({
-    queryKey: ["orders"],
-    queryFn: fetchOrders,
-    select: (data) => data.filter((order) => order.orderStatus === "pending"),
-  });
-
-  if (isLoading) return <p>Loading...</p>;
-  if (error instanceof Error)
-    return <p>An error has occurred: {error.message}</p>;
-
-  const pendingOrders =
-    data?.flatMap((order) =>
-      order.orderDetails.map((detail) => ({
-        item: detail.item,
-        totalPrice: detail.totalPrice,
-      }))
-    ) ?? [];
-
-  return (
-    <>
-      <PendingOrderHeader />
-      <CardsWrapper>
-        {pendingOrders.map((order, index) => (
-          <Card key={index} item={order.item} totalPrice={order.totalPrice} />
-        ))}
-      </CardsWrapper>
-    </>
-  );
-};

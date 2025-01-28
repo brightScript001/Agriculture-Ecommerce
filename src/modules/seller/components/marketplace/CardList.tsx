@@ -34,6 +34,11 @@ export const useCardList = (): Card[] => {
     return [];
   }
 
+  if (!Array.isArray(orders)) {
+    console.error("Unexpected orders format:", orders);
+    return [];
+  }
+
   const pendingOrdersCount = orders.filter(
     (order: Order) => order.orderStatus === "pending"
   ).length;

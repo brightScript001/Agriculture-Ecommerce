@@ -6,6 +6,60 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchProducts } from "../../api/products";
 import { UploadIcon } from "../../../../shared/ui/Icons";
 
+function CardsContainer() {
+  const cardList = useCardList();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const isMobile = window.innerWidth <= 768;
+  const isMarketplace = location.pathname === "/marketplace";
+
+  const { data: products = [], isLoading: isLoadingProducts } = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+  });
+
+  const handleCardClick = (navigateTo: string) => {
+    navigate(navigateTo);
+  };
+
+  return (
+    <CardsWrapper>
+      <CardsGrid>
+        {isMobile && isMarketplace && (
+          <ProductCard
+            onClick={() => navigate("/seller/marketplace/create-product")}
+          >
+            <div className="upload-icon">
+              <img src={UploadIcon} alt="" />
+            </div>
+            <div className="title">Upload your product</div>
+            <div className="description">
+              {isLoadingProducts
+                ? "Loading..."
+                : `${products.length} products uploaded so far`}
+            </div>
+          </ProductCard>
+        )}
+
+        {cardList.map((data) => (
+          <Card
+            key={data.navigateTo}
+            title={data.title}
+            count={data.count}
+            description={data.description}
+            isCurrency={data.isCurrency}
+            onClick={() => handleCardClick(data.navigateTo)}
+            aria-label={`Card for ${data.title}`}
+          />
+        ))}
+      </CardsGrid>
+    </CardsWrapper>
+  );
+}
+
+export default CardsContainer;
+
 export const CardsWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -60,57 +114,3 @@ const ProductCard = styled.div`
     margin-top: 0.5rem;
   }
 `;
-
-function CardsContainer() {
-  const cardList = useCardList();
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const isMobile = window.innerWidth <= 768;
-  const isMarketplace = location.pathname === "/marketplace";
-
-  const { data: products = [], isLoading: isLoadingProducts } = useQuery({
-    queryKey: ["products"],
-    queryFn: fetchProducts,
-  });
-
-  const handleCardClick = (navigateTo: string) => {
-    navigate(navigateTo);
-  };
-
-  return (
-    <CardsWrapper>
-      <CardsGrid>
-        {isMobile && isMarketplace && (
-          <ProductCard
-            onClick={() => navigate("/seller/marketplace/create-product")}
-          >
-            <div className="upload-icon">
-              <img src={UploadIcon} alt="" />
-            </div>
-            <div className="title">Upload your product</div>
-            <div className="description">
-              {isLoadingProducts
-                ? "Loading..."
-                : `${products.length} products uploaded so far`}
-            </div>
-          </ProductCard>
-        )}
-
-        {cardList.map((data) => (
-          <Card
-            key={data.navigateTo}
-            title={data.title}
-            count={data.count}
-            description={data.description}
-            isCurrency={data.isCurrency}
-            onClick={() => handleCardClick(data.navigateTo)}
-            aria-label={`Card for ${data.title}`}
-          />
-        ))}
-      </CardsGrid>
-    </CardsWrapper>
-  );
-}
-
-export default CardsContainer;
