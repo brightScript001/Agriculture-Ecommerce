@@ -19,14 +19,13 @@ export const fetchOrders = async () => {
 
   const response = await res.json();
 
-  // Extract the `data` field and validate if it's an array
   if (!response.success || !Array.isArray(response.data)) {
     throw new Error(
       "Unexpected API response format: orders data is not an array"
     );
   }
 
-  return response.data; // Return the actual orders array
+  return response.data;
 };
 
 export const fetchOrderById = async (orderId: string) => {
