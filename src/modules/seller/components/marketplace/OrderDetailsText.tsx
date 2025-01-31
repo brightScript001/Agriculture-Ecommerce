@@ -24,7 +24,7 @@ export const OrderText: React.FC<OrderTextProps> = ({ order }) => {
         </BlockItem>
         <BlockItem>
           <Heading as="h3">Order ID</Heading>
-          <Input type="text" value={order.orderId || "N/A"} readOnly />
+          <Input type="text" value={order.id || "N/A"} readOnly />
         </BlockItem>
       </Block>
 

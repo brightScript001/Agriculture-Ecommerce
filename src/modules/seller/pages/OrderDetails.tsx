@@ -5,9 +5,11 @@ import { fetchOrderById } from "../api/orders";
 import { OrderText } from "../components/marketplace/OrderDetailsText";
 import { Buttons } from "../components/marketplace/OrderDetailsBtn";
 import { Approve } from "../components/marketplace/ApproveModal";
+import SpinnerComponent from "@shared/ui/Spinner";
 
 export const OrderDetails: React.FC = () => {
-  const { orderId } = useParams<{ orderId: string }>();
+  const { id } = useParams<{ id: string }>();
+  console.log("OrderDetails ID:", id);
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -17,12 +19,12 @@ export const OrderDetails: React.FC = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: ["order", orderId],
-    queryFn: () => fetchOrderById(orderId!),
-    enabled: !!orderId,
+    queryKey: ["order", id],
+    queryFn: () => fetchOrderById(id!),
+    enabled: !!id,
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <SpinnerComponent />;
   if (isError)
     return (
       <p>
@@ -35,7 +37,7 @@ export const OrderDetails: React.FC = () => {
   }
 
   const handleDispute = () => {
-    navigate(`/seller/order/${orderId}/dispute`);
+    navigate(`/seller/order/${id}/dispute`);
   };
 
   const handleApprove = () => {

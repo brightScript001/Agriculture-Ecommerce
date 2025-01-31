@@ -39,18 +39,18 @@ const StyledTextArea = styled(TextArea)`
 const Block = styled.div``;
 
 export const Dispute: React.FC = () => {
-  const { orderId } = useParams<{ orderId: string }>();
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
   const mutation = useMutation({
     mutationFn: () => {
-      if (orderId) {
-        return updateOrderStatus(orderId, "disputed");
+      if (id) {
+        return updateOrderStatus(id, "disputed");
       }
       throw new Error("Order ID is required");
     },
     onSuccess: () => {
-      toast.success(`Order ${orderId} status changed to disputed`);
+      toast.success(`Order ${id} status changed to disputed`);
       navigate("/seller/orders/:status");
     },
     onError: (error) => {
@@ -60,8 +60,8 @@ export const Dispute: React.FC = () => {
   });
 
   const handleSubmitDispute = () => {
-    console.log("Order ID:", orderId);
-    if (orderId) {
+    console.log("Order ID:", id);
+    if (id) {
       mutation.mutate();
     }
   };

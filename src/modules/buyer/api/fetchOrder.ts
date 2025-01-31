@@ -9,16 +9,16 @@ export const fetchOrdersHistory = async () => {
   return orderHistory;
 };
 
-export const fetchOrderById = async (orderId: string) => {
+export const fetchOrderById = async (id: string) => {
   try {
     const orders = await fetchOrdersHistory();
 
     const order = orders.find(
-      (order: { orderId: number }) => order.orderId === parseInt(orderId)
+      (order: { id: number }) => order.id === parseInt(id)
     );
 
     if (!order) {
-      throw new Error(`Order not found: ${orderId}`);
+      throw new Error(`Order not found: ${id}`);
     }
 
     return order;

@@ -8,7 +8,7 @@ import { PlaceOrderButton } from "./PlaceOrder";
 import { SuccessModal } from "./SuccessModal";
 import { CollapsibleSection } from "../../../shared/ui/CollapsibleSection";
 import { Footer } from "./Footer";
-import { generateOrderID } from "../utils/generateOrderID";
+import { generateId } from "../utils/generateOrderID";
 
 interface PaymentComponentProps {
   subtotal: number;
@@ -19,11 +19,11 @@ export const PaymentComponent: React.FC<PaymentComponentProps> = ({
 }) => {
   const [deliveryOption, setDeliveryOption] = useState("pickup");
   const [isModalOpen, setModalOpen] = useState(false);
-  const [orderID, setOrderID] = useState<string>("");
+  const [id, setid] = useState<string>("");
 
   const handlePlaceOrder = () => {
-    const newOrderID = generateOrderID();
-    setOrderID(newOrderID);
+    const newid = generateId();
+    setid(newid);
     setModalOpen(true);
   };
 
@@ -55,7 +55,7 @@ export const PaymentComponent: React.FC<PaymentComponentProps> = ({
       <SuccessModal
         isOpen={isModalOpen}
         onClose={() => setModalOpen(false)}
-        orderID={orderID}
+        id={id}
       />
     </main>
   );

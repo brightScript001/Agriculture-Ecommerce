@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const columns: ColumnDef[] = [
   { field: "customerName", headerName: "Customer" },
   { field: "product", headerName: "Product" },
-  { field: "orderId", headerName: "Order ID" },
+  { field: "id", headerName: "Order ID" },
   { field: "quantity", headerName: "Quantity (kg)" },
   { field: "price", headerName: "Total Price" },
   { field: "dateOfOrder", headerName: "Date of Order" },
@@ -17,11 +17,12 @@ const OrderTable: React.FC<OrderTableProps> = ({ rows }) => {
 
   const renderRow = (row: DataGridRow) => {
     const handleRowClick = () => {
-      navigate(`/seller/order/${row.orderId}`);
+      navigate(`/seller/order/${row.id}`);
+      console.log("Row clicked", row.id);
     };
 
     return (
-      <Table.Row key={row.orderId} onClick={handleRowClick}>
+      <Table.Row key={row.id} onClick={handleRowClick}>
         {columns.map((col) => (
           <div key={col.field}>{row[col.field]}</div>
         ))}

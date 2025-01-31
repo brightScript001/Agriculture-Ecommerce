@@ -7,7 +7,7 @@ export interface OrderDetail {
 
 export interface Order {
   customerName: string;
-  orderId: string;
+  id: string;
   orderDetails: OrderDetail[];
   shippingAddress: string;
   dateOfOrder: string;
@@ -24,7 +24,6 @@ export interface DataGridRow {
   id: string;
   customerName: string;
   product: string;
-  orderId: string;
   quantity: number;
   price: number;
   dateOfOrder: string;

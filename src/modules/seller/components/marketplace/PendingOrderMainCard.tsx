@@ -1,25 +1,10 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query"; // Ensure react-query is installed
+import { useQuery } from "@tanstack/react-query";
 import { fetchOrders } from "../../api/orders";
 import Button from "../../../../shared/ui/Button";
 import SpinnerComponent from "../../../../shared/ui/Spinner";
-
-interface OrderDetail {
-  item: string;
-  quantityInKg: number;
-  pricePerKg: number;
-  totalPrice: number;
-}
-
-interface Order {
-  orderId: string;
-  customerName: string;
-  orderDetails: OrderDetail[];
-  shippingAddress: string;
-  dateOfOrder: string;
-  orderStatus: string;
-}
+import { Order, OrderDetail } from "./OrdersListTypes";
 
 const PendingOrdersCard = () => {
   const navigate = useNavigate();
@@ -46,8 +31,8 @@ const PendingOrdersCard = () => {
     navigate("/seller/orders/pending-orders");
   };
 
-  const handleViewClick = (orderId: string) => {
-    navigate(`/seller/order/${orderId}`);
+  const handleViewClick = (id: string) => {
+    navigate(`/seller/order/${id}`);
   };
 
   const formatOrderDetails = (orderDetails: OrderDetail[]) => {
@@ -57,32 +42,39 @@ const PendingOrdersCard = () => {
       .join(", ");
   };
 
+  const PendingOrders = orders.filter(
+    (order: Order) => order.orderStatus === "pending"
+  );
+
   return (
     <Card>
       <Header onClick={handleHeaderClick}>
         <HeaderText>Pending Orders</HeaderText>
         <ArrowIcon>➔</ArrowIcon>
       </Header>
-
-      <OrderList>
-        {orders.map((order: Order) => (
-          <OrderItem key={order.orderId}>
-            <CustomerInfo>
-              <CustomerName>{order.customerName}</CustomerName>
-              <OrderDetails>
-                {formatOrderDetails(order.orderDetails)}...{" "}
-                <OrderDate>{order.dateOfOrder}</OrderDate>
-              </OrderDetails>
-            </CustomerInfo>
-            <ViewButton
-              variation="secondary"
-              onClick={() => handleViewClick(order.orderId)}
-            >
-              View
-            </ViewButton>
-          </OrderItem>
-        ))}
-      </OrderList>
+      {PendingOrders.length > 0 ? (
+        <OrderList>
+          {PendingOrders.map((order: Order) => (
+            <OrderItem key={order.id}>
+              <CustomerInfo>
+                <CustomerName>{order.customerName}</CustomerName>
+                <OrderDetails>
+                  {formatOrderDetails(order.orderDetails)}...{" "}
+                  <OrderDate>{order.dateOfOrder}</OrderDate>
+                </OrderDetails>
+              </CustomerInfo>
+              <ViewButton
+                variation="secondary"
+                onClick={() => handleViewClick(order.id)}
+              >
+                View
+              </ViewButton>
+            </OrderItem>
+          ))}
+        </OrderList>
+      ) : (
+        <NoOrdersText>No pending orders available</NoOrdersText>
+      )}
     </Card>
   );
 };
@@ -152,4 +144,11 @@ const OrderDate = styled.span`
 
 const ViewButton = styled(Button)`
   background-color: var(--color-green-100);
+`;
+
+const NoOrdersText = styled.p`
+  text-align: center;
+  padding: 1rem;
+  color: var(--color-grey-500);
+  font-size: var(--font-size-md);
 `;

@@ -11,7 +11,7 @@ export interface OrderDetails {
 
 export interface OrderHistory {
   name: string;
-  orderId: string;
+  id: string;
   orderDetails: OrderDetails[];
   price: number;
   date: string;
@@ -34,7 +34,7 @@ export const useFetchOrderHistory = () => {
 };
 
 export const useFetchOrderById = () => {
-  const { orderId } = useParams<{ orderId: string }>();
+  const { id } = useParams<{ id: string }>();
 
   const {
     data: order,
@@ -42,9 +42,9 @@ export const useFetchOrderById = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: ["orders-history", orderId],
-    queryFn: () => fetchOrderById(orderId!),
-    enabled: !!orderId,
+    queryKey: ["orders-history", id],
+    queryFn: () => fetchOrderById(id!),
+    enabled: !!id,
   });
 
   return {

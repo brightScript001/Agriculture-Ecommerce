@@ -1,24 +1,4 @@
-export interface OrderDetail {
-  item: string;
-  quantityInKg: number;
-  pricePerKg: number;
-  totalPrice: number;
-}
-
-export interface Order {
-  customerName: string;
-  orderId: string;
-  orderDetails: OrderDetail[];
-  shippingAddress: string;
-  dateOfOrder: string;
-  orderStatus:
-    | "pending"
-    | "approved"
-    | "disputed"
-    | "shipped"
-    | "delivered"
-    | "settled";
-}
+import { Order, OrderDetail } from "../components/marketplace/OrdersListTypes";
 
 export const calculateTotalQuantity = (order: Order): number =>
   order.orderDetails.reduce(

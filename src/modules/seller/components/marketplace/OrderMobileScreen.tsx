@@ -54,7 +54,7 @@ const OrderMobileScreen = ({
       </HeaderWrapper>
 
       {filteredOrders?.map((order: Order) => (
-        <OrderCard key={order.orderId} order={order} />
+        <OrderCard key={order.id} order={order} />
       ))}
     </List>
   );

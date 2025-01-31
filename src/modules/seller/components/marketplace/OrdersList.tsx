@@ -29,10 +29,9 @@ const generateRows = (
       .join(", ");
 
     return {
-      id: order.orderId,
+      id: order.id,
       customerName: order.customerName,
       product: productDetails,
-      orderId: order.orderId,
       quantity: totalQuantity,
       price: totalPrice,
       dateOfOrder: order.dateOfOrder,

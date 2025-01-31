@@ -18,16 +18,16 @@ const Image = styled.img`
 export const SuccessModal: React.FC<{
   isOpen: boolean;
   onClose: () => void;
-  orderID: string;
-}> = ({ isOpen, onClose, orderID }) => {
+  id: string;
+}> = ({ isOpen, onClose, id }) => {
   return (
     <ModalComponent isOpen={isOpen} onClose={onClose}>
       <Image src="/src/assets/images/check.png" alt="Success" />
 
       <SuccessMessage>
         You have successfully placed your order. Your order ID is{" "}
-        <span style={{ color: "var(--color-green-600)" }}>{orderID}</span>. You
-        can track your order or message Onefarm.
+        <span style={{ color: "var(--color-green-600)" }}>{id}</span>. You can
+        track your order or message Onefarm.
       </SuccessMessage>
 
       {/* Button group for actions */}

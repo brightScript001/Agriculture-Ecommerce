@@ -25,11 +25,11 @@ export const PageTitle = () => {
       break;
   }
 
-  if (matchPath("/order/:orderId", pathname)) {
+  if (matchPath("/order/:id", pathname)) {
     return "Orders";
   }
 
-  if (matchPath("/order/:orderId/dispute", pathname)) {
+  if (matchPath("/order/:id/dispute", pathname)) {
     return "Dispute Order";
   }
 

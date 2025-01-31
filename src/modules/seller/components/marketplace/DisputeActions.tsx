@@ -8,10 +8,10 @@ const DisputeActions: React.FC<{ onSubmitDispute: () => void }> = ({
   onSubmitDispute,
 }) => {
   const navigate = useNavigate();
-  const { orderId } = useParams<{ orderId: string }>();
+  const { id } = useParams<{ id: string }>();
 
   const handleCancel = () => {
-    navigate(`/seller/order/${orderId}`);
+    navigate(`/seller/order/${id}`);
   };
 
   return (

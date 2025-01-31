@@ -5,6 +5,8 @@ export const fetchOrders = async () => {
     throw new Error("Authentication token is missing");
   }
 
+  console.log("fetchOrders token", token);
+
   const res = await fetch("http://localhost:5000/api/orders", {
     method: "GET",
     headers: {
@@ -18,6 +20,7 @@ export const fetchOrders = async () => {
   }
 
   const response = await res.json();
+  console.log("fetchOrders response", response);
 
   if (!response.success || !Array.isArray(response.data)) {
     throw new Error(
@@ -28,7 +31,8 @@ export const fetchOrders = async () => {
   return response.data;
 };
 
-export const fetchOrderById = async (orderId: string) => {
+export const fetchOrderById = async (id: string) => {
+  console.log("Received ID:", id);
   try {
     const token = localStorage.getItem("token");
 
@@ -36,7 +40,7 @@ export const fetchOrderById = async (orderId: string) => {
       throw new Error("Authentication token is missing");
     }
 
-    const res = await fetch(`http://localhost:5000/api/orders/${orderId}`, {
+    const res = await fetch(`http://localhost:5000/api/orders/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -45,7 +49,7 @@ export const fetchOrderById = async (orderId: string) => {
     });
 
     if (!res.ok) {
-      throw new Error(`Failed to fetch order with ID: ${orderId}`);
+      throw new Error(`Failed to fetch order with ID: ${id}`);
     }
 
     const response = await res.json();
@@ -63,7 +67,7 @@ export const fetchOrderById = async (orderId: string) => {
   }
 };
 
-export const updateOrderStatus = async (orderId: string, status: string) => {
+export const updateOrderStatus = async (id: string, status: string) => {
   try {
     const token = localStorage.getItem("token");
 
@@ -72,7 +76,7 @@ export const updateOrderStatus = async (orderId: string, status: string) => {
     }
 
     const updateResponse = await fetch(
-      `http://localhost:5000/api/orders/${orderId}`,
+      `http://localhost:5000/api/orders/${id}`,
       {
         method: "PATCH",
         headers: {
@@ -84,7 +88,7 @@ export const updateOrderStatus = async (orderId: string, status: string) => {
     );
 
     if (!updateResponse.ok) {
-      throw new Error(`Failed to update order status for ID: ${orderId}`);
+      throw new Error(`Failed to update order status for ID: ${id}`);
     }
 
     const response = await updateResponse.json();

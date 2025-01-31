@@ -10,7 +10,7 @@ const OrderCard = ({ order }: Props) => {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
-    navigate(`/seller/order/${order.orderId}`);
+    navigate(`/seller/order/${order.id}`);
   };
 
   const totalOrderPrice = calculateTotalPrice(order);
@@ -19,7 +19,7 @@ const OrderCard = ({ order }: Props) => {
   return (
     <Card onClick={handleCardClick}>
       <TopRow>
-        <OrderId>#{order.orderId}</OrderId>
+        <OrderId>#{order.id}</OrderId>
         <TotalPrice>₦{totalOrderPrice.toFixed(2)}</TotalPrice>
       </TopRow>
       <DateOfOrder>{order.dateOfOrder}</DateOfOrder>
