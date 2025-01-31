@@ -1,107 +1,43 @@
-export const fetchOrders = async () => {
-  const token = localStorage.getItem("token");
+import { Order } from "../components/marketplace/OrdersListTypes";
+import { apiRequest } from "./apiHelper";
 
-  if (!token) {
-    throw new Error("Authentication token is missing");
-  }
+type OrderApiResponse = { _id: string } & Omit<Order, "id">;
 
-  console.log("fetchOrders token", token);
+export const fetchOrders = async (): Promise<Order[]> => {
+  const response = await apiRequest<OrderApiResponse[]>(
+    "http://localhost:5000/api/orders",
+    "GET"
+  );
 
-  const res = await fetch("http://localhost:5000/api/orders", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch orders");
-  }
-
-  const response = await res.json();
-  console.log("fetchOrders response", response);
-
-  if (!response.success || !Array.isArray(response.data)) {
+  if (!Array.isArray(response)) {
     throw new Error(
       "Unexpected API response format: orders data is not an array"
     );
   }
 
-  return response.data;
+  return response.map((order) => ({
+    ...order,
+    id: order._id,
+  }));
 };
 
-export const fetchOrderById = async (id: string) => {
-  console.log("Received ID:", id);
-  try {
-    const token = localStorage.getItem("token");
+export const fetchOrderById = async (id: string): Promise<Order> => {
+  console.log("Fetching Order ID:", id);
+  const response = await apiRequest<OrderApiResponse>(
+    `http://localhost:5000/api/orders/${id}`,
+    "GET"
+  );
 
-    if (!token) {
-      throw new Error("Authentication token is missing");
-    }
-
-    const res = await fetch(`http://localhost:5000/api/orders/${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    if (!res.ok) {
-      throw new Error(`Failed to fetch order with ID: ${id}`);
-    }
-
-    const response = await res.json();
-
-    if (typeof response !== "object" || response === null) {
-      throw new Error(
-        "Unexpected API response format: order data is not an object"
-      );
-    }
-
-    return response;
-  } catch (error) {
-    console.error("Error fetching order:", error);
-    throw error;
-  }
+  return { ...response, id: response._id };
 };
 
-export const updateOrderStatus = async (id: string, status: string) => {
-  try {
-    const token = localStorage.getItem("token");
+export const updateOrderStatus = async (
+  id: string,
+  status: string
+): Promise<void> => {
+  await apiRequest<void>(`http://localhost:5000/api/orders/${id}`, "PATCH", {
+    orderStatus: status,
+  });
 
-    if (!token) {
-      throw new Error("Authentication token is missing");
-    }
-
-    const updateResponse = await fetch(
-      `http://localhost:5000/api/orders/${id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ orderStatus: status }),
-      }
-    );
-
-    if (!updateResponse.ok) {
-      throw new Error(`Failed to update order status for ID: ${id}`);
-    }
-
-    const response = await updateResponse.json();
-
-    if (typeof response !== "object" || response === null) {
-      throw new Error(
-        "Unexpected API response format: updated order data is not an object"
-      );
-    }
-
-    return response;
-  } catch (error) {
-    console.error("Error updating order status:", error);
-    throw error;
-  }
+  console.log(`✅ Order ${id} updated to status: ${status}`);
 };

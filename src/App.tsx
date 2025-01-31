@@ -89,8 +89,8 @@ function App() {
                 element={<CreateProductWrapper />}
               />
               <Route path="orders/:status" element={<Order />} />
-              <Route path="order/:orderId" element={<OrderDetails />} />
-              <Route path="order/:orderId/dispute" element={<Dispute />} />
+              <Route path="order/:id" element={<OrderDetails />} />
+              <Route path="order/:id/dispute" element={<Dispute />} />
 
               <Route path="inventory" element={<InventoryDashboard />} />
               <Route path="farm-records" element={<FarmRecordListPage />} />
