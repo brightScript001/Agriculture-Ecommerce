@@ -7,6 +7,36 @@ interface ProductProps {
   product: Product;
 }
 
+export const ProductCard: React.FC<ProductProps> = ({ product }) => {
+  console.log("ProductCard product", product);
+  return (
+    <Link to={`/buyer/product/${product.id}`}>
+      <Card>
+        <ImageWrapper>
+          <img
+            src={product.imageSrc}
+            alt={product.title || product.productName}
+          />
+          <DiscountBadge style={{ top: "8px" }}>
+            -{product.discount}%
+          </DiscountBadge>
+        </ImageWrapper>
+        <ProductDetails>
+          <Title>{product.productName}</Title>
+          <Price>{product.costPerKg}</Price>
+          <OriginalPrice>{product.originalPrice}</OriginalPrice>
+          <QuantityText>Only {product.numberOfProducts}kg left</QuantityText>
+          <QuantityBarWrapper>
+            <QuantityBar
+              percent={(product.quantityLeft || 0) / 100}
+            ></QuantityBar>
+          </QuantityBarWrapper>
+        </ProductDetails>
+      </Card>
+    </Link>
+  );
+};
+
 const Card = styled.div`
   border: none;
   border-radius: var(--border-radius-md);
@@ -26,7 +56,6 @@ const ImageWrapper = styled.div`
 
 export const DiscountBadge = styled.div`
   position: absolute;
-  /* top: 8px; */
   right: 8px;
   background-color: rgba(55, 78, 97, 1);
   color: var(--color-white-100);
@@ -75,27 +104,3 @@ const QuantityBar = styled.div<{ percent: number }>`
   width: ${(props) => props.percent * 100}%;
   border-radius: var(--border-radius-md);
 `;
-
-export const ProductCard: React.FC<ProductProps> = ({ product }) => {
-  return (
-    <Link to={`/buyer/product/${product.id}`}>
-      <Card>
-        <ImageWrapper>
-          <img src={product.imageSrc} alt={product.title} />
-          <DiscountBadge style={{ top: "8px" }}>
-            -{product.discount}%
-          </DiscountBadge>
-        </ImageWrapper>
-        <ProductDetails>
-          <Title>{product.title}</Title>
-          <Price>{product.price}</Price>
-          <OriginalPrice>{product.originalPrice}</OriginalPrice>
-          <QuantityText>Only {product.quantityLeft}kg left</QuantityText>
-          <QuantityBarWrapper>
-            <QuantityBar percent={product.quantityLeft / 100}></QuantityBar>
-          </QuantityBarWrapper>
-        </ProductDetails>
-      </Card>
-    </Link>
-  );
-};

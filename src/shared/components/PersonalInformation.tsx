@@ -31,7 +31,7 @@ interface UserProfile {
 export const PersonalInformation: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector((state: AppState) => state.auth.user); // Get user from Redux store
+  const user = useSelector((state: AppState) => state.auth.user);
 
   const [userProfile, setUserProfile] = useState<UserProfile>({
     avatar: user?.avatar ?? null,
@@ -71,7 +71,6 @@ export const PersonalInformation: React.FC = () => {
   const { mutate, isPending, isError, reset } = useMutation({
     mutationFn: updateUserInfo,
     onSuccess: (updatedUser: UserProfile) => {
-      // Update both user details slice and auth slice with new data
       dispatch(updateUserDetails(updatedUser));
       dispatch(
         updateAuthUser({
@@ -85,7 +84,7 @@ export const PersonalInformation: React.FC = () => {
           address: updatedUser.address,
         })
       );
-      navigate("/seller/dashboard");
+      navigate(-1);
     },
     onError: (error: unknown) => {
       console.error("Failed to update user information:", error);
@@ -94,7 +93,7 @@ export const PersonalInformation: React.FC = () => {
 
   const handleSave = () => {
     const { email, ...updateData } = userProfile;
-    mutate(updateData); // Trigger API update
+    mutate(updateData);
   };
 
   const resetErrorBoundary = () => {

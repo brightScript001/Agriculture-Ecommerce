@@ -7,23 +7,13 @@ import { FormData } from "./CreateProduct";
 interface ProductDetailsProps {
   control: Control<FormData>;
   formState: { errors: FieldErrors<FormData> };
+  productClasses: string[];
 }
-
-const StyledInput = styled(Input)`
-  width: 45rem;
-  margin-bottom: 1.5rem;
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-`;
-
-const Label = styled.label`
-  font-size: var(--font-size-sm);
-`;
 
 function CreateProductForm({
   control,
   formState: { errors },
+  productClasses,
 }: ProductDetailsProps) {
   const errorMessage = "This field is required";
 
@@ -100,12 +90,14 @@ function CreateProductForm({
           render={({ field }) => (
             <>
               <Label htmlFor="productClass">Product Class</Label>
-              <StyledInput
-                id="productClass"
-                type="text"
-                {...field}
-                value={field.value || ""}
-              />
+              <Select {...field} id="productClass">
+                <option value="">Select a Product Class</option>
+                {productClasses.map((productClass) => (
+                  <option key={productClass} value={productClass}>
+                    {productClass}
+                  </option>
+                ))}
+              </Select>
               {errors.productClass && <p>{errors.productClass.message}</p>}
             </>
           )}
@@ -161,3 +153,31 @@ function CreateProductForm({
 }
 
 export default CreateProductForm;
+
+const StyledInput = styled(Input)`
+  width: 45rem;
+  margin-bottom: 1.5rem;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
+const Label = styled.label`
+  font-size: var(--font-size-sm);
+`;
+
+const Select = styled.select`
+  width: 45rem;
+  padding: 0.75rem;
+  font-size: var(--font-size-sm);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+
+  &:focus {
+    border-color: var(--color-green-600);
+    box-shadow: 0 0 5px rgba(0, 128, 0, 0.3);
+    outline: none;
+    transform: scale(1.02);
+  }
+`;

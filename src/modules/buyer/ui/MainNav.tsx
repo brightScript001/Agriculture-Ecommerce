@@ -57,7 +57,7 @@ export default function MainNav() {
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/buyer/sign-out">
+          <StyledNavLink to="/">
             <img src={SignOutIcon} alt="Sign Out" />
             <Span>Sign Out</Span>
           </StyledNavLink>

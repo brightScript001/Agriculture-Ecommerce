@@ -1,33 +1,45 @@
 import React from "react";
 import { ProductGrid } from "./ProductGrid";
 import { Tabs } from "../../../shared/ui/Tabs";
-import { useProducts } from "../hooks/useProduct";
 import SpinnerComponent from "../../../shared/ui/Spinner";
+import { useFetchProductsByClass } from "../api/products";
 
 export const ProductTabs: React.FC = () => {
-  const { data: products, isLoading, error } = useProducts();
+  const {
+    data: fruits,
+    isLoading: loadingFruits,
+    error: errorFruits,
+  } = useFetchProductsByClass("Fruits");
+  const {
+    data: vegetables,
+    isLoading: loadingVegetables,
+    error: errorVegetables,
+  } = useFetchProductsByClass("Vegetables");
 
-  if (isLoading) {
-    return <SpinnerComponent />;
+  if (loadingFruits || loadingVegetables) return <SpinnerComponent />;
+
+  const errors = [errorFruits, errorVegetables].filter(Boolean);
+  if (errors.length) {
+    return (
+      <div>
+        Error fetching products:{" "}
+        {errors.map((error, index) => (
+          <p key={index}>{error?.message}</p>
+        ))}
+      </div>
+    );
   }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
-  const fruits = products?.fruits || [];
-  const vegetables = products?.vegetables || [];
 
   const tabItems = [
     {
       label: "Vegetables",
       value: "vegetables",
-      component: <ProductGrid products={vegetables} />,
+      component: <ProductGrid products={vegetables || []} />,
     },
     {
       label: "Fruits",
       value: "fruits",
-      component: <ProductGrid products={fruits} />,
+      component: <ProductGrid products={fruits || []} />,
     },
   ];
 

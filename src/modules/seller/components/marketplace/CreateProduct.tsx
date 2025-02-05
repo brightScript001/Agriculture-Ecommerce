@@ -25,6 +25,36 @@ interface CreateProductProps {
   onClose: () => void;
 }
 
+const productClasses = [
+  "Cereals & Grains",
+  "Pulses & Legumes",
+  "Fruits",
+  "Vegetables",
+  "Nuts & Seeds",
+  "Livestock",
+  "Dairy Products",
+  "Eggs & Poultry",
+  "Organic Fertilizers",
+  "Chemical Fertilizers",
+  "Pesticides & Herbicides",
+  "Tractors & Implements",
+  "Irrigation Systems",
+  "Harvesting Equipment",
+  "Storage & Processing",
+  "Cattle Feed",
+  "Poultry Feed",
+  "Fish & Aquaculture Feed",
+  "Hybrid Seeds",
+  "Organic Seeds",
+  "Seedlings & Saplings",
+  "Organic Produce",
+  "Hydroponic & Indoor Farming Supplies",
+  "Herbs & Medicinal Plants",
+  "Drones & Sensors",
+  "Farm Management Software",
+  "IoT & Automation",
+];
+
 function CreateProduct({ onClose }: CreateProductProps) {
   const { handleSubmit, control, reset, formState } = useForm<FormData>();
   const [newProductName, setNewProductName] = useState<string | null>(null);
@@ -41,7 +71,6 @@ function CreateProduct({ onClose }: CreateProductProps) {
         queryKey: ["products"],
       });
       setNewProductName(data.productName);
-      // setIsModalOpen(true);
     },
     onError: () => {
       toast.error("Failed to add product");
@@ -55,7 +84,6 @@ function CreateProduct({ onClose }: CreateProductProps) {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
-      console.log("data", JSON.stringify(data))
       await mutateAsync(data);
       toast.success("Product created successfully!");
     } catch (error) {
@@ -76,6 +104,7 @@ function CreateProduct({ onClose }: CreateProductProps) {
           <ProductForm
             control={control as Control<FormData>}
             formState={formState as FormState<FormData>}
+            productClasses={productClasses}
           />
           <ActionButtons
             onClose={onClose}
