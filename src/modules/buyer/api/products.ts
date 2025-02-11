@@ -98,7 +98,7 @@ export const useFetchProductsByClass = (productClass: string) => {
   return useQuery({
     queryKey: ["products", productClass],
     queryFn: () => fetchProductsByClass(productClass),
-    enabled: !!productClass, // Only fetch if class is provided
+    enabled: !!productClass,
   });
 };
 
@@ -106,6 +106,6 @@ export const useFetchProductById = (id: string) => {
   return useQuery({
     queryKey: ["product", id],
     queryFn: () => fetchProductById(id),
-    enabled: !!id, // Only fetch if id is available
+    enabled: !!id,
   });
 };
