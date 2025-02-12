@@ -4,7 +4,7 @@ const API_BASE_URL = "http://localhost:5000/api/products";
 
 const transformProduct = (product: any): Product => ({
   ...product,
-  id: product._id, // Ensure _id is mapped to id
+  id: product._id,
 });
 
 export const fetchAllProducts = async (): Promise<Product[]> => {
@@ -22,7 +22,6 @@ export const fetchAllProducts = async (): Promise<Product[]> => {
   const response = await res.json();
   console.log("API Raw Response (All Products):", response);
 
-  // If response is an object, try extracting the data field
   const products = Array.isArray(response) ? response : response.data;
 
   if (!Array.isArray(products)) {

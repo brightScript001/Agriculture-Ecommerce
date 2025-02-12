@@ -16,7 +16,7 @@ function BuyerDashboard() {
     <>
       {isMobile && <SearchBar customStyles={mobileSearchBarStyles} />}
       <CardContainer />
-      {isMobile && <PageHeader title="Product Catalog" noUnderline />}
+      {isMobile && <PageHeader children="Product Catalog" noUnderline />}
       <ProductTabs />
     </>
   );

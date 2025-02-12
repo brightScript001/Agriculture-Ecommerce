@@ -56,7 +56,7 @@ export function SellerAppLayout() {
       {isMobile && (
         <PageHeaderWrapper>
           <PageHeader
-            title={PageTitle()}
+            children={PageTitle()}
             RightComponent={<BellButtonWithNotifications />}
           />
         </PageHeaderWrapper>

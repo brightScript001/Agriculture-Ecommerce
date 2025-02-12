@@ -22,7 +22,7 @@ export function BuyerAppLayout() {
       {isMobile && (
         <PageHeaderWrapper>
           <PageHeader
-            title={PageTitle()}
+            children={PageTitle()}
             RightComponent={<BellButtonWithNotifications />}
           />
         </PageHeaderWrapper>

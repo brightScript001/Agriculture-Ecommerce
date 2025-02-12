@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 interface PageHeaderProps {
-  title: string;
+  children: React.ReactNode;
   RightComponent?: React.ReactNode;
   noUnderline?: boolean;
 }
@@ -13,23 +13,22 @@ const HeaderContainer = styled.div`
   align-items: center;
   padding: 0 2rem;
   background-color: var(--color-grey-50);
-  /* margin-top: 6.25rem; */
 `;
 
 const PageTitle = styled.h1<{ noUnderline?: boolean }>`
   font-size: var(--font-size-lg);
-  color: var(--color-grey-900);
+  color: var(--color-grey-800);
   text-decoration: ${(props) => (props.noUnderline ? "none" : "underline")};
 `;
 
 export const PageHeader: React.FC<PageHeaderProps> = ({
-  title,
+  children,
   RightComponent,
   noUnderline,
 }) => {
   return (
     <HeaderContainer>
-      <PageTitle noUnderline={noUnderline}>{title}</PageTitle>
+      <PageTitle noUnderline={noUnderline}>{children}</PageTitle>
       {RightComponent && RightComponent}
     </HeaderContainer>
   );
