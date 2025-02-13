@@ -12,7 +12,7 @@ export const PageTitle = () => {
   // Define static route titles
   const routeTitles: Record<string, string> = {
     // Seller Routes
-    "/seller/dashboard": "Seller Dashboard",
+    "/seller/dashboard": `Hello ${firstName}`,
     "/seller/marketplace": "Marketplace",
     "/seller/marketplace/create-product": "Create Product",
     "/seller/inventory": "Inventory",
@@ -31,7 +31,7 @@ export const PageTitle = () => {
     "/seller/profile": "Seller Profile",
 
     // Buyer Routes
-    "/buyer/dashboard": `Hello, ${firstName}`,
+    "/buyer/dashboard": `Hello ${firstName}`,
     "/buyer/cart": "Shopping Cart",
     "/buyer/order-history": "Order History",
     "/buyer/support": "Support",
