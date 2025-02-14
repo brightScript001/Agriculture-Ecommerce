@@ -6,7 +6,7 @@ import { Subtitle, Title } from "@shared/ui/Title";
 import ForgotPasswordForm from "../components/ForgotPasswordForm";
 import { AuthLayout } from "../components/AuthLayout";
 
-const ForgotPassword: React.FC = () => {
+export const ForgotPassword: React.FC = () => {
   return (
     <AuthLayout
       imageSrc="/src/assets/images/seller.png"
@@ -28,8 +28,6 @@ const ForgotPassword: React.FC = () => {
     </AuthLayout>
   );
 };
-
-export default ForgotPassword;
 
 const StyledLink = styled(Link)`
   color: var(--color-green-800);

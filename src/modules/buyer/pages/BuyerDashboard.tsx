@@ -10,7 +10,7 @@ const mobileSearchBarStyles = `
     width: 100%;
 `;
 
-function BuyerDashboard() {
+export function BuyerDashboard() {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   return (
     <>
@@ -21,5 +21,3 @@ function BuyerDashboard() {
     </>
   );
 }
-
-export default BuyerDashboard;

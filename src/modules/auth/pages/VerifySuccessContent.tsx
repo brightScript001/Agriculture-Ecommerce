@@ -9,7 +9,7 @@ import FormContainer from "@shared/ui/FormContainer";
 import { AuthLayout } from "../components/AuthLayout";
 import Button from "@shared/ui/Button";
 
-const VerifySuccessContent: React.FC = () => {
+export const VerifySuccessContent: React.FC = () => {
   const [counter, setCounter] = useState(30);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -58,8 +58,6 @@ const VerifySuccessContent: React.FC = () => {
     </AuthLayout>
   );
 };
-
-export default VerifySuccessContent;
 
 const Span = styled.span`
   font-weight: bold;

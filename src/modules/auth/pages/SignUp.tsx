@@ -6,7 +6,7 @@ import FormContainer from "../../../shared/ui/FormContainer";
 import { Title, Subtitle } from "../../../shared/ui/Title";
 import { AuthLayout } from "../components/AuthLayout";
 
-const Signup: React.FC = () => {
+export const Signup: React.FC = () => {
   return (
     <AuthLayout
       imageSrc="/src/assets/images/seller.png"
@@ -24,8 +24,6 @@ const Signup: React.FC = () => {
     </AuthLayout>
   );
 };
-
-export default Signup;
 
 const StyledLink = styled(Link)`
   color: var(--color-green-800);

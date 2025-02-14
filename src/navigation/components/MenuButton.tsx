@@ -14,7 +14,7 @@ interface MenuButtonProps {
   toggleMenu: () => void;
 }
 
-const MenuButtonComponent: React.FC<MenuButtonProps> = ({
+export const MenuButtonComponent: React.FC<MenuButtonProps> = ({
   isOpen,
   toggleMenu,
 }) => {
@@ -24,5 +24,3 @@ const MenuButtonComponent: React.FC<MenuButtonProps> = ({
     </MenuButton>
   );
 };
-
-export default MenuButtonComponent;

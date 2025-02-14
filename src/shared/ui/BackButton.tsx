@@ -1,6 +1,6 @@
 import React from "react";
-import { BackButtonIcon } from "../../../shared/ui/Icons";
-import Button from "../../../shared/ui/ButtonIcon";
+import { BackButtonIcon } from "./Icons";
+import Button from "./ButtonIcon";
 import { useNavigate } from "react-router-dom";
 
 const BackButton: React.FC = () => {

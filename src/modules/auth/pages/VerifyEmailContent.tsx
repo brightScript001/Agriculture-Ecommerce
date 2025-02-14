@@ -8,7 +8,7 @@ import Button from "@shared/ui/Button";
 import FormContainer from "@shared/ui/FormContainer";
 import { AuthLayout } from "../components/AuthLayout";
 
-const VerifyEmailContent: React.FC = () => {
+export const VerifyEmailContent: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((store: AppState) => store.user.firstName);
   const error = useSelector((store: AppState) => store.emailVerification.error);
@@ -48,8 +48,6 @@ const VerifyEmailContent: React.FC = () => {
     </AuthLayout>
   );
 };
-
-export default VerifyEmailContent;
 
 const Span = styled.span`
   font-weight: bold;
