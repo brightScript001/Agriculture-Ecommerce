@@ -9,11 +9,11 @@ import { createSellerRoutes } from "@modules/seller/routes";
 
 export const router = createBrowserRouter([
   // Public routes
-  ...authRoutes,
   {
     path: "/",
     element: <HomePage />,
   },
+  ...authRoutes,
 
   // Protected routes
   {
