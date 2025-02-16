@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
     children: [...createBuyerRoutes(), ...createSellerRoutes()],
   },
 
-  // Global 404 fallback
+  // 404 fallback
   {
     path: "*",
     element: <PageNotFound />,
