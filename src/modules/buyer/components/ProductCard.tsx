@@ -8,7 +8,6 @@ interface ProductProps {
 }
 
 export const ProductCard: React.FC<ProductProps> = ({ product }) => {
-  console.log("ProductCard product", product);
   return (
     <Link to={`/buyer/product/${product.id}`}>
       <Card>
@@ -17,13 +16,11 @@ export const ProductCard: React.FC<ProductProps> = ({ product }) => {
             src={product.imageSrc}
             alt={product.title || product.productName}
           />
-          <DiscountBadge style={{ top: "8px" }}>
-            -{product.discount}%
-          </DiscountBadge>
+          <DiscountBadge>-{product.discount}%</DiscountBadge>
         </ImageWrapper>
         <ProductDetails>
           <Title>{product.productName}</Title>
-          <Price>{product.costPerKg}</Price>
+          <Price>#{product.costPerKg}/kg</Price>
           <OriginalPrice>{product.originalPrice}</OriginalPrice>
           <QuantityText>Only {product.numberOfProducts}kg left</QuantityText>
           <QuantityBarWrapper>
@@ -38,12 +35,18 @@ export const ProductCard: React.FC<ProductProps> = ({ product }) => {
 };
 
 const Card = styled.div`
-  border: none;
   border-radius: var(--border-radius-md);
-  padding: 1rem;
+  padding: 1.25rem;
   max-width: 15.6rem;
   background-color: var(--color-grey-0);
   cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
 `;
 
 const ImageWrapper = styled.div`
@@ -51,38 +54,45 @@ const ImageWrapper = styled.div`
   img {
     width: 100%;
     height: auto;
+    border-radius: var(--border-radius-md);
   }
 `;
 
-export const DiscountBadge = styled.div`
+const DiscountBadge = styled.div`
   position: absolute;
+  top: 8px;
   right: 8px;
   background-color: rgba(55, 78, 97, 1);
   color: var(--color-white-100);
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-sm);
   padding: 4px 8px;
   border-radius: var(--border-radius-md);
 `;
 
 const ProductDetails = styled.div`
-  margin-top: 12px;
+  margin-top: 1rem;
 `;
 
-const Title = styled.h3`
+const Title = styled.h2`
   font-size: var(--font-size-md);
   margin: 0;
+  margin-bottom: 8px;
+  color: var(--color-grey-800);
+  text-transform: capitalize;
 `;
 
 const Price = styled.p`
   font-size: var(--font-size-md);
-  font-weight: bold;
+  margin-bottom: 8px;
+  color: var(--color-grey-800);
 `;
 
-export const OriginalPrice = styled.p`
+const OriginalPrice = styled.p`
   font-size: var(--font-size-sm);
-  font-family: italic;
+  font-family: var(--font-family-italic);
   text-decoration: line-through;
   color: var(--color-grey-400);
+  margin-bottom: 8px;
 `;
 
 const QuantityText = styled.p`
@@ -95,7 +105,6 @@ const QuantityBarWrapper = styled.div`
   border-radius: var(--border-radius-md);
   height: 10px;
   width: 100%;
-  margin-top: 4px;
 `;
 
 const QuantityBar = styled.div<{ percent: number }>`

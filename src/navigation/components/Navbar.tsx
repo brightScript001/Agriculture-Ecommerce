@@ -12,11 +12,16 @@ export const Navbar = () => {
         <BackButton />
         <ButtonText>Back</ButtonText>
       </NavbarSection>
-      <NavbarSection>
+
+      <NavbarSection centerAlign>
         <SearchBar />
       </NavbarSection>
-      <NavbarSection>
+
+      <NavbarSection rightAlign>
         <BellButtonWithNotifications />
+      </NavbarSection>
+
+      <NavbarSection rightAlign>
         <UserAvatar />
       </NavbarSection>
     </NavbarContainer>
@@ -31,19 +36,21 @@ const NavbarContainer = styled.header`
   background-color: var(--color-grey-0);
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 1rem 2rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
-const NavbarSection = styled.div`
+const NavbarSection = styled.div<{
+  centerAlign?: boolean;
+  rightAlign?: boolean;
+}>`
   display: flex;
   align-items: center;
-  margin-right: auto;
+  ${({ centerAlign }) => centerAlign && `justify-content: center;`}
+  ${({ rightAlign }) => rightAlign && `justify-content: flex-end;`}
+  margin-right: 1rem;
 
   &:last-child {
     margin-right: 0;

@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
 
   // Protected routes
   {
-    path: "/app",
+    path: "/",
     element: (
       <ProtectedRoute>
         <AppLayout />
@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
     children: [...createBuyerRoutes(), ...createSellerRoutes()],
   },
 
-  // 404 fallback
+  // Global 404 fallback
   {
     path: "*",
     element: <PageNotFound />,
