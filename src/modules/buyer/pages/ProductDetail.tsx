@@ -14,7 +14,6 @@ const Container = styled.div`
 
 export const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  console.log("Route ID", id);
 
   if (!id) {
     return <FallbackMessage message="Product ID is missing or invalid." />;

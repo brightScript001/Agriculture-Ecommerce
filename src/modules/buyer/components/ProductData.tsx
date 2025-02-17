@@ -6,11 +6,9 @@ export interface Product {
   productClass: string;
   numberOfProducts: number;
   sellerId: string;
-  imageSrc?: string;
-  discount?: number;
-  title?: string;
-  price?: number;
-  originalPrice?: number;
-  quantityLeft?: number;
-  location?: string;
+  imageSrc: string;
+  discount: number;
+  originalPrice: number;
+  quantityLeft: number;
+  location: string;
 }

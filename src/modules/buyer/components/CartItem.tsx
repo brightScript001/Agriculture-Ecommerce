@@ -2,7 +2,52 @@ import React from "react";
 import styled from "styled-components";
 import { Product } from "./ProductData";
 import { DiscountBadge } from "./ProductCard";
-import { StyledButton } from "../../../shared/ui/QuantityControl";
+import QuantityControl from "../../../shared/ui/QuantityControl";
+
+interface CartItemProps {
+  item: Product;
+  onRemove: (id: string) => void;
+  onUpdateQuantity: (id: string, quantity: number) => void;
+}
+
+export const CartItem: React.FC<CartItemProps> = ({
+  item,
+  onRemove,
+  onUpdateQuantity,
+}) => {
+  const handleUpdateQuantity = (newQuantity: number) => {
+    onUpdateQuantity(item.id, newQuantity);
+  };
+
+  return (
+    <CartItemContainer>
+      <RemoveButton onClick={() => onRemove(item.id)} aria-label="Remove item">
+        Remove
+      </RemoveButton>
+      <CartItemImage src={item.imageSrc} alt={item.productName} />
+      <CartItemDetails>
+        <CartItemTitle>{item.productName}</CartItemTitle>
+        <QuantityKg>{item.quantityLeft}kg per basket</QuantityKg>
+        <Price>
+          <ProductPrice>
+            {item.quantityLeft > 1 && `${item.quantityLeft} x`} N
+            {item.costPerKg}
+          </ProductPrice>
+          <OriginalPrice>N{item.originalPrice}</OriginalPrice>
+          <DiscountBadge>-{item.discount}%</DiscountBadge>
+        </Price>
+        <CartItemActions>
+          <QuantityControl
+            quantity={item.quantityLeft}
+            setQuantity={handleUpdateQuantity}
+            minQuantity={1}
+            maxQuantity={item.quantityLeft}
+          />
+        </CartItemActions>
+      </CartItemDetails>
+    </CartItemContainer>
+  );
+};
 
 const CartItemContainer = styled.div`
   display: flex;
@@ -59,12 +104,6 @@ const RemoveButton = styled.button`
   right: 0.5rem;
 `;
 
-const QuantityControl = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-`;
-
 const QuantityKg = styled.p`
   font-size: var(--font-size-md);
 `;
@@ -90,60 +129,3 @@ const Price = styled.div`
   width: max-content;
   position: relative;
 `;
-
-const QuantityText = styled.span`
-  font-size: var(--font-size-md);
-`;
-
-const QuantityLabel = styled.span`
-  font-size: var(--font-size-md);
-  margin-right: 0.5rem;
-`;
-
-interface CartItemProps {
-  item: Product;
-  onRemove: (id: string) => void;
-  onUpdateQuantity: (id: string, quantity: number) => void;
-}
-
-export const CartItem: React.FC<CartItemProps> = ({
-  item,
-  onRemove,
-  onUpdateQuantity,
-}) => {
-  return (
-    <CartItemContainer>
-      <RemoveButton onClick={() => onRemove(item.id)}>Remove</RemoveButton>
-      <CartItemImage src={item.imageSrc} alt={item.title} />
-      <CartItemDetails>
-        <CartItemTitle>{item.title}</CartItemTitle>
-        <QuantityKg>{item.quantityLeft}kg per basket</QuantityKg>
-        <Price>
-          <ProductPrice>
-            {item.quantity! > 1 && `${item.quantity} x`} N{item.price}
-          </ProductPrice>
-          <OriginalPrice>N{item.originalPrice}</OriginalPrice>
-          <DiscountBadge>-{item.discount}%</DiscountBadge>
-        </Price>
-        <CartItemActions>
-          <QuantityControl>
-            <StyledButton
-              onClick={() => onUpdateQuantity(item.id, item.quantity! - 1)}
-              disabled={item.quantity! <= 1}
-            >
-              -
-            </StyledButton>
-            <QuantityText>
-              <QuantityLabel>Qty:</QuantityLabel> {item.quantity}
-            </QuantityText>
-            <StyledButton
-              onClick={() => onUpdateQuantity(item.id, item.quantity! + 1)}
-            >
-              +
-            </StyledButton>
-          </QuantityControl>
-        </CartItemActions>
-      </CartItemDetails>
-    </CartItemContainer>
-  );
-};

@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Product as ProductInterface } from "./ProductData";
 import Button from "../../../shared/ui/Button";
-import { DiscountBadge } from "./ProductCard";
-import { QuantityControl } from "../../../shared/ui/QuantityControl";
+import QuantityControl from "../../../shared/ui/QuantityControl";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../states/cartSlice";
 import toast from "react-hot-toast";
+import { DiscountBadge } from "./ProductCard";
 
 interface ProductHeaderProps {
   product: ProductInterface;
@@ -28,19 +28,21 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({ product }) => {
 
   return (
     <ProductHeaderContainer>
-      <ProductImage src={product.imageSrc} alt={product.title || ""} />
+      <ProductImage src={product.imageSrc} alt={product.productName || ""} />
       <ProductInfo>
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-          <ProductTitle>{product.title || ""}</ProductTitle>
+          <ProductTitle>{product.productName || ""}</ProductTitle>
           <QuantityKg>
             {product.quantityLeft
               ? `${product.quantityLeft}kg per basket`
               : "Quantity information unavailable"}
           </QuantityKg>
           <Price>
-            {product.price && <ProductPrice>N{product.price}/kg</ProductPrice>}
+            {product.costPerKg && (
+              <ProductPrice>#{product.costPerKg}/kg</ProductPrice>
+            )}
             {product.originalPrice && (
-              <OriginalPrice>N{product.originalPrice}</OriginalPrice>
+              <OriginalPrice>#{product.originalPrice}</OriginalPrice>
             )}
             {product.discount && (
               <DiscountBadge>-{product.discount}%</DiscountBadge>
@@ -49,7 +51,12 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({ product }) => {
           <Location>
             Shipping from {product.location || "Not specified"}
           </Location>
-          <QuantityControl quantity={quantity} setQuantity={setQuantity} />
+          <QuantityControl
+            quantity={quantity}
+            setQuantity={setQuantity}
+            minQuantity={1}
+            maxQuantity={product.quantityLeft || 100}
+          />
         </div>
         <Button onClick={handleAddToCart}>Add To Cart</Button>
       </ProductInfo>

@@ -9,39 +9,6 @@ import Heading from "../../../shared/ui/Heading";
 import Button from "../../../shared/ui/Button";
 import { useMediaQuery } from "react-responsive";
 
-const Container = styled.div<{ isVisible: boolean }>`
-  display: ${(props) => (props.isVisible ? "block" : "none")};
-  gap: 1rem;
-
-  @media (min-width: 768px) {
-    display: block;
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-`;
-
-const LayoutContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const CheckoutButton = styled(Button)`
-  width: 100%;
-  padding: 1rem;
-  cursor: pointer;
-
-  @media (min-width: 768px) {
-    display: none;
-  }
-`;
-
 export const Cart: React.FC = () => {
   const cartItems = useSelector((state: AppState) => state.cart.items);
   const dispatch = useDispatch();
@@ -50,7 +17,7 @@ export const Cart: React.FC = () => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
   const subtotal = cartItems.reduce(
-    (acc, item) => acc + item.quantity! * item.price,
+    (acc, item) => acc + item.quantity! * item.costPerKg,
     0
   );
 
@@ -100,3 +67,35 @@ export const Cart: React.FC = () => {
     </LayoutContainer>
   );
 };
+const Container = styled.div<{ isVisible: boolean }>`
+  display: ${(props) => (props.isVisible ? "block" : "none")};
+  gap: 1rem;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+const LayoutContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const CheckoutButton = styled(Button)`
+  width: 100%;
+  padding: 1rem;
+  cursor: pointer;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;

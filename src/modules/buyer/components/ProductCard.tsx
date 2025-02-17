@@ -12,10 +12,7 @@ export const ProductCard: React.FC<ProductProps> = ({ product }) => {
     <Link to={`/buyer/product/${product.id}`}>
       <Card>
         <ImageWrapper>
-          <img
-            src={product.imageSrc}
-            alt={product.title || product.productName}
-          />
+          <img src={product.imageSrc} alt={product.productName} />
           <DiscountBadge>-{product.discount}%</DiscountBadge>
         </ImageWrapper>
         <ProductDetails>
@@ -58,7 +55,7 @@ const ImageWrapper = styled.div`
   }
 `;
 
-const DiscountBadge = styled.div`
+export const DiscountBadge = styled.div`
   position: absolute;
   top: 8px;
   right: 8px;
