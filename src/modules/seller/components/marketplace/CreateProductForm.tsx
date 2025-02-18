@@ -2,11 +2,11 @@ import { Controller, Control, FieldErrors } from "react-hook-form";
 import FormRow from "../../../../shared/ui/FormRow";
 import Input from "../../../../shared/ui/Input";
 import styled from "styled-components";
-import { FormData } from "./CreateProduct";
+import { ProductFormData } from "./CreateProduct";
 
 interface ProductDetailsProps {
-  control: Control<FormData>;
-  formState: { errors: FieldErrors<FormData> };
+  control: Control<ProductFormData>;
+  formState: { errors: FieldErrors<ProductFormData> };
   productClasses: string[];
 }
 
@@ -141,7 +141,10 @@ function CreateProductForm({
                 id="productImage"
                 type="file"
                 accept="image/*"
-                onChange={(e) => field.onChange(e.target.files)}
+                onChange={(e) => {
+                  const file = e.target.files ? e.target.files[0] : null;
+                  field.onChange(file);
+                }}
               />
               {errors.imageSrc && <p>{errors.imageSrc.message}</p>}
             </>

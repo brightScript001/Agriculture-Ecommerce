@@ -12,7 +12,7 @@ import MobileProductForm from "./MobileProductForm";
 import ReusableModal from "./ReusableModal";
 import { useNavigate } from "react-router-dom";
 
-export interface FormData {
+export interface ProductFormData {
   productName: string;
   description: string;
   costPerKg: number;
@@ -56,7 +56,8 @@ const productClasses = [
 ];
 
 function CreateProduct({ onClose }: CreateProductProps) {
-  const { handleSubmit, control, reset, formState } = useForm<FormData>();
+  const { handleSubmit, control, reset, formState } =
+    useForm<ProductFormData>();
   const [newProductName, setNewProductName] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
@@ -71,6 +72,7 @@ function CreateProduct({ onClose }: CreateProductProps) {
         queryKey: ["products"],
       });
       setNewProductName(data.productName);
+      setIsModalOpen(true);
     },
     onError: () => {
       toast.error("Failed to add product");
@@ -82,10 +84,24 @@ function CreateProduct({ onClose }: CreateProductProps) {
     toast.success("Product creation reset.");
   };
 
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
+  const onSubmit: SubmitHandler<ProductFormData> = async (data) => {
     try {
-      await mutateAsync(data);
-      toast.success("Product created successfully!");
+      if (data.imageSrc) {
+        const formData = new FormData();
+
+        formData.append("productName", data.productName);
+        formData.append("description", data.description);
+        formData.append("costPerKg", data.costPerKg.toString());
+        formData.append("productClass", data.productClass);
+        formData.append("numberOfProducts", data.numberOfProducts.toString());
+        formData.append("imageSrc", data.imageSrc[0]);
+
+        // Pass FormData to the API call
+        await mutateAsync(formData);
+        toast.success("Product created successfully!");
+      } else {
+        toast.error("No image selected.");
+      }
     } catch (error) {
       toast.error("Failed to create product.");
     }
@@ -93,7 +109,7 @@ function CreateProduct({ onClose }: CreateProductProps) {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    navigate("/marketplace");
+    navigate("/seller/marketplace");
   };
 
   return (
@@ -102,8 +118,8 @@ function CreateProduct({ onClose }: CreateProductProps) {
         <>
           <StyledTitle>Upload Product</StyledTitle>
           <ProductForm
-            control={control as Control<FormData>}
-            formState={formState as FormState<FormData>}
+            control={control as Control<ProductFormData>}
+            formState={formState as FormState<ProductFormData>}
             productClasses={productClasses}
           />
           <ActionButtons
@@ -116,8 +132,8 @@ function CreateProduct({ onClose }: CreateProductProps) {
       )}
       {isMobile && (
         <MobileProductForm
-          control={control as Control<FormData>}
-          formState={formState as FormState<FormData>}
+          control={control as Control<ProductFormData>}
+          formState={formState as FormState<ProductFormData>}
           onSubmit={handleSubmit(onSubmit)}
         />
       )}
