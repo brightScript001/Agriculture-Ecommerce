@@ -10,11 +10,12 @@ export const OrderHistoryTable = () => {
   const navigate = useNavigate();
 
   if (isLoading) return <SpinnerComponent />;
-  if (isError) return <FallbackMessage message="no order history record" />;
+  if (isError) return <FallbackMessage message="No order history record" />;
 
   const handleRowClick = (id: string) => {
     navigate(`/buyer/order-history/${id}`);
   };
+
   return (
     <Table columns="1fr 1fr 1fr 1fr 1fr">
       <Table.Header>
@@ -28,8 +29,8 @@ export const OrderHistoryTable = () => {
         data={orderHistory || []}
         render={(order) => (
           <Table.Row
-            key={order.id.toString()} // Convert id to string
-            onClick={() => handleRowClick(order.id.toString())} // Convert id to string
+            key={order.id.toString()}
+            onClick={() => handleRowClick(order.id.toString())}
           >
             <div>
               {order.orderDetails
@@ -37,7 +38,7 @@ export const OrderHistoryTable = () => {
                 .join(", ")}
             </div>
             <div>{order.id}</div>
-            <div>₦{order.price}</div>
+            <div>₦{order.totalPrice}</div>
             <div>{order.date}</div>
             <OrderStatus status={order.status} />
           </Table.Row>

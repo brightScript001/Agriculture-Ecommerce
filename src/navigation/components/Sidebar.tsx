@@ -36,7 +36,7 @@ export const Sidebar = ({ role }: { role: string | null }) => {
   const location = useLocation();
 
   const handleNavigation = (path: string) => {
-    if (path === "/login") {
+    if (path === "login") {
       LogOut();
     } else {
       navigate(path);

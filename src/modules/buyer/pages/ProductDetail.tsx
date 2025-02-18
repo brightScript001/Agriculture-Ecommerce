@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { FallbackMessage } from "../../../shared/ui/FallbackMessage";
-import { ProductHeader } from "../components/ProductHeader";
+import ProductHeader from "../components/ProductHeader";
 import { ProductDetailsTabs } from "../components/ProductDetailTabs";
 import { useFetchProductById } from "../api/products";
 

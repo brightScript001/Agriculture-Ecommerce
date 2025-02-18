@@ -1,7 +1,6 @@
 import React, { createContext, useContext, FC } from "react";
 import styled from "styled-components";
 
-
 // Context for Table
 interface TableContextProps {
   columns: string;
@@ -13,7 +12,6 @@ interface TableProps {
   columns: string;
   children: React.ReactNode;
 }
-
 
 interface TableComponent extends FC<TableProps> {
   Header: FC<{ children: React.ReactNode }>;
@@ -73,12 +71,10 @@ const Body = <T,>({ data, render }: BodyProps<T>) => {
   return <StyledBody>{data.map(render)}</StyledBody>;
 };
 
-// Footer Component
 const Footer: FC<{ children?: React.ReactNode }> = ({ children }) => {
   return <StyledFooter>{children}</StyledFooter>;
 };
 
-// Adding components to Table
 Table.Header = Header;
 Table.Body = Body;
 Table.Row = Row;

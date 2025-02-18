@@ -1,19 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
-import { AppState } from "../../../store";
+import { useMediaQuery } from "react-responsive";
+import { AppState } from "store";
 import { removeFromCart, updateQuantity } from "../states/cartSlice";
 import { CartItem } from "../components/CartItem";
-import { PaymentComponent } from "../../payment/components/PaymentComponent";
-import Heading from "../../../shared/ui/Heading";
-import Button from "../../../shared/ui/Button";
-import { useMediaQuery } from "react-responsive";
+import Heading from "@shared/ui/Heading";
+import { PaymentComponent } from "@modules/payment/components/PaymentComponent";
+import Button from "@shared/ui/Button";
 
 export const Cart: React.FC = () => {
   const cartItems = useSelector((state: AppState) => state.cart.items);
   const dispatch = useDispatch();
-  const [isPaymentVisible, setPaymentVisible] = useState(false);
-
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
   const subtotal = cartItems.reduce(
@@ -30,57 +28,53 @@ export const Cart: React.FC = () => {
   };
 
   const handleCheckout = () => {
-    setPaymentVisible(true);
+    console.log("Proceed to payment");
+  };
+
+  const renderCartItems = () => {
+    if (cartItems.length === 0) {
+      return <EmptyCartMessage>Your cart is empty.</EmptyCartMessage>;
+    }
+
+    return cartItems.map((item) => (
+      <CartItem
+        key={item.id}
+        item={item}
+        onRemove={handleRemove}
+        onUpdateQuantity={handleUpdateQuantity}
+      />
+    ));
+  };
+
+  const renderCheckoutSection = () => {
+    if (cartItems.length === 0) return null;
+
+    return (
+      <>
+        {!isMobile && <Heading as="h2">Checkout</Heading>}
+        <PaymentComponent subtotal={subtotal} />
+      </>
+    );
   };
 
   return (
-    <LayoutContainer>
-      <Container isVisible={!isPaymentVisible}>
-        {cartItems.length === 0 ? (
-          <p>Your cart is empty.</p>
-        ) : (
-          cartItems.map((item) => (
-            <CartItem
-              key={item.id}
-              item={item}
-              onRemove={handleRemove}
-              onUpdateQuantity={handleUpdateQuantity}
-            />
-          ))
-        )}
+    <CartLayout>
+      <CartContent isMobile={isMobile}>{renderCartItems()}</CartContent>
 
-        {cartItems.length > 0 && (
+      {cartItems.length > 0 && (
+        <CheckoutContainer>
           <CheckoutButton onClick={handleCheckout}>
             Checkout - ₦{subtotal.toFixed(2)}
           </CheckoutButton>
-        )}
-      </Container>
+        </CheckoutContainer>
+      )}
 
-      <Container isVisible={isPaymentVisible || !isMobile}>
-        {cartItems.length > 0 && (
-          <>
-            {!isMobile && <Heading as="h2">Checkout</Heading>}
-            <PaymentComponent subtotal={subtotal} />
-          </>
-        )}
-      </Container>
-    </LayoutContainer>
+      {renderCheckoutSection()}
+    </CartLayout>
   );
 };
-const Container = styled.div<{ isVisible: boolean }>`
-  display: ${(props) => (props.isVisible ? "block" : "none")};
-  gap: 1rem;
 
-  @media (min-width: 768px) {
-    display: block;
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-`;
-
-const LayoutContainer = styled.div`
+const CartLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
@@ -88,6 +82,16 @@ const LayoutContainer = styled.div`
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
+`;
+
+const CartContent = styled.div<{ isMobile: boolean }>`
+  display: ${({ isMobile }) => (isMobile ? "block" : "flex")};
+  flex-direction: ${({ isMobile }) => (isMobile ? "column" : "row")};
+  gap: 1rem;
+`;
+
+const CheckoutContainer = styled.div`
+  margin-top: 2rem;
 `;
 
 const CheckoutButton = styled(Button)`
@@ -98,4 +102,12 @@ const CheckoutButton = styled(Button)`
   @media (min-width: 768px) {
     display: none;
   }
+`;
+
+const EmptyCartMessage = styled.p`
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--color-grey-600);
+  text-align: center;
+  margin: 2.4rem 0;
 `;

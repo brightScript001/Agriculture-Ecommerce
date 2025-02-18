@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import styled from "styled-components";
 import { Product as ProductInterface } from "./ProductData";
 import Button from "../../../shared/ui/Button";
@@ -12,11 +12,11 @@ interface ProductHeaderProps {
   product: ProductInterface;
 }
 
-export const ProductHeader: React.FC<ProductHeaderProps> = ({ product }) => {
+const ProductHeader: React.FC<ProductHeaderProps> = ({ product }) => {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
 
-  const handleAddToCart = () => {
+  const handleAddToCart = useCallback(() => {
     dispatch(
       addToCart({
         ...product,
@@ -24,20 +24,27 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({ product }) => {
       })
     );
     toast("Item added to cart");
-  };
+  }, [dispatch, product, quantity]);
+
+  const quantityInfo = product.quantityLeft
+    ? `${product.quantityLeft}kg per basket`
+    : "Quantity information unavailable";
+
+  const location = product.location || "Not specified";
 
   return (
     <ProductHeaderContainer>
-      <ProductImage src={product.imageSrc} alt={product.productName || ""} />
+      <ProductImage
+        src={product.imageSrc}
+        alt={product.productName || "Product Image"}
+      />
       <ProductInfo>
-        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-          <ProductTitle>{product.productName || ""}</ProductTitle>
-          <QuantityKg>
-            {product.quantityLeft
-              ? `${product.quantityLeft}kg per basket`
-              : "Quantity information unavailable"}
-          </QuantityKg>
-          <Price>
+        <ProductDetails>
+          <ProductTitle>
+            {product.productName || "Untitled Product"}
+          </ProductTitle>
+          <QuantityText>{quantityInfo}</QuantityText>
+          <PriceInfo>
             {product.costPerKg && (
               <ProductPrice>#{product.costPerKg}/kg</ProductPrice>
             )}
@@ -47,18 +54,16 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({ product }) => {
             {product.discount && (
               <DiscountBadge>-{product.discount}%</DiscountBadge>
             )}
-          </Price>
-          <Location>
-            Shipping from {product.location || "Not specified"}
-          </Location>
+          </PriceInfo>
+          <LocationText>Shipping from: {location}</LocationText>
           <QuantityControl
             quantity={quantity}
             setQuantity={setQuantity}
             minQuantity={1}
             maxQuantity={product.quantityLeft || 100}
           />
-        </div>
-        <Button onClick={handleAddToCart}>Add To Cart</Button>
+        </ProductDetails>
+        <Button onClick={handleAddToCart}>Add to Cart</Button>
       </ProductInfo>
     </ProductHeaderContainer>
   );
@@ -68,6 +73,7 @@ const ProductHeaderContainer = styled.div`
   display: flex;
   gap: 2rem;
   margin-bottom: 2rem;
+  align-items: flex-start;
   @media (max-width: 768px) {
     flex-direction: column;
     width: 100%;
@@ -81,6 +87,7 @@ const ProductImage = styled.img`
   border-radius: var(--border-radius-md);
   @media (max-width: 768px) {
     width: 100%;
+    height: auto;
   }
 `;
 
@@ -95,13 +102,27 @@ const ProductInfo = styled.div`
   }
 `;
 
+const ProductDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
 const ProductTitle = styled.h1`
   font-size: var(--font-size-xl);
   font-weight: bold;
+  color: var(--color-primary);
 `;
 
-const QuantityKg = styled.p`
+const QuantityText = styled.p`
   font-size: var(--font-size-md);
+  color: var(--color-grey-700);
+`;
+
+const PriceInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 `;
 
 const ProductPrice = styled.p`
@@ -115,17 +136,11 @@ const OriginalPrice = styled.p`
   font-family: italic;
   text-decoration: line-through;
   color: var(--color-grey-500);
-  margin-right: 4rem;
 `;
 
-const Price = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  width: max-content;
-  position: relative;
-`;
-
-const Location = styled.p`
+const LocationText = styled.p`
   font-size: var(--font-size-md);
+  color: var(--color-grey-700);
 `;
+
+export default React.memo(ProductHeader);
