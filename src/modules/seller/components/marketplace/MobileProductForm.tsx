@@ -1,100 +1,99 @@
-import { Controller, Control, FieldErrors } from "react-hook-form";
 import styled from "styled-components";
-import { FormData } from "./CreateProduct"; // Import the shared FormData
 import Input from "../../../../shared/ui/Input";
 import Button from "../../../../shared/ui/Button";
 import FormRow from "../../../../shared/ui/FormRow";
 import Form from "../../../../shared/ui/Form";
+import { productClasses } from "./CreateProductForm"; // Import product classes
+
+interface FormData {
+  productName: string;
+  costPerKg: string;
+  imageSrc: File | null;
+  description: string;
+  productClass: string;
+}
 
 interface MobileProductFormProps {
-  control: Control<FormData>;
-  formState: { errors: FieldErrors<FormData> };
-  onSubmit: () => void;
+  formData: FormData;
+  handleInputChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
+  handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: (e: React.FormEvent) => void;
 }
 
 const MobileProductForm = ({
-  control,
-  formState: { errors },
+  formData,
+  handleInputChange,
+  handleFileChange,
   onSubmit,
 }: MobileProductFormProps) => {
-  const errorMessage = "This field is required";
-
   return (
     <Form onSubmit={onSubmit}>
       <FormRow>
-        <Label htmlFor="productName">Name of product</Label>
-        <Controller
+        <Label htmlFor="productName">Product Name</Label>
+        <StyledInput
+          id="productName"
+          type="text"
           name="productName"
-          control={control}
-          rules={{ required: errorMessage }}
-          render={({ field }) => (
-            <StyledInput
-              id="productName"
-              type="text"
-              placeholder="Enter the name of your product"
-              {...field}
-            />
-          )}
+          placeholder="Enter the product name"
+          value={formData.productName}
+          onChange={handleInputChange}
         />
-        {errors.productName && <p>{errors.productName.message}</p>}
       </FormRow>
 
       <FormRow>
-        <Label htmlFor="costPerKg">Cost of product</Label>
-        <Controller
+        <Label htmlFor="costPerKg">Cost per Kg</Label>
+        <StyledInput
+          id="costPerKg"
+          type="number"
           name="costPerKg"
-          control={control}
-          rules={{ required: errorMessage }}
-          render={({ field }) => (
-            <StyledInput
-              id="costPerKg"
-              type="number"
-              placeholder="How much will your product be sold?"
-              {...field}
-              onChange={(e) => field.onChange(Number(e.target.value))}
-            />
-          )}
+          placeholder="Enter cost per kg"
+          value={formData.costPerKg}
+          onChange={handleInputChange}
         />
-        {errors.costPerKg && <p>{errors.costPerKg.message}</p>}
+      </FormRow>
+
+      <FormRow>
+        <Label htmlFor="productClass">Product Class</Label>
+        <StyledSelect
+          id="productClass"
+          name="productClass"
+          value={formData.productClass}
+          onChange={handleInputChange}
+        >
+          <option value="">Select a class</option>
+          {productClasses.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
+        </StyledSelect>
       </FormRow>
 
       <FormRow>
         <Label htmlFor="productImage">Product Image</Label>
-        <Controller
-          name="imageSrc"
-          control={control}
-          rules={{ required: errorMessage }}
-          render={({ field }) => (
-            <StyledInput
-              id="productImage"
-              type="file"
-              accept="image/*"
-              onChange={(e) => field.onChange(e.target.files)}
-            />
-          )}
+        <StyledInput
+          id="productImage"
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
         />
-        {errors.imageSrc && <p>{errors.imageSrc.message}</p>}
       </FormRow>
 
       <FormRow>
-        <Label htmlFor="description">Product Description</Label>
-        <Controller
+        <Label htmlFor="description">Description</Label>
+        <StyledInput
+          id="description"
+          type="text"
           name="description"
-          control={control}
-          rules={{ required: errorMessage }}
-          render={({ field }) => (
-            <StyledInput
-              id="description"
-              type="text"
-              placeholder="What is your product about?"
-              {...field}
-            />
-          )}
+          placeholder="Enter product description"
+          value={formData.description}
+          onChange={handleInputChange}
         />
-        {errors.description && <p>{errors.description.message}</p>}
       </FormRow>
 
-      <UploadButton type="submit">Upload your product</UploadButton>
+      <UploadButton type="submit">Upload Product</UploadButton>
     </Form>
   );
 };
@@ -106,6 +105,12 @@ const Label = styled.label`
 `;
 
 const StyledInput = styled(Input)`
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+`;
+
+const StyledSelect = styled.select`
   width: 100%;
   padding: 0.75rem;
   margin-bottom: 1.5rem;

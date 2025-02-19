@@ -1,76 +1,42 @@
-import { useForm, SubmitHandler, Control, FormState } from "react-hook-form";
+import { useState } from "react";
 import { Title } from "../../../../shared/ui/Title";
 import ActionButtons from "./CreateProductBtn";
 import ProductForm from "./CreateProductForm";
 import toast from "react-hot-toast";
 import styled from "styled-components";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
 import { addProduct } from "../../api/products";
 import { useMediaQuery } from "react-responsive";
 import MobileProductForm from "./MobileProductForm";
 import ReusableModal from "./ReusableModal";
 import { useNavigate } from "react-router-dom";
 
-export interface ProductFormData {
-  productName: string;
-  description: string;
-  costPerKg: number;
-  productClass: string;
-  numberOfProducts: number;
-  imageSrc: FileList | null;
-}
-
 interface CreateProductProps {
   onClose: () => void;
 }
 
-const productClasses = [
-  "Cereals & Grains",
-  "Pulses & Legumes",
-  "Fruits",
-  "Vegetables",
-  "Nuts & Seeds",
-  "Livestock",
-  "Dairy Products",
-  "Eggs & Poultry",
-  "Organic Fertilizers",
-  "Chemical Fertilizers",
-  "Pesticides & Herbicides",
-  "Tractors & Implements",
-  "Irrigation Systems",
-  "Harvesting Equipment",
-  "Storage & Processing",
-  "Cattle Feed",
-  "Poultry Feed",
-  "Fish & Aquaculture Feed",
-  "Hybrid Seeds",
-  "Organic Seeds",
-  "Seedlings & Saplings",
-  "Organic Produce",
-  "Hydroponic & Indoor Farming Supplies",
-  "Herbs & Medicinal Plants",
-  "Drones & Sensors",
-  "Farm Management Software",
-  "IoT & Automation",
-];
+const initialFormState = {
+  productName: "",
+  description: "",
+  costPerKg: "",
+  productClass: "",
+  numberOfProducts: "",
+  imageSrc: null as File | null,
+};
 
 function CreateProduct({ onClose }: CreateProductProps) {
-  const { handleSubmit, control, reset, formState } =
-    useForm<ProductFormData>();
-  const [newProductName, setNewProductName] = useState<string | null>(null);
+  const [formData, setFormData] = useState(initialFormState);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newProductName, setNewProductName] = useState<string | null>(null);
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const navigate = useNavigate();
-
   const queryClient = useQueryClient();
 
   const { mutateAsync } = useMutation({
     mutationFn: addProduct,
     onSuccess: (data) => {
-      queryClient.invalidateQueries({
-        queryKey: ["products"],
-      });
+      toast.success("Product created successfully!");
+      queryClient.invalidateQueries({ queryKey: ["products"] });
       setNewProductName(data.productName);
       setIsModalOpen(true);
     },
@@ -79,32 +45,44 @@ function CreateProduct({ onClose }: CreateProductProps) {
     },
   });
 
-  const handleDelete = (): void => {
-    reset();
-    toast.success("Product creation reset.");
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const onSubmit: SubmitHandler<ProductFormData> = async (data) => {
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    setFormData((prev) => ({ ...prev, imageSrc: file }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!formData.imageSrc) {
+      toast.error("Please select an image.");
+      return;
+    }
+
     try {
-      if (data.imageSrc) {
-        const formData = new FormData();
+      const submissionData = new FormData();
+      Object.entries(formData).forEach(([key, value]) => {
+        if (value) submissionData.append(key, value);
+      });
 
-        formData.append("productName", data.productName);
-        formData.append("description", data.description);
-        formData.append("costPerKg", data.costPerKg.toString());
-        formData.append("productClass", data.productClass);
-        formData.append("numberOfProducts", data.numberOfProducts.toString());
-        formData.append("imageSrc", data.imageSrc[0]);
-
-        // Pass FormData to the API call
-        await mutateAsync(formData);
-        toast.success("Product created successfully!");
-      } else {
-        toast.error("No image selected.");
-      }
+      await mutateAsync(submissionData);
     } catch (error) {
       toast.error("Failed to create product.");
     }
+  };
+
+  const handleDelete = () => {
+    setFormData(initialFormState);
+    toast.success("Form reset successfully.");
   };
 
   const handleCloseModal = () => {
@@ -118,23 +96,24 @@ function CreateProduct({ onClose }: CreateProductProps) {
         <>
           <StyledTitle>Upload Product</StyledTitle>
           <ProductForm
-            control={control as Control<ProductFormData>}
-            formState={formState as FormState<ProductFormData>}
-            productClasses={productClasses}
+            formData={formData}
+            handleInputChange={handleInputChange}
+            handleImageChange={handleImageChange}
           />
           <ActionButtons
             onClose={onClose}
             handleDelete={handleDelete}
             newlyCreatedProductName={newProductName}
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit}
           />
         </>
       )}
       {isMobile && (
         <MobileProductForm
-          control={control as Control<ProductFormData>}
-          formState={formState as FormState<ProductFormData>}
-          onSubmit={handleSubmit(onSubmit)}
+          formData={formData}
+          handleInputChange={handleInputChange}
+          handleFileChange={handleImageChange}
+          onSubmit={handleSubmit}
         />
       )}
 

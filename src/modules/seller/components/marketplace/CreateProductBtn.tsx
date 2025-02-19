@@ -3,11 +3,12 @@ import ButtonGroup from "../../../../shared/ui/ButtonGroup";
 import ReusableModal from "./ReusableModal";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../../shared/ui/Button";
+
 interface ActionButtonsProps {
   onClose: () => void;
   handleDelete: () => void;
   newlyCreatedProductName?: string | null;
-  onSubmit: () => void;
+  onSubmit: (e: React.FormEvent) => void; // Accepts event argument
 }
 
 const ActionButtons: React.FC<ActionButtonsProps> = ({
@@ -50,7 +51,9 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
         >
           Delete
         </Button>
-        <Button type="button" onClick={onSubmit}>
+        <Button type="submit" onClick={(e) => onSubmit(e)}>
+          {" "}
+          {/* Pass event */}
           Create Product
         </Button>
       </ButtonGroup>
