@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Title } from "../../../../shared/ui/Title";
+import { Title } from "@shared/ui/Title";
 import ActionButtons from "./CreateProductBtn";
 import ProductForm from "./CreateProductForm";
 import toast from "react-hot-toast";

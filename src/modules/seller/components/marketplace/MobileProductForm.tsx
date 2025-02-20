@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import Input from "../../../../shared/ui/Input";
-import Button from "../../../../shared/ui/Button";
-import FormRow from "../../../../shared/ui/FormRow";
-import Form from "../../../../shared/ui/Form";
-import { productClasses } from "./CreateProductForm"; // Import product classes
+import { productClasses } from "./CreateProductForm";
+import Input from "@shared/ui/Input";
+import Button from "@shared/ui/Button";
+import Form from "@shared/ui/Form";
+import FormRow from "@shared/ui/FormRow";
 
 interface FormData {
   productName: string;
