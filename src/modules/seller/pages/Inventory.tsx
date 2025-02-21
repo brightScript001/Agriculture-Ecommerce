@@ -1,7 +1,7 @@
 import { useMediaQuery } from "react-responsive";
-import SearchBar from "../../../shared/ui/SearchBar";
+import SearchBar from "@shared/ui/SearchBar";
 import { useNavigate } from "react-router-dom";
-import Heading from "../../../shared/ui/Heading";
+import Heading from "@shared/ui/Heading";
 
 const mobileSearchBarStyles = `
   background-color: var(--color-grey-200);
