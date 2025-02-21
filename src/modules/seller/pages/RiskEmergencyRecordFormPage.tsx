@@ -23,7 +23,6 @@ export const RiskEmergencyRecordFormPage: React.FC = () => {
     //TODO Here you would make an API call to submit the data
     console.log("Submitting form data:", data);
 
-    //TODO After successful submission, navigate back to the list page
     navigate("/seller/risk-emergency-records");
   };
 
