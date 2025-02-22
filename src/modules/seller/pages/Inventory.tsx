@@ -20,7 +20,7 @@ export function InventoryDashboard() {
       <div>
         <Heading as="h2" onClick={() => navigate("/seller/farm-records")}>
           Farm General Records (Last Updated April 29, 2024)
-        </Heading>
+        </Heading>  
         <Heading as="h2" onClick={() => navigate("/seller/supplies-records")}>
           Supplies Record (Last Updated April 17, 2024)
         </Heading>
