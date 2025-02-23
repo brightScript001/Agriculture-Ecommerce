@@ -8,7 +8,6 @@
 // the target population is p = 1200
 
 // Output
-// number of years to get the population greater than or equal to p.
 
 function yearToReactPopulation(p0, percent, aug, p) {
   let years = 0;
