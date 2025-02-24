@@ -7,8 +7,6 @@
 // the new inhabitants come to live in the town is 50
 // the target population is p = 1200
 
-// Output
-
 function yearToReactPopulation(p0, percent, aug, p) {
   let years = 0;
   while (p0 < p) {
