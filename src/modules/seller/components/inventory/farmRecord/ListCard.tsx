@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DataTable } from "../DataTable";
-import { FarmRecordListHeader } from "./FarmRecordListHeader";
+import { FarmRecordListHeader } from "./ListHeader";
 import { FarmGeneralRecord } from "../RecordTypes";
 import ButtonText from "../../../../../shared/ui/ButtonText";
 import ButtonGroup from "../../../../../shared/ui/ButtonGroup";

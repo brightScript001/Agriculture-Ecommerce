@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { RiskEmergencyRecord } from "../RecordTypes";
-import { RiskEmergencyRecordForm } from "./RiskEmergencyRecordForm";
+import { RiskEmergencyRecordForm } from "./Form";
 
 interface FormProps {
   selectedRow: RiskEmergencyRecord;

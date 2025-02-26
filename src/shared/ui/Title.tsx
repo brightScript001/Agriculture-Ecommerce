@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const Title = styled.h1`
   font-size: var(--font-size-lg);
+  font-weight: 600;
   white-space: nowrap;
   color: var(--color-grey-800);
   margin-top: 1rem;

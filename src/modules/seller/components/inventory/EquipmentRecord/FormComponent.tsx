@@ -1,5 +1,5 @@
 import React from "react";
-import { EquipmentRecordForm } from "./EquipmentRecordForm";
+import { EquipmentRecordForm } from "./Form";
 import { EquipmentMaintenanceRecord } from "../RecordTypes";
 
 interface RecordFormProps {

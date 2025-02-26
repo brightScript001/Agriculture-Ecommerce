@@ -1,5 +1,5 @@
 import React from "react";
-import { FarmRecordForm } from "./FarmRecordForm";
+import { FarmRecordForm } from "./Form";
 import { FarmGeneralRecord } from "../RecordTypes";
 
 interface RecordFormProps {

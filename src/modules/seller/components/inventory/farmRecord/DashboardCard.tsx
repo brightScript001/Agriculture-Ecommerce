@@ -1,38 +1,67 @@
 import { Title } from "@shared/ui/Title";
-import { ArrowRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export const FarmRecord: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleNavigation = () => {
+    navigate("/seller/farm-records");
+  };
+
   return (
     <Wrapper>
-      <Head>
+      <Header>
         <Title>Farm Records</Title>
-        <div>
-          <ArrowRight size={24} color="black" />
-        </div>
-      </Head>
+        <NavigationButton
+          onClick={handleNavigation}
+          aria-label="Go to Farm Records"
+        >
+          <ChevronRight size={32} color="black" />
+        </NavigationButton>
+      </Header>
       <Content>
-        <Paragraph>
+        <Description>
           A general assessment of your records is not too great.
-        </Paragraph>
-        {/* * chart */}
+        </Description>
+        {/* Chart Component Goes Here */}
       </Content>
     </Wrapper>
   );
 };
 
-// ✅ Ensure FarmRecord expands properly
-const Wrapper = styled.div`
+// Styled Components
+const Wrapper = styled.section`
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  padding: 1rem;
+  background-color: var(--color-grey-0);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
 `;
 
-const Head = styled.header`
+const Header = styled.header`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1rem;
+  align-items: center;
+  padding: 0 1rem;
+`;
+
+const NavigationButton = styled.button`
+  background: none;
+  border: none;
+  margin-top: auto;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const Content = styled.div`
@@ -42,6 +71,9 @@ const Content = styled.div`
   justify-content: center;
 `;
 
-const Paragraph = styled.p`
+const Description = styled.p`
+  font-size: var(--font-size-sm);
   text-decoration: underline;
+  color: var(--text-color-primary);
+  text-align: center;
 `;
