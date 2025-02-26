@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { FarmRecord } from "../components/inventory/farmRecord/DashboardCard";
+import { SuppliesRecord } from "../components/inventory/suppliesRecord/DashboardCard";
+import { RiskRecord } from "../components/inventory/riskEmergencyRecord/DashboardCard";
+import { EquipmentRecord } from "../components/inventory/EquipmentRecord/DashboardCard";
 
 export const InventoryDashboard: React.FC = () => {
   return (
@@ -12,9 +15,15 @@ export const InventoryDashboard: React.FC = () => {
       <GridItem area="Farm">
         <FarmRecord />
       </GridItem>
-      <GridItem area="Supplies">Supplies Record</GridItem>
-      <GridItem area="Risk">Risk/Emergency Report</GridItem>
-      <GridItem area="Equipment">Equipment and Maintenance</GridItem>
+      <GridItem area="Supplies">
+        <SuppliesRecord />
+      </GridItem>
+      <GridItem area="Risk">
+        <RiskRecord />
+      </GridItem>
+      <GridItem area="Equipment">
+        <EquipmentRecord />
+      </GridItem>
     </Container>
   );
 };

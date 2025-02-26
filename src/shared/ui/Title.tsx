@@ -4,7 +4,7 @@ const Title = styled.h1`
   font-size: var(--font-size-lg);
   font-weight: 600;
   white-space: nowrap;
-  color: var(--color-grey-800);
+  color: var(--color-grey-700);
   margin-top: 1rem;
 
   @media (max-width: 768px) {
@@ -14,6 +14,7 @@ const Title = styled.h1`
 
 const Subtitle = styled.p`
   font-size: var(--font-size-sm);
+  font-weight: 500;
   color: var(--color-grey-700);
   margin: 1rem 0;
 
