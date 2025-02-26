@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import RiskEmergencyRecordFormComponent from "../components/inventory/riskEmergencyRecord/RiskEmergencyRecordFormComponent";
+import RiskEmergencyRecordFormComponent from "../components/inventory/riskEmergencyRecord/FormComponent";
 import { RiskEmergencyRecord } from "../components/inventory/RecordTypes";
 import styled from "styled-components";
 import Heading from "../../../shared/ui/Heading";

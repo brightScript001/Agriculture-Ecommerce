@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import EquipmentRecordFormComponent from "../components/inventory/EquipmentRecord/EquipmentRecordFormComponent";
+import EquipmentRecordFormComponent from "../components/inventory/EquipmentRecord/FormComponent";
 import { EquipmentMaintenanceRecord } from "../components/inventory/RecordTypes";
 import styled from "styled-components";
 import Heading from "../../../shared/ui/Heading";

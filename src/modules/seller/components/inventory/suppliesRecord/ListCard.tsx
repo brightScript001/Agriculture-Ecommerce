@@ -1,46 +1,37 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DataTable } from "../DataTable";
-import { EquipmentRecordListHeader } from "./EquipmentRecordListHeader";
-import { EquipmentMaintenanceRecord } from "../RecordTypes";
+import { SuppliesRecordListHeader } from "./ListHeader";
+import { SuppliesRecord } from "../RecordTypes";
 import ButtonText from "../../../../../shared/ui/ButtonText";
 import ButtonGroup from "../../../../../shared/ui/ButtonGroup";
-import styled from "styled-components";
-
-// Styled component for the status text
-const StatusText = styled.span<{ status: string }>`
-  color: ${({ status }) =>
-    status !== "Good Condition"
-      ? "var(--color-red-600)"
-      : "var(--color-green-600)"};
-`;
 
 interface ButtonListProps {
-  onViewRow: (row: EquipmentMaintenanceRecord) => void;
+  onViewRow: (row: SuppliesRecord) => void;
   onDelete: (listName: string) => void;
   onDownload: (listName: string) => void;
 }
 
-export const EquipmentRecordListCard: React.FC<ButtonListProps> = ({
+export const SuppliesRecordListCard: React.FC<ButtonListProps> = ({
   onDelete,
   onDownload,
 }) => {
   const navigate = useNavigate();
-  const equipmentList = ["Harvester", "Weeder", "Tractor", "Sprayer"];
+  const lists = ["Pesticides", "Fertilizers", "Tools"];
   const [activeList, setActiveList] = useState<string | null>(null);
-
-  // Example data for the equipment table
-  const [equipmentData] = useState<EquipmentMaintenanceRecord[]>([
+  const [suppliesData] = useState<SuppliesRecord[]>([
     {
-      name: "Harvester",
-      lastMaintenance: "2024-09-15",
-      status: "Due for maintenance",
+      name: "Pesticide A",
+      quantityGotten: 10,
+      quantityRemaining: 5,
+      dateLastApplied: "2024-08-12",
       action: "View",
     },
     {
-      name: "Tractor",
-      lastMaintenance: "2024-08-05",
-      status: "Good Condition",
+      name: "Fertilizer B",
+      quantityGotten: 20,
+      quantityRemaining: 10,
+      dateLastApplied: "2024-09-01",
       action: "View",
     },
   ]);
@@ -49,15 +40,15 @@ export const EquipmentRecordListCard: React.FC<ButtonListProps> = ({
     setActiveList(activeList === listName ? null : listName);
   };
 
-  const handleViewRow = (row: EquipmentMaintenanceRecord, listName: string) => {
-    navigate(`/seller/equipment-record-form`, {
+  const handleViewRow = (row: SuppliesRecord, listName: string) => {
+    navigate(`/seller/supplies-record-form`, {
       state: { record: row, listName },
     });
   };
 
   return (
     <div>
-      {equipmentList.map((list) => (
+      {lists.map((list) => (
         <div key={list}>
           <div
             style={{
@@ -79,45 +70,52 @@ export const EquipmentRecordListCard: React.FC<ButtonListProps> = ({
                 {activeList === list ? "Close" : "View"}
               </ButtonText>
               <ButtonText
+                style={{ color: "var(--color-red-600)" }}
                 onClick={() => onDelete(list)}
-                style={{ color: "red" }}
               >
                 Delete
               </ButtonText>
-              <ButtonText onClick={() => onDownload(list)}>Download</ButtonText>
+              <ButtonText
+                style={{ color: "var(--color-grey-600)" }}
+                onClick={() => onDownload(list)}
+              >
+                Download
+              </ButtonText>
             </ButtonGroup>
           </div>
           {activeList === list && (
             <div
+              className="card"
               style={{
                 marginTop: "1rem",
                 backgroundColor: "var(--color-grey-0)",
                 borderRadius: "var(--border-radius-md)",
               }}
             >
-              {/* Render the header for the list */}
-              <EquipmentRecordListHeader listName={list} />
-              {/* Render the DataTable */}
-              <DataTable<EquipmentMaintenanceRecord>
-                rows={equipmentData}
+              <SuppliesRecordListHeader listName={list} />
+
+              <DataTable<SuppliesRecord>
+                rows={suppliesData}
                 columns={[
                   { field: "name", headerName: "Name" },
-                  { field: "lastMaintenance", headerName: "Last Maintenance" },
+                  { field: "quantityGotten", headerName: "Quantity Gotten" },
                   {
-                    field: "status",
-                    headerName: "Status",
-                    renderCell: (row) => (
-                      <StatusText status={row.status}>{row.status}</StatusText>
-                    ),
+                    field: "quantityRemaining",
+                    headerName: "Quantity Remaining",
                   },
+                  { field: "dateLastApplied", headerName: "Date Last Applied" },
                   { field: "action", headerName: "Action" },
                 ]}
                 renderRow={(row) => (
                   <>
                     <span>{row.name}</span>
-                    <span>{row.lastMaintenance}</span>
-                    <StatusText status={row.status}>{row.status}</StatusText>
-                    <ButtonText onClick={() => handleViewRow(row, list)}>
+                    <span>{row.quantityGotten}</span>
+                    <span>{row.quantityRemaining}</span>
+                    <span>{row.dateLastApplied}</span>
+                    <ButtonText
+                      style={{ color: "var(--color-green-600)" }}
+                      onClick={() => handleViewRow(row, list)}
+                    >
                       View
                     </ButtonText>
                   </>

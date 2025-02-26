@@ -1,63 +1,63 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DataTable } from "../DataTable";
-import { RiskEmergencyRecordListHeader } from "./RiskEmergencyRecordListHeader";
-import { RiskEmergencyRecord } from "../RecordTypes";
+import { EquipmentRecordListHeader } from "./ListHeader";
+import { EquipmentMaintenanceRecord } from "../RecordTypes";
 import ButtonText from "../../../../../shared/ui/ButtonText";
 import ButtonGroup from "../../../../../shared/ui/ButtonGroup";
+import styled from "styled-components";
+
+// Styled component for the status text
+const StatusText = styled.span<{ status: string }>`
+  color: ${({ status }) =>
+    status !== "Good Condition"
+      ? "var(--color-red-600)"
+      : "var(--color-green-600)"};
+`;
 
 interface ButtonListProps {
-  onViewRow: (row: RiskEmergencyRecord) => void;
+  onViewRow: (row: EquipmentMaintenanceRecord) => void;
   onDelete: (listName: string) => void;
   onDownload: (listName: string) => void;
 }
 
-export const RiskEmergencyRecordListCard: React.FC<ButtonListProps> = ({
+export const EquipmentRecordListCard: React.FC<ButtonListProps> = ({
   onDelete,
   onDownload,
 }) => {
   const navigate = useNavigate();
-  const lists = [
-    "Farm Attack by Pest",
-    "Fruit Over-ripening",
-    "Fire in Farm House",
-    "Expired Herbicide",
-  ];
+  const equipmentList = ["Harvester", "Weeder", "Tractor", "Sprayer"];
   const [activeList, setActiveList] = useState<string | null>(null);
-  const [riskEmergencyData] = useState<RiskEmergencyRecord[]>([
+
+  // Example data for the equipment table
+  const [equipmentData] = useState<EquipmentMaintenanceRecord[]>([
     {
-      name: "Pest Attack",
-      cropAttacked: "Corn",
-      dateOfAttack: "2023-09-16",
-      status: "Unresolved",
+      name: "Harvester",
+      lastMaintenance: "2024-09-15",
+      status: "Due for maintenance",
       action: "View",
     },
     {
-      name: "Fire Outbreak",
-      cropAttacked: "Wheat",
-      dateOfAttack: "2023-09-12",
-      status: "Resolved",
+      name: "Tractor",
+      lastMaintenance: "2024-08-05",
+      status: "Good Condition",
       action: "View",
     },
   ]);
 
   const handleToggle = (listName: string) => {
-    if (activeList === listName) {
-      setActiveList(null);
-    } else {
-      setActiveList(listName);
-    }
+    setActiveList(activeList === listName ? null : listName);
   };
 
-  const handleViewRow = (row: RiskEmergencyRecord, listName: string) => {
-    navigate(`/seller/risk-emergency-record-form`, {
+  const handleViewRow = (row: EquipmentMaintenanceRecord, listName: string) => {
+    navigate(`/seller/equipment-record-form`, {
       state: { record: row, listName },
     });
   };
 
   return (
     <div>
-      {lists.map((list) => (
+      {equipmentList.map((list) => (
         <div key={list}>
           <div
             style={{
@@ -79,49 +79,45 @@ export const RiskEmergencyRecordListCard: React.FC<ButtonListProps> = ({
                 {activeList === list ? "Close" : "View"}
               </ButtonText>
               <ButtonText
-                style={{ color: "var(--color-red-600)" }}
                 onClick={() => onDelete(list)}
+                style={{ color: "red" }}
               >
                 Delete
               </ButtonText>
-              <ButtonText
-                style={{ color: "var(--color-grey-600)" }}
-                onClick={() => onDownload(list)}
-              >
-                Download
-              </ButtonText>
+              <ButtonText onClick={() => onDownload(list)}>Download</ButtonText>
             </ButtonGroup>
           </div>
           {activeList === list && (
             <div
-              className="card"
               style={{
                 marginTop: "1rem",
                 backgroundColor: "var(--color-grey-0)",
                 borderRadius: "var(--border-radius-md)",
               }}
             >
-              <RiskEmergencyRecordListHeader listName={list} />
-
-              <DataTable<RiskEmergencyRecord>
-                rows={riskEmergencyData}
+              {/* Render the header for the list */}
+              <EquipmentRecordListHeader listName={list} />
+              {/* Render the DataTable */}
+              <DataTable<EquipmentMaintenanceRecord>
+                rows={equipmentData}
                 columns={[
                   { field: "name", headerName: "Name" },
-                  { field: "cropAttacked", headerName: "Crop Attacked" },
-                  { field: "dateOfAttack", headerName: "Date of Attack" },
-                  { field: "status", headerName: "Status" },
+                  { field: "lastMaintenance", headerName: "Last Maintenance" },
+                  {
+                    field: "status",
+                    headerName: "Status",
+                    renderCell: (row) => (
+                      <StatusText status={row.status}>{row.status}</StatusText>
+                    ),
+                  },
                   { field: "action", headerName: "Action" },
                 ]}
                 renderRow={(row) => (
                   <>
                     <span>{row.name}</span>
-                    <span>{row.cropAttacked}</span>
-                    <span>{row.dateOfAttack}</span>
-                    <span>{row.status}</span>
-                    <ButtonText
-                      style={{ color: "var(--color-green-600)" }}
-                      onClick={() => handleViewRow(row, list)}
-                    >
+                    <span>{row.lastMaintenance}</span>
+                    <StatusText status={row.status}>{row.status}</StatusText>
+                    <ButtonText onClick={() => handleViewRow(row, list)}>
                       View
                     </ButtonText>
                   </>

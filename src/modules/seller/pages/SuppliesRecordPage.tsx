@@ -1,5 +1,5 @@
 import React from "react";
-import { SuppliesRecordListCard } from "../components/inventory/suppliesRecord/SuppliesRecordListCard";
+import { SuppliesRecordListCard } from "../components/inventory/suppliesRecord/ListCard";
 import { useNavigate } from "react-router-dom";
 import { SuppliesRecord } from "../components/inventory/RecordTypes";
 import styled from "styled-components";

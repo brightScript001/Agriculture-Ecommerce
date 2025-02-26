@@ -15,6 +15,8 @@
     "@mui/icons-material": "^5.16.7",
     "@mui/material": "^5.16.6",
     "@mui/x-data-grid": "^7.15.0",
+    "@react-buddy/ide-toolbox": "^2.4.0",
+    "@react-buddy/palette-mui": "^5.0.1",
     "@reduxjs/toolkit": "^2.2.7",
     "@tanstack/react-query": "^5.55.4",
     "@tanstack/react-query-devtools": "^5.55.4",
@@ -24,6 +26,7 @@
     "date-fns": "^4.1.0",
     "eslint-plugin-react": "^7.34.3",
     "framer-motion": "^11.9.0",
+    "lucide-react": "^0.476.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-dropzone": "^14.2.3",
@@ -35,9 +38,7 @@
     "react-redux": "^9.1.2",
     "react-responsive": "^10.0.0",
     "react-router-dom": "^6.26.0",
-    "styled-components": "^6.1.12",
-    "@react-buddy/ide-toolbox": "^2.4.0",
-    "@react-buddy/palette-mui": "^5.0.1"
+    "styled-components": "^6.1.12"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

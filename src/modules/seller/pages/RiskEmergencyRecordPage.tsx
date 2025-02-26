@@ -1,5 +1,5 @@
 import React from "react";
-import { RiskEmergencyRecordListCard } from "../components/inventory/riskEmergencyRecord/RiskEmergencyRecordListCard";
+import { RiskEmergencyRecordListCard } from "../components/inventory/riskEmergencyRecord/ListCard";
 import { useNavigate } from "react-router-dom";
 import { RiskEmergencyRecord } from "../components/inventory/RecordTypes";
 import styled from "styled-components";

@@ -1,47 +1,56 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DataTable } from "../DataTable";
-import { SuppliesRecordListHeader } from "./SuppliesRecordListHeader";
-import { SuppliesRecord } from "../RecordTypes";
+import { RiskEmergencyRecordListHeader } from "./ListHeader";
+import { RiskEmergencyRecord } from "../RecordTypes";
 import ButtonText from "../../../../../shared/ui/ButtonText";
 import ButtonGroup from "../../../../../shared/ui/ButtonGroup";
 
 interface ButtonListProps {
-  onViewRow: (row: SuppliesRecord) => void;
+  onViewRow: (row: RiskEmergencyRecord) => void;
   onDelete: (listName: string) => void;
   onDownload: (listName: string) => void;
 }
 
-export const SuppliesRecordListCard: React.FC<ButtonListProps> = ({
+export const RiskEmergencyRecordListCard: React.FC<ButtonListProps> = ({
   onDelete,
   onDownload,
 }) => {
   const navigate = useNavigate();
-  const lists = ["Pesticides", "Fertilizers", "Tools"];
+  const lists = [
+    "Farm Attack by Pest",
+    "Fruit Over-ripening",
+    "Fire in Farm House",
+    "Expired Herbicide",
+  ];
   const [activeList, setActiveList] = useState<string | null>(null);
-  const [suppliesData] = useState<SuppliesRecord[]>([
+  const [riskEmergencyData] = useState<RiskEmergencyRecord[]>([
     {
-      name: "Pesticide A",
-      quantityGotten: 10,
-      quantityRemaining: 5,
-      dateLastApplied: "2024-08-12",
+      name: "Pest Attack",
+      cropAttacked: "Corn",
+      dateOfAttack: "2023-09-16",
+      status: "Unresolved",
       action: "View",
     },
     {
-      name: "Fertilizer B",
-      quantityGotten: 20,
-      quantityRemaining: 10,
-      dateLastApplied: "2024-09-01",
+      name: "Fire Outbreak",
+      cropAttacked: "Wheat",
+      dateOfAttack: "2023-09-12",
+      status: "Resolved",
       action: "View",
     },
   ]);
 
   const handleToggle = (listName: string) => {
-    setActiveList(activeList === listName ? null : listName);
+    if (activeList === listName) {
+      setActiveList(null);
+    } else {
+      setActiveList(listName);
+    }
   };
 
-  const handleViewRow = (row: SuppliesRecord, listName: string) => {
-    navigate(`/seller/supplies-record-form`, {
+  const handleViewRow = (row: RiskEmergencyRecord, listName: string) => {
+    navigate(`/seller/risk-emergency-record-form`, {
       state: { record: row, listName },
     });
   };
@@ -92,26 +101,23 @@ export const SuppliesRecordListCard: React.FC<ButtonListProps> = ({
                 borderRadius: "var(--border-radius-md)",
               }}
             >
-              <SuppliesRecordListHeader listName={list} />
+              <RiskEmergencyRecordListHeader listName={list} />
 
-              <DataTable<SuppliesRecord>
-                rows={suppliesData}
+              <DataTable<RiskEmergencyRecord>
+                rows={riskEmergencyData}
                 columns={[
                   { field: "name", headerName: "Name" },
-                  { field: "quantityGotten", headerName: "Quantity Gotten" },
-                  {
-                    field: "quantityRemaining",
-                    headerName: "Quantity Remaining",
-                  },
-                  { field: "dateLastApplied", headerName: "Date Last Applied" },
+                  { field: "cropAttacked", headerName: "Crop Attacked" },
+                  { field: "dateOfAttack", headerName: "Date of Attack" },
+                  { field: "status", headerName: "Status" },
                   { field: "action", headerName: "Action" },
                 ]}
                 renderRow={(row) => (
                   <>
                     <span>{row.name}</span>
-                    <span>{row.quantityGotten}</span>
-                    <span>{row.quantityRemaining}</span>
-                    <span>{row.dateLastApplied}</span>
+                    <span>{row.cropAttacked}</span>
+                    <span>{row.dateOfAttack}</span>
+                    <span>{row.status}</span>
                     <ButtonText
                       style={{ color: "var(--color-green-600)" }}
                       onClick={() => handleViewRow(row, list)}

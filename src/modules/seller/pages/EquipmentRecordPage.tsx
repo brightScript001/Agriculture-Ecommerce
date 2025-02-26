@@ -1,5 +1,5 @@
 import React from "react";
-import { EquipmentRecordListCard } from "../components/inventory/EquipmentRecord/EquipmentRecordListCard";
+import { EquipmentRecordListCard } from "../components/inventory/EquipmentRecord/ListCard";
 import styled from "styled-components";
 import Heading from "../../../shared/ui/Heading";
 import { EquipmentMaintenanceRecord } from "../components/inventory/RecordTypes";
