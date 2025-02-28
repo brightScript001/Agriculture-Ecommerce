@@ -53,6 +53,10 @@ const variations = {
       background-color: var(--color-red-800);
     }
   `,
+  unstyled: css`
+    all: unset;
+    cursor: pointer;
+  `,
 };
 
 const Button = styled.button<ButtonProps>`

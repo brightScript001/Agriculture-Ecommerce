@@ -1,7 +1,7 @@
 import React from "react";
-import { BackButtonIcon } from "./Icons";
 import Button from "./ButtonIcon";
 import { useNavigate } from "react-router-dom";
+import { ChevronLeft } from "lucide-react";
 
 const BackButton: React.FC = () => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const BackButton: React.FC = () => {
   };
   return (
     <Button onClick={handleClick}>
-      <img src={BackButtonIcon} alt="one step back" />
+      <ChevronLeft size={32} color="black" />
     </Button>
   );
 };

@@ -5,6 +5,7 @@ import { fetchOrders } from "../../api/orders";
 import Button from "../../../../shared/ui/Button";
 import SpinnerComponent from "../../../../shared/ui/Spinner";
 import { Order, OrderDetail } from "./OrdersListTypes";
+import { ChevronRight } from "lucide-react";
 
 const PendingOrdersCard = () => {
   const navigate = useNavigate();
@@ -48,9 +49,11 @@ const PendingOrdersCard = () => {
 
   return (
     <Card>
-      <Header onClick={handleHeaderClick}>
+      <Header>
         <HeaderText>Pending Orders</HeaderText>
-        <ArrowIcon>➔</ArrowIcon>
+        <Button variation="unstyled" onClick={handleHeaderClick}>
+          <ChevronRight size={32} color="black" />
+        </Button>
       </Header>
       {PendingOrders.length > 0 ? (
         <OrderList>
@@ -88,7 +91,6 @@ const Card = styled.div`
   border-radius: var(--border-radius-md);
   margin: 1rem 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  cursor: pointer;
 `;
 
 const Header = styled.div`
@@ -103,10 +105,6 @@ const Header = styled.div`
 
 const HeaderText = styled.span`
   color: var(--color-black);
-`;
-
-const ArrowIcon = styled.span`
-  color: var(--color-grey-500);
 `;
 
 const OrderList = styled.div`
