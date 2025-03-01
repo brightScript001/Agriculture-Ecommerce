@@ -18,7 +18,6 @@
 // console.log(yearsToReachPopulation(1000, 2, 50, 1200));
 
 function reverseString(str) {
-  // to be able to reverse the string we have to use (.reverse) method and that is an array method, so we have to turn this string to an array.
   return str.split("").reverse("").join("");
 }
 console.log(reverseString("Hey there!"));
