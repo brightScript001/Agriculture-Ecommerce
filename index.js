@@ -55,3 +55,7 @@ function findTheVowels(str) {
   return count;
 }
 console.log(findTheVowels("Hey there!"));
+
+function ReverseStr(str) {
+  return str.split("").reverse().join("");
+}
