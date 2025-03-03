@@ -8,16 +8,21 @@ import { EquipmentRecord } from "../components/inventory/EquipmentRecord/Dashboa
 export const InventoryDashboard: React.FC = () => {
   return (
     <Container>
+      {/* Top Row */}
       <GridItem area="Hectares">Hectares</GridItem>
       <GridItem area="Seeds">Seeds</GridItem>
       <GridItem area="Harvest">Harvest</GridItem>
       <GridItem area="Weather">Weather Report</GridItem>
+
+      {/* Middle Row */}
       <GridItem area="Farm">
         <FarmRecord />
       </GridItem>
       <GridItem area="Supplies">
         <SuppliesRecord />
       </GridItem>
+
+      {/* Bottom Row */}
       <GridItem area="Risk">
         <RiskRecord />
       </GridItem>
@@ -28,7 +33,7 @@ export const InventoryDashboard: React.FC = () => {
   );
 };
 
-// style
+// Styled Components
 const Container = styled.div`
   display: grid;
   width: 100%;
@@ -37,9 +42,15 @@ const Container = styled.div`
     "Hectares Seeds Harvest Weather"
     "Farm Farm Supplies Supplies"
     "Risk Risk Equipment Equipment";
-  grid-template-columns: 220px 220px 220px 408px;
+
+  /* First three columns are equal, Weather is slightly wider */
+  grid-template-columns: repeat(3, 1fr) 1.2fr;
+
+  /* Row heights remain consistent */
   grid-template-rows: 119px 299px 299px;
-  gap: 10px;
+
+  gap: 12px;
+  padding: 16px;
 `;
 
 const GridItem = styled.div<{ area: string }>`
@@ -48,10 +59,9 @@ const GridItem = styled.div<{ area: string }>`
   justify-content: center;
   align-items: center;
   background-color: var(--color-grey-0);
-  border: none;
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
   box-sizing: border-box;
-
+  padding: 16px;
   text-align: center;
 `;
