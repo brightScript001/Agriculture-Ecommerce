@@ -1,6 +1,6 @@
 import HeaderWrapper from "@modules/seller/ui/HeaderWrapper";
 import Logo from "@shared/ui/Logo";
-import { useNavigationLinks } from "../hooks/useNavigationLinks";
+import { useNavigationLinks } from "../utils/useNavigationLinks";
 import { useState, useEffect } from "react";
 import { MenuButtonComponent } from "./MenuButton";
 import { MenuContent } from "./MenuContent";

@@ -26,27 +26,59 @@ export const createSellerRoutes = (): RouteObject[] => [
     children: [
       { index: true, element: <Navigate to="dashboard" replace /> },
       { path: "dashboard", element: <SellerDashboard /> },
-      { path: "marketplace", element: <MarketPlace /> },
-      { path: "marketplace/create-product", element: <CreateProductWrapper /> },
-      { path: "orders/:status", element: <Order /> },
-      { path: "order/:id", element: <OrderDetails /> },
-      { path: "order/:id/dispute", element: <Dispute /> },
-      { path: "inventory", element: <InventoryDashboard /> },
-      { path: "farm-records", element: <FarmRecordListPage /> },
-      { path: "farm-record-form", element: <RecordFormPage /> },
-      { path: "supplies-records", element: <SuppliesRecordListPage /> },
-      { path: "supplies-record-form", element: <SuppliesRecordFormPage /> },
-      { path: "risk-emergency-records", element: <RiskEmergencyRecordPage /> },
+
+      // Marketplace Routes
       {
-        path: "risk-emergency-record-form",
-        element: <RiskEmergencyRecordFormPage />,
+        path: "marketplace",
+        children: [
+          { index: true, element: <MarketPlace /> },
+          { path: "create-product", element: <CreateProductWrapper /> },
+        ],
       },
-      { path: "equipment-records", element: <EquipmentRecordPage /> },
-      { path: "equipment-record-form", element: <EquipmentRecordFormPage /> },
+
+      // Orders Routes
+      {
+        path: "orders",
+        children: [
+          { index: true, element: <Navigate to="pending" replace /> }, // Default to "pending" status
+          { path: ":status", element: <Order /> },
+          { path: ":id", element: <OrderDetails /> },
+          { path: ":id/dispute", element: <Dispute /> },
+        ],
+      },
+
+      { path: "inventory", element: <InventoryDashboard /> },
+
+      // Records Routes
+      {
+        path: "records",
+        children: [
+          { path: "farm", element: <FarmRecordListPage /> },
+          { path: "farm/form", element: <RecordFormPage /> },
+          { path: "supplies", element: <SuppliesRecordListPage /> },
+          { path: "supplies/form", element: <SuppliesRecordFormPage /> },
+          { path: "risk-emergency", element: <RiskEmergencyRecordPage /> },
+          {
+            path: "risk-emergency/form",
+            element: <RiskEmergencyRecordFormPage />,
+          },
+          { path: "equipment", element: <EquipmentRecordPage /> },
+          { path: "equipment/form", element: <EquipmentRecordFormPage /> },
+        ],
+      },
+
       { path: "payment", element: <PaymentDashboard /> },
-      { path: "support", element: <Support /> },
-      { path: "live-chat", element: <LiveChat /> },
-      { path: "faq", element: <FAQ /> },
+
+      // Support & Profile Routes
+      {
+        path: "support",
+        children: [
+          { index: true, element: <Support /> },
+          { path: "live-chat", element: <LiveChat /> },
+          { path: "faq", element: <FAQ /> },
+        ],
+      },
+
       { path: "profile", element: <Profile /> },
     ],
   },

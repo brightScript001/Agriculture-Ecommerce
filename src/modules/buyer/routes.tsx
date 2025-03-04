@@ -12,16 +12,27 @@ import { FAQ } from "@shared/pages/FAQ";
 export const createBuyerRoutes = (): RouteObject[] => [
   {
     path: "buyer",
+    element: <Navigate to="dashboard" replace />, // Redirect /buyer to /buyer/dashboard
     children: [
-      { index: true, element: <Navigate to="dashboard" replace /> },
       { path: "dashboard", element: <BuyerDashboard /> },
       { path: "product/:id", element: <ProductDetail /> },
       { path: "cart", element: <Cart /> },
-      { path: "order-history", element: <OrderHistory /> },
-      { path: "order-history/:orderId", element: <OrderHistoryDetails /> },
+
+      // Nested Order History Routes
+      {
+        path: "order-history",
+        children: [
+          { index: true, element: <OrderHistory /> },
+          { path: ":orderId", element: <OrderHistoryDetails /> },
+        ],
+      },
+
+      // Support & Help Pages
       { path: "support", element: <Support /> },
       { path: "live-chat", element: <LiveChat /> },
       { path: "faq", element: <FAQ /> },
+
+      // User Profile
       { path: "profile", element: <BuyerProfile /> },
     ],
   },

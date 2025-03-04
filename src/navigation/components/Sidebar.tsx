@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useNavigationLinks } from "../hooks/useNavigationLinks";
+import { useNavigationLinks } from "../utils/useNavigationLinks";
 import { useNavigate, useLocation } from "react-router-dom";
 import { LogOut } from "@modules/auth/components/Logout";
 import Logo from "@shared/ui/Logo";
