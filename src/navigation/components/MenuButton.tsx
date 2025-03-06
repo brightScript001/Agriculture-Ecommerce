@@ -9,7 +9,6 @@ const MenuButton = styled.div`
   font-size: var(--font-size-lg);
 `;
 
-// interface
 interface MenuButtonProps {
   isOpen: boolean;
   toggleMenu: () => void;
