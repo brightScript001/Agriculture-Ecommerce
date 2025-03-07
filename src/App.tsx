@@ -6,6 +6,7 @@ import GlobalStyles from "./styles/globalStyles";
 import { AppState } from "./store";
 import { router } from "./app/router";
 
+//app component
 function App() {
   const isDarkMode = useSelector(
     (state: AppState) => state.darkMode.isDarkMode
