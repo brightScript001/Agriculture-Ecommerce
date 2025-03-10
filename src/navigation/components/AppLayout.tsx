@@ -10,7 +10,7 @@ import {
   StyledAppLayout,
 } from "./LayoutStyles";
 import { HamburgerMenu } from "./HamburgerMenu";
-import { Navbar } from "./Navbar";
+import { Header } from "./Header";
 import { PageHeader } from "@shared/ui/PageHeader";
 import { PageTitle } from "@shared/ui/PageTitle";
 import BellButtonWithNotifications from "@shared/ui/BellButtonNotifications ";
@@ -22,7 +22,7 @@ export function AppLayout() {
 
   return (
     <StyledAppLayout>
-      {isMobile ? <HamburgerMenu role={role} /> : <Navbar />}
+      {isMobile ? <HamburgerMenu role={role} /> : <Header />}
       {!isMobile && <Sidebar role={role} />}
 
       {isMobile && (

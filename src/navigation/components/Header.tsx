@@ -1,32 +1,18 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
-import BackButton from "@shared/ui/BackButton";
 import SearchBar from "@shared/ui/SearchBar";
 import UserAvatar from "@shared/ui/UserAvatar";
 import { ChevronLeft } from "lucide-react";
 import BellButtonWithNotifications from "@shared/ui/BellButtonNotifications ";
 
-export const Navbar: React.FC = () => {
+export const Header: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const pathSegments = location.pathname.split("/").filter(Boolean);
 
-  const isBuyer = pathSegments[0] === "buyer";
-  const isSeller = pathSegments[0] === "seller";
-
-  const dashboardPath = isBuyer
-    ? "/buyer/dashboard"
-    : isSeller
-    ? "/seller/dashboard"
-    : "/dashboard";
-
   const handleBackNavigation = () => {
-    if (pathSegments.length === 1) {
-      navigate(dashboardPath);
-      return;
-    }
+    if (pathSegments.length === 1) return; // Prevent navigation when only one segment
 
     const parentPath = "/" + pathSegments.slice(0, -1).join("/");
     navigate(parentPath);
@@ -59,7 +45,7 @@ export const Navbar: React.FC = () => {
   return (
     <NavbarContainer>
       <NavbarSection>
-        {pathSegments.length > 0 && pathSegments[0] !== "dashboard" ? (
+        {pathSegments.length > 2 ? (
           <BackButtonContainer onClick={handleBackNavigation}>
             <ChevronLeft size={16} />
             {pathSegments.length > 1
@@ -68,9 +54,7 @@ export const Navbar: React.FC = () => {
                   .replace(/\b\w/g, (char) => char.toUpperCase())
               : "Dashboard"}
           </BackButtonContainer>
-        ) : (
-          <BackButton />
-        )}
+        ) : null}
       </NavbarSection>
 
       <NavbarSection centerAlign>
@@ -135,11 +119,10 @@ const BackButtonContainer = styled.div`
 const PageTitleContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right: 2rem;
 `;
 
 const PageTitle = styled.h1`
-  font-size: 1.25rem;
+  font-size: var(--font-size-md);
   font-weight: 600;
   color: var(--color-grey-900);
   margin-bottom: 0.25rem;
@@ -150,4 +133,4 @@ const LastUpdated = styled.span`
   color: var(--color-grey-500);
 `;
 
-export default Navbar;
+export default Header;
