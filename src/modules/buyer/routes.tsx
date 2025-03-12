@@ -12,8 +12,8 @@ import { FAQ } from "@shared/pages/FAQ";
 export const createBuyerRoutes = (): RouteObject[] => [
   {
     path: "buyer",
-    element: <Navigate to="dashboard" replace />,
     children: [
+      { index: true, element: <Navigate to="dashboard" replace /> },
       { path: "dashboard", element: <BuyerDashboard /> },
       { path: "product/:id", element: <ProductDetail /> },
       { path: "cart", element: <Cart /> },
