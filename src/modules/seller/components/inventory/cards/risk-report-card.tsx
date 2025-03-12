@@ -11,6 +11,7 @@ import {
   TableCellStatus,
 } from "../styled/dashboard-styles";
 import type { RiskReport } from "../types/dashboard-types";
+import { useNavigate } from "react-router-dom";
 
 interface RiskReportCardProps {
   riskReport: RiskReport;
@@ -19,11 +20,14 @@ interface RiskReportCardProps {
 export const RiskReportCard: React.FC<RiskReportCardProps> = ({
   riskReport,
 }) => {
+  const navigate = useNavigate();
   return (
     <CardContainer>
       <CardHeader>
         <CardTitle>Risk/Emergency Report</CardTitle>
-        <ArrowIcon>›</ArrowIcon>
+        <ArrowIcon onClick={() => navigate("/seller/inventory/risk-emergency")}>
+          ›
+        </ArrowIcon>
       </CardHeader>
 
       <CardMessage>

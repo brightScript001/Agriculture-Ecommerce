@@ -14,6 +14,7 @@ import {
 } from "../styled/dashboard-styles";
 import { DonutChart } from "../charts/donut-chart";
 import type { FarmRecord } from "../types/dashboard-types";
+import { useNavigate } from "react-router-dom";
 
 interface FarmRecordsCardProps {
   farmRecords: FarmRecord;
@@ -22,11 +23,14 @@ interface FarmRecordsCardProps {
 export const FarmRecordsCard: React.FC<FarmRecordsCardProps> = ({
   farmRecords,
 }) => {
+  const navigate = useNavigate();
   return (
     <CardContainer>
       <CardHeader>
         <CardTitle>Farm Records</CardTitle>
-        <ArrowIcon>›</ArrowIcon>
+        <ArrowIcon onClick={() => navigate("/seller/inventory/farm")}>
+          ›
+        </ArrowIcon>
       </CardHeader>
 
       <CardMessage>

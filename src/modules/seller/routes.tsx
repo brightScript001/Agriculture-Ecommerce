@@ -5,17 +5,21 @@ import { MarketPlace } from "@seller/pages/MarketPlace";
 import { CreateProductWrapper } from "@seller/pages/CreateProduct";
 import { Dispute } from "@seller/pages/Dispute";
 import { OrderDetails } from "@seller/pages/OrderDetails";
+import { InventoryDashboard } from "@seller/pages/Inventory";
+import { PaymentDashboard } from "@seller/pages/Payment";
+import { Profile } from "@seller/pages/Profile";
+
+// Records Management
 import { FarmRecordListPage } from "@seller/pages/FarmRecordPage";
 import { RecordFormPage } from "@seller/pages/FarmRecordFormPage";
 import { SuppliesRecordListPage } from "@seller/pages/SuppliesRecordPage";
 import { SuppliesRecordFormPage } from "@seller/pages/SuppliesRecordFormPage";
 import { RiskEmergencyRecordPage } from "@seller/pages/RiskEmergencyRecordPage";
 import { RiskEmergencyRecordFormPage } from "@seller/pages/RiskEmergencyRecordFormPage";
-import { EquipmentRecordFormPage } from "@seller/pages/EquipmentRecordFormPage";
 import { EquipmentRecordPage } from "@seller/pages/EquipmentRecordPage";
-import { InventoryDashboard } from "@seller/pages/Inventory";
-import { PaymentDashboard } from "@seller/pages/Payment";
-import { Profile } from "@seller/pages/Profile";
+import { EquipmentRecordFormPage } from "@seller/pages/EquipmentRecordFormPage";
+
+// Shared Pages
 import { Support } from "@shared/pages/Support";
 import { LiveChat } from "@shared/pages/LiveChat";
 import { FAQ } from "@shared/pages/FAQ";
@@ -47,12 +51,11 @@ export const createSellerRoutes = (): RouteObject[] => [
         ],
       },
 
-      { path: "inventory", element: <InventoryDashboard /> },
-
-      // Records Routes
+      // Inventory & Records Routes
       {
-        path: "records",
+        path: "inventory",
         children: [
+          { index: true, element: <InventoryDashboard /> },
           { path: "farm", element: <FarmRecordListPage /> },
           { path: "farm/form", element: <RecordFormPage /> },
           { path: "supplies", element: <SuppliesRecordListPage /> },

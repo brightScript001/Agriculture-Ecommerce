@@ -13,6 +13,7 @@ import {
 } from "../styled/dashboard-styles";
 import { SuppliesDonutChart } from "../charts/supplies-donut-chart";
 import type { SuppliesRecord } from "../types/dashboard-types";
+import { useNavigate } from "react-router-dom";
 
 interface SuppliesCardProps {
   suppliesRecord: SuppliesRecord;
@@ -21,11 +22,14 @@ interface SuppliesCardProps {
 export const SuppliesCard: React.FC<SuppliesCardProps> = ({
   suppliesRecord,
 }) => {
+  const navigation = useNavigate();
   return (
     <CardContainer>
       <CardHeader>
         <CardTitle>Supplies Record</CardTitle>
-        <ArrowIcon>›</ArrowIcon>
+        <ArrowIcon onClick={() => navigation("/seller/inventory/supplies")}>
+          ›
+        </ArrowIcon>
       </CardHeader>
 
       <SuppliesDetailContainer>

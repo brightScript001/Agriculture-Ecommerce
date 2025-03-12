@@ -11,6 +11,7 @@ import {
   TableCellStatus,
 } from "../styled/dashboard-styles";
 import { EquipmentStatus } from "../types/dashboard-types";
+import { useNavigate } from "react-router-dom";
 
 interface EquipmentCardProps {
   equipmentStatus: EquipmentStatus;
@@ -19,11 +20,14 @@ interface EquipmentCardProps {
 export const EquipmentCard: React.FC<EquipmentCardProps> = ({
   equipmentStatus,
 }) => {
+  const navigate = useNavigate();
   return (
     <CardContainer>
       <CardHeader>
         <CardTitle>Equipment and Maintenance</CardTitle>
-        <ArrowIcon>›</ArrowIcon>
+        <ArrowIcon onClick={() => navigate("/seller/inventory/equipment")}>
+          ›
+        </ArrowIcon>
       </CardHeader>
 
       <CardMessage>
