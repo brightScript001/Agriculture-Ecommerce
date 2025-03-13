@@ -13,8 +13,8 @@ import { HamburgerMenu } from "./HamburgerMenu";
 import { Header } from "./Header";
 import { PageHeader } from "@shared/ui/PageHeader";
 import { PageTitle } from "@shared/ui/PageTitle";
-import BellButtonWithNotifications from "@shared/ui/BellButtonNotifications ";
 import { Sidebar } from "./Sidebar";
+import { NotificationButton } from "@shared/ui/NotificationButton";
 
 export function AppLayout() {
   const { role } = useSelector((state: AppState) => state.auth);
@@ -29,7 +29,7 @@ export function AppLayout() {
         <PageHeaderWrapper>
           <PageHeader
             children={<PageTitle />}
-            RightComponent={<BellButtonWithNotifications />}
+            RightComponent={<NotificationButton />}
           />
         </PageHeaderWrapper>
       )}

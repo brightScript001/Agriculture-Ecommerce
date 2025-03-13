@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { ChevronLeft } from "lucide-react";
 import { useSelector } from "react-redux";
 import { AppState } from "store";
+import { NotificationButton } from "@shared/ui/NotificationButton";
+import SearchBar from "@shared/ui/SearchBar";
 
 export const Header: React.FC = () => {
   const location = useLocation();
@@ -64,43 +66,11 @@ export const Header: React.FC = () => {
       </LeftSection>
 
       <MiddleSection>
-        <SearchContainer>
-          <SearchIcon>
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
-                stroke="#666"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </SearchIcon>
-          <SearchInput placeholder="Search" />
-        </SearchContainer>
+        <SearchBar />
       </MiddleSection>
 
       <RightSection>
-        <NotificationButton>
-          <svg
-            width="20"
-            height="22"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12 22C13.1 22 14 21.1 14 20H10C10 21.1 10.9 22 12 22ZM18 16V11C18 7.93 16.37 5.36 13.5 4.68V4C13.5 3.17 12.83 2.5 12 2.5C11.17 2.5 10.5 3.17 10.5 4V4.68C7.64 5.36 6 7.92 6 11V16L4 18V19H20V18L18 16ZM16 17H8V11C8 8.52 9.51 6.5 12 6.5C14.49 6.5 16 8.52 16 11V17Z"
-              fill="black"
-            />
-          </svg>
-        </NotificationButton>
+        <NotificationButton />
         <UserAvatarContainer>
           <UserImage
             src={avatar || "/src/assets/images/default-avatar.png"}
@@ -183,57 +153,6 @@ const CurrentPageText = styled.span`
   font-size: 14px;
   font-weight: 500;
   color: #000;
-`;
-
-const SearchContainer = styled.div`
-  position: relative;
-  width: 100%;
-  max-width: 400px;
-`;
-
-const SearchIcon = styled.span`
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const SearchInput = styled.input`
-  width: 100%;
-  height: 40px;
-  border-radius: 20px;
-  border: 1px solid #e0e0e0;
-  background-color: #f5f5f5;
-  padding: 0 16px 0 40px;
-  font-size: 14px;
-
-  &:focus {
-    outline: none;
-    border-color: #ccc;
-  }
-
-  &::placeholder {
-    color: #999;
-  }
-`;
-
-const NotificationButton = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 8px;
-
-  &:hover {
-    background-color: #f5f5f5;
-    border-radius: 50%;
-  }
 `;
 
 const UserAvatarContainer = styled.div`
