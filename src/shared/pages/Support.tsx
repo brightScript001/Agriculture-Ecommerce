@@ -7,12 +7,6 @@ import { ContactUs } from "../components/support/contactUs/ContactUs";
 import { useSelector } from "react-redux";
 import { AppState } from "../../store";
 
-const mobileSearchBarStyles = `
-  background-color: var(--color-grey-200);
-  border-radius: var(--border-radius-sm);
-  width: 100%;
-`;
-
 const CardsWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -32,11 +26,11 @@ export function Support() {
 
   return (
     <>
-      {isMobile && <SearchBar customStyles={mobileSearchBarStyles} />}
+      {isMobile && <SearchBar />}
       <CardsWrapper>
-        <LiveChat route={`${baseRoute}/live-chat`} />
-        <FAQ route={`${baseRoute}/faq`} />
-        <ContactUs route={`${baseRoute}/contact-us`} />
+        <LiveChat route={`${baseRoute}/support/live-chat`} />
+        <FAQ route={`${baseRoute}/support/faq`} />
+        <ContactUs route={`${baseRoute}/support/contact-us`} />
       </CardsWrapper>
     </>
   );
