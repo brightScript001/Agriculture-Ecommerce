@@ -1,10 +1,14 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "../agriculture-ecommerce-backend"
-		}
-	]
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "../../../../Downloads/agricultureecommercebackend"
+    }
+  ],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "Agriculture Ecommerce",
+    "AutoPreview.serverURL": "http://localhost:5173/login"
+  }
 }
