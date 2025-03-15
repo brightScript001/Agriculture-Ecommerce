@@ -11,8 +11,9 @@ export interface TableData {
 
 const StyledTable = styled.table`
   width: 100%;
-  border-collapse: collapse;
-  background-color: var(--color-grey-0);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
   border-radius: var(--border-radius-md);
   overflow: hidden;
   font-size: var(--font-size-sm);

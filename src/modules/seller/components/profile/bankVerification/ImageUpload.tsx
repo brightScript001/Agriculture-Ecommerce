@@ -16,7 +16,7 @@ const UploadWrapper = styled.div`
 const UploadBox = styled.div`
   width: 8rem;
   height: 5rem;
-  border: 1px dashed var(--color-grey-400);
+  border: 1px dashed var(--color-border);
   display: flex;
   justify-content: center;
   align-items: center;

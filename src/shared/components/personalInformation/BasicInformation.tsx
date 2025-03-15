@@ -29,7 +29,8 @@ export const InputField = styled.input`
   width: 22rem;
   padding: 0.75rem;
   font-size: var(--font-size-sm);
-  border: none;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background);
   border-radius: var(--border-radius-sm);
   transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 

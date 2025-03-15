@@ -2,8 +2,9 @@ import styled from "styled-components";
 import Heading from "../../../../shared/ui/Heading";
 
 export const Wrapper = styled.div`
-  background-color: var(--color-grey-0);
+  background-color: var(--color-background);
   border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border);
   width: 22rem;
   padding: 1.25rem;
   text-align: start;

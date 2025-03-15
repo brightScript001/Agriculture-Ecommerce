@@ -29,7 +29,7 @@ const CircularProgress = styled.svg`
 
 const CircleBackground = styled.circle`
   fill: none;
-  stroke: var(--color-grey-200);
+  stroke: var(--color-border);
   stroke-width: 10;
 `;
 
@@ -37,9 +37,9 @@ const CircleProgress = styled.circle<{ completion: number }>`
   fill: none;
   stroke-width: 10;
   stroke: ${({ completion }) => {
-    if (completion < 40) return "var(--color-red-600)";
-    if (completion < 75) return "rgba(255, 196, 0, 1)";
-    return "var(--color-green-600)";
+    if (completion < 40) return "var(--color-error)";
+    if (completion < 75) return "var(--color-secondary)";
+    return "var(--color-primary)";
   }};
   stroke-linecap: round;
   stroke-dasharray: 251.2;
@@ -53,9 +53,9 @@ const PercentageText = styled.text<{ completion: number }>`
   font-size: 1.5rem;
   font-weight: bold;
   fill: ${({ completion }) => {
-    if (completion < 40) return "var(--color-red-600)";
-    if (completion < 75) return "rgba(255, 196, 0, 1)";
-    return "var(--color-green-600)";
+    if (completion < 40) return "var(--color-error)";
+    if (completion < 75) return "var(color-secondary)";
+    return "var(--color-primary)";
   }};
   text-anchor: middle;
   dominant-baseline: middle;

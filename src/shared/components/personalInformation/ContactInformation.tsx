@@ -113,6 +113,8 @@ const TwoColumnRow = styled.div`
 `;
 
 const FullWidthField = styled(InputField)`
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background);
   width: calc(22rem * 2 + 32px);
   @media (max-width: 768px) {
     width: 100%;

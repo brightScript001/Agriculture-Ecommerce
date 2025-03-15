@@ -9,12 +9,12 @@ const TabsContainer = styled.div`
 
 const Tab = styled.button<{ active: boolean }>`
   padding: 0.75rem 1.5rem;
-  border: none;
+  border: 1px solid var(--color-border);
   border-radius: 5px;
   background-color: ${({ active }) =>
-    active ? "var(--color-green-600)" : "var(--color-grey-100)"};
+    active ? "var(--color-primary)" : "var(--color-background)"};
   color: ${({ active }) =>
-    active ? "var(--color-grey-0)" : "var(--color-grey-600)"};
+    active ? "var(--color-text)" : "var(--color-text-light)"};
   cursor: pointer;
 `;
 

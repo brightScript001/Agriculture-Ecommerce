@@ -8,8 +8,9 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
-  background-color: var(--color-grey-0);
+  background-color: var(--color-background);
   border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border);
   width: 22rem;
   padding: 1.25rem;
   text-align: center;

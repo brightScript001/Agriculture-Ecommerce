@@ -130,6 +130,7 @@ const Select = styled.select`
   width: 45rem;
   padding: 0.75rem;
   font-size: var(--font-size-sm);
-  border: none;
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
   border-radius: var(--border-radius-sm);
 `;

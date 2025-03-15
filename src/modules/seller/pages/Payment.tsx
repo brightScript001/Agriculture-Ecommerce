@@ -12,7 +12,7 @@ export function PaymentDashboard() {
 
   return (
     <>
-      {isMobile && <SearchBar customStyles={mobileSearchBarStyles} />}
+      {isMobile && <SearchBar />}
       <CardContainer />
       {!isMobile && <TransactionHistory />}
       <CardsWrapper>
@@ -23,11 +23,6 @@ export function PaymentDashboard() {
     </>
   );
 }
-const mobileSearchBarStyles = `
-  background-color: var(--color-grey-200);
-  border-radius: var(--border-radius-sm);
-  width: 100%;
-`;
 
 const CardsWrapper = styled.div`
   display: flex;

@@ -16,8 +16,8 @@ const TabButton = styled.div<{ isActive: boolean }>`
   font-size: 1rem;
   cursor: pointer;
   border-bottom: 2px solid
-    ${({ isActive }) => (isActive ? "var(--color-green-600)" : "none")};
-  color: ${({ isActive }) => (isActive ? "var(--color-green-600)" : "inherit")};
+    ${({ isActive }) => (isActive ? "var(--color-primary)" : "none")};
+  color: ${({ isActive }) => (isActive ? "var(--color-primary)" : "inherit")};
   font-weight: ${({ isActive }) => (isActive ? "bold" : "normal")};
   transition: border-bottom 0.3s ease, color 0.3s ease;
 

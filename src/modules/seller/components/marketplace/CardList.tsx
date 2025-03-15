@@ -70,13 +70,13 @@ export const useCardList = (): Card[] => {
       title: "Pending Orders",
       count: pendingOrdersCount,
       description: "28% increase from last month",
-      navigateTo: "/seller/orders/pending-orders",
+      navigateTo: "/seller/orders/status/pending-orders",
     },
     {
       title: "Settled Orders",
       count: settledOrdersCount,
       description: "82% customer satisfaction",
-      navigateTo: "/seller/orders/settled-orders",
+      navigateTo: "/seller/orders/status/settled-orders",
     },
     {
       title: "Your Revenue",

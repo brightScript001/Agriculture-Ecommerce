@@ -8,11 +8,11 @@ export interface CardProps {
 }
 
 const CardContainer = styled.div`
-  border: none;
+  border: 1px solid var(--color-border);
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
   color: var(--color-grey-0);
-  background-color: var(--color-green-600);
+  background-color: var(--color-primary);
   text-align: start;
   padding: 1rem;
   min-width: 24rem;

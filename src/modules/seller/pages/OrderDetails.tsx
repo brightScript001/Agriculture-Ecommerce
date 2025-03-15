@@ -37,7 +37,7 @@ export const OrderDetails: React.FC = () => {
   }
 
   const handleDispute = () => {
-    navigate(`/seller/order/${id}/dispute`);
+    navigate(`/seller/orders/detail/${id}/dispute`);
   };
 
   const handleApprove = () => {
@@ -45,10 +45,10 @@ export const OrderDetails: React.FC = () => {
   };
 
   return (
-    <main>
+    <div>
       <OrderText order={order} />
       <Buttons onDispute={handleDispute} onApprove={handleApprove} />
       <Approve isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
-    </main>
+    </div>
   );
 };

@@ -44,10 +44,19 @@ export const createSellerRoutes = (): RouteObject[] => [
       {
         path: "orders",
         children: [
-          { index: true, element: <Navigate to="pending" replace /> }, // Default to "pending" status
-          { path: ":status", element: <Order /> },
-          { path: ":id", element: <OrderDetails /> },
-          { path: ":id/dispute", element: <Dispute /> },
+          { index: true, element: <Navigate to="status/pending" replace /> },
+          {
+            path: "status/:status",
+            element: <Order />,
+          },
+          {
+            path: "detail/:id",
+            element: <OrderDetails />,
+          },
+          {
+            path: "detail/:id/dispute",
+            element: <Dispute />,
+          },
         ],
       },
 
