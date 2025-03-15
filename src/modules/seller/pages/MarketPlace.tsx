@@ -7,12 +7,6 @@ import { useMediaQuery } from "react-responsive";
 import SearchBar from "../../../shared/ui/SearchBar";
 import { PendingOrderCard } from "../components/marketplace/PendingOrderCard";
 
-const mobileSearchBarStyles = `
-  background-color: var(--color-grey-200);
-    border-radius: var(--border-radius-sm);
-    width: 100%;
-`;
-
 export function MarketPlace() {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const { isLoading } = useQuery({
@@ -21,7 +15,7 @@ export function MarketPlace() {
   if (isLoading) return <Spinner />;
   return (
     <>
-      {isMobile && <SearchBar customStyles={mobileSearchBarStyles} />}
+      {isMobile && <SearchBar />}
       <CardsContainer />
       {!isMobile && <UploadProduct />}
       {!isMobile && <ProductList />}

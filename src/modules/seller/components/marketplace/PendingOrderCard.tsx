@@ -17,10 +17,11 @@ const PendingOrderHeader: React.FC = () => {
   const navigate = useNavigate();
   return (
     <PageHeader
-      title="Pending Orders"
       RightComponent={<ViewMore onClick={() => navigate("")} />}
       noUnderline
-    />
+    >
+      Pending Orders
+    </PageHeader>
   );
 };
 

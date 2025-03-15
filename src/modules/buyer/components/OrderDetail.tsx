@@ -98,9 +98,9 @@ const Input = styled.input`
   padding: 0.625rem;
   min-height: 4rem;
   font-size: var(--font-size-sm);
-  border: none;
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
   box-sizing: border-box;
   margin: 0.314rem 0;
 

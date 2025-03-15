@@ -62,11 +62,11 @@ const ProductListContainer = styled.div`
 `;
 
 const ProductCard = styled.div`
-  border: none;
+  border: 1px solid var(--color-border);
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
   padding: 1rem;
-  background-color: var(--color-grey-0);
+  background-color: var(--color-background);
 `;
 
 const ProductName = styled.h1`

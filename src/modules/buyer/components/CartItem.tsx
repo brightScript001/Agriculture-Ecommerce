@@ -53,9 +53,10 @@ const CartItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--color-grey-0);
-  border: none;
+  background-color: var(--color-background);
   border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
   padding: 1rem;
   margin-bottom: 1rem;
   position: relative;

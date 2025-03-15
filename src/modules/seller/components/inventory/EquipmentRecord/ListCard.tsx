@@ -7,7 +7,29 @@ import ButtonText from "../../../../../shared/ui/ButtonText";
 import ButtonGroup from "../../../../../shared/ui/ButtonGroup";
 import styled from "styled-components";
 
-// Styled component for the status text
+const CardContainer = styled.div`
+  background-color: var(--color-background-light);
+  border-radius: var(--border-radius-md);
+  padding: 20px;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const EquipmentContainer = styled.div`
+  margin-top: 1rem;
+  background-color: var(--color-background-light);
+  border-radius: var(--border-radius-md);
+  padding: 20px;
+`;
+
+const ListTitle = styled.span`
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  color: var(--color-text-primary);
+`;
+
 const StatusText = styled.span<{ status: string }>`
   color: ${({ status }) =>
     status !== "Good Condition"
@@ -29,7 +51,6 @@ export const EquipmentRecordListCard: React.FC<ButtonListProps> = ({
   const equipmentList = ["Harvester", "Weeder", "Tractor", "Sprayer"];
   const [activeList, setActiveList] = useState<string | null>(null);
 
-  // Example data for the equipment table
   const [equipmentData] = useState<EquipmentMaintenanceRecord[]>([
     {
       name: "Harvester",
@@ -59,45 +80,33 @@ export const EquipmentRecordListCard: React.FC<ButtonListProps> = ({
     <div>
       {equipmentList.map((list) => (
         <div key={list}>
-          <div
-            style={{
-              display: "flex",
-              backgroundColor: "var(--color-grey-0)",
-              justifyContent: "space-between",
-              margin: "1rem 0",
-              padding: "20px",
-              border: "none",
-              borderRadius: "var(--border-radius-md)",
-            }}
-          >
-            <span>{list}</span>
+          <CardContainer>
+            <ListTitle>{list}</ListTitle>
             <ButtonGroup>
               <ButtonText
-                style={{ color: "var(--color-green-600)" }}
+                color="var(--color-primary)"
                 onClick={() => handleToggle(list)}
               >
                 {activeList === list ? "Close" : "View"}
               </ButtonText>
               <ButtonText
+                color="var(--color-error)"
                 onClick={() => onDelete(list)}
-                style={{ color: "red" }}
               >
                 Delete
               </ButtonText>
-              <ButtonText onClick={() => onDownload(list)}>Download</ButtonText>
+              <ButtonText
+                color="var(--color-text)"
+                onClick={() => onDownload(list)}
+              >
+                Download
+              </ButtonText>
             </ButtonGroup>
-          </div>
+          </CardContainer>
+
           {activeList === list && (
-            <div
-              style={{
-                marginTop: "1rem",
-                backgroundColor: "var(--color-grey-0)",
-                borderRadius: "var(--border-radius-md)",
-              }}
-            >
-              {/* Render the header for the list */}
+            <EquipmentContainer>
               <EquipmentRecordListHeader listName={list} />
-              {/* Render the DataTable */}
               <DataTable<EquipmentMaintenanceRecord>
                 rows={equipmentData}
                 columns={[
@@ -123,7 +132,7 @@ export const EquipmentRecordListCard: React.FC<ButtonListProps> = ({
                   </>
                 )}
               />
-            </div>
+            </EquipmentContainer>
           )}
         </div>
       ))}

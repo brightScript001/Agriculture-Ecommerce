@@ -83,11 +83,13 @@ Table.Footer = Footer;
 export default Table;
 
 const StyledTable = styled.div`
-  border: none;
   font-size: var(--font-size-sm);
-  background-color: var(--color-grey-0);
+  background-color: var(--color-background);
   border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
+  width: 100%;
 `;
 
 const CommonRow = styled.div<{ columns: string }>`
@@ -100,11 +102,12 @@ const CommonRow = styled.div<{ columns: string }>`
 
 const StyledHeader = styled(CommonRow)`
   padding: 1.6rem 2.4rem;
-  text-decoration: underline;
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
   text-transform: uppercase;
   letter-spacing: 0.4px;
   font-weight: 600;
-  color: var(--color-grey-600);
+  color: var(--color-text);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -112,9 +115,16 @@ const StyledHeader = styled(CommonRow)`
 
 const StyledRow = styled(CommonRow)`
   padding: 1.2rem 2.4rem;
+  cursor: ${(props) => (props.onClick ? "pointer" : "default")};
+  transition: background-color 0.2s ease-in-out;
 
   &:not(:last-child) {
-    border-bottom: 1px solid var(--color-grey-100);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  &:hover {
+    background-color: ${(props) =>
+      props.onClick ? "var(--color-background)" : "inherit"};
   }
 
   & > div {
@@ -125,16 +135,17 @@ const StyledRow = styled(CommonRow)`
 `;
 
 const StyledBody = styled.section`
-  margin: 0.4rem 0;
+  margin: 0;
 `;
 
 const StyledFooter = styled.footer`
-  background-color: var(--color-grey-50);
+  background-color: var(--color-grey-50, #f9fafb);
   display: flex;
   justify-content: center;
   padding: 1.2rem;
+  border-top: 1px solid var(--color-border);
 
-  &:not(:has(*)) {
+  &:empty {
     display: none;
   }
 `;
@@ -144,4 +155,5 @@ const Empty = styled.p`
   font-weight: 500;
   text-align: center;
   margin: 2.4rem;
+  color: var(--color-grey-500, #6b7280);
 `;

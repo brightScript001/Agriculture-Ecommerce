@@ -29,28 +29,28 @@ const sizes = {
 
 const variations = {
   primary: css`
-    color: var(--color-green-100);
-    background-color: var(--color-green-600);
+    color: var(--color-text-light);
+    background-color: var(--color-primary);
 
     &:hover {
-      background-color: var(--color-green-800);
+      background-color: var(--color-primary-dark);
     }
   `,
   secondary: css`
-    color: var(--color-green-700);
-    background-color: var(--color-grey-50);
-    border: 1px solid var(--color-green-300);
+    color: var(--color-text-dark);
+    background: transparent;
+    border: 1px solid var(--color-border);
 
     &:hover {
-      background-color: var(--color-grey-300);
+      background-color: var(--color-secondary-dark);
     }
   `,
   danger: css`
-    color: var(--color-red-100);
-    background-color: var(--color-red-700);
+    color: var(--color-text-light);
+    background-color: var(--color-error);
 
     &:hover {
-      background-color: var(--color-red-800);
+      background-color: var(--color-error-dark);
     }
   `,
   unstyled: css`
@@ -61,10 +61,14 @@ const variations = {
 
 const Button = styled.button<ButtonProps>`
   border: none;
-  border-radius: var(--border-radius-xl);
+  border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-sm);
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease, transform 0.1s ease-in-out;
+
+  &:active {
+    transform: scale(0.98);
+  }
 
   ${(props) => sizes[props.size || "medium"]}
   ${(props) => variations[props.variation || "primary"]}

@@ -5,6 +5,29 @@ import { SuppliesRecordListHeader } from "./ListHeader";
 import { SuppliesRecord } from "../RecordTypes";
 import ButtonText from "../../../../../shared/ui/ButtonText";
 import ButtonGroup from "../../../../../shared/ui/ButtonGroup";
+import styled from "styled-components";
+
+// Styled Components
+const CardContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-grey-0);
+  margin: 1rem 0;
+  padding: 20px;
+  border-radius: var(--border-radius-md);
+`;
+
+const RecordCard = styled.div`
+  margin-top: 1rem;
+  background-color: var(--color-grey-0);
+  border-radius: var(--border-radius-md);
+`;
+
+const ListTitle = styled.span`
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  color: var(--color-text-primary);
+`;
 
 interface ButtonListProps {
   onViewRow: (row: SuppliesRecord) => void;
@@ -36,9 +59,8 @@ export const SuppliesRecordListCard: React.FC<ButtonListProps> = ({
     },
   ]);
 
-  const handleToggle = (listName: string) => {
+  const handleToggle = (listName: string) =>
     setActiveList(activeList === listName ? null : listName);
-  };
 
   const handleViewRow = (row: SuppliesRecord, listName: string) => {
     navigate(`/seller/supplies-record-form`, {
@@ -50,50 +72,33 @@ export const SuppliesRecordListCard: React.FC<ButtonListProps> = ({
     <div>
       {lists.map((list) => (
         <div key={list}>
-          <div
-            style={{
-              display: "flex",
-              backgroundColor: "var(--color-grey-0)",
-              justifyContent: "space-between",
-              margin: "1rem 0",
-              padding: "20px",
-              border: "none",
-              borderRadius: "var(--border-radius-md)",
-            }}
-          >
-            <span>{list}</span>
+          <CardContainer>
+            <ListTitle>{list}</ListTitle>
             <ButtonGroup>
               <ButtonText
-                style={{ color: "var(--color-green-600)" }}
+                color="var(--color-primary)"
                 onClick={() => handleToggle(list)}
               >
                 {activeList === list ? "Close" : "View"}
               </ButtonText>
               <ButtonText
-                style={{ color: "var(--color-red-600)" }}
+                color="var(--color-error)"
                 onClick={() => onDelete(list)}
               >
                 Delete
               </ButtonText>
               <ButtonText
-                style={{ color: "var(--color-grey-600)" }}
+                color="var(--color-text)"
                 onClick={() => onDownload(list)}
               >
                 Download
               </ButtonText>
             </ButtonGroup>
-          </div>
-          {activeList === list && (
-            <div
-              className="card"
-              style={{
-                marginTop: "1rem",
-                backgroundColor: "var(--color-grey-0)",
-                borderRadius: "var(--border-radius-md)",
-              }}
-            >
-              <SuppliesRecordListHeader listName={list} />
+          </CardContainer>
 
+          {activeList === list && (
+            <RecordCard>
+              <SuppliesRecordListHeader listName={list} />
               <DataTable<SuppliesRecord>
                 rows={suppliesData}
                 columns={[
@@ -113,7 +118,7 @@ export const SuppliesRecordListCard: React.FC<ButtonListProps> = ({
                     <span>{row.quantityRemaining}</span>
                     <span>{row.dateLastApplied}</span>
                     <ButtonText
-                      style={{ color: "var(--color-green-600)" }}
+                      color="var(--color-green-600)"
                       onClick={() => handleViewRow(row, list)}
                     >
                       View
@@ -121,7 +126,7 @@ export const SuppliesRecordListCard: React.FC<ButtonListProps> = ({
                   </>
                 )}
               />
-            </div>
+            </RecordCard>
           )}
         </div>
       ))}

@@ -66,12 +66,12 @@ const PendingOrdersCard = () => {
                   <OrderDate>{order.dateOfOrder}</OrderDate>
                 </OrderDetails>
               </CustomerInfo>
-              <ViewButton
+              <Button
                 variation="secondary"
                 onClick={() => handleViewClick(order.id)}
               >
                 View
-              </ViewButton>
+              </Button>
             </OrderItem>
           ))}
         </OrderList>
@@ -86,9 +86,10 @@ export default PendingOrdersCard;
 
 const Card = styled.div`
   width: 27.8rem;
-  background-color: var(--color-grey-0);
-  border: none;
+  background-color: var(--color-background);
   border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
   margin: 1rem 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 `;
@@ -104,7 +105,7 @@ const Header = styled.div`
 `;
 
 const HeaderText = styled.span`
-  color: var(--color-black);
+  color: var(--color-text);
 `;
 
 const OrderList = styled.div`
@@ -116,7 +117,7 @@ const OrderItem = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
-  border-bottom: 1px solid var(--color-grey-200);
+  border-bottom: 1px solid var(--color-border);
 `;
 
 const CustomerInfo = styled.div`
@@ -129,24 +130,20 @@ const CustomerName = styled.p`
 `;
 
 const OrderDetails = styled.p`
-  color: var(--color-grey-500);
+  color: var(--color-text);
   margin: 0;
   font-size: var(--font-size-sm);
 `;
 
 const OrderDate = styled.span`
   font-size: var(--font-size-sm);
-  color: var(--color-grey-500);
+  color: var(--color-text);
   margin-left: 1rem;
-`;
-
-const ViewButton = styled(Button)`
-  background-color: var(--color-green-100);
 `;
 
 const NoOrdersText = styled.p`
   text-align: center;
   padding: 1rem;
-  color: var(--color-grey-500);
+  color: var(--color-text);
   font-size: var(--font-size-md);
 `;

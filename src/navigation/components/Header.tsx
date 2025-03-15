@@ -53,16 +53,20 @@ export const Header: React.FC = () => {
       <LeftSection>
         {pathSegments.length > 0 && (
           <BackButton onClick={handleBackNavigation}>
-            <ChevronLeft size={20} color="#666" />
+            <ChevronLeft size={20} />
           </BackButton>
         )}
-        <BreadcrumbText onClick={handleBackNavigation}>
-          {getPreviousPageTitle()}
-        </BreadcrumbText>
-        {pathSegments.length > 0 && (
-          <BreadcrumbSeparator>›</BreadcrumbSeparator>
-        )}
-        <CurrentPageText>{getPageTitle()}</CurrentPageText>
+        <BreadcrumbNavigation>
+          {getPreviousPageTitle() && (
+            <>
+              <BreadcrumbText onClick={handleBackNavigation}>
+                {getPreviousPageTitle()}
+              </BreadcrumbText>
+              <BreadcrumbSeparator>›</BreadcrumbSeparator>
+            </>
+          )}
+          <CurrentPageText>{getPageTitle()}</CurrentPageText>
+        </BreadcrumbNavigation>
       </LeftSection>
 
       <MiddleSection>
@@ -83,7 +87,6 @@ export const Header: React.FC = () => {
   );
 };
 
-// Styled Components
 const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
@@ -91,23 +94,37 @@ const HeaderContainer = styled.header`
   height: 72px;
   position: fixed;
   top: 0;
-  left: 13rem;
-  width: calc(100% - 13rem);
-  padding: 0 16px;
-  background-color: white;
-  border-bottom: 1px solid #e0e0e0;
+  left: 224px;
+  right: 0;
+  width: calc(100% - 224px);
+  padding: 0 24px;
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 100;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 `;
 
 const LeftSection = styled.div`
   display: flex;
   align-items: center;
   flex: 1;
+  min-width: 0;
+`;
+
+const BreadcrumbNavigation = styled.div`
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const MiddleSection = styled.div`
   flex: 2;
   display: flex;
   justify-content: center;
+  padding: 0 24px;
+  max-width: 600px;
 `;
 
 const RightSection = styled.div`
@@ -115,7 +132,7 @@ const RightSection = styled.div`
   align-items: center;
   justify-content: flex-end;
   flex: 1;
-  gap: 16px;
+  gap: 20px;
 `;
 
 const BackButton = styled.button`
@@ -126,39 +143,46 @@ const BackButton = styled.button`
   align-items: center;
   justify-content: center;
   padding: 8px;
-  margin-right: 4px;
+  margin-right: 8px;
   border-radius: 50%;
+  color: var(--color-text-secondary, #666);
+  transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: #f5f5f5;
+    background-color: var(--color-hover, #f5f5f5);
   }
 `;
 
 const BreadcrumbText = styled.span`
   font-size: 14px;
-  color: #666;
+  color: var(--color-text-secondary);
   cursor: pointer;
+  transition: color 0.2s ease;
 
   &:hover {
+    color: var(--color-primary, #4a55a2);
     text-decoration: underline;
   }
 `;
 
 const BreadcrumbSeparator = styled.span`
   margin: 0 8px;
-  color: #999;
+  color: var(--color-text-tertiary, #999);
 `;
 
 const CurrentPageText = styled.span`
-  font-size: 14px;
-  font-weight: 500;
-  color: #000;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text);
 `;
 
 const UserAvatarContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+  padding: 4px 8px;
+  border-radius: 24px;
+  transition: background-color 0.2s ease;
 `;
 
 const UserImage = styled.img`
@@ -166,12 +190,14 @@ const UserImage = styled.img`
   height: 36px;
   border-radius: 50%;
   object-fit: cover;
+  border: 1px solid var(--color-border, #e0e0e0);
 `;
 
 const UserName = styled.span`
   font-size: 14px;
   font-weight: 500;
-  color: #333;
+  color: var(--color-text);
+  white-space: nowrap;
 `;
 
 export default Header;

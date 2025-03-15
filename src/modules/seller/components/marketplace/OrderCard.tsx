@@ -57,9 +57,10 @@ export default OrderCard;
 // Styling
 const Card = styled.div`
   padding: 1.5rem;
-  background-color: var(--color-grey-0);
-  border: none;
+  background-color: var(--color-background);
   border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
   margin: 1.5rem 0;
   box-shadow: var(--shadow-sm);
   display: flex;

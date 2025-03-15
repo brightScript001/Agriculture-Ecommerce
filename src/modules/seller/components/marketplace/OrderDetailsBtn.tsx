@@ -43,11 +43,11 @@ const StyledButton = styled(Button)`
 `;
 
 const StyledButtonDispute = styled(StyledButton)`
-  color: var(--color-red-700);
-  background-color: var(--color-grey-50);
-  border: 1px solid var(--color-red-300);
+  color: var(--color-error);
+  background-color: transparent;
+  border: 1px solid var(--color-error);
   &:hover {
-    background-color: var(--color-red-600);
-    color: var(--color-grey-50);
+    background-color: var(--color-error);
+    color: var(--color-text-secondary);
   }
 `;

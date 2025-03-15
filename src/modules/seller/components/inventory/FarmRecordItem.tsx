@@ -2,22 +2,6 @@ import styled from "styled-components";
 import ButtonGroup from "../../../../shared/ui/ButtonGroup";
 import ButtonText from "../../../../shared/ui/ButtonText";
 
-const Item = styled.div<{ noBackground?: boolean }>`
-  display: flex;
-  justify-content: space-between;
-  padding: 1.25rem;
-  border: none;
-  background-color: ${(props) =>
-    props.noBackground ? "transparent" : "var(--color-grey-0)"};
-  border-radius: var(--border-radius-md);
-  width: 100%;
-`;
-
-const Text = styled.h2`
-  font-size: var(--font-size-md);
-  font-weight: 500;
-`;
-
 interface RecordItemProps {
   title: string;
   noBackground?: boolean;
@@ -44,3 +28,20 @@ function RecordItem({ title, noBackground = false }: RecordItemProps) {
   );
 }
 export default RecordItem;
+
+const Item = styled.div<{ noBackground?: boolean }>`
+  display: flex;
+  justify-content: space-between;
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  background-color: ${(props) =>
+    props.noBackground ? "transparent" : "var(--color-background)"};
+  border-radius: var(--border-radius-md);
+  width: 100%;
+`;
+
+const Text = styled.h2`
+  font-size: var(--font-size-md);
+  font-weight: 500;
+`;

@@ -32,13 +32,14 @@ function UploadProduct() {
 export default UploadProduct;
 
 const Wrapper = styled.div`
-  background-color: var(--color-grey-0);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
   display: flex;
   justify-content: space-between;
-  border: none;
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
   padding: 1.25rem;
+  width: 100%;
 `;
 
 const ButtonWrapper = styled.div``;
@@ -48,10 +49,10 @@ const Text = styled.div`
 `;
 
 const Span = styled.div`
-  background: var(--color-green-200);
+  background: var(--color-primary);
   border-radius: var(--border-radius-md);
   padding: 0.5rem;
-  color: var(--color-green-800);
+  color: var(--color-text-secondary);
   font-size: var(--font-size-sm);
 `;
 

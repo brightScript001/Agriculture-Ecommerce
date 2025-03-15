@@ -1,12 +1,20 @@
 import styled from "styled-components";
 
-const ButtonText = styled.button`
-  color: var(--color-grey-500);
-  font-weight: 500;
+interface ButtonTextProps {
+  color?: string;
+  fontWeight?: number;
+  fontSize?: string;
+}
+
+const ButtonText = styled.button<ButtonTextProps>`
+  color: ${({ color }) => color || "var(--color-grey-500)"};
+  font-weight: ${({ fontWeight }) => fontWeight || 500};
+  font-size: ${({ fontSize }) => fontSize || "inherit"};
   text-align: center;
   transition: all 0.3s;
   background: none;
   border: none;
+  cursor: pointer;
 
   &:hover,
   &:active {

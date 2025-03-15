@@ -4,7 +4,7 @@ import OrderCard from "./OrderCard";
 import { fetchOrders } from "../../api/orders";
 import SpinnerComponent from "../../../../shared/ui/Spinner";
 import { useQuery } from "@tanstack/react-query";
-import { Order } from "../../utils/Formatting";
+import { Order } from "./OrdersListTypes";
 
 type RouteStatus = "pending-orders" | "settled-orders";
 

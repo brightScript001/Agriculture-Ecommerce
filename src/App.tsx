@@ -17,7 +17,6 @@ function App() {
   );
 
   useEffect(() => {
-    // Listen for system theme changes
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
     const handleSystemThemeChange = (e: MediaQueryListEvent) => {
@@ -31,22 +30,21 @@ function App() {
     };
   }, [dispatch]);
 
-  // Define the themes
   const lightTheme = theme;
   const darkTheme = {
     ...theme,
     colors: {
       ...theme.colors,
-      background: "#1f2937",
-      text: "#f9fafb",
-      border: "#4b5563",
-      divider: "#374151",
-      primary: "#72AF78",
-      secondary: "#FFB300",
-      error: "#E57373",
-      warning: "#FFCA28",
-      success: "#66BB6A",
-      info: "#42A5F5",
+      background: "#0D0D0D",
+      text: "#B0B0B0",
+      border: "#3A3A3A",
+      divider: "#1C1C1C",
+      primary: "#5BAA60",
+      secondary: "#FFAD32",
+      error: "#FF4C4C",
+      warning: "#FFA726",
+      success: "#3DDC84",
+      info: "#1E90FF",
     },
   };
 

@@ -32,12 +32,13 @@ export const ProductCard: React.FC<ProductProps> = ({ product }) => {
 };
 
 const Card = styled.div`
+  background-color: var(--color-background);
   border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
   padding: 1.25rem;
   max-width: 15.6rem;
-  background-color: var(--color-grey-0);
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {

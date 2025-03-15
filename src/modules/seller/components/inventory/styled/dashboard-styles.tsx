@@ -20,20 +20,21 @@ export const CardHeader = styled.div`
 export const CardTitle = styled.h2`
   font-size: 18px;
   font-weight: 600;
-  color: #333;
+  color: var(--color-text);
   margin: 0;
 `;
 
 export const ArrowIcon = styled.span`
-  color: #666;
+  color: var(--color-text);
   font-size: 20px;
 `;
 
 export const CardContainer = styled.div`
-  background-color: white;
-  border-radius: 10px;
+  background-color: var(--color-background);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 `;
 
 export const MetricsContainer = styled.div`
@@ -50,7 +51,7 @@ export const MetricBox = styled.div`
   justify-content: center;
   flex: 1;
   min-width: 100px;
-  border-right: 1px solid #eee;
+  border-right: 1px solid var(--color-border);
   padding: 10px;
 
   &:last-child {
@@ -66,7 +67,7 @@ export const MetricBox = styled.div`
 export const MetricValue = styled.div<{ color?: string }>`
   font-size: 24px;
   font-weight: bold;
-  color: ${(props) => props.color || "#333"};
+  color: ${(props) => props.color || "var(--color-text)"};
   margin-bottom: 5px;
 
   @media (max-width: 480px) {
@@ -76,7 +77,7 @@ export const MetricValue = styled.div<{ color?: string }>`
 
 export const MetricLabel = styled.div`
   font-size: 12px;
-  color: #666;
+  color: var(--color-text);
   text-align: center;
 `;
 
@@ -84,8 +85,8 @@ export const WeatherCard = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  background-color: #f9f9f9;
-  border-radius: 8px;
+  background-color: var(--color-background);
+  border-radius: var(--border-radius-sm);
   padding: 10px;
   margin-top: 10px;
 `;
@@ -103,13 +104,13 @@ export const WeatherTitle = styled.div`
 
 export const WeatherDetail = styled.div`
   font-size: 12px;
-  color: #666;
+  color: var(--color-text);
   margin-bottom: 3px;
 `;
 
 export const CardMessage = styled.div`
   font-size: 14px;
-  color: #666;
+  color: var(--color-text);
   margin-bottom: 15px;
   font-style: italic;
 `;
@@ -131,7 +132,7 @@ export const TableRow = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 8px 0;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--color-border);
 
   &:last-child {
     border-bottom: none;

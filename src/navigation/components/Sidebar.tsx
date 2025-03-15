@@ -4,7 +4,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { LogOut } from "@modules/auth/components/Logout";
 import Logo from "@shared/ui/Logo";
 
-// Icons
 import {
   Cart,
   History,
@@ -94,8 +93,8 @@ export const Sidebar = ({ role }: { role: string | null }) => {
 // Styled Components
 
 const StyledSidebar = styled.aside`
-  background-color: var(--color-grey-0);
-  border-right: 1px solid var(--color-grey-100);
+  background-color: var(--color-background);
+  border-right: 1px solid var(--color-border);
   width: 14rem;
   padding-right: 1rem;
   top: 0;
