@@ -104,8 +104,9 @@ const Card = styled.article`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  background-color: var(--color-grey-0);
+  background-color: var(--color-background);
   padding: 1.25rem;
+  border: 1px solid var(--color-border);
   border-radius: var(--border-radius-sm);
   box-shadow: var(--shadow-sm);
   width: 100%;

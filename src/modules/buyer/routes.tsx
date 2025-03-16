@@ -25,10 +25,14 @@ export const createBuyerRoutes = (): RouteObject[] => [
           { path: ":orderId", element: <OrderHistoryDetails /> },
         ],
       },
-
-      { path: "support", element: <Support /> },
-      { path: "live-chat", element: <LiveChat /> },
-      { path: "faq", element: <FAQ /> },
+      {
+        path: "support",
+        children: [
+          { index: true, element: <Support /> },
+          { path: "live-chat", element: <LiveChat /> },
+          { path: "faq", element: <FAQ /> },
+        ],
+      },
 
       { path: "profile", element: <BuyerProfile /> },
     ],
