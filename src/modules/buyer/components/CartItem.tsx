@@ -58,7 +58,7 @@ const CartItemContainer = styled.div`
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-sm);
   padding: 1rem;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
   position: relative;
   @media (max-width: 768px) {
     width: 100%;
@@ -69,6 +69,7 @@ const CartItemImage = styled.img`
   width: 14.4rem;
   height: 14.4rem;
   object-fit: cover;
+  border: 1px solid var(--color-border);
   border-radius: var(--border-radius-sm);
   @media (max-width: 768px) {
     width: 7.6rem;
@@ -96,7 +97,7 @@ const CartItemActions = styled.div`
 
 const RemoveButton = styled.button`
   background: none;
-  color: var(--color-red-600);
+  color: var(--color-error);
   border: none;
   cursor: pointer;
   font-size: var(--font-size-md);
@@ -119,7 +120,7 @@ const OriginalPrice = styled.p`
   font-size: var(--font-size-md);
   font-family: italic;
   text-decoration: line-through;
-  color: var(--color-grey-500);
+  color: var(--color-text);
   margin-right: 4rem;
 `;
 

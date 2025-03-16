@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import { ContactInformation } from "./ContactInfo";
 import { DeliveryOptions } from "./DeliveryOptions";
 import { PromoCode } from "./PromoCode";
@@ -19,35 +20,40 @@ export const PaymentComponent: React.FC<PaymentComponentProps> = ({
 }) => {
   const [deliveryOption, setDeliveryOption] = useState("pickup");
   const [isModalOpen, setModalOpen] = useState(false);
-  const [id, setid] = useState<string>("");
+  const [id, setId] = useState<string>("");
 
   const handlePlaceOrder = () => {
-    const newid = generateId();
-    setid(newid);
+    const newId = generateId();
+    setId(newId);
     setModalOpen(true);
   };
 
   return (
-    <main style={{ padding: "2rem", backgroundColor: "var(--color-grey-0)" }}>
-      <CollapsibleSection title="Contact Information">
-        <ContactInformation />
-      </CollapsibleSection>
+    <PaymentContainer>
+      <Section>
+        <CollapsibleSection title="Contact Information">
+          <ContactInformation />
+        </CollapsibleSection>
 
-      <CollapsibleSection title="Delivery Options">
-        <DeliveryOptions
-          deliveryOption={deliveryOption}
-          setDeliveryOption={setDeliveryOption}
+        <CollapsibleSection title="Delivery Options">
+          <DeliveryOptions
+            deliveryOption={deliveryOption}
+            setDeliveryOption={setDeliveryOption}
+          />
+        </CollapsibleSection>
+
+        <CollapsibleSection title="Promo Code">
+          <PromoCode />
+        </CollapsibleSection>
+      </Section>
+      <Section>
+        {" "}
+        <AmountDetails
+          subtotal={subtotal}
+          deliveryFee={deliveryOption === "pickup" ? 1000 : 1500}
         />
-      </CollapsibleSection>
+      </Section>
 
-      <CollapsibleSection title="Promo Code">
-        <PromoCode />
-      </CollapsibleSection>
-
-      <AmountDetails
-        subtotal={subtotal}
-        deliveryFee={deliveryOption === "pickup" ? 1000 : 1500}
-      />
       <PaymentMethod />
       <PlaceOrderButton onPlaceOrder={handlePlaceOrder} />
       <Footer />
@@ -57,6 +63,16 @@ export const PaymentComponent: React.FC<PaymentComponentProps> = ({
         onClose={() => setModalOpen(false)}
         id={id}
       />
-    </main>
+    </PaymentContainer>
   );
 };
+
+const PaymentContainer = styled.main`
+  padding: 2rem;
+  background-color: var(--color-background);
+`;
+
+const Section = styled.div`
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 1rem;
+`;

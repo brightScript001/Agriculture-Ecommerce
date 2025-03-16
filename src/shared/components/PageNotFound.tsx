@@ -24,7 +24,7 @@ export default PageNotFound;
 
 const StyledPageNotFound = styled.main`
   height: 100vh;
-  background-color: var(--color-grey-50);
+  background-color: var(--color-background);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,8 +32,9 @@ const StyledPageNotFound = styled.main`
 `;
 
 const Box = styled.div`
-  background-color: var(--color-grey-0);
-  border: none;
+  background-color: var(--color-background);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
   border-radius: var(--border-radius-md);
 
   padding: 4.8rem;

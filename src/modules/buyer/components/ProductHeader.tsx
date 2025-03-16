@@ -83,6 +83,8 @@ const ProductHeaderContainer = styled.div`
 const ProductImage = styled.img`
   width: 300px;
   height: 300px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
   object-fit: cover;
   border-radius: var(--border-radius-md);
   @media (max-width: 768px) {

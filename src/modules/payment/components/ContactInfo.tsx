@@ -13,21 +13,13 @@ const Section = styled.div`
 export const ContactInformation: React.FC = () => {
   return (
     <Section>
+      <Input style={{ width: "100%" }} type="text" placeholder="Your Name" />
       <Input
-        style={{ width: "100%", border: "1px solid var(--color-grey-600)" }}
-        type="text"
-        placeholder="Your Name"
-      />
-      <Input
-        style={{ width: "100%", border: "1px solid var(--color-grey-600)" }}
+        style={{ width: "100%" }}
         type="email"
         placeholder="Email Address"
       />
-      <Input
-        style={{ width: "100%", border: "1px solid var(--color-grey-600)" }}
-        type="tel"
-        placeholder="Phone Number"
-      />
+      <Input style={{ width: "100%" }} type="tel" placeholder="Phone Number" />
     </Section>
   );
 };

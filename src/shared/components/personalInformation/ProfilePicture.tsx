@@ -14,7 +14,7 @@ const ImageWrapper = styled.div<{ hasImage: boolean }>`
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
   transition: all 0.3s ease;
@@ -55,7 +55,7 @@ const CameraIconContainer = styled.label`
   align-items: center;
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.3s ease;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
   &:hover {

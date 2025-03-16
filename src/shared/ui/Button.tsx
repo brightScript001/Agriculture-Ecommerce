@@ -29,7 +29,7 @@ const sizes = {
 
 const variations = {
   primary: css`
-    color: var(--color-text-light);
+    color: var(--color-white);
     background-color: var(--color-primary);
 
     &:hover {
@@ -46,7 +46,7 @@ const variations = {
     }
   `,
   danger: css`
-    color: var(--color-text-light);
+    color: var(--color-white);
     background-color: var(--color-error);
 
     &:hover {

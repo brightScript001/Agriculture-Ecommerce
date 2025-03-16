@@ -24,13 +24,8 @@ const CardContainer = styled.div`
 
   &:last-child {
     flex: 2;
-    background-color: var(--color-green-600);
-    color: var(--color-grey-0);
-
-    .dark-mode & {
-      background-color: var(--color-green-600);
-      color: var(--color-grey-0);
-    }
+    background-color: var(--color-primary);
+    color: var(--color-text);
   }
 `;
 

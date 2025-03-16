@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const TabContainer = styled.div`
   display: flex;
   justify-content: space-around;
-  border-bottom: 1px solid var(--color-grey-200);
+  border-bottom: 1px solid var(--color-border);
   margin-bottom: 1rem;
 `;
 
@@ -22,7 +22,7 @@ const TabButton = styled.div<{ isActive: boolean }>`
   transition: border-bottom 0.3s ease, color 0.3s ease;
 
   &:hover {
-    color: var(--color-green-600);
+    color: var(--color-primary);
   }
 `;
 

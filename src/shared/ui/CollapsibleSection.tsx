@@ -3,8 +3,7 @@ import styled from "styled-components";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 const SectionContainer = styled.div`
-  margin-bottom: 1.5rem;
-  box-shadow: var(--shadow-sm);
+  margin-bottom: 1rem;
 `;
 
 const SectionHeader = styled.div`

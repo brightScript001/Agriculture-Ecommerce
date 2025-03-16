@@ -116,13 +116,13 @@ const OrderDetails = styled.div<{ isShippingFee?: boolean }>`
   align-items: center;
   margin-bottom: 0.63rem;
   border-bottom: ${(props) =>
-    props.isShippingFee ? "1px solid var(--color-grey-300)" : "none"};
+    props.isShippingFee ? "1px solid var(--color-text)" : "none"};
   padding-bottom: ${(props) => (props.isShippingFee ? "1rem" : "0")};
 `;
 
 const Item = styled.span<{ color?: boolean }>`
   font-size: var(--font-size-sm);
-  color: ${(props) => (props.color ? "var(--color-green-600)" : "inherit")};
+  color: ${(props) => (props.color ? "var(--color-primary)" : "inherit")};
 `;
 
 const Price = styled.span`
@@ -131,8 +131,8 @@ const Price = styled.span`
 
 const Wrapper = styled.div`
   padding: 0.63rem;
-  background: var(--color-white-100);
-  border: none;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
   box-sizing: border-box;
