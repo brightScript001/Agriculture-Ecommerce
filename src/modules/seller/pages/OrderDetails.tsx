@@ -9,7 +9,6 @@ import SpinnerComponent from "@shared/ui/Spinner";
 
 export const OrderDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  console.log("OrderDetails ID:", id);
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 

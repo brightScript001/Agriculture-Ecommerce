@@ -22,7 +22,7 @@ export const fetchOrders = async (): Promise<Order[]> => {
 };
 
 export const fetchOrderById = async (id: string): Promise<Order> => {
-  console.log("Fetching Order ID:", id);
+  // console.log("Fetching Order ID:", id);
   const response = await apiRequest<OrderApiResponse>(
     `http://localhost:5000/api/orders/${id}`,
     "GET"
