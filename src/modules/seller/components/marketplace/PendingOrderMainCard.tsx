@@ -29,7 +29,7 @@ const PendingOrdersCard = () => {
   }
 
   const handleHeaderClick = () => {
-    navigate("/seller/orders/pending-orders");
+    navigate("/seller/orders/status/pending-orders");
   };
 
   const handleViewClick = (id: string) => {

@@ -12,7 +12,6 @@ export const StyledAppLayout = styled.div`
 `;
 
 export const Main = styled.main`
-  background-color: var(--color-grey-50);
   padding: 2rem;
   overflow: scroll;
   min-height: 100vh;
@@ -23,6 +22,7 @@ export const Main = styled.main`
 `;
 
 export const Container = styled.div`
+  background-color: var(--color-background);
   margin-top: 7rem;
 `;
 

@@ -26,13 +26,13 @@ export const Order = () => {
       setActiveButton(status as RouteStatus);
       setLoading(false);
     } else {
-      navigate("/seller/orders/pending-orders");
+      navigate("/seller/orders/status/pending-orders");
     }
   }, [status, navigate]);
 
   const handleButtonClick = (buttonType: RouteStatus) => {
     setActiveButton(buttonType);
-    navigate(`/seller/orders/${buttonType}`);
+    navigate(`/seller/orders/status/${buttonType}`);
   };
 
   const isActive = (buttonType: RouteStatus) => activeButton === buttonType;

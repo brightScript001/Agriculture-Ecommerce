@@ -73,7 +73,7 @@ const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-grey-0);
+  background-color: var(--color-background);
   border-radius: var(--border-radius-sm);
 `;
 
@@ -85,10 +85,10 @@ const StyledButtonText = styled.h2<{ isActive: boolean }>`
   font-size: var(--font-size-md);
   font-weight: 500;
   color: ${(props) =>
-    props.isActive ? "var(--color-green-500)" : "var(--color-grey-800)"};
+    props.isActive ? "var(--color-primary)" : "var(--color-text)"};
   border-bottom: ${(props) =>
     props.isActive
-      ? "2px solid var(--color-green-500)"
+      ? "2px solid var(--color-primary)"
       : "2px solid transparent"};
   width: ${(props) => (props.isActive ? "9.9rem" : "auto")};
   transition: all 0.3s ease;

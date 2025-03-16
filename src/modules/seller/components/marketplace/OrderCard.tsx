@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { calculateTotalPrice, Order } from "../../utils/Formatting";
+import { calculateTotalPrice } from "../../utils/Formatting";
+import { Order } from "./OrdersListTypes";
 
 interface Props {
   order: Order;
@@ -10,7 +11,7 @@ const OrderCard = ({ order }: Props) => {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
-    navigate(`/seller/order/${order.id}`);
+    navigate(`/seller/orders/detail/${order.id}`);
   };
 
   const totalOrderPrice = calculateTotalPrice(order);

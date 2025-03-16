@@ -43,9 +43,11 @@ export const PageTitle = () => {
   if (routeTitles[pathname]) return routeTitles[pathname];
 
   // Handle dynamic route patterns
-  if (matchPath("/seller/orders/:status", pathname)) return "Order Status";
-  if (matchPath("/seller/order/:id", pathname)) return "Order Details";
-  if (matchPath("/seller/order/:id/dispute", pathname)) return "Dispute Order";
+  if (matchPath("/seller/orders/status/:status", pathname))
+    return "Order Status";
+  if (matchPath("/seller/order/detail/:id", pathname)) return "Order Details";
+  if (matchPath("/seller/order/detail/:id/dispute", pathname))
+    return "Dispute Order";
 
   if (matchPath("/buyer/order-history/:orderId", pathname))
     return "Order Details";
