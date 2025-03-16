@@ -44,7 +44,7 @@ const StyledMenuContent = styled.div<{ isOpen: boolean }>`
   height: 100vh;
   top: 0;
   right: 0;
-  background-color: var(--color-grey-0);
+  background-color: var(--color-background);
   box-shadow: var(--shadow-sm);
   border-radius: var(--border-radius-md);
   opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};

@@ -10,7 +10,7 @@ const HeaderWrapper = styled.header<HeaderWrapperProps>`
   left: 0;
   right: 0;
   height: 6.25rem;
-  background-color: var(--color-grey-50);
+  background-color: var(--color-background);
   display: flex;
   align-items: center;
   justify-content: space-between;
