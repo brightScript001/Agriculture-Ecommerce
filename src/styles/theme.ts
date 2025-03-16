@@ -9,7 +9,7 @@ export const theme = {
     error: "#D32F2F",
     text: "#212121",
     textSecondary: "#757575",
-    border: "#E0E0E0",
+    border: "#F0F0F0",
     divider: "#EEEEEE",
     white: "#FFFFFF",
     black: "#000000",

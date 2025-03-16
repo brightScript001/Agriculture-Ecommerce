@@ -13,7 +13,7 @@ function PageNotFound() {
           The page you are looking for could not be found 😢
         </Heading>
         <Button onClick={moveBack} size="large">
-          &larr; Go back
+          Go back
         </Button>
       </Box>
     </StyledPageNotFound>

@@ -52,7 +52,7 @@ const Span = styled.div`
   background: var(--color-primary);
   border-radius: var(--border-radius-md);
   padding: 0.5rem;
-  color: var(--color-text-secondary);
+  color: var(--color-text);
   font-size: var(--font-size-sm);
 `;
 
