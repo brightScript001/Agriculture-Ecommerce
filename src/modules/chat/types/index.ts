@@ -67,7 +67,7 @@ export interface TypingEvent {
   conversationId: string;
 }
 
-export interface RoadReceiptEvent {
+export interface ReadReceiptEvent {
   reader: {
     _id: string;
     firstName: string;
