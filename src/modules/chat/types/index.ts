@@ -13,7 +13,7 @@ export interface Conversation {
   participants: User[];
   title?: string;
   createdAt: Date;
-  updatedA: Date;
+  updatedAt: Date;
   lastMessage?: {
     content: string;
     sender: string;
