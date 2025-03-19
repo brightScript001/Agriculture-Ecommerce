@@ -4,6 +4,7 @@ import userSlice from "./modules/core/states/userSlice";
 import authSlice from "./modules/core/states/authSlice";
 import cartSlice from "./modules/buyer/states/cartSlice";
 import emailVerificationSlice from "@core/states/emailVerificationSlice";
+import chatSlice from "@core/states/chatSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     auth: authSlice,
     cart: cartSlice,
     emailVerification: emailVerificationSlice,
+    chat: chatSlice,
   },
 });
 

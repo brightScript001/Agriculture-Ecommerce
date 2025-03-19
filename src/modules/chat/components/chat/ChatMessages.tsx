@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { format } from "date-fns";
-import type { Message, User } from "../../types";
+import { Message } from "../../types";
 import { MessageBubble } from "./MessageBubble";
+import { UserState } from "@modules/core/states/userSlice";
 
 interface ChatMessagesProps {
   messages: Message[];
-  currentUser: User;
+  currentUser: UserState;
   isTyping: boolean;
   typingUser: string | null;
   messagesEndRef: React.RefObject<HTMLDivElement>;
@@ -48,8 +49,8 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
               message={message}
               isCurrentUser={
                 typeof message.sender === "string"
-                  ? message.sender === currentUser._id
-                  : message.sender._id === currentUser._id
+                  ? message.sender === currentUser.id
+                  : message.sender.id === currentUser.id
               }
             />
           ))}

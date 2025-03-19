@@ -1,8 +1,11 @@
 import styled, { css } from "styled-components";
+import { ReactNode } from "react";
 
 interface ButtonProps {
   size?: keyof typeof sizes;
   variation?: keyof typeof variations;
+  icon?: ReactNode;
+  onClick?: () => void;
 }
 
 const sizes = {
@@ -59,7 +62,10 @@ const variations = {
   `,
 };
 
-const Button = styled.button<ButtonProps>`
+const StyledButton = styled.button<ButtonProps>`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   border: none;
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-sm);
@@ -73,6 +79,20 @@ const Button = styled.button<ButtonProps>`
   ${(props) => sizes[props.size || "medium"]}
   ${(props) => variations[props.variation || "primary"]}
 `;
+
+const Button: React.FC<ButtonProps & { children: ReactNode }> = ({
+  icon,
+  children,
+  onClick,
+  ...props
+}) => {
+  return (
+    <StyledButton onClick={onClick} {...props}>
+      {icon && <span>{icon}</span>}
+      {children}
+    </StyledButton>
+  );
+};
 
 Button.defaultProps = {
   variation: "primary",

@@ -9,12 +9,24 @@ import { router } from "./app/router";
 import { theme } from "@style/theme";
 import { setDarkMode } from "@modules/core/states/ThemeSlice";
 import ThemeToggle from "@shared/components/ThemeToggle";
+import socketService from "@modules/chat/services/socketService";
 
 function App() {
   const dispatch = useDispatch();
   const isDarkMode = useSelector(
     (state: AppState) => state.darkMode.isDarkMode
   );
+  const { user } = useSelector((state: AppState) => state.auth);
+
+  useEffect(() => {
+    if (user && user.id) {
+      socketService.connect();
+
+      return () => {
+        socketService.disconnect();
+      };
+    }
+  }, [user]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");

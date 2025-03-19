@@ -1,16 +1,8 @@
-export interface User {
-  _id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  role: "buyer" | "seller" | "admin";
-  avatar?: string;
-  lastActive?: Date;
-}
+import { UserState } from "@modules/core/states/userSlice";
 
 export interface Conversation {
   _id: string;
-  participants: User[];
+  participants: UserState[];
   title?: string;
   createdAt: Date;
   updatedAt: Date;
@@ -25,7 +17,7 @@ export interface Conversation {
 export interface Message {
   _id: string;
   conversationId: string;
-  sender: User | string;
+  sender: UserState | string;
   content: string;
   attachments?: Attachment[];
   timestamp: Date;

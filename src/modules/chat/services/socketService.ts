@@ -8,7 +8,7 @@ import type {
   MessageStatusEvent,
 } from "../types";
 
-const SOCKET_URL = process.env.REACT_APP_SOCKET_URL || "http://localhost:5000";
+const SOCKET_URL = "http://localhost:5000/api";
 
 class SocketService {
   private socket: Socket | null = null;
