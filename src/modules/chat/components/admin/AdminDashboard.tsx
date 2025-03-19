@@ -1,19 +1,11 @@
-import type React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import type { Conversation, ChatStats, User } from "../../types";
+import { Conversation, ChatStats, User } from "../../types";
+import chatService from "../../services/chatService";
+import socketService from "../../services/socketService";
 import { ConversationList } from "./ConversationList";
 import { ChatView } from "./ChatView";
 import { StatsPanel } from "./StatsPanel";
-import chatService from "../../services/chatService";
-import socketService from "../../services/socketService";
-
-const DashboardContainer = styled.div`
-  display: grid;
-  grid-template-columns: 300px 1fr 300px;
-  height: 100vh;
-  overflow: hidden;
-`;
 
 interface AdminDashboardProps {
   currentUser: User;
@@ -146,3 +138,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     </DashboardContainer>
   );
 };
+
+const DashboardContainer = styled.div`
+  display: grid;
+  grid-template-columns: 300px 1fr 300px;
+  height: 100vh;
+  overflow: hidden;
+`;

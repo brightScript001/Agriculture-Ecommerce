@@ -1,165 +1,10 @@
-import type React from "react";
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { MoreVertical } from "lucide-react";
-import type { Message, Conversation, User } from "../../types";
-import { MessageBubble } from "../chat/MessageBubble";
+import { Message, Conversation, User } from "../../types";
 import chatService from "../../services/chatService";
 import socketService from "../../services/socketService";
-
-const ChatViewContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-`;
-
-const ChatHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: ${({ theme }) => theme.spacing.md};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.divider};
-  background-color: ${({ theme }) => theme.colors.background};
-`;
-
-const HeaderInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const HeaderTitle = styled.h3`
-  margin: 0;
-  font-size: ${({ theme }) => theme.typography.fontSizes.lg};
-  font-weight: ${({ theme }) => theme.typography.fontWeights.medium};
-`;
-
-const HeaderSubtitle = styled.span`
-  font-size: ${({ theme }) => theme.typography.fontSizes.sm};
-  color: ${({ theme }) => theme.colors.textSecondary};
-`;
-
-const HeaderActions = styled.div`
-  display: flex;
-  gap: ${({ theme }) => theme.spacing.sm};
-`;
-
-const ActionButton = styled.button`
-  background: none;
-  border: none;
-  padding: ${({ theme }) => theme.spacing.sm};
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  color: ${({ theme }) => theme.colors.textSecondary};
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.divider};
-    color: ${({ theme }) => theme.colors.text};
-  }
-
-  svg {
-    width: 20px;
-    height: 20px;
-  }
-`;
-
-const StatusDropdown = styled.div`
-  position: relative;
-`;
-
-const DropdownMenu = styled.div`
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: ${({ theme }) => theme.colors.background};
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  box-shadow: ${({ theme }) => theme.shadows.md};
-  z-index: 10;
-  min-width: 150px;
-  overflow: hidden;
-`;
-
-const DropdownItem = styled.button`
-  width: 100%;
-  text-align: left;
-  padding: ${({ theme }) => theme.spacing.md};
-  border: none;
-  background: none;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.divider};
-  }
-
-  &:not(:last-child) {
-    border-bottom: 1px solid ${({ theme }) => theme.colors.divider};
-  }
-`;
-
-const MessagesContainer = styled.div`
-  flex: 1;
-  overflow-y: auto;
-  padding: ${({ theme }) => theme.spacing.md};
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.md};
-  background-color: ${({ theme }) => theme.colors.surface};
-`;
-
-const InputContainer = styled.div`
-  padding: ${({ theme }) => theme.spacing.md};
-  border-top: 1px solid ${({ theme }) => theme.colors.divider};
-  background-color: ${({ theme }) => theme.colors.background};
-`;
-
-const InputForm = styled.form`
-  display: flex;
-  gap: ${({ theme }) => theme.spacing.md};
-`;
-
-const TextInput = styled.textarea`
-  flex: 1;
-  padding: ${({ theme }) => theme.spacing.md};
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  resize: none;
-  min-height: 50px;
-  font-family: inherit;
-
-  &:focus {
-    outline: none;
-    border-color: ${({ theme }) => theme.colors.primary};
-  }
-`;
-
-const SendButton = styled.button`
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.white};
-  border: none;
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  padding: ${({ theme }) => `${theme.spacing.md} ${theme.spacing.lg}`};
-  font-weight: ${({ theme }) => theme.typography.fontWeights.medium};
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.primaryDark};
-  }
-
-  &:disabled {
-    background-color: ${({ theme }) => theme.colors.border};
-    cursor: not-allowed;
-  }
-`;
-
-const TypingIndicator = styled.div`
-  padding: ${({ theme }) => theme.spacing.sm};
-  color: ${({ theme }) => theme.colors.textSecondary};
-  font-size: ${({ theme }) => theme.typography.fontSizes.sm};
-  font-style: italic;
-`;
+import { MessageBubble } from "../chat/MessageBubble";
 
 interface ChatViewProps {
   conversationId: string;
@@ -282,8 +127,8 @@ export const ChatView: React.FC<ChatViewProps> = ({
           </HeaderTitle>
           <HeaderSubtitle>
             Status:{" "}
-            {conversation?.status.charAt(0).toUpperCase() +
-              conversation?.status.slice(1)}
+            {(conversation?.status?.charAt(0).toUpperCase() ?? "") +
+              (conversation?.status?.slice(1) ?? "")}
           </HeaderSubtitle>
         </HeaderInfo>
 
@@ -350,3 +195,157 @@ export const ChatView: React.FC<ChatViewProps> = ({
     </ChatViewContainer>
   );
 };
+
+const ChatViewContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
+
+const ChatHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-background);
+`;
+
+const HeaderInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const HeaderTitle = styled.h3`
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+`;
+
+const HeaderSubtitle = styled.span`
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+`;
+
+const HeaderActions = styled.div`
+  display: flex;
+  gap: var(--spacing-sm);
+`;
+
+const ActionButton = styled.button`
+  background: none;
+  border: none;
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-md);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: var(--color-divider);
+    color: var(--color-text);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+`;
+
+const StatusDropdown = styled.div`
+  position: relative;
+`;
+
+const DropdownMenu = styled.div`
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  z-index: 10;
+  min-width: 150px;
+  overflow: hidden;
+`;
+
+const DropdownItem = styled.button`
+  width: 100%;
+  text-align: left;
+  padding: var(--spacing-md);
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-divider);
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--color-divider);
+  }
+`;
+
+const MessagesContainer = styled.div`
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  background-color: var(--color-surface);
+`;
+
+const InputContainer = styled.div`
+  padding: var(--spacing-md);
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-background);
+`;
+
+const InputForm = styled.form`
+  display: flex;
+  gap: var(--spacing-md);
+`;
+
+const TextInput = styled.textarea`
+  flex: 1;
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  resize: none;
+  min-height: 50px;
+  font-family: inherit;
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+`;
+
+const SendButton = styled.button`
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-primary-dark);
+  }
+
+  &:disabled {
+    background-color: var(--color-border);
+    cursor: not-allowed;
+  }
+`;
+
+const TypingIndicator = styled.div`
+  padding: var(--spacing-sm);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+`;

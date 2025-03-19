@@ -1,4 +1,4 @@
-import type React from "react";
+import React from "react";
 import styled from "styled-components";
 import {
   BarChart,
@@ -12,65 +12,6 @@ import {
   Cell,
 } from "recharts";
 import type { ChatStats } from "../../types";
-
-const StatsPanelContainer = styled.div`
-  height: 100%;
-  border-left: 1px solid ${({ theme }) => theme.colors.divider};
-  background-color: ${({ theme }) => theme.colors.surface};
-  overflow-y: auto;
-  padding: ${({ theme }) => theme.spacing.md};
-`;
-
-const PanelTitle = styled.h3`
-  margin: 0 0 ${({ theme }) => theme.spacing.md};
-  font-size: ${({ theme }) => theme.typography.fontSizes.lg};
-  font-weight: ${({ theme }) => theme.typography.fontWeights.medium};
-`;
-
-const StatCard = styled.div`
-  background-color: ${({ theme }) => theme.colors.background};
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  padding: ${({ theme }) => theme.spacing.md};
-  margin-bottom: ${({ theme }) => theme.spacing.md};
-  box-shadow: ${({ theme }) => theme.shadows.sm};
-`;
-
-const StatTitle = styled.h4`
-  margin: 0 0 ${({ theme }) => theme.spacing.sm};
-  font-size: ${({ theme }) => theme.typography.fontSizes.md};
-  font-weight: ${({ theme }) => theme.typography.fontWeights.medium};
-  color: ${({ theme }) => theme.colors.textSecondary};
-`;
-
-const StatValue = styled.div`
-  font-size: ${({ theme }) => theme.typography.fontSizes.xl};
-  font-weight: ${({ theme }) => theme.typography.fontWeights.bold};
-  color: ${({ theme }) => theme.colors.text};
-`;
-
-const StatRow = styled.div`
-  display: flex;
-  gap: ${({ theme }) => theme.spacing.md};
-  margin-bottom: ${({ theme }) => theme.spacing.md};
-`;
-
-const StatCol = styled.div`
-  flex: 1;
-`;
-
-const ChartContainer = styled.div`
-  height: 200px;
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
-`;
-
-const COLORS = [
-  "#4CAF50",
-  "#2196F3",
-  "#FFC107",
-  "#F44336",
-  "#9C27B0",
-  "#FF9800",
-];
 
 interface StatsPanelProps {
   stats: ChatStats | null;
@@ -211,3 +152,62 @@ export const StatsPanel: React.FC<StatsPanelProps> = ({ stats }) => {
     </StatsPanelContainer>
   );
 };
+
+const StatsPanelContainer = styled.div`
+  height: 100%;
+  border-left: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  overflow-y: auto;
+  padding: var(--spacing-md);
+`;
+
+const PanelTitle = styled.h3`
+  margin: 0 0 var(--spacing-md);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+`;
+
+const StatCard = styled.div`
+  background-color: var(--color-background);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  box-shadow: var(--shadow-sm);
+`;
+
+const StatTitle = styled.h4`
+  margin: 0 0 var(--spacing-sm);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+`;
+
+const StatValue = styled.div`
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+`;
+
+const StatRow = styled.div`
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+`;
+
+const StatCol = styled.div`
+  flex: 1;
+`;
+
+const ChartContainer = styled.div`
+  height: 200px;
+  margin-bottom: var(--spacing-lg);
+`;
+
+const COLORS = [
+  "#4CAF50",
+  "#2196F3",
+  "#FFC107",
+  "#F44336",
+  "#9C27B0",
+  "#FF9800",
+];

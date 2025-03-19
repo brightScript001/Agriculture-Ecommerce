@@ -1,173 +1,8 @@
-import type React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Search } from "lucide-react";
-import type { Conversation } from "../../types";
+import { Conversation } from "../../types";
 import { format } from "date-fns";
-
-const ListContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  border-right: 1px solid ${({ theme }) => theme.colors.divider};
-  background-color: ${({ theme }) => theme.colors.surface};
-`;
-
-const ListHeader = styled.div`
-  padding: ${({ theme }) => theme.spacing.md};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.divider};
-`;
-
-const SearchContainer = styled.div`
-  display: flex;
-  align-items: center;
-  background-color: ${({ theme }) => theme.colors.background};
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  padding: 0 ${({ theme }) => theme.spacing.sm};
-  border: 1px solid ${({ theme }) => theme.colors.border};
-
-  svg {
-    color: ${({ theme }) => theme.colors.textSecondary};
-    width: 18px;
-    height: 18px;
-  }
-`;
-
-const SearchInput = styled.input`
-  flex: 1;
-  border: none;
-  padding: ${({ theme }) => theme.spacing.sm};
-  background: none;
-  font-size: ${({ theme }) => theme.typography.fontSizes.sm};
-
-  &:focus {
-    outline: none;
-  }
-`;
-
-const FilterContainer = styled.div`
-  display: flex;
-  gap: ${({ theme }) => theme.spacing.sm};
-  margin-top: ${({ theme }) => theme.spacing.sm};
-`;
-
-const FilterButton = styled.button<{ active: boolean }>`
-  flex: 1;
-  padding: ${({ theme }) => theme.spacing.sm};
-  background-color: ${({ theme, active }) =>
-    active ? theme.colors.primary : theme.colors.background};
-  color: ${({ theme, active }) =>
-    active ? theme.colors.white : theme.colors.text};
-  border: 1px solid
-    ${({ theme, active }) =>
-      active ? theme.colors.primary : theme.colors.border};
-  border-radius: ${({ theme }) => theme.borderRadius.sm};
-  font-size: ${({ theme }) => theme.typography.fontSizes.xs};
-  cursor: pointer;
-  transition: all 0.2s;
-
-  &:hover {
-    background-color: ${({ theme, active }) =>
-      active ? theme.colors.primaryDark : theme.colors.divider};
-  }
-`;
-
-const ConversationsList = styled.div`
-  flex: 1;
-  overflow-y: auto;
-`;
-
-const ConversationItem = styled.div<{ selected: boolean; unread: boolean }>`
-  padding: ${({ theme }) => theme.spacing.md};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.divider};
-  background-color: ${({ theme, selected }) =>
-    selected ? theme.colors.divider : "transparent"};
-  cursor: pointer;
-  transition: background-color 0.2s;
-  position: relative;
-
-  ${({ unread, theme }) =>
-    unread &&
-    `
-    &::before {
-      content: '';
-      position: absolute;
-      left: 8px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background-color: ${theme.colors.primary};
-    }
-  `}
-
-  &:hover {
-    background-color: ${({ theme, selected }) =>
-      selected ? theme.colors.divider : theme.colors.background};
-  }
-`;
-
-const ConversationHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: ${({ theme }) => theme.spacing.xs};
-`;
-
-const ConversationTitle = styled.h4`
-  font-size: ${({ theme }) => theme.typography.fontSizes.md};
-  font-weight: ${({ theme }) => theme.typography.fontWeights.medium};
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-const ConversationTime = styled.span`
-  font-size: ${({ theme }) => theme.typography.fontSizes.xs};
-  color: ${({ theme }) => theme.colors.textSecondary};
-`;
-
-const ConversationPreview = styled.p`
-  font-size: ${({ theme }) => theme.typography.fontSizes.sm};
-  color: ${({ theme }) => theme.colors.textSecondary};
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-const StatusBadge = styled.span<{ status: string }>`
-  display: inline-block;
-  padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.sm}`};
-  border-radius: ${({ theme }) => theme.borderRadius.sm};
-  font-size: ${({ theme }) => theme.typography.fontSizes.xs};
-  font-weight: ${({ theme }) => theme.typography.fontWeights.medium};
-  margin-top: ${({ theme }) => theme.spacing.xs};
-
-  ${({ status, theme }) => {
-    switch (status) {
-      case "active":
-        return `
-          background-color: ${theme.colors.success};
-          color: ${theme.colors.white};
-        `;
-      case "resolved":
-        return `
-          background-color: ${theme.colors.info};
-          color: ${theme.colors.white};
-        `;
-      case "archived":
-        return `
-          background-color: ${theme.colors.textSecondary};
-          color: ${theme.colors.white};
-        `;
-      default:
-        return "";
-    }
-  }}
-`;
 
 interface ConversationListProps {
   conversations: Conversation[];
@@ -273,3 +108,166 @@ export const ConversationList: React.FC<ConversationListProps> = ({
     </ListContainer>
   );
 };
+
+const ListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-right: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+`;
+
+const ListHeader = styled.div`
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+`;
+
+const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: var(--color-background);
+  border-radius: var(--border-radius-md);
+  padding: 0 var(--spacing-sm);
+  border: 1px solid var(--color-border);
+
+  svg {
+    color: var(--color-text-secondary);
+    width: 18px;
+    height: 18px;
+  }
+`;
+
+const SearchInput = styled.input`
+  flex: 1;
+  border: none;
+  padding: var(--spacing-sm);
+  background: none;
+  font-size: var(--font-size-sm);
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+const FilterContainer = styled.div`
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+`;
+
+const FilterButton = styled.button<{ active: boolean }>`
+  flex: 1;
+  padding: var(--spacing-sm);
+  background-color: ${({ active }) =>
+    active ? "var(--color-primary)" : "var(--color-background)"};
+  color: ${({ active }) =>
+    active ? "var(--color-white)" : "var(--color-text)"};
+  border: 1px solid
+    ${({ active }) => (active ? "var(--color-primary)" : "var(--color-border)")};
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: ${({ active }) =>
+      active ? "var(--color-primary-dark)" : "var(--color-divider)"};
+  }
+`;
+
+const ConversationsList = styled.div`
+  flex: 1;
+  overflow-y: auto;
+`;
+
+const ConversationItem = styled.div<{ selected: boolean; unread: boolean }>`
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+  background-color: ${({ selected }) =>
+    selected ? "var(--color-divider)" : "transparent"};
+  cursor: pointer;
+  transition: background-color 0.2s;
+  position: relative;
+
+  ${({ unread }) =>
+    unread &&
+    `
+    &::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--color-primary);
+    }
+  `}
+
+  &:hover {
+    background-color: ${({ selected }) =>
+      selected ? "var(--color-divider)" : "var(--color-background)"};
+  }
+`;
+
+const ConversationHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xs);
+`;
+
+const ConversationTitle = styled.h4`
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+const ConversationTime = styled.span`
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+`;
+
+const ConversationPreview = styled.p`
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+const StatusBadge = styled.span<{ status: string }>`
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  margin-top: var(--spacing-xs);
+
+  ${({ status }) => {
+    switch (status) {
+      case "active":
+        return `
+          background-color: var(--color-success);
+          color: var(--color-white);
+        `;
+      case "resolved":
+        return `
+          background-color: var(--color-info);
+          color: var(--color-white);
+        `;
+      case "archived":
+        return `
+          background-color: var(--color-text-secondary);
+          color: var(--color-white);
+        `;
+      default:
+        return "";
+    }
+  }}
+`;
