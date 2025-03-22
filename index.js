@@ -1,4 +1,3 @@
-// the initial population is p0 = 1000
 // the population increase by percent = 2% per year
 // the new inhabitants come to live in the town is 50
 // the target population is p = 1200
