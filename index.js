@@ -1,4 +1,4 @@
-// the new inhabitants come to live in the town is 50
+
 // the target population is p = 1200
 
 // function yearToReactPopulation(p0, percent, aug, p) {
