@@ -1,6 +1,3 @@
-
-// the target population is p = 1200
-
 // function yearToReactPopulation(p0, percent, aug, p) {
 //   let years = 0;
 //   while (p0 < p) {
