@@ -1,5 +1,3 @@
-
-//     p0 += (p0 * percent) / 100 + aug;
 //   return years;
 // }
 // console.log(yearsToReachPopulation(1000, 2, 50, 1200));
