@@ -1,4 +1,4 @@
-// }
+
 // console.log(yearsToReachPopulation(1000, 2, 50, 1200));
 
 // function reverseString(str) {
