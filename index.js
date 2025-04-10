@@ -1,5 +1,5 @@
 
-// console.log(yearsToReachPopulation(1000, 2,
+// console.log(yearsToReachPopulation(1000,
 
 // function reverseString(str) {
 //   return str.split("").reverse("").join("");
