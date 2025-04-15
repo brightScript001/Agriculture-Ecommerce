@@ -1,4 +1,4 @@
-// function reverseString
+// function
 //   return str.split("").reverse("").join("");
 // }
 // console.log(reverseString("Hey there!"));
