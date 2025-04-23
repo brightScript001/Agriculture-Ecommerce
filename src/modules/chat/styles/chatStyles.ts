@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  max-width: 800px;
+  width: 100%;
   margin: 0 auto;
   background: var(--color-background);
   box-shadow: var(--shadow-md);

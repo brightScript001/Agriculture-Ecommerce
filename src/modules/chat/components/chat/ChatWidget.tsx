@@ -252,7 +252,7 @@ const WidgetContainer = styled.div<{ isOpen: boolean }>`
   background-color: var(--color-background);
   border-radius: ${({ isOpen }) =>
     isOpen
-      ? "var(--border-radius-lg) var(--border-radius-lg) 0 0"
+      ? "var(--border-radius-md) var(--border-radius-md) 0 0"
       : "var(--border-radius-round)"};
   box-shadow: var(--shadow-lg);
   overflow: hidden;

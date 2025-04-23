@@ -40,7 +40,7 @@ const Title = styled.div`
 `;
 
 const TitleText = styled.h3`
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-md);
   font-weight: var(--font-weight-medium);
   margin: 0;
 `;
