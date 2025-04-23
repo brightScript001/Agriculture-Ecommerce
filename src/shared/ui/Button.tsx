@@ -65,6 +65,7 @@ const variations = {
 const StyledButton = styled.button<ButtonProps>`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   border: none;
   border-radius: var(--border-radius-lg);
