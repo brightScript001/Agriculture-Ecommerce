@@ -1,5 +1,5 @@
 
-//   return str.split("")
+//   return str.split
 
 // }
 // console.log(reverseString("Hey there!"));
