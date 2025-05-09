@@ -1,6 +1,3 @@
-
-//   return
-
 // }
 // console.log(reverseString("Hey there!"));
 
