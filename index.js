@@ -1,4 +1,4 @@
-// }
+
 // console.log(reverseString("Hey there!"));
 
 // function MaxNum() {
