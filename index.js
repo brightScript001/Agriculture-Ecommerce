@@ -1,7 +1,7 @@
 
 // console.log(reverseString("Hey there!"));
 
-// function MaxNum() {
+// function MaxNum
 //   let input = [4, 7, 1, 9, 3, 18];
 //   let maxNum = input[0];
 //   let i = 1;
