@@ -1,5 +1,5 @@
 
-// console.log(reverseStr("Hey Gift!)
+// console.log(reverseStr("Hey victor)
 
 // function MaxNum
 //   let input = [4, 7, 1, 9, 3, 18];
