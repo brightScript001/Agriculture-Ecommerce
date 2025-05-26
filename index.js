@@ -1,7 +1,7 @@
 
 // console.log(reverseStr("Hey victor)
 
-// function MaxNum
+// function Maum
 //   let input = [4, 7, 1, 9, 3, 18];
 //   let maxNum = input[0];
 //   let i = 1;
@@ -11,7 +11,7 @@
 //     }
 //     i++;
 //   }
-//   return maxNum;
+//   return maxNum
 // }
 // console.log(MaxNum());
 
