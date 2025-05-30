@@ -1,5 +1,5 @@
 
-// console.log(reverseStr("Hey Bright)
+// console.log(reverseStr("Hey Gift")
 
 // function Maum
 //   let input = [4, 7, 1, 9, 3, 18];
